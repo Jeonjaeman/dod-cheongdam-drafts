@@ -6,110 +6,224 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>디오디청담 | B 프리시전 아틀라스 — 디자인 초안</title>
 <meta name="description" content="디오디피부과의원 청담 홈페이지 디자인 초안 B안(PRECISION ATLAS). 공개 데모이며 실제 운영 사이트가 아닙니다.">
-<link rel="stylesheet" href="../shared/skeleton.css">
+<meta name="theme-color" content="#08171A">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+</script>
 </head>
-<body data-draft="B">
-<div class="demo-bar" role="note">디자인 초안(데모)입니다 · 실제 상담 접수·개인정보 수집 없음 · <a href="https://www.dodskin.com/" rel="noopener">공식 홈페이지</a></div>
-<nav class="toc" aria-label="섹션 목차">
-  <a href="#B01">B01</a><a href="#B02">B02</a><a href="#B03">B03</a><a href="#B04">B04</a><a href="#B05">B05</a><a href="#B06">B06</a><a href="#B07">B07</a>
-</nav>
+<body>
+<a class="skip" href="#B01">본문 바로가기</a>
+<div class="demo-bar" role="note">디자인 초안(데모) · 실제 상담 접수·개인정보 수집 없음 ·&nbsp;<a href="https://www.dodskin.com/" rel="noopener">공식 홈페이지</a></div>
+
+<header class="site-header">
+  <a class="brand" href="#B01" aria-label="디오디피부과의원 청담 처음으로"><span class="mono">DOD</span><span class="brand-ko">디오디피부과 청담</span></a>
+  <nav class="gnb" aria-label="주요 메뉴">
+    <a href="#B02"><span class="mono">02</span>진단</a>
+    <a href="#B03"><span class="mono">03</span>고민 탐색</a>
+    <a href="#B04"><span class="mono">04</span>진료 분야</a>
+    <a href="#B05"><span class="mono">05</span>의료진</a>
+    <a href="#B06"><span class="mono">06</span>FAQ</a>
+  </nav>
+  <div class="lang" aria-label="언어 선택 — 현재 한국어 데모, 다른 언어는 공식 사이트로 이동">
+    <span class="lang-now" aria-current="true">KR</span>
+    <a href="https://en.dodskin.com/" rel="noopener" hreflang="en" lang="en">EN</a>
+    <a href="https://cn.dodskin.com/" rel="noopener" hreflang="zh-Hans" lang="zh-Hans">简体</a>
+    <a href="https://jp.dodskin.com/" rel="noopener" hreflang="ja" lang="ja">日本語</a>
+    <a href="https://tw.dodskin.com/" rel="noopener" hreflang="zh-Hant" lang="zh-Hant">繁體</a>
+  </div>
+</header>
+
 <main>
-  <section id="B01" data-section="B01 hero">
-    <span class="sec-no">B01 · HERO</span>
-    <h1>선택에 앞서, 피부를 이해하다</h1>
-    <p>진단 과정과 진료 분야를 차근히 살펴보세요.</p>
-    <a class="cta" href="#B03">진료 분야 탐색</a>
-  </section>
-
-  <section id="B02" data-section="B02 diagnosis">
-    <span class="sec-no">B02 · DIAGNOSIS</span>
-    <h2>진료의 출발점은 상태를 살피는 일</h2>
-    <p>홈페이지에서 안내하는 MetaVu 진단 시스템과 상담 과정을 소개합니다.</p>
-  </section>
-
-  <section id="B03" data-section="B03 explorer">
-    <span class="sec-no">B03 · EXPLORER</span>
-    <h2>어떤 고민이 있으신가요?</h2>
-    <div role="tablist" aria-label="관심 고민 선택">
-      <button type="button" role="tab" id="tab-firm" aria-controls="panel-firm" aria-selected="true">탄력·윤곽</button>
-      <button type="button" role="tab" id="tab-texture" aria-controls="panel-texture" aria-selected="false">피부결·건조</button>
-      <button type="button" role="tab" id="tab-tone" aria-controls="panel-tone" aria-selected="false">색소·흉터</button>
+  <!-- B01 HERO: 단일 유리 렌즈 three.js -->
+  <section id="B01" class="hero" data-section="B01 hero" aria-labelledby="B01-title">
+    <div class="hero-stage" aria-hidden="true">
+      <canvas id="lens" class="lens-canvas"></canvas>
+      <img class="lens-poster" src="../assets/higgsfield/b01.webp" alt="" width="1920" height="1080">
     </div>
-    <div role="tabpanel" id="panel-firm" aria-labelledby="tab-firm">
-      <h3>탄력·윤곽</h3>
-      <p>관련 진료 분야와 상담 때 물어볼 질문을 확인하세요.</p>
-      <a href="https://www.dodskin.com/" rel="noopener">공식 진료 안내</a>
+    <div class="hero-grid">
+      <div class="hero-title">
+        <p class="idx mono" data-in>B / 01 — PRECISION ATLAS</p>
+        <h1 id="B01-title" class="display">
+          <span class="line" data-in>선택에 앞서,</span>
+          <span class="line" data-in>피부를 이해하다</span>
+        </h1>
+      </div>
+      <div class="lens-slot" aria-hidden="true"></div>
+      <div class="hero-note" data-in>
+        <p>진단 과정과 진료 분야를<br class="br-pc"> 차근히 살펴보세요.</p>
+        <a class="btn" href="#B03">진료 분야 탐색<span aria-hidden="true">↘</span></a>
+      </div>
     </div>
-    <div role="tabpanel" id="panel-texture" aria-labelledby="tab-texture" hidden>
-      <h3>피부결·건조</h3>
-      <p>관련 진료 분야와 상담 때 물어볼 질문을 확인하세요.</p>
-      <a href="https://www.dodskin.com/" rel="noopener">공식 진료 안내</a>
-    </div>
-    <div role="tabpanel" id="panel-tone" aria-labelledby="tab-tone" hidden>
-      <h3>색소·흉터</h3>
-      <p>관련 진료 분야와 상담 때 물어볼 질문을 확인하세요.</p>
-      <a href="https://www.dodskin.com/" rel="noopener">공식 진료 안내</a>
-    </div>
-    <p class="note">선택 내용은 저장되지 않으며, 자동 진단이나 시술 추천이 아닙니다.</p>
+    <p class="gen-note mono">3D 그래픽은 장식이며 진단 장비·결과를 나타내지 않습니다</p>
   </section>
 
-  <section id="B04" data-section="B04 atlas">
-    <span class="sec-no">B04 · ATLAS</span>
-    <h2>이름보다 중요한, 선택의 기준</h2>
-    <ul class="cards">
-      <li><h3>리프팅</h3><p>개요 · 상담 때 확인할 점 · 개인차 안내</p></li>
-      <li><h3>콜라겐·스킨부스터</h3><p>개요 · 상담 때 확인할 점 · 개인차 안내</p></li>
-      <li><h3>재생 프로그램</h3><p>개요 · 상담 때 확인할 점 · 개인차 안내</p></li>
-    </ul>
-    <p class="note">세부 내용은 의료진 검토 후 작성합니다.</p>
+  <!-- B02 DIAGNOSIS -->
+  <section id="B02" class="diagnosis" data-section="B02 diagnosis" aria-labelledby="B02-title">
+    <header class="sec-head">
+      <p class="idx mono">02 — DIAGNOSIS</p>
+      <h2 id="B02-title" class="title">진료의 출발점은<br> 상태를 살피는 일</h2>
+      <p class="sec-desc">홈페이지에서 안내하는 MetaVu 진단 시스템과 상담 과정을 소개합니다.</p>
+    </header>
+    <ol class="steps" data-steps>
+      <li><span class="mono">01</span><h3>관찰</h3><p>현재 피부 상태와 관심 부위를 살핍니다.</p></li>
+      <li><span class="mono">02</span><h3>진단</h3><p>MetaVu 진단 시스템으로 상태를 확인합니다.</p></li>
+      <li><span class="mono">03</span><h3>상담</h3><p>확인한 내용을 바탕으로 의료진과 진료 방향을 이야기합니다.</p></li>
+    </ol>
   </section>
 
-  <section id="B05" data-section="B05 people">
-    <span class="sec-no">B05 · PEOPLE</span>
-    <h2>판단은 의료진과 함께</h2>
-    <p>의료진 소개와 진료 분야를 확인하세요.</p>
-    <a class="cta" href="#B07">상담 안내</a>
+  <!-- B03 EXPLORER: 고민 선택형 탐색 (B 전용) -->
+  <section id="B03" class="explorer" data-section="B03 explorer" aria-labelledby="B03-title">
+    <header class="sec-head">
+      <p class="idx mono">03 — EXPLORER</p>
+      <h2 id="B03-title" class="title">어떤 고민이 있으신가요?</h2>
+    </header>
+    <div class="tabs">
+      <div class="tablist" role="tablist" aria-label="관심 고민 선택">
+        <button type="button" role="tab" id="t-firm" aria-controls="p-firm" aria-selected="true"><span class="mono">A</span>탄력·윤곽</button>
+        <button type="button" role="tab" id="t-texture" aria-controls="p-texture" aria-selected="false" tabindex="-1"><span class="mono">B</span>피부결·건조</button>
+        <button type="button" role="tab" id="t-tone" aria-controls="p-tone" aria-selected="false" tabindex="-1"><span class="mono">C</span>색소·흉터</button>
+      </div>
+      <div class="panels">
+        <div class="panel" role="tabpanel" id="p-firm" aria-labelledby="t-firm" tabindex="0">
+          <h3>탄력·윤곽</h3>
+          <p>관련 진료: 리프팅</p>
+          <ul class="qs"><li>지금 가장 신경 쓰이는 부위는 어디인가요?</li><li>이전에 받은 시술이 있다면 언제였나요?</li></ul>
+          <a class="link" href="https://www.dodskin.com/" rel="noopener">공식 진료 안내</a>
+        </div>
+        <div class="panel" role="tabpanel" id="p-texture" aria-labelledby="t-texture" tabindex="0" hidden>
+          <h3>피부결·건조</h3>
+          <p>관련 진료: 콜라겐·스킨부스터</p>
+          <ul class="qs"><li>건조함이 느껴지는 시기나 부위가 있나요?</li><li>평소 사용하는 관리 방법을 함께 알려 주세요.</li></ul>
+          <a class="link" href="https://www.dodskin.com/" rel="noopener">공식 진료 안내</a>
+        </div>
+        <div class="panel" role="tabpanel" id="p-tone" aria-labelledby="t-tone" tabindex="0" hidden>
+          <h3>색소·흉터</h3>
+          <p>관련 진료는 상담에서 의료진과 확인합니다.</p>
+          <ul class="qs"><li>언제부터 생겼고, 변화가 있었나요?</li><li>이전 치료 이력이 있다면 알려 주세요.</li></ul>
+          <a class="link" href="https://www.dodskin.com/" rel="noopener">공식 진료 안내</a>
+        </div>
+      </div>
+    </div>
+    <p class="fine">선택 내용은 저장되거나 전송되지 않으며, 자동 진단이나 시술 추천이 아닙니다.</p>
   </section>
 
-  <section id="B06" data-section="B06 faq">
-    <span class="sec-no">B06 · FAQ</span>
-    <h2>상담 전에 궁금한 점</h2>
-    <details>
-      <summary><h3>시술 선택은 어떻게 하나요?</h3></summary>
-      <p>피부 상태와 관심 부위를 바탕으로 의료진과 상담해 진료 방향을 정합니다.</p>
+  <!-- B04 ATLAS: 밝은 정보 패널 -->
+  <section id="B04" class="atlas" data-section="B04 atlas" aria-labelledby="B04-title">
+    <header class="sec-head">
+      <p class="idx mono">04 — ATLAS</p>
+      <h2 id="B04-title" class="title">이름보다 중요한,<br> 선택의 기준</h2>
+    </header>
+    <div class="atlas-table" role="table" aria-label="진료 분야별 확인 사항">
+      <div class="row head" role="row">
+        <span role="columnheader">분야</span><span role="columnheader">개요</span><span role="columnheader">상담 때 확인할 점</span><span role="columnheader">개인차</span>
+      </div>
+      <div class="row" role="row" data-row>
+        <h3 role="rowheader">리프팅</h3>
+        <span role="cell" data-label="개요">공식 안내 원문 확인 후 작성</span>
+        <span role="cell" data-label="상담 때 확인할 점">관심 부위, 이전 시술 이력, 일정</span>
+        <span role="cell" data-label="개인차">결과와 회복은 사람마다 다릅니다</span>
+      </div>
+      <div class="row" role="row" data-row>
+        <h3 role="rowheader">콜라겐·스킨부스터</h3>
+        <span role="cell" data-label="개요">공식 안내 원문 확인 후 작성</span>
+        <span role="cell" data-label="상담 때 확인할 점">피부 상태, 관리 주기, 일정</span>
+        <span role="cell" data-label="개인차">결과와 회복은 사람마다 다릅니다</span>
+      </div>
+      <div class="row" role="row" data-row>
+        <h3 role="rowheader">재생 프로그램</h3>
+        <span role="cell" data-label="개요">의료진 검토 후 작성</span>
+        <span role="cell" data-label="상담 때 확인할 점">의료진 상담이 필요합니다</span>
+        <span role="cell" data-label="개인차">결과와 회복은 사람마다 다릅니다</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- B05 PEOPLE: 전문 분야 표 -->
+  <section id="B05" class="people" data-section="B05 people" aria-labelledby="B05-title">
+    <header class="sec-head">
+      <p class="idx mono">05 — DOCTORS</p>
+      <h2 id="B05-title" class="title">판단은 의료진과 함께</h2>
+    </header>
+    <table class="doc-table">
+      <caption class="sr-only">의료진 소개</caption>
+      <thead><tr><th scope="col">이름</th><th scope="col">직함</th><th scope="col">진료 분야</th><th scope="col"><span class="sr-only">소개 링크</span></th></tr></thead>
+      <tbody>
+        <tr><th scope="row">이준</th><td>대표원장</td><td>공식 소개 확인 후 기재</td><td><a class="link" href="https://www.dodskin.com/" rel="noopener">소개 보기</a></td></tr>
+      </tbody>
+    </table>
+    <a class="btn" href="#B07">상담 안내<span aria-hidden="true">↘</span></a>
+  </section>
+
+  <!-- B06 FAQ -->
+  <section id="B06" class="faq" data-section="B06 faq" aria-labelledby="B06-title">
+    <header class="sec-head">
+      <p class="idx mono">06 — FAQ</p>
+      <h2 id="B06-title" class="title">상담 전에 궁금한 점</h2>
+    </header>
+    <div class="faq-list">
+      <details>
+        <summary><h3>시술 선택은 어떻게 하나요?</h3></summary>
+        <p>피부 상태와 관심 부위를 살핀 뒤 의료진과 상담해 진료 방향을 정합니다.</p>
+      </details>
+      <details>
+        <summary><h3>위치와 진료시간은?</h3></summary>
+        <p>서울 강남구 도산대로 423에 있습니다.</p>
+        <dl class="hours">
+          <div><dt>월–목</dt><dd>10:00 – 19:00</dd></div>
+          <div><dt>금</dt><dd>10:00 – 21:00</dd></div>
+          <div><dt>토</dt><dd>10:00 – 16:00</dd></div>
+          <div><dt>휴게</dt><dd>13:00 – 14:00 (월–금)</dd></div>
+        </dl>
+        <p class="fine">공식 홈페이지 진료 안내 기준입니다. 일요일·공휴일은 병원에 확인해 주세요.</p>
+      </details>
+      <details>
+        <summary><h3>상담과 예약 확정은 어떻게 다른가요?</h3></summary>
+        <p>문의를 남긴다고 예약이 확정되지는 않습니다. 병원에서 일정을 안내한 뒤 확정됩니다.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- B07 CONTACT: 질문 체크리스트 → 공식 상담 -->
+  <section id="B07" class="contact" data-section="B07 contact" aria-labelledby="B07-title">
+    <header class="sec-head">
+      <p class="idx mono">07 — CONTACT</p>
+      <h2 id="B07-title" class="title">나에게 필요한 질문부터<br> 시작하세요.</h2>
+    </header>
+    <details class="checklist">
+      <summary class="btn btn-solid">상담할 질문 확인<span aria-hidden="true">+</span></summary>
+      <ol>
+        <li>이번 진료로 기대하는 목표는 무엇인가요?</li>
+        <li>이전에 받은 시술과 시기는 언제인가요?</li>
+        <li>회복이나 일정에서 고려할 점이 있나요?</li>
+        <li>복용 중인 약이나 알레르기가 있나요?</li>
+      </ol>
+      <p class="fine">메모용 목록입니다. 입력이나 저장 기능은 없습니다.</p>
+      <a class="btn" href="https://www.dodskin.com/" rel="noopener">공식 상담 안내로 이동<span aria-hidden="true">↗</span></a>
     </details>
-    <details>
-      <summary><h3>위치와 진료시간은?</h3></summary>
-      <p>서울 강남구 도산대로 423에 있습니다. 진료시간은 공식 안내에서 확인해 주세요.</p>
-    </details>
-    <details>
-      <summary><h3>상담과 예약 확정은 어떻게 다른가요?</h3></summary>
-      <p>문의를 남긴다고 예약이 확정되지는 않습니다. 병원에서 일정을 안내한 뒤 확정됩니다.</p>
-    </details>
-  </section>
-
-  <section id="B07" data-section="B07 contact">
-    <span class="sec-no">B07 · CONTACT</span>
-    <h2>나에게 필요한 질문부터 시작하세요.</h2>
-    <address>
-      디오디피부과의원 청담<br>
-      서울 강남구 도산대로 423<br>
-      <a href="tel:0262036263">02-6203-6263</a>
+    <address class="contact-info">
+      <span>디오디피부과의원 청담</span>
+      <span>서울 강남구 도산대로 423</span>
+      <a href="tel:02-6203-6263" class="mono">02-6203-6263</a>
     </address>
-    <a class="cta" href="https://www.dodskin.com/" rel="noopener">공식 상담 채널</a>
   </section>
 </main>
-<footer>디자인 초안 B — PRECISION ATLAS · 탱탱소프트 · 이 페이지는 검색 색인 대상이 아닙니다.</footer>
-<script>
-document.querySelectorAll('[role="tab"]').forEach(function (tab, _, tabs) {
-  tab.addEventListener('click', function () {
-    tabs.forEach(function (t) {
-      var on = t === tab;
-      t.setAttribute('aria-selected', String(on));
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-    });
-  });
-});
-</script>
+
+<footer class="site-footer">
+  <p>디자인 초안 B — PRECISION ATLAS · 탱탱소프트</p>
+  <p>이 페이지는 검색 색인 대상이 아니며, 실제 병원 운영 사이트는 <a href="https://www.dodskin.com/" rel="noopener">dodskin.com</a>입니다.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="ui.js" defer></script>
+<script type="module" src="lens.js"></script>
 </body>
 </html>
