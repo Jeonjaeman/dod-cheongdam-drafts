@@ -1,0 +1,695 @@
+{
+ "url": "https://www.apple.com/airpods-pro/",
+ "final": "https://www.apple.com/airpods-pro/",
+ "mobile": false,
+ "log": [
+  {
+   "y": 0,
+   "H": 29079,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 5,
+    "raf": 100
+   },
+   "vids": [
+    {
+     "src": "hero/large.mp4",
+     "t": 4.16,
+     "dur": 7.5,
+     "paused": false,
+     "w": 1800,
+     "h": 1050
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    }
+   ],
+   "canvases": [],
+   "label": "load",
+   "reqs": 51
+  },
+  {
+   "y": 450,
+   "H": 29079,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 5,
+    "raf": 114
+   },
+   "vids": [
+    {
+     "src": "hero/large.mp4",
+     "t": 4.4,
+     "dur": 7.5,
+     "paused": false,
+     "w": 1800,
+     "h": 1050
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    }
+   ],
+   "canvases": [],
+   "label": "down@0",
+   "reqs": 55
+  },
+  {
+   "y": 3150,
+   "H": 29079,
+   "P": {
+    "draw": {},
+    "seek": 1,
+    "seekVals": [
+     0
+    ],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 7,
+    "raf": 216
+   },
+   "vids": [
+    {
+     "src": "hero/large.mp4",
+     "t": 4.71,
+     "dur": 7.5,
+     "paused": true,
+     "w": 1800,
+     "h": 1050
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "initial/large.mp4",
+     "t": 0.71,
+     "dur": 2.53,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "fit-feel/large.mp4",
+     "t": 0,
+     "dur": 3.2,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "heart-rate/large.mp4",
+     "t": 0,
+     "dur": 5.47,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    }
+   ],
+   "canvases": [],
+   "label": "down@2700",
+   "reqs": 81
+  },
+  {
+   "y": 5850,
+   "H": 29079,
+   "P": {
+    "draw": {},
+    "seek": 2,
+    "seekVals": [
+     0,
+     0
+    ],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 8,
+    "raf": 310
+   },
+   "vids": [
+    {
+     "src": "hero/large.mp4",
+     "t": 4.71,
+     "dur": 7.5,
+     "paused": true,
+     "w": 1800,
+     "h": 1050
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "initial/large.mp4",
+     "t": 0.71,
+     "dur": 2.53,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "fit-feel/large.mp4",
+     "t": 0,
+     "dur": 3.2,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "heart-rate/large.mp4",
+     "t": 0,
+     "dur": 5.47,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    }
+   ],
+   "canvases": [],
+   "label": "down@5400",
+   "reqs": 89
+  },
+  {
+   "y": 8550,
+   "H": 29079,
+   "P": {
+    "draw": {},
+    "seek": 6,
+    "seekVals": [
+     0,
+     0,
+     0.99,
+     2.34,
+     3.68,
+     4.9
+    ],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 8,
+    "raf": 378
+   },
+   "vids": [
+    {
+     "src": "hero/large.mp4",
+     "t": 4.71,
+     "dur": 7.5,
+     "paused": true,
+     "w": 1800,
+     "h": 1050
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "initial/large.mp4",
+     "t": 0.71,
+     "dur": 2.53,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "fit-feel/large.mp4",
+     "t": 0,
+     "dur": 3.2,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "heart-rate/large.mp4",
+     "t": 0,
+     "dur": 5.47,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    }
+   ],
+   "canvases": [],
+   "label": "down@8100",
+   "reqs": 91
+  },
+  {
+   "y": 11250,
+   "H": 29079,
+   "P": {
+    "draw": {},
+    "seek": 6,
+    "seekVals": [
+     0,
+     0,
+     0.99,
+     2.34,
+     3.68,
+     4.9
+    ],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 8,
+    "raf": 472
+   },
+   "vids": [
+    {
+     "src": "hero/large.mp4",
+     "t": 4.71,
+     "dur": 7.5,
+     "paused": true,
+     "w": 1800,
+     "h": 1050
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "initial/large.mp4",
+     "t": 0.71,
+     "dur": 2.53,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "fit-feel/large.mp4",
+     "t": 0,
+     "dur": 3.2,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "heart-rate/large.mp4",
+     "t": 0,
+     "dur": 5.47,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    }
+   ],
+   "canvases": [],
+   "label": "down@10800",
+   "reqs": 100
+  },
+  {
+   "y": 13950,
+   "H": 29079,
+   "P": {
+    "draw": {},
+    "seek": 7,
+    "seekVals": [
+     0,
+     0,
+     0.99,
+     2.34,
+     3.68,
+     4.9,
+     0
+    ],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 9,
+    "raf": 555
+   },
+   "vids": [
+    {
+     "src": "hero/large.mp4",
+     "t": 4.71,
+     "dur": 7.5,
+     "paused": true,
+     "w": 1800,
+     "h": 1050
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "initial/large.mp4",
+     "t": 0.71,
+     "dur": 2.53,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "fit-feel/large.mp4",
+     "t": 0,
+     "dur": 3.2,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "heart-rate/large.mp4",
+     "t": 0,
+     "dur": 5.47,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    }
+   ],
+   "canvases": [],
+   "label": "down@13500",
+   "reqs": 108
+  },
+  {
+   "y": 14400,
+   "H": 29079,
+   "P": {
+    "draw": {},
+    "seek": 7,
+    "seekVals": [
+     0,
+     0,
+     0.99,
+     2.34,
+     3.68,
+     4.9,
+     0
+    ],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 9,
+    "raf": 606
+   },
+   "vids": [
+    {
+     "src": "hero/large.mp4",
+     "t": 4.71,
+     "dur": 7.5,
+     "paused": true,
+     "w": 1800,
+     "h": 1050
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "initial/large.mp4",
+     "t": 0.71,
+     "dur": 2.53,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "fit-feel/large.mp4",
+     "t": 0,
+     "dur": 3.2,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "heart-rate/large.mp4",
+     "t": 0,
+     "dur": 5.47,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    }
+   ],
+   "canvases": [],
+   "label": "bottom",
+   "reqs": 110
+  },
+  {
+   "y": 11250,
+   "H": 29079,
+   "P": {
+    "draw": {},
+    "seek": 7,
+    "seekVals": [
+     0,
+     0,
+     0.99,
+     2.34,
+     3.68,
+     4.9,
+     0
+    ],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 10,
+    "raf": 613
+   },
+   "vids": [
+    {
+     "src": "hero/large.mp4",
+     "t": 4.71,
+     "dur": 7.5,
+     "paused": true,
+     "w": 1800,
+     "h": 1050
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "",
+     "t": 0,
+     "dur": 0,
+     "paused": true,
+     "w": 0,
+     "h": 0
+    },
+    {
+     "src": "initial/large.mp4",
+     "t": 0.71,
+     "dur": 2.53,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "fit-feel/large.mp4",
+     "t": 0,
+     "dur": 3.2,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    },
+    {
+     "src": "heart-rate/large.mp4",
+     "t": 0,
+     "dur": 5.47,
+     "paused": true,
+     "w": 1728,
+     "h": 912
+    }
+   ],
+   "canvases": [],
+   "label": "up3000",
+   "reqs": 111
+  }
+ ],
+ "imgSeqCount": 0,
+ "imgSeqSample": [],
+ "imgSeqDirs": [],
+ "media": [
+  "https://www.apple.com/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/hero/large.mp4",
+  "https://www.apple.com/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/initial/large.mp4",
+  "https://www.apple.com/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/fit-feel/large.mp4",
+  "https://www.apple.com/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/heart-rate/large.mp4",
+  "https://www.apple.com/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/touch-controls/large.mp4",
+  "https://www.apple.com/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/case/large.mp4",
+  "https://www.apple.com/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/noise-control/large.webm",
+  "https://www.apple.com/105/media/us/airpods-pro/2025/ab88f834-9c62-4bab-8cf8-f5e866987d6e/anim/design/large.webm",
+  "https://www.apple.com/105/media/us/airpods-pro/2025/ab88f834-9c62-4bab-8cf8-f5e866987d6e/anim/fitness-hero/large.webm",
+  "https://www.apple.com/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/hearing-health-halo/large.webm"
+ ]
+}

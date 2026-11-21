@@ -1,0 +1,161 @@
+{
+ "url": "https://basement.studio/",
+ "final": "https://basement.studio/",
+ "mobile": false,
+ "log": [
+  {
+   "y": 0,
+   "H": 6714,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 161,
+     "image": 46,
+     "canvas": 0,
+     "other": 4
+    },
+    "play": 5,
+    "raf": 468
+   },
+   "vids": [],
+   "canvases": [
+    "1440x900",
+    "1440x900"
+   ],
+   "label": "load",
+   "reqs": 315
+  },
+  {
+   "y": 450,
+   "H": 6714,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 178,
+     "image": 46,
+     "canvas": 0,
+     "other": 4
+    },
+    "play": 5,
+    "raf": 514
+   },
+   "vids": [],
+   "canvases": [
+    "1440x900",
+    "1440x900"
+   ],
+   "label": "down@0",
+   "reqs": 316
+  },
+  {
+   "y": 3150,
+   "H": 6714,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 202,
+     "image": 46,
+     "canvas": 0,
+     "other": 4
+    },
+    "play": 5,
+    "raf": 644
+   },
+   "vids": [],
+   "canvases": [
+    "1440x900",
+    "1440x900"
+   ],
+   "label": "down@2700",
+   "reqs": 319
+  },
+  {
+   "y": 5814,
+   "H": 6714,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 202,
+     "image": 46,
+     "canvas": 0,
+     "other": 4
+    },
+    "play": 5,
+    "raf": 735
+   },
+   "vids": [],
+   "canvases": [
+    "1440x900",
+    "1440x900"
+   ],
+   "label": "down@5400",
+   "reqs": 319
+  },
+  {
+   "y": 5814,
+   "H": 6714,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 202,
+     "image": 46,
+     "canvas": 0,
+     "other": 4
+    },
+    "play": 5,
+    "raf": 854
+   },
+   "vids": [],
+   "canvases": [
+    "1440x900",
+    "1440x900"
+   ],
+   "label": "bottom",
+   "reqs": 319
+  },
+  {
+   "y": 2664,
+   "H": 6714,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 202,
+     "image": 46,
+     "canvas": 0,
+     "other": 4
+    },
+    "play": 5,
+    "raf": 1020
+   },
+   "vids": [],
+   "canvases": [
+    "1440x900",
+    "1440x900"
+   ],
+   "label": "up3000",
+   "reqs": 319
+  }
+ ],
+ "imgSeqCount": 0,
+ "imgSeqSample": [],
+ "imgSeqDirs": [],
+ "media": [
+  "https://basement.studio/3d/textures/arcade-idleScreen-7c248ce4.mp4",
+  "https://basement.studio/3d/video/video-SM_TvScreen_1-7ab9d38c.mp4",
+  "https://basement.studio/3d/video/video-SM_PeopleMonitorD-3d411157.mp4",
+  "https://basement.studio/3d/video/video-SM_PeopleMonitorA-24a379df.mp4",
+  "https://basement.studio/3d/video/video-SM_ScreenPatas-1e8af958.mp4"
+ ]
+}

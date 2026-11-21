@@ -1,0 +1,202 @@
+[
+ {
+  "url": "https://lanserhof.com/en/",
+  "ok": true,
+  "title": "Lanserhof: Home of Health & Beauty",
+  "gl": [
+   "webgl",
+   "webgl",
+   "webgl",
+   "webgl"
+  ],
+  "canvases": [
+   "257x420",
+   "300x150",
+   "257x420",
+   "257x420",
+   "300x150",
+   "257x420"
+  ],
+  "videos": [
+   {
+    "src": "https://files.lanserhof.com/videos/medizinisch-hero-1080p-web.mp4",
+    "muted": true,
+    "loop": true,
+    "autoplay": false,
+    "controls": false
+   }
+  ],
+  "globals": [],
+  "threeRev": null,
+  "pinned": 0,
+  "sticky": 0,
+  "fonts": [
+   "Neue Frutiger World",
+   "Frutiger Serif LT Pro"
+  ],
+  "scrollH": 6666,
+  "libs": [
+   "Framer Motion",
+   "Framer Motion (html)",
+   "Framer Motion (url)",
+   "Lottie",
+   "three.js"
+  ],
+  "jsCount": 25,
+  "mediaFiles": [
+   "https://glide.lanserhof.com/containers/images/video_hero_poster_medizinisch.jpg/0550eb7e8d9aafd07a34658398dbeff3/video_hero_poster_medizinisch.webp",
+   "https://files.lanserhof.com/videos/medizinisch-hero-1080p-web.mp4"
+  ],
+  "imageCount": 26,
+  "imageFormats": [
+   "image/webp",
+   "image/svg+xml",
+   "image/png"
+  ],
+  "frameSequenceCandidates": 3,
+  "seqSample": [
+   "https://glide.lanserhof.com/containers/images/resorts/sylt/josselin/aj-lanserhof0288.jpg/6a481447c556b24f140c272655be3a84/aj-lanserhof0288.webp",
+   "https://glide.lanserhof.com/containers/images/resorts/sylt/treppe_7391.jpg/f39b7f985ec7ce3a1fe3a715299d6b55/treppe_7391.webp",
+   "https://glide.lanserhof.com/containers/images/germanys-best-resort-spa-2026-winner-shield-black-256.png/61b80c4026acca2744dc7a043d39d6d6/germanys-best"
+  ],
+  "models": []
+ },
+ {
+  "url": "https://www.chaum.net/",
+  "ok": true,
+  "title": "차움",
+  "gl": [],
+  "canvases": [],
+  "videos": [],
+  "globals": [
+   "gsap",
+   "ScrollTrigger",
+   "Lenis"
+  ],
+  "threeRev": null,
+  "pinned": 3,
+  "sticky": 0,
+  "fonts": [
+   "Pretendard Variable",
+   "Poppins",
+   "swiper-icons",
+   "Eulyoo1945",
+   "Montserrat",
+   "SpoqaHanSans",
+   "kudryashev-d-contrast",
+   "kudryashev-d-contrast-sans"
+  ],
+  "scrollH": 4498,
+  "libs": [
+   "GSAP",
+   "GSAP (html)",
+   "GSAP (url)",
+   "Lenis",
+   "Lenis (html)",
+   "Lenis (url)",
+   "PixiJS",
+   "ScrollTrigger",
+   "ScrollTrigger (html)",
+   "ScrollTrigger (url)"
+  ],
+  "jsCount": 12,
+  "mediaFiles": [],
+  "imageCount": 58,
+  "imageFormats": [
+   "image/png",
+   "image/svg+xml",
+   "image/jpeg"
+  ],
+  "frameSequenceCandidates": 1,
+  "seqSample": [
+   "https://wm.chaum.net/file/menu/Group%2031.jpg"
+  ],
+  "models": []
+ },
+ {
+  "url": "https://shawellness.com/en/",
+  "ok": true,
+  "title": "Luxury Wellness Destination | SHA Health & Medical Programs",
+  "gl": [
+   "webgl",
+   "webgl"
+  ],
+  "canvases": [],
+  "videos": [
+   {
+    "src": "https://media.shawellness.com/home-2025/sha_homepage_bg_movie_16x9.mp4",
+    "muted": true,
+    "loop": false,
+    "autoplay": false,
+    "controls": false
+   },
+   {
+    "src": "https://media.shawellness.com/home-2025/sha_homepage_bg_movie_9x6_.mp4",
+    "muted": true,
+    "loop": false,
+    "autoplay": false,
+    "controls": false
+   },
+   {
+    "src": "https://media.shawellness.com/joyful-season/joyful-season-video-popup.mp4",
+    "muted": true,
+    "loop": true,
+    "autoplay": false,
+    "controls": false
+   }
+  ],
+  "globals": [
+   "gsap",
+   "ScrollTrigger",
+   "Lenis",
+   "lenis"
+  ],
+  "threeRev": null,
+  "pinned": 1,
+  "sticky": 0,
+  "fonts": [
+   "Graphik",
+   "Roboto",
+   "Hanken Grotesk"
+  ],
+  "scrollH": 14354,
+  "libs": [
+   "Barba (page transition) (html)",
+   "GSAP",
+   "GSAP (html)",
+   "GSAP (url)",
+   "Lenis",
+   "Lenis (html)",
+   "Lenis (url)",
+   "PixiJS",
+   "ScrollTrigger",
+   "ScrollTrigger (html)",
+   "ScrollTrigger (url)"
+  ],
+  "jsCount": 92,
+  "mediaFiles": [
+   "https://media.shawellness.com/home-2025/sha_homepage_bg_movie_16x9.mp4",
+   "https://media.shawellness.com/home-2025/sha_homepage_bg_movie_9x6_.mp4",
+   "https://media.shawellness.com/joyful-season/joyful-season-video-popup.mp4",
+   "https://media.shawellness.com/home-2025/sha_homepage_bg_movie_16x9.mp4",
+   "https://media.shawellness.com/home-2025/sha_homepage_bg_movie_16x9.mp4",
+   "https://media.shawellness.com/home-2025/sha_homepage_bg_movie_9x6_.mp4",
+   "https://media.shawellness.com/home-2025/sha_homepage_bg_movie_9x6_.mp4",
+   "https://media.shawellness.com/joyful-season/joyful-season-video-popup.mp4"
+  ],
+  "imageCount": 101,
+  "imageFormats": [
+   "image/svg+xml",
+   "image/webp",
+   "image/jpeg",
+   "image/gif"
+  ],
+  "frameSequenceCandidates": 9,
+  "seqSample": [
+   "https://shawellness.com/wp-content/uploads/2026/03/03-Nelly-scaled-1-1280x1920.jpeg",
+   "https://shawellness.com/wp-content/uploads/2026/03/Vicente-Mera-02-B_LQ-1280x1920.jpg",
+   "https://shawellness.com/wp-content/uploads/2026/03/Bello-02-scaled-1-1280x1920.jpg"
+  ],
+  "models": []
+ }
+]

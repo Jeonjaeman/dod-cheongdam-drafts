@@ -1,0 +1,234 @@
+{
+ "url": "https://lanserhof.com/en/",
+ "final": "https://lanserhof.com/en",
+ "mobile": false,
+ "log": [
+  {
+   "y": 0,
+   "H": 6666,
+   "P": {
+    "draw": {
+     "ImageBitmap": 1
+    },
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 1,
+    "raf": 596
+   },
+   "vids": [
+    {
+     "src": "videos/medizinisch-hero-1080p-web.mp4",
+     "t": 4.82,
+     "dur": 29.64,
+     "paused": false,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "257x420"
+   ],
+   "label": "load",
+   "reqs": 53
+  },
+  {
+   "y": 450,
+   "H": 6666,
+   "P": {
+    "draw": {
+     "ImageBitmap": 1
+    },
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 1,
+    "raf": 617
+   },
+   "vids": [
+    {
+     "src": "videos/medizinisch-hero-1080p-web.mp4",
+     "t": 5.06,
+     "dur": 29.64,
+     "paused": false,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "257x420"
+   ],
+   "label": "down@0",
+   "reqs": 62
+  },
+  {
+   "y": 3150,
+   "H": 6666,
+   "P": {
+    "draw": {
+     "ImageBitmap": 4
+    },
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 1,
+    "raf": 791
+   },
+   "vids": [
+    {
+     "src": "videos/medizinisch-hero-1080p-web.mp4",
+     "t": 6.59,
+     "dur": 29.64,
+     "paused": false,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "257x420",
+    "257x420",
+    "257x420"
+   ],
+   "label": "down@2700",
+   "reqs": 68
+  },
+  {
+   "y": 5766,
+   "H": 6666,
+   "P": {
+    "draw": {
+     "ImageBitmap": 7
+    },
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 1,
+    "raf": 971
+   },
+   "vids": [
+    {
+     "src": "videos/medizinisch-hero-1080p-web.mp4",
+     "t": 8.13,
+     "dur": 29.64,
+     "paused": false,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "257x420",
+    "257x420",
+    "257x420",
+    "257x420"
+   ],
+   "label": "down@5400",
+   "reqs": 68
+  },
+  {
+   "y": 5766,
+   "H": 6666,
+   "P": {
+    "draw": {
+     "ImageBitmap": 7
+    },
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 1,
+    "raf": 1093
+   },
+   "vids": [
+    {
+     "src": "videos/medizinisch-hero-1080p-web.mp4",
+     "t": 10.16,
+     "dur": 29.64,
+     "paused": false,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "257x420",
+    "257x420",
+    "257x420",
+    "257x420"
+   ],
+   "label": "bottom",
+   "reqs": 68
+  },
+  {
+   "y": 2616,
+   "H": 6666,
+   "P": {
+    "draw": {
+     "ImageBitmap": 7
+    },
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 1,
+    "raf": 1433
+   },
+   "vids": [
+    {
+     "src": "videos/medizinisch-hero-1080p-web.mp4",
+     "t": 12.91,
+     "dur": 29.64,
+     "paused": false,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "257x420",
+    "257x420",
+    "257x420",
+    "257x420"
+   ],
+   "label": "up3000",
+   "reqs": 68
+  }
+ ],
+ "imgSeqCount": 2,
+ "imgSeqSample": [
+  "https://glide.lanserhof.com/containers/images/resorts/sylt/treppe_7391.jpg/f39b7f985ec7ce3a1fe3a715299d6b55/treppe_7391.webp",
+  "https://glide.lanserhof.com/containers/images/germanys-best-resort-spa-2026-winner-shield-black-256.png/61b80c4026acca2744dc7a043d39d6d6/germanys-best-resort-sp"
+ ],
+ "imgSeqDirs": [
+  "https://glide.lanserhof.com/containers/images/resorts/sylt/treppe_7391.jpg/f39b7f985ec7ce3a1fe3a715299d6b55",
+  "https://glide.lanserhof.com/containers/images/germanys-best-resort-spa-2026-winner-shield-black-256.png/61b80c4026acca2744dc7a043d39d6d6"
+ ],
+ "media": [
+  "https://files.lanserhof.com/videos/medizinisch-hero-1080p-web.mp4"
+ ]
+}

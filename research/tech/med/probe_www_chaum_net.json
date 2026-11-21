@@ -1,0 +1,116 @@
+{
+ "url": "https://www.chaum.net/",
+ "final": "https://www.chaum.net/",
+ "mobile": false,
+ "log": [
+  {
+   "y": 0,
+   "H": 4498,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 0,
+    "raf": 793
+   },
+   "vids": [],
+   "canvases": [],
+   "label": "load",
+   "reqs": 113
+  },
+  {
+   "y": 345,
+   "H": 4498,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 0,
+    "raf": 842
+   },
+   "vids": [],
+   "canvases": [],
+   "label": "down@0",
+   "reqs": 113
+  },
+  {
+   "y": 3003,
+   "H": 4498,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 0,
+    "raf": 1123
+   },
+   "vids": [],
+   "canvases": [],
+   "label": "down@2700",
+   "reqs": 113
+  },
+  {
+   "y": 3598,
+   "H": 4498,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 0,
+    "raf": 1545
+   },
+   "vids": [],
+   "canvases": [],
+   "label": "bottom",
+   "reqs": 113
+  },
+  {
+   "y": 448,
+   "H": 4498,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 0,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 0,
+    "raf": 2063
+   },
+   "vids": [],
+   "canvases": [],
+   "label": "up3000",
+   "reqs": 114
+  }
+ ],
+ "imgSeqCount": 0,
+ "imgSeqSample": [],
+ "imgSeqDirs": [],
+ "media": []
+}

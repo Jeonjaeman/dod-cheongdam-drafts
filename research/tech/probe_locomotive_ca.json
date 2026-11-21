@@ -1,0 +1,218 @@
+{
+ "url": "https://locomotive.ca/",
+ "final": "https://locomotive.ca/en",
+ "mobile": false,
+ "log": [
+  {
+   "y": 0,
+   "H": 6598,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 1,
+     "canvas": 1,
+     "other": 4
+    },
+    "play": 1,
+    "raf": 826
+   },
+   "vids": [
+    {
+     "src": "1080p/file.mp4?loc=external&log_user=0&signature=978abf9e4b33e3e143901fbcbf68e15",
+     "t": 4.47,
+     "dur": 12.52,
+     "paused": false,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "440x616",
+    "440x586"
+   ],
+   "label": "load",
+   "reqs": 38
+  },
+  {
+   "y": 350,
+   "H": 6598,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 1,
+     "canvas": 1,
+     "other": 4
+    },
+    "play": 1,
+    "raf": 877
+   },
+   "vids": [
+    {
+     "src": "1080p/file.mp4?loc=external&log_user=0&signature=978abf9e4b33e3e143901fbcbf68e15",
+     "t": 4.74,
+     "dur": 12.52,
+     "paused": false,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "440x616",
+    "440x586"
+   ],
+   "label": "down@0",
+   "reqs": 38
+  },
+  {
+   "y": 3012,
+   "H": 6598,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 1,
+     "canvas": 1,
+     "other": 4
+    },
+    "play": 1,
+    "raf": 1143
+   },
+   "vids": [
+    {
+     "src": "1080p/file.mp4?loc=external&log_user=0&signature=978abf9e4b33e3e143901fbcbf68e15",
+     "t": 5.09,
+     "dur": 12.52,
+     "paused": true,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "440x616",
+    "440x586"
+   ],
+   "label": "down@2700",
+   "reqs": 39
+  },
+  {
+   "y": 5597,
+   "H": 6598,
+   "P": {
+    "draw": {
+     "HTMLImageElement": 12
+    },
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 1,
+     "canvas": 1,
+     "other": 5
+    },
+    "play": 1,
+    "raf": 1421
+   },
+   "vids": [
+    {
+     "src": "1080p/file.mp4?loc=external&log_user=0&signature=978abf9e4b33e3e143901fbcbf68e15",
+     "t": 5.09,
+     "dur": 12.52,
+     "paused": true,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "440x616",
+    "440x586"
+   ],
+   "label": "down@5400",
+   "reqs": 42
+  },
+  {
+   "y": 5698,
+   "H": 6598,
+   "P": {
+    "draw": {
+     "HTMLImageElement": 12
+    },
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 1,
+     "canvas": 1,
+     "other": 5
+    },
+    "play": 1,
+    "raf": 1794
+   },
+   "vids": [
+    {
+     "src": "1080p/file.mp4?loc=external&log_user=0&signature=978abf9e4b33e3e143901fbcbf68e15",
+     "t": 5.09,
+     "dur": 12.52,
+     "paused": true,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "440x616",
+    "440x586"
+   ],
+   "label": "bottom",
+   "reqs": 42
+  },
+  {
+   "y": 2548,
+   "H": 6598,
+   "P": {
+    "draw": {
+     "HTMLImageElement": 12
+    },
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 1,
+     "canvas": 1,
+     "other": 5
+    },
+    "play": 1,
+    "raf": 2314
+   },
+   "vids": [
+    {
+     "src": "1080p/file.mp4?loc=external&log_user=0&signature=978abf9e4b33e3e143901fbcbf68e15",
+     "t": 5.09,
+     "dur": 12.52,
+     "paused": true,
+     "w": 1920,
+     "h": 1080
+    }
+   ],
+   "canvases": [
+    "440x616",
+    "440x586"
+   ],
+   "label": "up3000",
+   "reqs": 42
+  }
+ ],
+ "imgSeqCount": 0,
+ "imgSeqSample": [],
+ "imgSeqDirs": [],
+ "media": [
+  "https://player.vimeo.com/progressive_redirect/playback/792718372/rendition/1080p/file.mp4",
+  "https://download-video-ak.vimeocdn.com/v3-1/playback/2011feb6-4a2b-4a8f-a078-05ddc739db6d/c7567b65-e5d0b1c7"
+ ]
+}

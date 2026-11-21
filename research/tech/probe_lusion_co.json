@@ -1,0 +1,108 @@
+{
+ "url": "https://lusion.co/",
+ "final": "https://lusion.co/",
+ "mobile": false,
+ "log": [
+  {
+   "y": 0,
+   "H": 900,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 14,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 0,
+    "raf": 285
+   },
+   "vids": [],
+   "canvases": [
+    "0x0",
+    "1442x902"
+   ],
+   "label": "load",
+   "reqs": 121
+  },
+  {
+   "y": 0,
+   "H": 900,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 30,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 0,
+    "raf": 301
+   },
+   "vids": [],
+   "canvases": [
+    "0x0",
+    "1442x902"
+   ],
+   "label": "down@0",
+   "reqs": 121
+  },
+  {
+   "y": 0,
+   "H": 900,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 54,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 0,
+    "raf": 404
+   },
+   "vids": [],
+   "canvases": [
+    "1440x900",
+    "1442x902"
+   ],
+   "label": "bottom",
+   "reqs": 121
+  },
+  {
+   "y": 0,
+   "H": 900,
+   "P": {
+    "draw": {},
+    "seek": 0,
+    "seekVals": [],
+    "tex": {
+     "video": 0,
+     "image": 54,
+     "canvas": 0,
+     "other": 0
+    },
+    "play": 0,
+    "raf": 576
+   },
+   "vids": [],
+   "canvases": [
+    "1440x900"
+   ],
+   "label": "up3000",
+   "reqs": 121
+  }
+ ],
+ "imgSeqCount": 0,
+ "imgSeqSample": [],
+ "imgSeqDirs": [],
+ "media": [
+  "https://lusion.dev/assets/textures/reel/desktop.mp4"
+ ]
+}
