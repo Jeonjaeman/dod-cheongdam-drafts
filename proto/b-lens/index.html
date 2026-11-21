@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>B 시그니처 장면 프로토타입 — 굴절 유리 렌즈</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  html,body{margin:0;background:#08171A;color:#F0F6F2;font-family:"Pretendard Variable",sans-serif;word-break:keep-all}
+  canvas{position:fixed;inset:0;width:100vw;height:100vh;display:block}
+  .copy{position:relative;z-index:2;pointer-events:none}
+  .scene{height:100vh;display:flex;align-items:center;padding:0 6vw}
+  .scene h1,.scene h2{font-weight:500;letter-spacing:-.03em;line-height:1.12;margin:0;font-size:clamp(38px,5.6vw,84px)}
+  .scene p{color:#8FAAA4;margin:1.2rem 0 0;font-size:clamp(15px,1.2vw,18px)}
+  .idx{font:500 12px/1 "IBM Plex Mono",monospace;color:#A8E4CE;letter-spacing:.08em;margin-bottom:1.5rem}
+  .r{justify-content:flex-end;text-align:right}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="copy">
+  <section class="scene"><div><p class="idx">B / 01 — PRECISION ATLAS</p><h1>선택에 앞서,<br>피부를 이해하다</h1><p>진단 과정과 진료 분야를 차근히 살펴보세요.</p></div></section>
+  <section class="scene r"><div><p class="idx">02 — DIAGNOSIS</p><h2>진료의 출발점은<br>상태를 살피는 일</h2></div></section>
+  <section class="scene"><div><p class="idx">03 — EXPLORER</p><h2>어떤 고민이<br>있으신가요?</h2></div></section>
+</div>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const canvas = document.getElementById('c');
+const mobile = matchMedia('(max-width: 767px)').matches;
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.25 : 1.5));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.setClearColor(0x08171a, 1);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+const env = pmrem.fromScene(new RoomEnvironment(), 0.02).texture;
+scene.environment = env;
+scene.environmentIntensity = 0.7;
+
+const camera = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 0.1, 100);
+camera.position.set(0, 0, 10);
+
+// 굴절이 보이도록 렌즈 뒤에 놓는 빛 띠(장식) — 유리가 휘어 보이게 하는 대상
+const backdrop = new THREE.Group();
+// 투과(transmission) 패스는 불투명 물체만 굴절시키므로 배경 요소는 모두 불투명으로 만든다
+const bgTex = (() => { const c = document.createElement('canvas'); c.width = 2048; c.height = 1024; const g = c.getContext('2d');
+  g.fillStyle = '#08171A'; g.fillRect(0, 0, 2048, 1024);
+  const gr = g.createRadialGradient(1024, 430, 0, 1024, 470, 330);
+  gr.addColorStop(0, '#5fbfa2'); gr.addColorStop(0.3, '#1f6a5a'); gr.addColorStop(0.7, '#0d2a26'); gr.addColorStop(1, '#08171A');
+  g.fillStyle = gr; g.fillRect(0, 0, 2048, 1024);
+  g.fillStyle = '#c9f2e3';
+  for (let i = 0; i < 2048; i += 40) { const d = Math.abs(i - 1024) / 1024; g.globalAlpha = 0.6 * Math.pow(1 - d, 3); g.fillRect(i, 0, i % 200 === 0 ? 2 : 1, 1024); }
+  return new THREE.CanvasTexture(c); })();
+bgTex.colorSpace = THREE.SRGBColorSpace;
+const glow = new THREE.Mesh(new THREE.PlaneGeometry(36, 18), new THREE.MeshBasicMaterial({ map: bgTex }));
+glow.position.z = -4.5; backdrop.add(glow);
+scene.add(backdrop);
+
+// 렌즈: 둥근 큐브를 비튼 유리 — 승인 포스터(b01v2)의 매끈한 볼륨
+const geo = new RoundedBoxGeometry(2.1, 2.1, 2.1, 24, 0.72);
+const pos = geo.attributes.position, v = new THREE.Vector3();
+for (let i = 0; i < pos.count; i++) { v.fromBufferAttribute(pos, i); const a = v.y * 0.18; const x = v.x * Math.cos(a) - v.z * Math.sin(a); const z = v.x * Math.sin(a) + v.z * Math.cos(a); pos.setXYZ(i, x, v.y, z); }
+geo.computeVertexNormals();
+const glass = new THREE.MeshPhysicalMaterial({
+  color: 0xffffff, transmission: 1, thickness: 1.6, ior: 1.5, roughness: 0.015,
+  dispersion: 0.35, attenuationColor: new THREE.Color('#bff3df'), attenuationDistance: 30,
+  clearcoat: 0.6, clearcoatRoughness: 0.02, specularIntensity: 0.9, envMapIntensity: 1.0,
+});
+const lens = new THREE.Mesh(geo, glass);
+scene.add(lens);
+
+const key = new THREE.DirectionalLight(0xffffff, 2.5); key.position.set(4, 5, 6); scene.add(key);
+
+// 스크롤 키프레임: 섹션마다 렌즈 위치·회전·카메라가 바뀜
+const keys = mobile
+  ? [ { x: 0, y: -1.6, s: 0.62, r: 0.2 }, { x: 0, y: -1.4, s: 0.7, r: 1.4 }, { x: 0, y: -1.6, s: 0.6, r: 2.6 } ]
+  : [ { x: 2.3, y: -0.2, s: 1, r: 0.25 }, { x: -2.4, y: 0, s: 1.25, r: 1.5 }, { x: 2.1, y: 0.1, s: 0.85, r: 2.8 } ];
+let target = 0, cur = 0, px = 0, py = 0;
+addEventListener('scroll', () => { target = scrollY / innerHeight; }, { passive: true });
+addEventListener('pointermove', e => { px = (e.clientX / innerWidth - .5) * .16; py = (e.clientY / innerHeight - .5) * .16; }, { passive: true });
+addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); });
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+const clock = new THREE.Clock();
+renderer.setAnimationLoop(() => {
+  const t = clock.getElapsedTime();
+  cur += (target - cur) * 0.08;
+  const i = Math.min(Math.floor(cur), keys.length - 2), f = ease(Math.min(Math.max(cur - i, 0), 1));
+  const a = keys[i], b = keys[i + 1];
+  lens.position.set(lerp(a.x, b.x, f), lerp(a.y, b.y, f) + Math.sin(t * .6) * .05, 0);
+  lens.scale.setScalar(lerp(a.s, b.s, f));
+  lens.rotation.set(0.35 + py, lerp(a.r, b.r, f) + t * 0.08 + px, 0.15);
+  glow.position.x = lens.position.x; glow.position.y = lens.position.y;
+  camera.position.z = 10 - Math.sin(f * Math.PI) * 0.8;
+  renderer.render(scene, camera);
+});
+</script>
+</body>
+</html>
