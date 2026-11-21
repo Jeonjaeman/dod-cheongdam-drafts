@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>피부를 마주하는 여러 시선 — 디오디피부과 청담</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preload" as="image" href="img/key-a.webp" media="(min-width: 901px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/key-a-m.webp" media="(max-width: 900px)" fetchpriority="high">
+<style>
+:root{
+  --paper:#F4F1EC; --ink:#1A1716; --wine:#7A2E38; --wine-l:#B5646E; --cream:#FBF8F3;
+  --rule:rgba(26,23,22,.16); --mute:rgba(26,23,22,.6);
+  --disp:'Playfair Display','Times New Roman',serif;
+  --serif:'Noto Serif KR','Apple SD Gothic Neo',serif;
+  --sans:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',sans-serif;
+  --gutter:clamp(20px,3.4vw,56px); --bar-h:60px; --sa:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper);-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
+.eb{font-family:var(--disp);font-style:italic;font-weight:400;font-size:15px;letter-spacing:.02em}
+
+/* header */
+.hd{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:18px var(--gutter);color:var(--cream);pointer-events:none;transition:color .35s,background .35s}
+.hd a{pointer-events:auto;position:relative}
+.hd a::before{content:"";position:absolute;inset:-12px}
+.wm{font-family:var(--disp);font-weight:900;font-size:22px;letter-spacing:.06em}
+.hd-cta{font-size:13px;font-weight:600;letter-spacing:.08em;border-bottom:1px solid currentColor;padding-bottom:3px}
+.hd.ink{color:var(--ink)}
+.hd.ink.solid{background:rgba(244,241,236,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+
+/* ---------- mask scene ---------- */
+.mask-scene{position:relative}
+.stage{position:relative;height:100svh;overflow:hidden;background:var(--ink)}
+.layer{position:absolute;inset:0}
+.layer img{width:100%;height:100%;object-fit:cover}
+#A::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,14,.42) 0%,rgba(20,16,14,.12) 40%,rgba(20,16,14,.62) 100%)}
+.mast{position:absolute;z-index:3;pointer-events:none;max-width:none;filter:drop-shadow(0 10px 40px rgba(0,0,0,.18))}
+.hero{position:absolute;z-index:4;left:var(--gutter);right:var(--gutter);bottom:calc(48px + var(--sa));display:flex;justify-content:space-between;align-items:flex-end;gap:32px;color:var(--cream)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,3.6vw,56px);line-height:1.22;letter-spacing:-.02em}
+.hero p{font-size:15px;max-width:22em;opacity:.86}
+.hero .cta{display:inline-flex;align-items:center;gap:12px;margin-top:18px;min-height:46px;padding:0 22px;background:var(--cream);color:var(--ink);font-weight:600;font-size:14px;letter-spacing:.04em}
+#B{z-index:2}
+#B.masked{-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.chap{position:absolute;z-index:5;left:var(--gutter);bottom:calc(48px + var(--sa));color:var(--cream);opacity:0}
+.chap .eb{display:block;margin-bottom:10px;opacity:.85}
+.chap h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.2vw,48px);line-height:1.25;letter-spacing:-.02em}
+.edge{position:absolute;z-index:3;left:var(--gutter);top:50%;font-family:var(--disp);font-weight:900;font-size:clamp(60px,7vw,120px);line-height:1;color:var(--wine);writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);opacity:0;pointer-events:none}
+.collage-bg{position:absolute;inset:0;z-index:1;background:var(--paper);opacity:0}
+
+.card{position:absolute;z-index:4;opacity:0;will-change:transform}
+.card figure{overflow:hidden;background:#ddd}
+.card img{width:100%;height:100%;object-fit:cover}
+.cap{background:var(--paper);padding:10px 0 0;font-size:13px;line-height:1.5}
+.cap b{display:block;font-family:var(--disp);font-style:italic;font-weight:400;font-size:14px;color:var(--wine);margin-bottom:2px}
+.cap span{font-family:var(--serif);font-weight:500;font-size:15px}
+.cap a{display:inline-flex;min-height:44px;align-items:center;color:var(--wine);border-bottom:1px solid currentColor;font-size:13px;font-weight:600;margin-top:2px}
+.card.txt{background:var(--cream);padding:22px;border:1px solid var(--rule)}
+.card.txt ul{list-style:none;margin-top:10px}
+.card.txt li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.card.txt li em{font-style:normal;color:var(--mute);font-size:12px}
+.card.txt li a{display:flex;justify-content:space-between;width:100%;min-height:36px;align-items:center}
+.capB{position:absolute;z-index:4;opacity:0;font-size:13px;background:var(--paper);padding:10px 0 0}
+.capB b{display:block;font-family:var(--disp);font-style:italic;font-weight:400;font-size:14px;color:var(--wine)}
+.capB span{font-family:var(--serif);font-weight:500;font-size:15px}
+
+/* ---------- reading sections ---------- */
+.sec{padding:clamp(96px,14vh,168px) var(--gutter)}
+.sec h2{font-family:var(--serif);font-weight:500;font-size:clamp(34px,3.8vw,60px);line-height:1.2;letter-spacing:-.025em}
+.sec .eb{color:var(--wine);display:block;margin-bottom:18px}
+.space{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:40px clamp(32px,5vw,88px);align-items:end}
+.space figure{overflow:hidden}
+.space img{width:100%;aspect-ratio:1728/1200;object-fit:cover}
+.space p{margin-top:20px;font-family:var(--serif);font-size:17px;line-height:1.9}
+.people{background:var(--cream);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.ppl{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--ink);margin-top:clamp(40px,6vh,64px)}
+.ppl li{padding:26px 18px 30px 0;border-right:1px solid var(--rule)}
+.ppl li + li{padding-left:18px}
+.ppl li:last-child{border-right:0}
+.ppl .n{font-family:var(--disp);font-style:italic;color:var(--wine);font-size:14px}
+.ppl .nm{display:block;margin-top:34px;font-family:var(--serif);font-weight:600;font-size:clamp(26px,2.4vw,36px);letter-spacing:-.02em}
+.ppl .rl{display:block;margin-top:6px;font-size:13px;color:var(--mute)}
+.lnk{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:28px;font-weight:600;font-size:14px;color:var(--wine);border-bottom:1px solid currentColor}
+.tx{list-style:none;margin-top:clamp(40px,6vh,64px);border-top:2px solid var(--ink)}
+.tx a{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:clamp(22px,3vh,32px) 0;border-bottom:1px solid var(--rule);transition:color .25s}
+.tx a:hover{color:var(--wine)}
+.tx .t{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3vw,44px);letter-spacing:-.02em}
+.tx .s{font-size:13px;color:var(--mute)}
+.small{margin-top:16px;font-size:13px;color:var(--mute)}
+.visit{background:var(--wine);color:var(--cream)}
+.visit .eb{color:#E9C9CD}
+.vg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px clamp(24px,3vw,56px);margin-top:clamp(40px,6vh,72px);border-top:1px solid rgba(251,248,243,.3);padding-top:30px}
+.vg .lab{font-family:var(--disp);font-style:italic;font-size:14px;color:#E9C9CD;margin-bottom:12px;display:block}
+.vg .tel{font-family:var(--disp);font-weight:700;font-size:clamp(26px,2.4vw,36px)}
+.vg .kk{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;background:var(--cream);color:var(--wine);font-weight:700}
+.vg dl div{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid rgba(251,248,243,.2);font-size:14px}
+.vg dd{font-variant-numeric:tabular-nums}
+.vg a.u{display:inline-flex;min-height:44px;align-items:center;border-bottom:1px solid currentColor;font-size:14px}
+.langs{display:flex;gap:18px;flex-wrap:wrap}
+.langs a{min-height:44px;display:inline-flex;align-items:center;font-family:var(--disp);font-size:16px;border-bottom:1px solid rgba(251,248,243,.5)}
+.ft{background:var(--ink);color:rgba(244,241,236,.55);padding:40px var(--gutter) calc(40px + var(--sa));font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.mbar{display:none}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* static fallback (no JS / reduced motion): readable stack */
+.static .stage{height:auto;background:none;overflow:visible}
+.static .layer{position:relative;height:72svh}
+.static #B,.static .edge,.static .collage-bg,.static .mast{display:none}
+.static .hero{position:absolute;bottom:40px}
+.static .chap{display:none}
+.static .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:40px var(--gutter);padding:96px var(--gutter)}
+.static .card,.static .capB{position:relative;opacity:1;left:auto!important;top:auto!important;width:auto!important;transform:none!important}
+.static .capB{display:none}
+.static .rv{opacity:1;transform:none}
+
+@media (max-width:900px){
+  :root{--gutter:22px}
+  body{padding-bottom:calc(var(--bar-h) + var(--sa))}
+  .hd-cta{display:none}
+  .hero{flex-direction:column;align-items:flex-start;gap:14px;bottom:calc(var(--bar-h) + var(--sa) + 28px)}
+  .hero h1{font-size:clamp(30px,8.4vw,36px)}
+  .hero p{font-size:14px}
+  .hero .cta{margin-top:10px}
+  .chap{bottom:calc(var(--bar-h) + var(--sa) + 28px)}
+  .chap h2{font-size:clamp(26px,7.4vw,32px)}
+  .edge{font-size:52px;top:calc(50% - 30px)}
+  .card.txt{padding:14px}
+  .card.txt li{font-size:13px;padding:5px 0}
+  .cap span,.capB span{font-size:14px}
+  .space{grid-template-columns:1fr}
+  .ppl{grid-template-columns:1fr}
+  .ppl li,.ppl li + li{padding:18px 0;border-right:0;border-bottom:1px solid var(--rule);display:flex;align-items:baseline;gap:16px}
+  .ppl .nm{margin-top:0;font-size:24px}
+  .ppl .rl{margin-left:auto;margin-top:0}
+  .vg{grid-template-columns:1fr}
+  .static .cards{grid-template-columns:1fr}
+  .mbar{position:fixed;inset:auto 0 0 0;z-index:50;display:flex;height:calc(var(--bar-h) + var(--sa));padding-bottom:var(--sa);background:var(--wine);color:var(--cream)}
+  .mbar a{flex:1;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;min-height:48px}
+  .mbar a + a{border-left:1px solid rgba(251,248,243,.25)}
+}
+</style>
+</head>
+<body>
+<header class="hd" id="hd">
+  <a class="wm" href="#top" aria-label="DOD 디오디피부과 청담">DOD</a>
+  <a class="hd-cta" href="#visit">진료 문의</a>
+</header>
+
+<main id="top">
+  <section class="mask-scene" id="scene" aria-label="디오디를 소개하는 여섯 가지 이야기">
+    <div class="stage" id="stage">
+      <!-- P3-01 key art A -->
+      <div class="layer" id="A">
+        <picture><source media="(max-width: 900px)" srcset="img/key-a-m.webp"><img src="img/key-a.webp" width="1919" height="1080" alt="디오디피부과 청담 라운지" fetchpriority="high"></picture>
+      </div>
+      <img class="mast" id="mast" alt="" aria-hidden="true">
+      <div class="hero" id="hero">
+        <div>
+          <p class="eb" style="margin-bottom:14px;opacity:.85">DOD Dermatology, Cheongdam</p>
+          <h1>피부를 마주하는<br>여러 시선</h1>
+        </div>
+        <div>
+          <p>공간과 사람, 진료의 이야기를 통해 디오디를 만나보세요.</p>
+          <a class="cta" href="#stories" id="read">이야기 읽기 <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <!-- B: revealed through the DOD letterforms -->
+      <div class="collage-bg" id="cbg"></div>
+      <div class="layer" id="B">
+        <picture><source media="(max-width: 900px)" srcset="img/space-m.webp"><img src="img/space.webp" width="1920" height="896" alt="디오디피부과 청담 시술 공간" loading="eager"></picture>
+      </div>
+      <div class="chap" id="chap"><span class="eb">01 — 공간</span><h2>한 사람에게<br>집중하는 공간</h2></div>
+      <div class="edge" id="edge" aria-hidden="true">DOD</div>
+      <p class="capB" id="capB"><b>01 공간</b><span>한 사람에게 집중하는 공간</span></p>
+
+      <!-- P3-02 stories (set 1: 02-04, set 2: 05-06) -->
+      <div class="cards" id="stories">
+        <div class="card" data-k="diag"><figure style="aspect-ratio:1/1"><img src="img/diag.webp" width="800" height="800" alt="디오디피부과 청담의 진단 장비" loading="lazy"></figure><p class="cap"><b>02 진단</b><span>피부 상태를 살피는 출발점</span></p></div>
+        <div class="card" data-k="consult"><figure style="aspect-ratio:4/3"><img src="img/consult.webp" width="1000" height="750" alt="의료진 상담 장면" loading="lazy"></figure><p class="cap"><b>03 상담</b><span>궁금한 점을 나누는 시간</span></p></div>
+        <div class="card txt" data-k="people"><p class="cap" style="padding:0;background:none"><b>04 의료진과 연구진</b><span>진료와 연구를 이어가는 사람들</span></p>
+          <ul><li>이준 <em>대표원장</em></li><li>안정식 <em>원장</em></li><li>황승경 <em>원장</em></li><li>이준원 <em>원장</em></li><li>김진아 <em>박사·연구진</em></li></ul></div>
+        <div class="card txt" data-k="fields"><p class="cap" style="padding:0;background:none"><b>05 진료 분야</b><span>리프팅, 콜라겐·스킨부스터, 재생 프로그램</span></p>
+          <ul><li><a href="https://www.dodskin.com/lifting" target="_blank" rel="noopener">리프팅 <em>→</em></a></li><li><a href="https://www.dodskin.com/booster" target="_blank" rel="noopener">콜라겐·스킨부스터 <em>→</em></a></li><li><a href="https://www.dodskin.com/stemcell" target="_blank" rel="noopener">재생 프로그램 <em>→</em></a></li></ul></div>
+        <div class="card" data-k="visit"><figure style="aspect-ratio:3/1"><img src="img/visit.webp" width="1200" height="400" alt="디오디피부과 청담 안내 데스크" loading="lazy"></figure><p class="cap"><b>06 방문</b><span>서울 강남구 도산대로 423</span><br><a href="https://naver.me/x3j4pB4z" target="_blank" rel="noopener">지도 열기 →</a></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P3-03 -->
+  <section class="sec" aria-labelledby="h-space">
+    <div class="space">
+      <figure class="rv"><img src="img/room.webp" width="1728" height="1200" alt="디오디피부과 청담 1인 시술실" loading="lazy"></figure>
+      <div><span class="eb rv">Reading the space</span><h2 class="rv" id="h-space">공간을 읽다</h2><p class="rv">독립된 1인 시술실을 안내합니다.</p></div>
+    </div>
+  </section>
+
+  <!-- P3-04 -->
+  <section class="sec people" aria-labelledby="h-ppl">
+    <span class="eb rv">Meeting the people</span>
+    <h2 class="rv" id="h-ppl">사람을 만나다</h2>
+    <ol class="ppl rv">
+      <li><span class="n">i.</span><span class="nm">이준</span><span class="rl">대표원장</span></li>
+      <li><span class="n">ii.</span><span class="nm">안정식</span><span class="rl">원장</span></li>
+      <li><span class="n">iii.</span><span class="nm">황승경</span><span class="rl">원장</span></li>
+      <li><span class="n">iv.</span><span class="nm">이준원</span><span class="rl">원장</span></li>
+      <li><span class="n">v.</span><span class="nm">김진아</span><span class="rl">박사 · 연구진</span></li>
+    </ol>
+    <a class="lnk rv" href="https://www.dodskin.com/staff" target="_blank" rel="noopener">의료진 소개 보기 →</a>
+  </section>
+
+  <!-- P3-05 -->
+  <section class="sec" aria-labelledby="h-tx">
+    <span class="eb rv">Continue the story</span>
+    <h2 class="rv" id="h-tx">진료 이야기를 이어가세요</h2>
+    <ul class="tx rv">
+      <li><a href="https://www.dodskin.com/lifting" target="_blank" rel="noopener"><span class="t">리프팅</span><span class="s">dodskin.com/lifting →</span></a></li>
+      <li><a href="https://www.dodskin.com/booster" target="_blank" rel="noopener"><span class="t">콜라겐·스킨부스터</span><span class="s">dodskin.com/booster →</span></a></li>
+      <li><a href="https://www.dodskin.com/stemcell" target="_blank" rel="noopener"><span class="t">재생 프로그램</span><span class="s">dodskin.com/stemcell →</span></a></li>
+      <li><a href="https://www.dodskin.com/event" target="_blank" rel="noopener"><span class="t">현재 안내</span><span class="s">dodskin.com/event →</span></a></li>
+    </ul>
+    <p class="small rv">시술 선택과 적용 여부는 의료진 상담이 필요합니다.</p>
+  </section>
+
+  <!-- P3-06 -->
+  <section class="sec visit" id="visit" aria-labelledby="h-visit">
+    <span class="eb rv">The next story, in Cheongdam</span>
+    <h2 class="rv" id="h-visit">다음 이야기는, 청담에서</h2>
+    <div class="vg rv">
+      <div><span class="lab">Kakao</span><a class="kk" href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener">카카오톡으로 진료 문의</a><p style="margin-top:18px"><span class="lab" style="margin-bottom:6px">Call</span><a class="tel" href="tel:02-6203-6263">02-6203-6263</a></p></div>
+      <div><span class="lab">Hours</span><dl><div><dt>월–목</dt><dd>10:00–19:00</dd></div><div><dt>금</dt><dd>10:00–21:00</dd></div><div><dt>토</dt><dd>10:00–16:00</dd></div><div><dt>휴게(월–금)</dt><dd>13:00–14:00</dd></div></dl><p style="margin-top:10px;font-size:12px;opacity:.75">일요일·공휴일은 병원에 확인해 주세요.</p></div>
+      <div><span class="lab">Address</span><p>디오디피부과의원 청담<br>서울 강남구 도산대로 423</p><a class="u" href="https://naver.me/x3j4pB4z" target="_blank" rel="noopener">네이버 지도 열기 →</a></div>
+      <div><span class="lab">Official sites</span><div class="langs"><a href="https://en.dodskin.com/" target="_blank" rel="noopener" lang="en">English</a><a href="https://cn.dodskin.com/" target="_blank" rel="noopener" lang="zh-Hans">简体中文</a><a href="https://jp.dodskin.com/" target="_blank" rel="noopener" lang="ja">日本語</a><a href="https://tw.dodskin.com/" target="_blank" rel="noopener" lang="zh-Hant">繁體中文</a></div></div>
+    </div>
+  </section>
+  <footer class="ft"><span>디자인 초안 · 탱탱소프트</span><span>DOD Dermatology · Cheongdam</span></footer>
+</main>
+
+<nav class="mbar" aria-label="진료 문의">
+  <a href="tel:02-6203-6263">전화 문의</a>
+  <a href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener">카카오 문의</a>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+  const body = document.body, hd = document.getElementById('hd');
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !window.gsap || !window.ScrollTrigger) { body.classList.add('static'); return; }
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  const $ = s => document.querySelector(s);
+  const scene = $('#scene'), stage = $('#stage'), A = $('#A'), B = $('#B'), mast = $('#mast'), hero = $('#hero'), chap = $('#chap'), edge = $('#edge'), cbg = $('#cbg'), capB = $('#capB');
+  const card = k => document.querySelector(`.card[data-k="${k}"]`);
+  const C = { diag: card('diag'), consult: card('consult'), people: card('people'), fields: card('fields'), visit: card('visit') };
+
+  let lenis = null;
+  if (window.Lenis && matchMedia('(pointer: fine)').matches && innerWidth > 900) {
+    lenis = new Lenis({ smoothWheel: true, lerp: 0.1 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+  }
+
+  // ---- DOD letter mask rendered with the loaded display face ----
+  let M = null;   // {url, w, h, ax, ay} canvas size and anchor (inside first D stem) as fractions
+  function makeMask() {
+    const fs = 600, c = document.createElement('canvas'), g = c.getContext('2d');
+    g.font = `900 ${fs}px "Playfair Display"`;
+    const m = g.measureText('DOD');
+    const w = Math.ceil(m.actualBoundingBoxLeft + m.actualBoundingBoxRight) + 8, h = Math.ceil(m.actualBoundingBoxAscent + m.actualBoundingBoxDescent) + 8;
+    c.width = w; c.height = h;
+    g.font = `900 ${fs}px "Playfair Display"`; g.fillStyle = '#fff'; g.textBaseline = 'alphabetic';
+    g.fillText('DOD', 4 + m.actualBoundingBoxLeft, 4 + m.actualBoundingBoxAscent);
+    // anchor: middle of the widest opaque run on the centre row of the first D (its stem)
+    const row = Math.round(h / 2), data = g.getImageData(0, row, Math.round(w * 0.3), 1).data;
+    let best = [0, 0], s = -1;
+    for (let x = 0; x <= data.length / 4; x++) {
+      const on = x < data.length / 4 && data[x * 4 + 3] > 200;
+      if (on && s < 0) s = x; if (!on && s >= 0) { if (x - s > best[1] - best[0]) best = [s, x]; s = -1; }
+    }
+    M = { url: c.toDataURL('image/png'), w, h, ax: (best[0] + best[1]) / 2 / w, ay: 0.5, stem: (best[1] - best[0]) / w };
+    B.classList.add('masked'); mast.src = M.url;
+    B.style.webkitMaskImage = B.style.maskImage = `url(${M.url})`;
+  }
+
+  let geo = null, tl = null, st = null;
+  const P = { s: 1 };   // mask scale
+  function applyMask() {
+    if (!M || !geo) return;
+    const mw = geo.mw * P.s, mh = mw * M.h / M.w;
+    const x = geo.sx - M.ax * mw, y = geo.sy - M.ay * mh;
+    B.style.webkitMaskSize = B.style.maskSize = `${mw}px ${mh}px`;
+    B.style.webkitMaskPosition = B.style.maskPosition = `${x}px ${y}px`;
+  }
+
+  const mobile = () => innerWidth <= 900;
+  function layout() {
+    const W = innerWidth, H = stage.clientHeight, mob = mobile();
+    // masthead geometry = mask geometry at s=1
+    const mw = Math.min(W * (mob ? 0.86 : 0.78), 1400);
+    const mh = mw * M.h / M.w;
+    const top = mob ? H * 0.17 : H * 0.14;
+    const left = (W - mw) / 2;
+    mast.style.width = mw + 'px'; mast.style.left = left + 'px'; mast.style.top = top + 'px';
+    geo = { W, H, mob, mw, sx: left + M.ax * mw, sy: top + mh * 0.5 };
+    // mask must cover the viewport: stem width * s > 2 * max distance from anchor
+    const need = 2.2 * Math.max(geo.sx, W - geo.sx, geo.sy, H - geo.sy) / (M.stem * mw) ;
+    geo.sMax = Math.max(need, 12);
+    // collage slots (centre of card, width) in px
+    const S = mob ? {
+      B: { cx: .72, cy: .29, sc: .42 },
+      diag: { cx: .27, cy: .235, w: .42 }, consult: { cx: .72, cy: .755, w: .46 }, people: { cx: .27, cy: .6, w: .46 },
+      fields: { cx: .5, cy: .3, w: .86 }, visit: { cx: .5, cy: .68, w: .86 }
+    } : {
+      B: { cx: .5, cy: .47, sc: .38 },
+      diag: { cx: .19, cy: .30, w: .15 }, consult: { cx: .80, cy: .27, w: .19 }, people: { cx: .79, cy: .74, w: .2 },
+      fields: { cx: .31, cy: .5, w: .3 }, visit: { cx: .69, cy: .5, w: .32 }
+    };
+    for (const k of Object.keys(C)) { const s = S[k]; C[k].style.width = (s.w * W) + 'px'; C[k].style.left = (s.cx * W - s.w * W / 2) + 'px'; C[k].style.top = '0px'; }
+    geo.S = S;
+    return geo;
+  }
+
+  function build() {
+    if (tl) { tl.scrollTrigger && tl.scrollTrigger.kill(); tl.kill(); }
+    gsap.set([A, B, mast, hero, chap, edge, cbg, capB, ...Object.values(C)], { clearProps: 'transform,opacity' });
+    P.s = 1;
+    layout(); applyMask();
+    const { W, H, S, mob } = geo;
+    const cy = (k) => S[k].cy * H - C[k].offsetHeight / 2;
+    // B's centre card position
+    const bScale = S.B.sc, bY = (S.B.cy - 0.5) * H, bX = (S.B.cx - 0.5) * W;
+    capB.style.left = (S.B.cx * W - W * bScale / 2) + 'px'; capB.style.width = (W * bScale) + 'px';
+    capB.style.top = (S.B.cy * H + H * bScale / 2) + 'px';
+    scene.style.height = (mob ? 620 : 640) + 'svh';
+
+    tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: scene, start: 'top top', end: 'bottom bottom', scrub: true, pin: stage, pinSpacing: false,
+      onUpdate: self => { window.__p = self.progress; hd.classList.toggle('ink', self.progress > 0.36 && self.progress < 0.999); } } });
+    st = tl.scrollTrigger;
+    // 0 → .06 hold. .06 → .12: hero copy leaves, DOM masthead hands over to the mask (B inside letters)
+    tl.to(hero, { opacity: 0, y: -20, duration: 0.05 }, 0.05)
+      .to(mast, { opacity: 0, duration: 0.05 }, 0.08)
+      .fromTo(B, { opacity: 0 }, { opacity: 1, duration: 0.05 }, 0.07)
+      .to(A, { scale: 1.06, duration: 0.3 }, 0)
+      .to(A, { filter: 'brightness(.78)', duration: 0.1 }, 0.08)
+    // .12 → .32: zoom through the D stem until B fills the screen
+      .to(P, { s: geo.sMax, duration: 0.2, ease: 'power3.in', onUpdate: applyMask }, 0.12)
+      .set(B, { webkitMaskImage: 'none', maskImage: 'none' }, 0.321)
+      .fromTo(chap, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.04 }, 0.3)
+    // .36 → .46: chapter title leaves, B shrinks to the centre card, the paper ground and edge type arrive
+      .to(chap, { opacity: 0, duration: 0.03 }, 0.37)
+      .to(cbg, { opacity: 1, duration: 0.01 }, 0.37)
+      .to(B, { scale: bScale, x: bX, y: bY, duration: 0.09, ease: 'power3.inOut' }, 0.37)
+      .fromTo(edge, { opacity: 0, x: -30 }, { opacity: mob ? .2 : 1, x: 0, duration: 0.06, ease: 'power2.out' }, 0.42)
+      .fromTo(capB, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.03 }, 0.45)
+    // .46 → .62: stories 02–04 arrive with different travel (parallax) — 4 items on screen max
+      .fromTo(C.diag, { opacity: 0, y: cy('diag') + H * .5 }, { opacity: 1, y: cy('diag'), duration: 0.1, ease: 'power3.out' }, 0.46)
+      .fromTo(C.consult, { opacity: 0, y: cy('consult') + H * .8 }, { opacity: 1, y: cy('consult'), duration: 0.12, ease: 'power3.out' }, 0.49)
+      .fromTo(C.people, { opacity: 0, y: cy('people') + H * .6 }, { opacity: 1, y: cy('people'), duration: 0.11, ease: 'power3.out' }, 0.53)
+    // drift while held
+      .to(C.diag, { y: cy('diag') - H * (mob ? .01 : .04), duration: 0.1 }, 0.62)
+      .to(C.consult, { y: cy('consult') - H * (mob ? .015 : .07), duration: 0.1 }, 0.62)
+      .to(C.people, { y: cy('people') - H * (mob ? .005 : .02), duration: 0.1 }, 0.62)
+    // .72 → .82: set 1 lifts away at different speeds, set 2 (05, 06) arrives
+      .to(C.diag, { y: -H * .6, opacity: 0, duration: 0.08, ease: 'power2.in' }, 0.72)
+      .to(B, { y: bY - H * .9, duration: 0.09, ease: 'power2.in' }, 0.735)
+      .to(capB, { y: -H * .9, opacity: 0, duration: 0.09, ease: 'power2.in' }, 0.735)
+      .to(C.consult, { y: -H * .7, opacity: 0, duration: 0.08, ease: 'power2.in' }, 0.75)
+      .to(C.people, { y: -H * .9, opacity: 0, duration: 0.08, ease: 'power2.in' }, 0.755)
+      .fromTo(C.fields, { opacity: 0, y: cy('fields') + H * .6 }, { opacity: 1, y: cy('fields'), duration: 0.1, ease: 'power3.out' }, 0.8)
+      .fromTo(C.visit, { opacity: 0, y: cy('visit') + H * .9 }, { opacity: 1, y: cy('visit'), duration: 0.12, ease: 'power3.out' }, 0.82)
+      .to(edge, { opacity: 0.18, duration: 0.05 }, 0.8)
+      .to({}, { duration: 0.0001 }, 0.9999);
+  }
+
+  function start() {
+    makeMask(); build(); ScrollTrigger.refresh();
+    // intro: masthead rises out of the image, copy follows
+    if (st.progress < 0.02) {
+      gsap.from(mast, { yPercent: 18, opacity: 0, duration: 1.4, ease: 'expo.out', delay: 0.15 });
+      gsap.from(hero.children, { y: 20, opacity: 0, duration: 1.1, stagger: 0.12, ease: 'expo.out', delay: 0.5 });
+      gsap.from(A.querySelector('img'), { scale: 1.08, duration: 2, ease: 'power3.out' });
+    }
+  }
+  const ready = document.fonts ? Promise.all([document.fonts.load('900 100px "Playfair Display"'), document.fonts.ready]) : Promise.resolve();
+  Promise.race([ready, new Promise(r => setTimeout(r, 2500))]).then(start);
+
+  let lw = innerWidth, lh = innerHeight, rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (innerWidth === lw && (mobile() || innerHeight === lh)) return; lw = innerWidth; lh = innerHeight; build(); ScrollTrigger.refresh(); }, 160); });
+
+  // header solid background on reading sections
+  addEventListener('scroll', () => { const after = scene.getBoundingClientRect().bottom < 60; hd.classList.toggle('solid', after); if (after) hd.classList.add('ink'); }, { passive: true });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href'); let y;
+    if (id === '#top') y = 0; else if (id === '#stories') y = st.start + (st.end - st.start) * 0.31; else return;
+    e.preventDefault(); lenis ? lenis.scrollTo(y, { duration: 1.8 }) : scrollTo({ top: y, behavior: 'smooth' });
+  }));
+  window.__plan3 = { scrollToP(p) { const y = st.start + (st.end - st.start) * p; lenis ? lenis.scrollTo(y, { immediate: true, force: true }) : scrollTo(0, y); ScrollTrigger.update(); }, get geo() { return geo; } };
+})();
+</script>
+</body>
+</html>
