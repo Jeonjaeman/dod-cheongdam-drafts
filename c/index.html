@@ -6,77 +6,180 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>디오디청담 | C 더 디오디 에디트 — 디자인 초안</title>
 <meta name="description" content="디오디피부과의원 청담 홈페이지 디자인 초안 C안(THE DOD EDIT). 공개 데모이며 실제 운영 사이트가 아닙니다.">
-<link rel="stylesheet" href="../shared/skeleton.css">
+<meta name="theme-color" content="#F8F5EE">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preload" as="image" href="../assets/higgsfield/c01.webp">
+<link rel="stylesheet" href="style.css">
 </head>
-<body data-draft="C">
-<div class="demo-bar" role="note">디자인 초안(데모)입니다 · 실제 상담 접수·개인정보 수집 없음 · <a href="https://www.dodskin.com/" rel="noopener">공식 홈페이지</a></div>
-<nav class="toc" aria-label="섹션 목차">
-  <a href="#C01">C01</a><a href="#C02">C02</a><a href="#C03">C03</a><a href="#C04">C04</a><a href="#C05">C05</a><a href="#C06">C06</a>
-</nav>
+<body>
+<a class="skip" href="#C01">본문 바로가기</a>
+<div class="demo-bar" role="note">디자인 초안(데모) · 실제 상담 접수·개인정보 수집 없음 ·&nbsp;<a href="https://www.dodskin.com/" rel="noopener">공식 홈페이지</a></div>
+
+<header class="site-header">
+  <a class="brand" href="#C01" aria-label="디오디피부과의원 청담 처음으로">DOD<span>Cheongdam</span></a>
+  <p class="issue">ISSUE 01 · 2026</p>
+  <div class="lang" aria-label="언어 선택 — 현재 한국어 데모, 다른 언어는 공식 사이트로 이동">
+    <span class="lang-now" aria-current="true">KR</span>
+    <a href="https://en.dodskin.com/" rel="noopener" hreflang="en" lang="en">EN</a>
+    <a href="https://cn.dodskin.com/" rel="noopener" hreflang="zh-Hans" lang="zh-Hans">简体</a>
+    <a href="https://jp.dodskin.com/" rel="noopener" hreflang="ja" lang="ja">日本語</a>
+    <a href="https://tw.dodskin.com/" rel="noopener" hreflang="zh-Hant" lang="zh-Hant">繁體</a>
+  </div>
+</header>
+
 <main>
-  <section id="C01" data-section="C01 cover">
-    <span class="sec-no">C01 · COVER</span>
-    <h1>오늘의 관심에서 시작하는 피부 이야기</h1>
-    <p>디오디의 진료 분야와 공간, 사람을 새로운 순서로 만나보세요.</p>
-    <a class="cta" href="#C02">관심 주제 둘러보기</a>
+  <!-- C01 COVER -->
+  <section id="C01" class="cover" data-section="C01 cover" aria-labelledby="C01-title">
+    <p class="masthead" aria-hidden="true"><span class="mh-line">THE DOD</span> <span class="mh-line"><em>EDIT</em></span></p>
+    <div class="cover-grid">
+      <div class="cover-copy">
+        <p class="kicker">VOL.01 — 디오디를 읽는 시간</p>
+        <h1 id="C01-title" class="cover-title">
+          <span>오늘의 관심에서</span>
+          <span>시작하는 피부 이야기</span>
+        </h1>
+        <p class="cover-lead">디오디의 진료 분야와 공간, 사람을<br class="br-pc"> 새로운 순서로 만나보세요.</p>
+        <a class="btn" href="#C02">이번 호 읽기</a>
+      </div>
+      <figure class="ph ph-1" data-photo><img src="../assets/higgsfield/c01.webp" alt="" width="1843" height="2304"></figure>
+      <figure class="ph ph-2" data-photo><img src="../assets/higgsfield/c01-900.webp" alt="" width="900" height="1125" loading="lazy"></figure>
+      <figure class="ph ph-3" data-photo><img src="../assets/higgsfield/c01-900.webp" alt="" width="900" height="1125" loading="lazy"></figure>
+    </div>
+    <p class="gen-note">표지 사진은 생성 이미지(정물 연출)이며 실제 병원·의료진·시술과 관계없습니다</p>
+    <div class="band" aria-label="편집 띠">
+      <div class="band-track" aria-hidden="true">
+        <span>THE DOD EDIT · VOL.01 · 진료 이야기 · 사람 이야기 · 방문 이야기 · </span>
+        <span>THE DOD EDIT · VOL.01 · 진료 이야기 · 사람 이야기 · 방문 이야기 · </span>
+      </div>
+      <button type="button" class="band-toggle" aria-pressed="false">흐르는 띠 멈춤</button>
+    </div>
   </section>
 
-  <section id="C02" data-section="C02 contents">
-    <span class="sec-no">C02 · CONTENTS</span>
-    <h2>지금, 궁금한 것은 무엇인가요?</h2>
-    <ol>
-      <li><a href="#C03-lifting">탄력 이야기</a></li>
-      <li><a href="#C03-booster">피부결 이야기</a></li>
-      <li><a href="#C03-consult">디오디의 공간</a></li>
+  <!-- C02 CONTENTS: 순서형 목차 -->
+  <section id="C02" class="contents" data-section="C02 contents" aria-labelledby="C02-title">
+    <div class="contents-head">
+      <p class="kicker">VOL.01 / CONTENTS</p>
+      <h2 id="C02-title" class="sec-title">디오디를 읽는 시간</h2>
+    </div>
+    <ol class="toc" data-toc>
+      <li><a href="#C03"><span class="ch">Chapter 01</span><span class="ch-title">진료 이야기</span><span class="ch-page">p.03</span></a></li>
+      <li><a href="#C04"><span class="ch">Chapter 02</span><span class="ch-title">사람 이야기</span><span class="ch-page">p.04</span></a></li>
+      <li><a href="#C06"><span class="ch">Chapter 03</span><span class="ch-title">방문 이야기</span><span class="ch-page">p.06</span></a></li>
     </ol>
-    <p class="note">선택은 콘텐츠 이동이며 진료 진단이 아닙니다.</p>
   </section>
 
-  <section id="C03" data-section="C03 features">
-    <span class="sec-no">C03 · FEATURES</span>
-    <h2>진료를 읽는 세 가지 시선</h2>
-    <article id="C03-lifting">
-      <h3>리프팅</h3>
-      <p>잡지형 대형 기사 카드 — 본문은 공식 원문 확인 후 작성.</p>
-      <a href="https://www.dodskin.com/" rel="noopener">공식 안내 보기</a>
-    </article>
-    <article id="C03-booster">
-      <h3>콜라겐·스킨부스터</h3>
-      <p>잡지형 대형 기사 카드 — 본문은 공식 원문 확인 후 작성.</p>
-      <a href="https://www.dodskin.com/" rel="noopener">공식 안내 보기</a>
-    </article>
-    <article id="C03-consult">
-      <h3>상담 과정과 공간</h3>
-      <p>잡지형 대형 기사 카드 — 본문은 공식 원문 확인 후 작성.</p>
-      <a href="https://www.dodskin.com/" rel="noopener">공식 안내 보기</a>
-    </article>
+  <!-- C03 FEATURES: 리드 기사 + 세로 부기사 2 -->
+  <section id="C03" class="features" data-section="C03 features" aria-labelledby="C03-title">
+    <header class="chapter-head">
+      <p class="kicker">Chapter 01 — 진료 이야기</p>
+      <h2 id="C03-title" class="sec-title">진료를 읽는<br> 세 가지 시선</h2>
+    </header>
+    <div class="feature-grid">
+      <article class="lead-story" data-rise>
+        <figure class="ph-hover"><img src="../assets/higgsfield/c01-900.webp" alt="" width="900" height="1125" loading="lazy"></figure>
+        <p class="story-no">01</p>
+        <h3>리프팅</h3>
+        <p>관심 부위와 피부 상태를 함께 살핀 뒤, 의료진과 진료 방향을 상담합니다.</p>
+        <a class="u-link" href="https://www.dodskin.com/" rel="noopener">공식 안내 읽기<span class="sr-only"> — 리프팅</span></a>
+      </article>
+      <article class="side-story" data-rise>
+        <p class="story-no">02</p>
+        <h3>콜라겐·스킨부스터</h3>
+        <p>피부결과 관리 주기에 대해 상담에서 확인합니다.</p>
+        <a class="u-link" href="https://www.dodskin.com/" rel="noopener">공식 안내 읽기<span class="sr-only"> — 콜라겐·스킨부스터</span></a>
+      </article>
+      <article class="side-story" data-rise>
+        <p class="story-no">03</p>
+        <h3>상담 과정</h3>
+        <p>진단과 상담을 거쳐 진료 방향을 정합니다.</p>
+        <a class="u-link" href="https://www.dodskin.com/" rel="noopener">공식 안내 읽기<span class="sr-only"> — 상담 과정</span></a>
+      </article>
+    </div>
+    <a class="next" href="#C04">다음 장 — Chapter 02 사람 이야기</a>
   </section>
 
-  <section id="C04" data-section="C04 people">
-    <span class="sec-no">C04 · PEOPLE</span>
-    <h2>사람을 통해 알아보는 디오디</h2>
-    <p>의료진 소개는 병원이 승인한 소개문으로만 채웁니다.</p>
-    <a class="cta" href="https://www.dodskin.com/" rel="noopener">의료진 소개 보기</a>
+  <!-- C04 PEOPLE: 저널 편집, 가상 인용 없음 -->
+  <section id="C04" class="people" data-section="C04 people" aria-labelledby="C04-title">
+    <header class="chapter-head">
+      <p class="kicker">Chapter 02 — 사람 이야기</p>
+      <h2 id="C04-title" class="sec-title">사람을 통해 알아보는 디오디</h2>
+    </header>
+    <div class="people-grid">
+      <figure class="people-photo" data-rise>
+        <div class="photo-slot" role="img" aria-label="의료진 사진 자리"><span>의료진 사진</span><small>병원이 제공하고 사용을 허락한 사진으로 채웁니다</small></div>
+      </figure>
+      <div class="people-text" data-rise>
+        <p class="label">의료진 소개</p>
+        <h3>이준 <small>대표원장</small></h3>
+        <p>소개문은 병원이 승인한 원문으로 채웁니다.</p>
+        <a class="u-link" href="https://www.dodskin.com/" rel="noopener">공식 의료진 소개 읽기</a>
+      </div>
+    </div>
+    <a class="next" href="#C05">다음 장 — 프로그램 안내</a>
   </section>
 
-  <section id="C05" data-section="C05 programs">
-    <span class="sec-no">C05 · PROGRAMS</span>
-    <h2>프로그램 안내</h2>
-    <p>현재 진행 중인 프로그램은 공식 안내에서 확인해 주세요.</p>
-    <a class="cta" href="https://www.dodskin.com/" rel="noopener">공식 프로그램 안내 확인</a>
+  <!-- C05 PROGRAMS -->
+  <section id="C05" class="programs" data-section="C05 programs" aria-labelledby="C05-title">
+    <p class="kicker">Notice</p>
+    <h2 id="C05-title" class="sec-title">프로그램 안내</h2>
+    <p class="programs-text">현재 진행 중인 프로그램은 공식 안내에서 확인해 주세요.</p>
+    <a class="btn btn-ink" href="https://www.dodskin.com/" rel="noopener">공식 프로그램 안내 확인</a>
+    <a class="next" href="#C06">다음 장 — Chapter 03 방문 이야기</a>
   </section>
 
-  <section id="C06" data-section="C06 visit">
-    <span class="sec-no">C06 · VISIT</span>
-    <h2>다음 페이지는, 청담에서</h2>
-    <address>
-      디오디피부과의원 청담<br>
-      서울 강남구 도산대로 423<br>
-      <a href="tel:0262036263">02-6203-6263</a>
-    </address>
-    <a class="cta" href="https://naver.me/x3j4pB4z" rel="noopener">상담 채널 보기</a>
+  <!-- C06 VISIT: 카카오 채널 + 해외 방문 -->
+  <section id="C06" class="visit" data-section="C06 visit" aria-labelledby="C06-title">
+    <header class="chapter-head">
+      <p class="kicker">Chapter 03 — 방문 이야기</p>
+      <h2 id="C06-title" class="sec-title">다음 페이지는,<br> 청담에서</h2>
+    </header>
+    <div class="visit-grid">
+      <div class="visit-main">
+        <address>디오디피부과의원 청담<br><span id="addr">서울 강남구 도산대로 423</span></address>
+        <dl class="hours">
+          <div><dt>월–목</dt><dd>10:00 – 19:00</dd></div>
+          <div><dt>금</dt><dd>10:00 – 21:00</dd></div>
+          <div><dt>토</dt><dd>10:00 – 16:00</dd></div>
+          <div><dt>휴게</dt><dd>13:00 – 14:00 (월–금)</dd></div>
+        </dl>
+        <p class="fine">공식 홈페이지 진료 안내 기준입니다. 일요일·공휴일은 병원에 확인해 주세요.</p>
+        <div class="visit-actions">
+          <a class="btn btn-burgundy" href="https://pf.kakao.com/_cBamG" rel="noopener">카카오 채널 열기</a>
+          <a class="btn" href="tel:02-6203-6263">02-6203-6263</a>
+        </div>
+      </div>
+      <aside class="abroad" aria-labelledby="abroad-title" lang="en">
+        <h3 id="abroad-title">Visiting from abroad?</h3>
+        <p>Official guides in your language:</p>
+        <ul class="abroad-langs">
+          <li><a href="https://en.dodskin.com/" rel="noopener">English</a></li>
+          <li><a href="https://cn.dodskin.com/" rel="noopener" lang="zh-Hans">简体中文</a></li>
+          <li><a href="https://jp.dodskin.com/" rel="noopener" lang="ja">日本語</a></li>
+          <li><a href="https://tw.dodskin.com/" rel="noopener" lang="zh-Hant">繁體中文</a></li>
+        </ul>
+        <p class="abroad-addr"><span lang="en">Address</span> · <span lang="ko">서울 강남구 도산대로 423</span></p>
+        <div class="abroad-actions">
+          <button type="button" class="btn btn-small" data-copy="서울 강남구 도산대로 423">Copy address</button>
+          <a class="btn btn-small" href="https://naver.me/x3j4pB4z" rel="noopener">Map</a>
+        </div>
+        <p class="copy-status" role="status" aria-live="polite"></p>
+      </aside>
+    </div>
   </section>
 </main>
-<footer>디자인 초안 C — THE DOD EDIT · 탱탱소프트 · 이 페이지는 검색 색인 대상이 아닙니다.</footer>
+
+<footer class="site-footer">
+  <p>디자인 초안 C — THE DOD EDIT · 탱탱소프트</p>
+  <p>이 페이지는 검색 색인 대상이 아니며, 실제 병원 운영 사이트는 <a href="https://www.dodskin.com/" rel="noopener">dodskin.com</a>입니다.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="main.js" defer></script>
 </body>
 </html>

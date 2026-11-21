@@ -6,21 +6,56 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>디오디청담 홈페이지 디자인 초안 3종 | 탱탱소프트</title>
 <meta name="description" content="디오디피부과의원 청담 홈페이지 디자인 초안 A·B·C. 공개 데모이며 실제 운영 사이트가 아닙니다.">
-<link rel="stylesheet" href="shared/skeleton.css">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#111;color:#f4f2ee;font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.bar{padding:.5rem 20px;font-size:12px;text-align:center;background:#2a2a2a;color:#cfcac2}
+header{max-width:1440px;margin:0 auto;padding:72px 40px 48px}
+header p{margin:0 0 .75rem;font-size:12px;letter-spacing:.16em;color:#9a958c}
+h1{margin:0;font-size:clamp(30px,4.2vw,56px);line-height:1.2;letter-spacing:-.025em;font-weight:600}
+.lead{margin:1.25rem 0 0;color:#b8b2a8;max-width:34em}
+ul{list-style:none;margin:0 auto;padding:0 40px 96px;max-width:1440px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+li a{display:block;text-decoration:none;height:100%;border:1px solid #2e2e2e;transition:border-color .3s}
+li a:hover{border-color:#f4f2ee}
+.thumb{aspect-ratio:4/5;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+li a:hover .thumb img{transform:scale(1.04)}
+.meta{padding:1.5rem}
+.tag{font-size:12px;letter-spacing:.16em;color:#9a958c}
+h2{margin:.25rem 0 .5rem;font-size:24px;font-weight:600;letter-spacing:-.01em}
+.meta p{margin:0;color:#b8b2a8;font-size:15px}
+.go{display:inline-block;margin-top:1rem;font-weight:600;font-size:14px}
+.a .thumb{background:#F3EFE7}.b .thumb{background:#08171A}.c .thumb{background:#F8F5EE}
+footer{max-width:1440px;margin:0 auto;padding:0 40px 48px;font-size:13px;color:#8c877f}
+@media (max-width:900px){ ul{grid-template-columns:1fr;padding:0 20px 72px} header{padding:48px 20px 32px} footer{padding:0 20px 40px} .thumb{aspect-ratio:16/10} }
+</style>
 </head>
 <body>
-<div class="demo-bar" role="note">디자인 초안(데모) 모음입니다 · 실제 운영 사이트: <a href="https://www.dodskin.com/" rel="noopener">dodskin.com</a></div>
+<div class="bar" role="note">디자인 초안(데모) 모음 · 실제 운영 사이트: <a href="https://www.dodskin.com/" rel="noopener">dodskin.com</a></div>
+<header>
+  <p>DOD CHEONGDAM · DESIGN DRAFTS</p>
+  <h1>디오디청담 홈페이지 초안 3종</h1>
+  <p class="lead">같은 병원을 세 가지 시선으로 풀었습니다.<br> 마음에 드는 방향을 골라 주세요.</p>
+</header>
 <main>
-  <section>
-    <h1>디오디청담 홈페이지 초안 3종</h1>
-    <p>같은 병원을 세 가지 시선으로 풀었습니다. 마음에 드는 방향을 골라 주세요.</p>
-    <ul class="cards">
-      <li><h2>A · PRIVATE ATELIER</h2><p>나에게 집중하는 진료 — 공간과 프라이버시 중심의 시네마틱 경험</p><a class="cta" href="a/">A안 보기</a></li>
-      <li><h2>B · PRECISION ATLAS</h2><p>이해하고 선택하는 진료 — 진단 과정과 관심사 탐색 중심의 인터랙티브 경험</p><a class="cta" href="b/">B안 보기</a></li>
-      <li><h2>C · THE DOD EDIT</h2><p>나의 관심사로 여는 에디토리얼 — 패션 저널형 스토리 경험</p><a class="cta" href="c/">C안 보기</a></li>
-    </ul>
-  </section>
+<ul>
+  <li class="a"><a href="a/">
+    <div class="thumb"><img src="assets/higgsfield/a01-900.webp" alt="" style="object-position:62% 50%"></div>
+    <div class="meta"><span class="tag">A · PRIVATE ATELIER</span><h2>나에게 집중하는 진료</h2><p>빛과 여백, 공간 중심의 고요한 시네마틱 경험</p><span class="go">A안 보기 →</span></div>
+  </a></li>
+  <li class="b"><a href="b/">
+    <div class="thumb"><img src="assets/higgsfield/b01-900.webp" alt="" style="object-position:68% 50%"></div>
+    <div class="meta"><span class="tag">B · PRECISION ATLAS</span><h2>이해하고 선택하는 진료</h2><p>진단 과정과 고민별 탐색 중심의 인터랙티브 경험</p><span class="go">B안 보기 →</span></div>
+  </a></li>
+  <li class="c"><a href="c/">
+    <div class="thumb"><img src="assets/higgsfield/c01-900.webp" alt=""></div>
+    <div class="meta"><span class="tag">C · THE DOD EDIT</span><h2>순서대로 읽는 피부 저널</h2><p>Vol.01 목차를 따라 넘겨 읽는 에디토리얼 경험</p><span class="go">C안 보기 →</span></div>
+  </a></li>
+</ul>
 </main>
-<footer>탱탱소프트 · 이 페이지는 검색 색인 대상이 아닙니다.</footer>
+<footer>탱탱소프트 · 이 페이지와 초안은 검색 색인 대상이 아닙니다 · 이미지는 생성 연출입니다.</footer>
 </body>
 </html>

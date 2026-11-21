@@ -7,7 +7,7 @@
 ## 구조
 - `index.html` — 초안 3종 선택 인덱스
 - `a/` `b/` `c/` — 서로 다른 스타일의 초안 (각각 독립 HTML/CSS/JS)
-- `shared/` — 공통 SEO 요소(JSON-LD 기본값 등)만. 디자인은 공유하지 않음
+- (공통 스타일 없음 — 각 안 독립 CSS/JS)
 - `assets/higgsfield/` — Higgsfield 생성 이미지·영상 (원본 프롬프트는 `docs/ASSETS.md`)
 - `review/` — 검수 패키지(캡처 1440/390/360, 섹션 앵커표, 메타·헤딩·JSON-LD 표, 빌드 커밋·캡처 시각)
 - `docs/` — 기획서·디자인 명세 사본
