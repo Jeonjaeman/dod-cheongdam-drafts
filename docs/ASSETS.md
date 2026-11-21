@@ -33,3 +33,12 @@ A01 프롬프트는 v0.5 원문에서 `generous quiet negative space on left` �
 
 프롬프트: v0.5 C01 팔레트·금지어 그대로(버건디 #802B3A 전면, 아이보리·가지 없음), 피사체만 리본 근접 / 살구 유리로 지정. 원문은 assets/higgsfield/c02.json · c03.json의 params.prompt.
 누적: 18 크레딧.
+
+## 영상 1차 — Kling 4.0 image-to-video, 6초 1080p (2026-11-21 16:08 UTC 제출, 리사 중단 요청 직전)
+| 파일 | 시작 이미지 | job id | 크레딧 | 상태 |
+|---|---|---|---|---|
+| assets/video/va-src.mp4 | a01v2 | adc23e74-9c22-4ebb-8c42-93c808bc1fb0 | 22.5 | 보관(현재 안 미적용) |
+| assets/video/vb-src.mp4 | b01v2 | 918fe95f-ca84-404b-8b5d-9e0cab13f739 | 22.5 | 보관 · 스크럽 기술 테스트 재료 |
+| assets/video/vc-src.mp4 | c01v2 | 14d9eb20-4c82-44b4-817a-f46069c2eb9d | 22.5 | 보관(현재 안 미적용) |
+스크럽용 재인코딩: scrub-pc.mp4(1920w, GOP 4, 2.1MB), scrub-m.mp4(720×900 4:5 크롭, GOP 4, 0.8MB), 포스터 poster-pc/m.webp, 정지 장면 still-pc/m.webp.
+누적: 이미지 18 + 영상 67.5 = 85.5 크레딧.

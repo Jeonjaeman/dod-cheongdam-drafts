@@ -1,0 +1,34 @@
+[
+  {
+    "created_at": "2026-11-21T16:08:57.728685Z",
+    "display_name": "Kling 4.0",
+    "id": "918fe95f-ca84-404b-8b5d-9e0cab13f739",
+    "job_type": "kling4_0",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "batch_size": 1,
+      "duration": 6,
+      "dynamic_range": "sdr",
+      "height": 1080,
+      "kling_element_ids": [],
+      "medias": [
+        {
+          "data": {
+            "id": "a81a7222-9afb-4089-bbe8-42ab316ba5c3",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/a81a7222-9afb-4089-bbe8-42ab316ba5c3.webp"
+          },
+          "role": "start_image"
+        }
+      ],
+      "mode": "image-to-video",
+      "prompt": "Locked-off camera on almost-black deep teal background. The single translucent glass lens rotates very slowly in place by less than ten degrees, its shape stays exactly the same, caustic light beneath shifts gently. Premium, precise, calm. No morphing, no flicker, no new objects, no text.",
+      "resolution": "1080p",
+      "width": 1920
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160857_918fe95f-ca84-404b-8b5d-9e0cab13f739.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160857_918fe95f-ca84-404b-8b5d-9e0cab13f739_thumbnail.webp"
+  }
+]
