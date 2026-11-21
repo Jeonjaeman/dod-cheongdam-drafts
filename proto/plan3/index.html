@@ -59,8 +59,9 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
 .cv-figs figure{pointer-events:none}
 .cv-figs .ph{overflow:hidden}
 .cv-figs img{width:100%;height:100%;object-fit:cover}
-.fig1 .ph{aspect-ratio:4/3}
-.fig2{position:absolute;left:-30%;top:64%;width:clamp(160px,17vw,260px)}
+.fig1 .ph{height:min(calc(100svh - var(--edB,300px) - 96px - 20px - 44px), 36vw)}
+/* Fig.02 sits to the LEFT of Fig.01 (no overlap), bottom-aligned, caption inside the first screen */
+.fig2{position:absolute;right:calc(100% + 28px);bottom:0;width:clamp(104px,9.5vw,160px)}
 .fig2 .ph{aspect-ratio:2/3}
 .cv-figs figcaption{margin-top:8px;font-size:13px;color:rgba(255,255,255,.88)}
 .cv-figs figcaption i{font-family:var(--disp);font-size:14px;margin-right:6px}
@@ -171,7 +172,7 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
   .hero p{margin-top:14px;font-size:15px}
   .hero .cta{margin-top:20px;min-height:48px}
   .cv-figs{margin-top:26px}
-  .fig1 .ph{aspect-ratio:16/10}
+  .fig1 .ph{height:auto;aspect-ratio:16/10}
   .fig2{display:none}
   .edge{display:none}
   .chap{bottom:calc(var(--bar-h) + var(--sa) + 28px)}
