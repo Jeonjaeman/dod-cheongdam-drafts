@@ -10,7 +10,8 @@
   :root { --bg:#08171A; --fg:#F0F6F2; --acc:#A8E4CE; }
   * { box-sizing: border-box }
   html, body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Pretendard Variable", sans-serif; word-break: keep-all }
-  .note { padding: 12px 20px; font-size: 12px; background: #11292c; color: #8FAAA4 }
+  /* 안내 띠는 흐름에서 빼서 sticky 무대가 첫 화면 높이(100svh)와 정확히 맞도록 */
+  .note { position: absolute; top: 0; left: 0; right: 0; z-index: 5; margin: 0; padding: 8px 20px; font-size: 12px; background: rgba(17,41,44,.85); color: #8FAAA4 }
   /* 스크럽 구간: 높이 = 스크롤 거리. sticky 무대는 svh로 iOS 주소창 변동에 덜 흔들림 */
   .scrub { position: relative; height: 320svh }
   .stage { position: sticky; top: 0; height: 100svh; overflow: hidden }
@@ -27,7 +28,9 @@
   .cta a { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 18px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 15px }
   .cta .tel { background: var(--acc); color: var(--bg) } .cta .kakao { background: #FEE500; color: #191919 }
   @media (min-width: 768px) { .cta { top: 52px; right: 24px } }
-  @media (max-width: 767px) { .cta { left: 0; right: 0; bottom: 0; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(8,23,26,.9); backdrop-filter: blur(8px) } .cta a { flex: 1 } .after { padding-bottom: 120px } }
+  @media (max-width: 767px) { .cta { left: 0; right: 0; bottom: 0; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(8,23,26,.9); backdrop-filter: blur(8px) } .cta a { flex: 1 } .after { padding-bottom: 120px }
+    /* 하단 문의 바(48 + 위아래 10 + 안전영역)와 겹치지 않게 */
+    .copy { left: 20px; right: 20px; bottom: calc(68px + env(safe-area-inset-bottom) + 24px) } .copy h1 { font-size: 34px } }
   .hud { position: fixed; left: 8px; top: 52px; z-index: 20; font: 11px/1.4 ui-monospace, monospace; background: rgba(0,0,0,.65); color: #9ff; padding: 6px 8px; white-space: pre; pointer-events: none; display: none }
   .debug .hud { display: block }
   @media (prefers-reduced-motion: reduce) { .scrub { height: auto } .stage { position: relative } .frame { clip-path: none } }
