@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-11-21T16:06:06.224451Z",
+    "display_name": "Nano Banana Pro",
+    "id": "dc8443f6-04a4-46a3-be3d-7f83ed42b65e",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160606_dc8443f6-04a4-46a3-be3d-7f83ed42b65e_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Premium contemporary beauty magazine still life of a peach translucent glass sculpture, full-bleed matte deep burgundy background and floor target hex #802B3A, expressive direct studio flash with crisp shadows, light refracting through glass, bold art-school composition, central crop-safe. No ivory, no cream background, no beige paper, no branches, no flowers, no plants, no cosmetic packaging, no face, no medical claims, no text, no logo. 4:5.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160606_dc8443f6-04a4-46a3-be3d-7f83ed42b65e.png",
+    "status": "completed"
+  }
+]

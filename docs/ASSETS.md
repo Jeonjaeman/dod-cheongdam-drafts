@@ -23,3 +23,13 @@
 A01 프롬프트는 v0.5 원문에서 `generous quiet negative space on left` → `balanced material detail across the frame, central crop-safe composition`(리사 지시). A03은 리사 지정 프롬프트. 나머지는 v0.5 원문.
 모서리 실측색: b01v2 #071516 / #051314 / #0B1618 / #101F24 (CSS #08171A와 근접), c01v2 상단 #803A44 · #8D313E, 하단 #3D0E14 · #5C121F (바닥 그림자로 어두움 → 가장자리 그라데이션 필요).
 이번 소다 누적 사용: 1차 6 + 2차 8 = 14 크레딧. (계정 잔액 변동에는 다른 팀 Seedance·GPT Image 사용분이 섞여 있음)
+
+## 3차 — 리사 승인분 C 추가 정물 (2026-11-21 16:07 UTC)
+
+| 파일 | 용도 | 모델 | 비율·해상도 | 크레딧 | job id | 상태 |
+|---|---|---|---|---|---|---|
+| assets/higgsfield/c02.webp (+ -900) | C01 표지 2번 칸 · 흰 리본 근접 | nano_banana_pro | 3:4 · 2k | 2 | f32d1d12-f6dd-4651-905c-c423605ecb89 | 리사 검수 대기 |
+| assets/higgsfield/c03.webp (+ -900) | C01 표지 3번 칸 · C03 리드 · 살구 유리 | nano_banana_pro | 4:5 · 2k | 2 | dc8443f6-04a4-46a3-be3d-7f83ed42b65e | 리사 검수 대기 |
+
+프롬프트: v0.5 C01 팔레트·금지어 그대로(버건디 #802B3A 전면, 아이보리·가지 없음), 피사체만 리본 근접 / 살구 유리로 지정. 원문은 assets/higgsfield/c02.json · c03.json의 params.prompt.
+누적: 18 크레딧.

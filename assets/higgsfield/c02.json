@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-11-21T16:06:06.349753Z",
+    "display_name": "Nano Banana Pro",
+    "id": "f32d1d12-f6dd-4651-905c-c423605ecb89",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160606_f32d1d12-f6dd-4651-905c-c423605ecb89_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "3:4",
+      "batch_size": 1,
+      "height": 2400,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Editorial close-up of a sculptural bright white satin ribbon folding and twisting, full-bleed matte deep burgundy background target hex #802B3A, expressive direct studio flash with crisp shadows, premium contemporary beauty magazine still life, bold art-school composition, central crop-safe. No ivory, no cream background, no beige paper, no branches, no flowers, no plants, no cosmetic packaging, no face, no text, no logo. 3:4.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 1792
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160606_f32d1d12-f6dd-4651-905c-c423605ecb89.png",
+    "status": "completed"
+  }
+]
