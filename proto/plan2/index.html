@@ -10,281 +10,256 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --deep:#08171A; --deep2:#0E2427; --mint:#A8E4CE; --mint-d:#5FBFA2; --fog:#8FAAA4; --paper:#F1EFE9; --ink:#1E2422; --teal:#294A40;
-  --rule-d:rgba(168,228,206,.18); --rule:rgba(30,36,34,.16); --mute:rgba(30,36,34,.6);
+  --bg:#061B20; --bg2:#0A252B; --text:#EDF6F2; --acc:#A2D5C5; --fog:#9DB5AE; --line:rgba(162,213,197,.2);
+  --paper:#EDF3F0; --ink:#0D2328; --mute-ink:rgba(13,35,40,.62);
   --sans:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',sans-serif;
-  --mono:'IBM Plex Mono',ui-monospace,monospace;
-  --gutter:clamp(20px,4vw,64px); --bar-h:60px; --sa:env(safe-area-inset-bottom,0px);
+  --grot:'Space Grotesk','Pretendard Variable',sans-serif;
+  --gutter:clamp(20px,4.4vw,64px); --bar-h:64px; --sa:env(safe-area-inset-bottom,0px);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--deep);-webkit-text-size-adjust:100%}
-body{font-family:var(--sans);color:var(--paper);background:var(--deep);line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-a:focus-visible,button:focus-visible{outline:2px solid var(--mint);outline-offset:4px}
-.mono{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+a,button{color:inherit;text-decoration:none;font:inherit;background:none;border:0;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.g{font-family:var(--grot);font-weight:500;letter-spacing:.24em;text-transform:uppercase;font-size:12px}
 
 /* header */
-.hd{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:20px var(--gutter);pointer-events:none;transition:color .4s}
-.hd a{pointer-events:auto;position:relative}
-.hd a::before{content:"";position:absolute;inset:-12px -12px}
-.wm{font-weight:600;font-size:15px;letter-spacing:.32em}
-.wm small{font-weight:400;letter-spacing:.04em;font-size:12px;margin-left:12px;opacity:.6}
-.hd-cta{font-size:13px;font-weight:600;letter-spacing:.06em;padding:10px 18px;border:1px solid currentColor;border-radius:999px;transition:background .3s,color .3s}
-.hd-cta:hover{background:var(--mint);color:var(--deep);border-color:var(--mint)}
-.hd.light{color:var(--ink);background:rgba(241,239,233,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.hd{transition:color .4s,background .4s}
-.hd.light .hd-cta:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hd{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px var(--gutter);pointer-events:none;transition:background .4s}
+.hd a{pointer-events:auto;display:inline-flex;align-items:center;min-height:48px}
+.wm{font-family:var(--grot);font-weight:600;font-size:17px;letter-spacing:.16em;padding-right:12px}
+.hd-cta{font-size:14px;font-weight:500;letter-spacing:.04em;padding:0 4px}
+.hd.solid{background:rgba(6,27,32,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 
 /* ---------- 3D scene ---------- */
-.lab{position:relative;height:520svh}
-.lab-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:radial-gradient(120% 80% at 70% 45%,#1d5a4d 0%,#0d2a26 38%,var(--deep) 72%)}
-#gl{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.2s ease}
+.lab{position:relative;height:560svh}
+.lab-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--bg)}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.4s ease}
 #gl.on{opacity:1}
-.veil{position:absolute;inset:0;background:var(--paper);opacity:0;pointer-events:none;z-index:3}
-.lab-copy{position:absolute;z-index:2;left:var(--gutter);top:0;bottom:0;width:min(46vw,560px);display:flex;align-items:center}
-.step{position:absolute;left:0;right:0;opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);pointer-events:none}
-.step.on{opacity:1;transform:none;pointer-events:auto}
-.step.past{transform:translateY(-24px)}
-.kicker{display:flex;gap:14px;align-items:center;color:var(--mint);margin-bottom:28px}
-.kicker::before{content:"";width:32px;height:1px;background:currentColor}
-.h1{font-weight:600;font-size:clamp(44px,5.2vw,80px);line-height:1.08;letter-spacing:-.035em}
-.lead{margin-top:26px;font-size:clamp(16px,1.25vw,19px);color:var(--fog);max-width:30em}
-.btn{display:inline-flex;align-items:center;gap:14px;margin-top:36px;min-height:48px;padding:0 24px;border-radius:999px;background:var(--mint);color:var(--deep);font-weight:600;font-size:15px;letter-spacing:.02em;transition:gap .3s}
-.btn:hover{gap:20px}
-.btn i{font-style:normal;font-family:var(--mono)}
-.h2{font-weight:600;font-size:clamp(40px,4.4vw,68px);line-height:1.1;letter-spacing:-.035em}
-.step .no{font-family:var(--mono);font-size:13px;color:var(--mint);letter-spacing:.1em;margin-bottom:18px;display:block}
-.step p.body{margin-top:22px;font-size:clamp(16px,1.2vw,18px);line-height:1.8;color:#C7D6D1;max-width:28em}
-.step figure{margin-top:30px;display:flex;gap:16px;align-items:center}
-.step figure img{width:132px;height:100px;object-fit:cover;border-radius:6px;filter:saturate(.85)}
-.step figcaption{font-size:13px;color:var(--fog);line-height:1.6}
-.rail{position:absolute;z-index:2;left:var(--gutter);bottom:calc(36px + var(--sa));display:flex;gap:10px;align-items:center}
-.rail span{display:block;width:36px;height:2px;background:var(--rule-d);overflow:hidden;position:relative}
-.rail span b{position:absolute;inset:0;background:var(--mint);transform:scaleX(0);transform-origin:left}
-.rail em{font-style:normal;margin-left:10px;color:var(--fog)}
-.brand-note{position:absolute;z-index:2;right:var(--gutter);bottom:calc(36px + var(--sa));color:rgba(143,170,164,.7);font-size:11px}
+.step{position:absolute;z-index:2;opacity:0;visibility:hidden;transform:translateY(22px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1),visibility 0s .55s}
+.step.on{opacity:1;visibility:visible;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.2,1) .05s,transform .9s cubic-bezier(.2,.7,.2,1) .05s,visibility 0s}
+.step.past{transform:translateY(-22px)}
+/* hero copy: left */
+.s0{left:var(--gutter);top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;max-width:640px;padding-bottom:6svh}
+.s0 .g{color:var(--acc);margin-bottom:30px}
+.h1{font-weight:600;font-size:72px;line-height:1.14;letter-spacing:-.035em}
+.lead{margin-top:30px;font-size:17px;line-height:1.7;color:var(--fog)}
+.btn{display:inline-flex;align-items:center;gap:16px;margin-top:40px;min-height:52px;padding:0 28px;border:1px solid rgba(237,246,242,.5);border-radius:999px;font-weight:500;font-size:15px;transition:background .3s,color .3s,border-color .3s;align-self:flex-start}
+.btn:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
+/* step copy: right */
+.sx{right:var(--gutter);top:0;bottom:0;width:min(40vw,540px);display:flex;flex-direction:column;justify-content:center;padding-bottom:4svh}
+.sx .no{font-family:var(--grot);font-size:14px;letter-spacing:.2em;color:var(--acc);margin-bottom:20px}
+.h2{font-weight:600;font-size:clamp(44px,4.4vw,64px);line-height:1.12;letter-spacing:-.035em}
+.sx p.body{margin-top:22px;font-size:17px;line-height:1.75;color:#C9DAD4}
+.sx figure{margin-top:30px;display:flex;gap:18px;align-items:center}
+.sx figure img{width:148px;height:110px;object-fit:cover;border-radius:4px}
+.sx figcaption{font-size:13px;color:var(--fog);line-height:1.6}
+.fx{list-style:none;margin-top:28px;border-top:1px solid rgba(237,246,242,.4)}
+.fx li{border-bottom:1px solid var(--line)}
+.fx a{display:flex;justify-content:space-between;align-items:center;min-height:56px;font-size:19px;font-weight:500;transition:color .25s,padding .25s}
+.fx a:hover{color:var(--acc);padding-left:8px}
+.fx a span{font-family:var(--grot);font-size:13px;color:var(--acc);letter-spacing:.06em}
+.fx-note{margin-top:14px;font-size:13px;color:var(--fog)}
+/* step nav */
+.snav{position:absolute;z-index:3;left:var(--gutter);bottom:calc(24px + var(--sa));width:min(44vw,620px);border-top:1px solid var(--line);display:flex;gap:clamp(18px,3vw,48px)}
+.snav button{display:flex;align-items:center;gap:12px;min-height:52px;font-size:15px;color:var(--fog);transition:color .3s;position:relative}
+.snav button i{font-style:normal;font-family:var(--grot);font-size:13px;color:var(--acc);opacity:.8}
+.snav button::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--acc);transform:scaleX(var(--f,0));transform-origin:left}
+.snav button.on{color:var(--text)}
+.brand-note{position:absolute;z-index:3;right:var(--gutter);bottom:calc(38px + var(--sa));color:rgba(237,246,242,.62);font-size:13px}
 
-/* ---------- reading sections ---------- */
-.paper{background:var(--paper);color:var(--ink);position:relative;z-index:5}
-.sec{padding:clamp(96px,14vh,160px) var(--gutter)}
-.sec + .sec{border-top:1px solid var(--rule)}
-.sec-head{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:24px clamp(32px,5vw,96px);align-items:end;margin-bottom:clamp(40px,6vh,72px)}
-.sec-head .mono{color:var(--teal)}
-.sec .h2{font-size:clamp(34px,3.6vw,56px)}
-.sec-head p{font-size:16px;color:var(--mute);max-width:34em}
-.grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:0 clamp(32px,5vw,96px)}
-
-/* staff table */
-.tbl{width:100%;border-collapse:collapse;border-top:2px solid var(--ink)}
-.tbl th,.tbl td{text-align:left;padding:20px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
-.tbl th{font-weight:400;width:72px;font-family:var(--mono);font-size:12px;color:var(--mute)}
-.tbl td.nm{font-size:clamp(22px,2vw,28px);font-weight:600;letter-spacing:-.02em}
-.tbl td.rl{text-align:right;font-size:14px;color:var(--mute)}
-.aside-fig{position:sticky;top:120px}
-.aside-fig img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px}
-.aside-fig figcaption{margin-top:12px;font-size:12px;color:var(--mute)}
-.more{display:inline-flex;gap:10px;align-items:center;margin-top:28px;min-height:44px;font-weight:600;font-size:14px;color:var(--teal);border-bottom:1px solid currentColor}
-
-/* fields index */
-.idx{list-style:none;border-top:2px solid var(--ink);counter-reset:f}
-.idx li{border-bottom:1px solid var(--rule)}
-.idx a{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:16px;padding:clamp(22px,3vh,34px) 0;transition:background .3s,padding .3s}
-.idx a:hover{background:rgba(41,74,64,.06);padding-left:14px}
-.idx .n{font-family:var(--mono);font-size:12px;color:var(--mute)}
-.idx .t{font-size:clamp(28px,3.2vw,48px);font-weight:600;letter-spacing:-.03em;line-height:1.1}
-.idx .go{font-family:var(--mono);font-size:13px;color:var(--teal)}
-.note{margin-top:18px;font-size:14px;color:var(--mute)}
-
-/* questions */
-.qs{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(24px,3vw,56px);border-top:2px solid var(--ink)}
-.qs li{display:grid;grid-template-columns:48px 1fr;gap:8px;padding:26px 0;border-bottom:1px solid var(--rule);font-size:clamp(17px,1.35vw,20px);font-weight:500;line-height:1.55}
-.qs li b{font-family:var(--mono);font-weight:500;font-size:12px;color:var(--teal);padding-top:6px}
-
-/* contact */
-.contact{background:var(--deep);color:var(--paper)}
-.contact .h2{font-size:clamp(40px,4.6vw,72px)}
-.ct{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px clamp(24px,4vw,72px);margin-top:clamp(40px,6vh,72px);border-top:1px solid var(--rule-d);padding-top:32px}
-.ct .mono{color:var(--mint);margin-bottom:14px;display:block}
-.ct .tel{font-size:clamp(28px,2.6vw,40px);font-weight:600;letter-spacing:-.01em}
-.ct .kk{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--mint);color:var(--deep);font-weight:600}
-.ct dl div{display:flex;justify-content:space-between;gap:16px;padding:6px 0;border-bottom:1px solid var(--rule-d);font-size:14px}
+/* ---------- reading (dark) ---------- */
+.sec{padding:clamp(96px,14vh,150px) var(--gutter);position:relative}
+.sec + .sec{border-top:1px solid var(--line)}
+.sec-h{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:20px clamp(32px,5vw,96px);align-items:end;margin-bottom:clamp(40px,6vh,64px)}
+.sec-h .g{color:var(--acc)}
+.sec .h2{font-size:clamp(36px,3.8vw,56px)}
+.grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:32px clamp(32px,5vw,96px);align-items:start}
+.staff-fig img{width:100%;aspect-ratio:4/5;max-height:520px;object-fit:cover;object-position:50% 40%;border-radius:4px}
+.staff-fig figcaption{margin-top:10px;font-size:13px;color:var(--fog)}
+.tbl{width:100%;border-collapse:collapse;border-top:1px solid rgba(237,246,242,.5)}
+.tbl th,.tbl td{text-align:left;padding:22px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+.tbl th{font-family:var(--grot);font-weight:500;width:72px;font-size:13px;color:var(--acc)}
+.tbl td.nm{font-size:clamp(24px,2.2vw,30px);font-weight:600;letter-spacing:-.02em}
+.tbl td.rl{text-align:right;font-size:15px;color:var(--fog)}
+.more{display:inline-flex;gap:10px;align-items:center;min-height:48px;margin-top:22px;font-weight:500;font-size:15px;color:var(--acc);border-bottom:1px solid currentColor}
+/* light inset (≤ ~30% of the section) */
+.inset{background:var(--paper);color:var(--ink);border-radius:6px;padding:clamp(24px,3vw,40px);max-width:640px}
+.qs{list-style:none}
+.qs li{display:grid;grid-template-columns:44px 1fr;gap:6px;padding:16px 0;border-bottom:1px solid rgba(13,35,40,.14);font-size:17px;font-weight:500;line-height:1.55}
+.qs li:last-child{border-bottom:0}
+.qs b{font-family:var(--grot);font-weight:500;font-size:13px;color:#2E6A5C;padding-top:4px}
+.q-note{margin-top:14px;font-size:13px;color:var(--fog)}
+.ct{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px clamp(24px,3vw,56px);border-top:1px solid rgba(237,246,242,.4);padding-top:30px}
+.ct .g{color:var(--acc);margin-bottom:14px;display:block}
+.ct .tel{display:inline-flex;align-items:center;min-height:48px;font-family:var(--grot);font-size:clamp(26px,2.4vw,36px);font-weight:500;letter-spacing:.02em}
+.ct .kk{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:999px;background:var(--acc);color:var(--bg);font-weight:600}
+.ct dl div{display:flex;justify-content:space-between;gap:16px;padding:6px 0;border-bottom:1px solid var(--line);font-size:15px}
 .ct dt{color:var(--fog)} .ct dd{font-variant-numeric:tabular-nums}
 .ct .addr{font-size:16px;line-height:1.7}
-.ct .addr a{display:inline-flex;min-height:44px;align-items:center;color:var(--mint);border-bottom:1px solid currentColor;font-size:14px}
-.ft{background:var(--deep);color:rgba(241,239,233,.5);border-top:1px solid var(--rule-d);padding:40px var(--gutter) calc(40px + var(--sa));font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ct .addr a{display:inline-flex;min-height:48px;align-items:center;color:var(--acc);border-bottom:1px solid currentColor;font-size:15px}
+.ft{border-top:1px solid var(--line);color:rgba(237,246,242,.55);padding:36px var(--gutter) calc(36px + var(--sa));font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .mbar{display:none}
-
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
-.no-js .rv,.reduced .rv{opacity:1;transform:none}
 
-/* fallback (no WebGL / reduced motion): lab becomes a static stack */
+/* static fallback (no WebGL / reduced motion) */
 .static .lab{height:auto}
-.static .lab-stage{position:relative;height:auto;min-height:100svh;padding:120px var(--gutter) 80px}
-.static .lab-copy{position:relative;left:auto;width:auto;max-width:640px;display:block}
-.static .step{position:relative;opacity:1;transform:none;margin-bottom:96px;pointer-events:auto}
-.static .rail,.static #gl,.static .veil{display:none}
-.static .lab-stage{background:radial-gradient(90% 60% at 80% 20%,#1d5a4d 0%,#0d2a26 40%,var(--deep) 75%)}
+.static .lab-stage{position:relative;height:auto;padding:120px var(--gutter) 64px;background:url(img/poster.webp) right 6% top 120px/min(46vw,620px) no-repeat,radial-gradient(70% 60% at 72% 30%,#123a3c 0%,#0a2a2f 35%,var(--bg) 75%)}
+.static .step{position:relative;inset:auto;opacity:1;visibility:visible;transform:none;width:auto;max-width:620px;margin-bottom:96px;padding:0}
+.static .s0{min-height:70svh}
+.static #gl,.static .snav{display:none}
+.static .brand-note{position:relative;right:auto;bottom:auto}
+.static .rv{opacity:1;transform:none}
 
+@media (max-width:1100px) and (min-width:901px){ .h1{font-size:60px} }
 @media (max-width:900px){
   :root{--gutter:22px}
   body{padding-bottom:calc(var(--bar-h) + var(--sa))}
-  .wm small{display:none}
   .hd-cta{display:none}
-  .lab-copy{width:auto;right:var(--gutter);top:auto;bottom:calc(var(--bar-h) + var(--sa) + 64px);align-items:flex-end;height:46svh}
-  .step{bottom:0}
-  .kicker{margin-bottom:16px}
-  .h1{font-size:clamp(36px,10vw,44px)}
+  .s0,.sx{left:var(--gutter);right:var(--gutter);top:auto;bottom:calc(var(--bar-h) + var(--sa) + 76px);width:auto;max-width:none;padding:0;justify-content:flex-end}
+  .s0 .g{margin-bottom:16px}
+  .h1{font-size:36px;line-height:1.22}
   .lead{margin-top:16px;font-size:15px}
-  .btn{margin-top:22px}
-  .h2{font-size:clamp(32px,9vw,40px)}
-  .step p.body{margin-top:14px;font-size:15px;line-height:1.7}
-  .step figure{margin-top:16px}
-  .step figure img{width:96px;height:72px}
-  .rail{bottom:calc(var(--bar-h) + var(--sa) + 26px)}
-  .brand-note{display:none}
-  .sec-head,.grid{grid-template-columns:1fr}
-  .aside-fig{position:relative;top:0;margin-bottom:32px}
-  .aside-fig img{aspect-ratio:16/10;object-position:50% 35%}
+  .btn{margin-top:22px;min-height:48px}
+  .h2{font-size:clamp(32px,9vw,38px)}
+  .sx p.body{margin-top:12px;font-size:15px;line-height:1.7}
+  .sx figure{margin-top:14px}
+  .sx figure img{width:104px;height:78px}
+  .fx{margin-top:14px}
+  .fx a{min-height:46px;font-size:16px}
+  .snav{left:var(--gutter);right:var(--gutter);width:auto;bottom:calc(var(--bar-h) + var(--sa) + 12px);gap:0;justify-content:space-between}
+  .snav button{font-size:13px;gap:6px;min-height:48px}
+  .brand-note{right:auto;left:var(--gutter);bottom:auto;top:76px;font-size:12px}
+  .sec-h,.grid{grid-template-columns:1fr}
+  .staff-fig img{aspect-ratio:16/10}
   .tbl th{width:44px}
-  .idx a{grid-template-columns:40px 1fr auto}
-  .qs{grid-template-columns:1fr}
   .ct{grid-template-columns:1fr}
-  .static .lab-stage{padding-top:96px}
-  .mbar{position:fixed;inset:auto 0 0 0;z-index:50;display:flex;height:calc(var(--bar-h) + var(--sa));padding-bottom:var(--sa);background:var(--mint);color:var(--deep)}
-  .mbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;min-height:48px}
-  .mbar a + a{border-left:1px solid rgba(8,23,26,.18)}
-  .ft{padding-bottom:calc(40px + var(--sa))}
+  .static .lab-stage{background:url(img/poster.webp) center 70px/86vw no-repeat,radial-gradient(90% 50% at 50% 20%,#123a3c 0%,var(--bg) 70%);padding-top:calc(70px + 86vw)}
+  .mbar{position:fixed;inset:auto 0 0 0;z-index:50;display:flex;gap:10px;height:calc(var(--bar-h) + var(--sa));padding:8px var(--gutter) calc(8px + var(--sa));background:var(--bg);border-top:1px solid var(--line)}
+  .mbar a{flex:1;display:flex;align-items:center;justify-content:center;border-radius:999px;font-weight:600;font-size:15px;min-height:48px;border:1px solid rgba(237,246,242,.4)}
+  .mbar a:first-child{background:var(--acc);color:var(--bg);border-color:var(--acc)}
 }
-@media (prefers-reduced-motion:reduce){.btn,.idx a{transition:none}}
+@media (max-width:900px) and (max-height:700px){ .h1{font-size:32px} .h2{font-size:30px} .sx figure{display:none} }
+@media (prefers-reduced-motion:reduce){.btn,.fx a{transition:none}}
 </style>
 </head>
-<body class="no-js">
+<body>
 <header class="hd" id="hd">
-  <a class="wm" href="#top">DOD<small>디오디피부과 청담</small></a>
+  <a class="wm" href="#top" aria-label="DOD 디오디피부과 청담">DOD</a>
   <a class="hd-cta" href="#contact">진료 문의</a>
 </header>
 
 <main id="top">
-  <!-- P2-01 · P2-02 : real-time lens scene + sticky explanation -->
+  <!-- P2-01 · P2-02 : real-time lens + three-step explanation -->
   <section class="lab" id="lab" aria-label="디오디의 진료 과정">
     <div class="lab-stage" id="stage">
       <canvas id="gl" aria-hidden="true"></canvas>
-      <div class="veil" id="veil"></div>
-      <div class="lab-copy">
-        <div class="step on" data-s="0">
-          <p class="kicker mono">DOD Dermatology · Cheongdam</p>
-          <h1 class="h1">피부를 살피고,<br>진료를 이야기하다</h1>
-          <p class="lead">진단 과정부터 상담까지, 디오디의 진료를 살펴보세요.</p>
-          <a class="btn" href="#step-1" id="go">진료 과정 보기 <i>↓</i></a>
-        </div>
-        <div class="step" data-s="1" id="step-1">
-          <span class="no">01 / 03</span>
-          <h2 class="h2">살펴보다</h2>
-          <p class="body">MetaVu 진단 시스템을 안내합니다. 피부 상태와 관심 부위를 의료진과 함께 살펴봅니다.</p>
-          <figure><img src="img/device.webp" width="824" height="800" alt="디오디피부과 청담 진료실의 진단 장비" loading="lazy" decoding="async"><figcaption>디오디 청담 진료실</figcaption></figure>
-        </div>
-        <div class="step" data-s="2">
-          <span class="no">02 / 03</span>
-          <h2 class="h2">이야기하다</h2>
-          <p class="body">관심 부위와 이전 시술 이력, 일정을 바탕으로 진료 방향을 상담합니다.</p>
-          <figure><img src="img/consult.webp" width="1200" height="900" alt="의료진 상담 장면" loading="lazy" decoding="async"><figcaption>의료진과의 상담</figcaption></figure>
-        </div>
-        <div class="step" data-s="3">
-          <span class="no">03 / 03</span>
-          <h2 class="h2">확인하다</h2>
-          <p class="body">진료 분야별 안내를 읽고, 나에게 필요한 질문을 준비합니다.</p>
-        </div>
+
+      <div class="step s0 on" data-s="0">
+        <p class="g">DOD Cheongdam</p>
+        <h1 class="h1">피부를 살피고,<br>진료를 이야기하다.</h1>
+        <p class="lead">진단 과정부터 상담까지,<br>디오디의 진료를 살펴보세요.</p>
+        <a class="btn" href="#step-1" data-go="1">진료 과정 보기 <span aria-hidden="true">→</span></a>
       </div>
-      <div class="rail mono" aria-hidden="true"><span><b></b></span><span><b></b></span><span><b></b></span><em id="railn">00</em></div>
+
+      <div class="step sx" data-s="1" id="step-1">
+        <p class="no">01 / 03</p>
+        <h2 class="h2">살펴보다</h2>
+        <p class="body">MetaVu 진단 시스템을 안내합니다. 피부 상태와 관심 부위를 의료진과 함께 살펴봅니다.</p>
+        <figure><img src="img/device.webp" width="824" height="800" alt="공식 홈페이지의 장비 사진" loading="lazy" decoding="async"><figcaption>공식 홈페이지 사진</figcaption></figure>
+      </div>
+      <div class="step sx" data-s="2">
+        <p class="no">02 / 03</p>
+        <h2 class="h2">이야기하다</h2>
+        <p class="body">관심 부위와 이전 시술 이력, 일정을 바탕으로 진료 방향을 상담합니다.</p>
+        <figure><img src="img/consult.webp" width="1200" height="900" alt="공식 홈페이지에 게시된 의료진 진료 장면" loading="lazy" decoding="async"><figcaption>의료진의 진료 모습</figcaption></figure>
+      </div>
+      <div class="step sx" data-s="3">
+        <p class="no">03 / 03</p>
+        <h2 class="h2">확인하다</h2>
+        <p class="body">진료 분야별 안내를 읽고, 나에게 필요한 질문을 준비합니다.</p>
+        <ul class="fx" aria-label="진료 분야">
+          <li><a href="https://www.dodskin.com/lifting" target="_blank" rel="noopener">리프팅 <span>dodskin.com →</span></a></li>
+          <li><a href="https://www.dodskin.com/booster" target="_blank" rel="noopener">콜라겐·스킨부스터 <span>dodskin.com →</span></a></li>
+          <li><a href="https://www.dodskin.com/stemcell" target="_blank" rel="noopener">재생 프로그램 <span>dodskin.com →</span></a></li>
+        </ul>
+        <p class="fx-note">시술 선택과 적용 여부는 의료진 상담이 필요합니다.</p>
+      </div>
+
+      <nav class="snav" aria-label="진료 과정 단계">
+        <button type="button" data-go="1"><i>01</i>살펴보다</button>
+        <button type="button" data-go="2"><i>02</i>이야기하다</button>
+        <button type="button" data-go="3"><i>03</i>확인하다</button>
+      </nav>
       <p class="brand-note">입체 오브젝트는 브랜드 그래픽입니다.</p>
     </div>
   </section>
 
-  <div class="paper" id="paper">
-    <!-- P2-03 -->
-    <section class="sec" aria-labelledby="h-staff">
-      <div class="sec-head">
-        <p class="mono rv">Medical Staff &amp; Research</p>
-        <h2 class="h2 rv" id="h-staff">진료를 함께할<br>의료진과 연구진</h2>
+  <!-- P2-03 -->
+  <section class="sec" aria-labelledby="h-staff">
+    <div class="sec-h">
+      <p class="g rv">Medical Staff &amp; Research</p>
+      <h2 class="h2 rv" id="h-staff">진료를 함께할<br>의료진과 연구진</h2>
+    </div>
+    <div class="grid">
+      <figure class="staff-fig rv"><img src="img/room.webp" width="800" height="1650" alt="디오디피부과 청담 진료실" loading="lazy" decoding="async"><figcaption>디오디 청담 진료실</figcaption></figure>
+      <div>
+        <table class="tbl rv">
+          <caption class="g" style="text-align:left;color:var(--fog);padding-bottom:14px;caption-side:top;letter-spacing:.12em">의료진 · 연구진</caption>
+          <tbody>
+            <tr><th>01</th><td class="nm">이준</td><td class="rl">대표원장</td></tr>
+            <tr><th>02</th><td class="nm">안정식</td><td class="rl">원장</td></tr>
+            <tr><th>03</th><td class="nm">황승경</td><td class="rl">원장</td></tr>
+            <tr><th>04</th><td class="nm">이준원</td><td class="rl">원장</td></tr>
+            <tr><th>05</th><td class="nm">김진아</td><td class="rl">박사 · 연구진</td></tr>
+          </tbody>
+        </table>
+        <a class="more rv" href="https://www.dodskin.com/staff" target="_blank" rel="noopener">의료진 소개 보기 →</a>
       </div>
-      <div class="grid">
-        <figure class="aside-fig rv"><img src="img/room.webp" width="800" height="1650" alt="디오디피부과 청담 진료실" loading="lazy" decoding="async"><figcaption>디오디 청담 진료실</figcaption></figure>
-        <div>
-          <table class="tbl rv">
-            <caption class="mono" style="text-align:left;color:var(--mute);padding-bottom:12px;caption-side:top">의료진·연구진</caption>
-            <tbody>
-              <tr><th>01</th><td class="nm">이준</td><td class="rl">대표원장</td></tr>
-              <tr><th>02</th><td class="nm">안정식</td><td class="rl">원장</td></tr>
-              <tr><th>03</th><td class="nm">황승경</td><td class="rl">원장</td></tr>
-              <tr><th>04</th><td class="nm">이준원</td><td class="rl">원장</td></tr>
-              <tr><th>05</th><td class="nm">김진아</td><td class="rl">박사 · 연구진</td></tr>
-            </tbody>
-          </table>
-          <a class="more rv" href="https://www.dodskin.com/staff" target="_blank" rel="noopener">의료진 소개 보기 →</a>
-        </div>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- P2-04 -->
-    <section class="sec" aria-labelledby="h-fields">
-      <div class="sec-head">
-        <p class="mono rv">Treatments</p>
-        <h2 class="h2 rv" id="h-fields">진료 분야를 확인하세요</h2>
+  <!-- P2-05 (P2-04 진료 분야는 03 확인하다 장면 안에 있음) -->
+  <section class="sec" aria-labelledby="h-q">
+    <div class="grid">
+      <div>
+        <p class="g rv" style="color:var(--acc)">Before Consultation</p>
+        <h2 class="h2 rv" id="h-q" style="margin-top:20px">상담 전에<br>준비할 질문</h2>
+        <p class="q-note rv">입력하거나 저장하는 곳은 없습니다. 상담 때 의료진에게 직접 이야기해 주세요.</p>
       </div>
-      <div class="grid">
-        <div></div>
-        <div>
-          <ul class="idx rv">
-            <li><a href="https://www.dodskin.com/lifting" target="_blank" rel="noopener"><span class="n">A</span><span class="t">리프팅</span><span class="go">dodskin.com →</span></a></li>
-            <li><a href="https://www.dodskin.com/booster" target="_blank" rel="noopener"><span class="n">B</span><span class="t">콜라겐·스킨부스터</span><span class="go">dodskin.com →</span></a></li>
-            <li><a href="https://www.dodskin.com/stemcell" target="_blank" rel="noopener"><span class="n">C</span><span class="t">재생 프로그램</span><span class="go">dodskin.com →</span></a></li>
-          </ul>
-          <p class="note rv">시술 선택과 적용 여부는 의료진 상담이 필요합니다.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- P2-05 -->
-    <section class="sec" aria-labelledby="h-q">
-      <div class="sec-head">
-        <p class="mono rv">Before Consultation</p>
-        <h2 class="h2 rv" id="h-q">상담 전에 준비할 질문</h2>
-      </div>
-      <div class="grid">
-        <div></div>
-        <ol class="qs rv">
+      <div class="inset rv">
+        <ol class="qs">
           <li><b>Q1</b>가장 궁금한 부위나 변화는 무엇인가요?</li>
           <li><b>Q2</b>이전에 받은 시술과 시기는 언제인가요?</li>
           <li><b>Q3</b>회복과 일정에서 고려할 점이 있나요?</li>
           <li><b>Q4</b>복용 중인 약과 알레르기는 의료진에게 직접 알려 주세요.</li>
         </ol>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <!-- P2-06 -->
-  <section class="sec contact" id="contact" aria-labelledby="h-ct">
-    <p class="mono rv" style="color:var(--mint)">Contact</p>
-    <h2 class="h2 rv" id="h-ct" style="margin-top:20px">진료 문의</h2>
+  <section class="sec" id="contact" aria-labelledby="h-ct">
+    <p class="g rv" style="color:var(--acc)">Contact</p>
+    <h2 class="h2 rv" id="h-ct" style="margin:20px 0 clamp(40px,6vh,64px)">진료 문의</h2>
     <div class="ct rv">
-      <div><span class="mono">Call</span><a class="tel" href="tel:02-6203-6263">02-6203-6263</a></div>
-      <div><span class="mono">Kakao</span><a class="kk" href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener">카카오톡으로 문의</a></div>
+      <div><span class="g">Call</span><a class="tel" href="tel:02-6203-6263">02-6203-6263</a></div>
+      <div><span class="g">Kakao</span><a class="kk" href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener">카카오톡으로 문의</a></div>
       <div>
-        <span class="mono">Hours</span>
+        <span class="g">Hours</span>
         <dl>
           <div><dt>월–목</dt><dd>10:00–19:00</dd></div>
           <div><dt>금</dt><dd>10:00–21:00</dd></div>
           <div><dt>토</dt><dd>10:00–16:00</dd></div>
           <div><dt>휴게(월–금)</dt><dd>13:00–14:00</dd></div>
         </dl>
-        <p style="margin-top:10px;font-size:12px;color:var(--fog)">일요일·공휴일은 병원에 확인해 주세요.</p>
+        <p style="margin-top:10px;font-size:13px;color:var(--fog)">일요일·공휴일은 병원에 확인해 주세요.</p>
       </div>
-      <div class="addr"><span class="mono">Address</span>디오디피부과의원 청담<br>서울 강남구 도산대로 423<br><a href="https://naver.me/x3j4pB4z" target="_blank" rel="noopener">네이버 지도 열기 →</a></div>
+      <div class="addr"><span class="g">Address</span>디오디피부과의원 청담<br>서울 강남구 도산대로 423<br><a href="https://naver.me/x3j4pB4z" target="_blank" rel="noopener">네이버 지도 열기 →</a></div>
     </div>
   </section>
   <footer class="ft"><span>디자인 초안 · 탱탱소프트</span><span>DOD Dermatology · Cheongdam</span></footer>
@@ -292,166 +267,186 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--mint);outline-offse
 
 <nav class="mbar" aria-label="진료 문의">
   <a href="tel:02-6203-6263">전화 문의</a>
-  <a href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener">카카오 문의</a>
+  <a href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener">카카오톡 문의</a>
 </nav>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script>
-// classic part: runs even if WebGL/module fails → content stays readable
 (() => {
-  const b = document.body; b.classList.remove('no-js');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) b.classList.add('reduced', 'static');
+  const b = document.body;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || /static/.test(location.search);
+  if (reduce) b.classList.add('static');
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
-  const hd = document.getElementById('hd'), paper = document.getElementById('paper'), ct = document.getElementById('contact');
-  const onS = () => { const pr = paper.getBoundingClientRect(), cr = ct.getBoundingClientRect(); hd.classList.toggle('light', (pr.top < 40 || (window.__p2 && window.__p2.p > 0.95)) && cr.top > 40); };
-  setInterval(onS, 250);
+  const hd = document.getElementById('hd'), lab = document.getElementById('lab');
+  const onS = () => hd.classList.toggle('solid', lab.getBoundingClientRect().bottom < 80);
   addEventListener('scroll', onS, { passive: true }); onS();
-  // WebGL capability check; module script will clear this timer when it starts
   const c = document.createElement('canvas');
-  const ok = !!(c.getContext('webgl2') || c.getContext('webgl'));
-  if (!ok) b.classList.add('static');
+  if (!(c.getContext('webgl2') || c.getContext('webgl'))) b.classList.add('static');
   window.__p2fail = setTimeout(() => { if (!window.__p2) b.classList.add('static'); }, 6000);
 })();
 </script>
 <script type="module">
 import * as THREE from 'three';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 
 const body = document.body;
 if (!body.classList.contains('static')) {
   window.__p2 = {}; clearTimeout(window.__p2fail);
   const $ = s => document.querySelector(s);
-  const lab = $('#lab'), canvas = $('#gl'), veil = $('#veil'), steps = [...document.querySelectorAll('.step')];
-  const bars = [...document.querySelectorAll('.rail b')], railn = $('#railn');
+  const lab = $('#lab'), canvas = $('#gl'), steps = [...document.querySelectorAll('.step')], navs = [...document.querySelectorAll('.snav button')];
   const mq = matchMedia('(max-width: 900px)');
   let mobile = mq.matches;
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
   const DPR = () => Math.min(devicePixelRatio, mobile ? 1.5 : 1.75);
-  renderer.setPixelRatio(DPR());
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.0;
-  renderer.setClearColor(0x08171a, 1);
+  renderer.toneMappingExposure = 0.9;
+  renderer.setClearColor(0x061b20, 1);
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.02).texture;
-  scene.environmentIntensity = 0.75;
+  // studio environment: wide softboxes and thin strips → broad highlights + fine rim lines (no small square hotspots)
+  const envScene = new THREE.Scene(); envScene.background = new THREE.Color(0x04161a);
+  const box = (w, h, c, x, y, z, ry = 0, rx = 0) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide })); m.position.set(x, y, z); m.rotation.set(rx, ry, 0); envScene.add(m); };
+  box(16, 3.2, new THREE.Color(2.2, 2.4, 2.35), 0, 7, 0, 0, Math.PI / 2);      // overhead long softbox
+  box(0.5, 12, new THREE.Color(3.2, 3.4, 3.3), -8, 0, 1, Math.PI / 2);         // left strip → rim line
+  box(0.35, 12, new THREE.Color(2.0, 2.3, 2.2), 8, 0, -1, -Math.PI / 2);       // right strip
+  box(10, 6, new THREE.Color(0.35, 0.55, 0.5), 0, -1, 9, Math.PI);           // soft front fill (teal)
+  box(18, 2, new THREE.Color(0.25, 0.42, 0.38), 0, -6, 0, 0, -Math.PI / 2);    // floor bounce
+  scene.environment = pmrem.fromScene(envScene, 0.035).texture;
+  scene.environmentIntensity = 1.0;
   const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
   camera.position.set(0, 0, 10);
 
-  // opaque backdrop (transmission only refracts opaque objects)
-  const bg = document.createElement('canvas'); bg.width = 2048; bg.height = 1024;
-  const g = bg.getContext('2d');
-  const paintBg = (cx, hue) => {
-    g.fillStyle = '#08171A'; g.fillRect(0, 0, 2048, 1024);
-    const gr = g.createRadialGradient(cx, 440, 0, cx, 480, 360);
-    gr.addColorStop(0, hue); gr.addColorStop(0.32, '#1f6a5a'); gr.addColorStop(0.72, '#0d2a26'); gr.addColorStop(1, '#08171A');
+  // opaque backdrop: broad soft light + one wide diagonal band — no lines (transmission refracts opaque objects only)
+  const bgc = document.createElement('canvas'); bgc.width = 2048; bgc.height = 1024;
+  { const g = bgc.getContext('2d');
+    g.fillStyle = '#061B20'; g.fillRect(0, 0, 2048, 1024);
+    let gr = g.createRadialGradient(1024, 560, 0, 1024, 560, 760);
+    gr.addColorStop(0, '#1f4440'); gr.addColorStop(0.3, '#0f2e30'); gr.addColorStop(0.7, '#081f24'); gr.addColorStop(1, '#061B20');
     g.fillStyle = gr; g.fillRect(0, 0, 2048, 1024);
-    g.fillStyle = '#c9f2e3';
-    for (let i = 0; i < 2048; i += 36) { const d = Math.abs(i - cx) / 1024; g.globalAlpha = 0.55 * Math.pow(Math.max(0, 1 - d), 3); g.fillRect(i, 0, i % 180 === 0 ? 3 : 1, 1024); }
-    for (let j = 0; j < 1024; j += 64) { g.globalAlpha = 0.05; g.fillRect(0, j, 2048, 1); }
-    g.globalAlpha = 1;
-  };
-  paintBg(1024, '#5fbfa2');
-  const bgTex = new THREE.CanvasTexture(bg); bgTex.colorSpace = THREE.SRGBColorSpace;
-  const glow = new THREE.Mesh(new THREE.PlaneGeometry(40, 20), new THREE.MeshBasicMaterial({ map: bgTex }));
-  glow.position.z = -5; scene.add(glow);
+    g.save(); g.translate(1024, 512); g.rotate(-0.42);
+    gr = g.createLinearGradient(0, -260, 0, 260);
+    gr.addColorStop(0, 'rgba(162,213,197,0)'); gr.addColorStop(0.44, 'rgba(190,226,214,.08)'); gr.addColorStop(0.5, 'rgba(220,240,233,.16)'); gr.addColorStop(0.56, 'rgba(190,226,214,.08)'); gr.addColorStop(1, 'rgba(162,213,197,0)');
+    g.fillStyle = gr; g.fillRect(-1400, -260, 2800, 520); g.restore();
+    gr = g.createRadialGradient(1300, 300, 0, 1300, 300, 420);
+    gr.addColorStop(0, 'rgba(237,246,242,.07)'); gr.addColorStop(1, 'rgba(237,246,242,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 2048, 1024); }
+  const bgTex = new THREE.CanvasTexture(bgc); bgTex.colorSpace = THREE.SRGBColorSpace;
+  const back = new THREE.Mesh(new THREE.PlaneGeometry(44, 22), new THREE.MeshBasicMaterial({ map: bgTex }));
+  back.position.z = -6; scene.add(back);
 
-  // reflective floor line: thin opaque bar under the object
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 0.012), new THREE.MeshBasicMaterial({ color: 0x3c8f7a }));
-  floor.position.set(0, -2.1, -1); scene.add(floor);
+  // soft contact light under the lens (not refracted; sits in front of the backdrop)
+  const shc = document.createElement('canvas'); shc.width = shc.height = 256;
+  { const g = shc.getContext('2d'); const gr = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    gr.addColorStop(0, 'rgba(190,232,218,.55)'); gr.addColorStop(0.45, 'rgba(120,180,165,.18)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256); }
+  const shTex = new THREE.CanvasTexture(shc);
+  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: shTex, transparent: true, depthWrite: false, opacity: .9 }));
+  shadow.rotation.x = -Math.PI / 2; scene.add(shadow);
 
-  const geo = new RoundedBoxGeometry(2.1, 2.1, 2.1, 28, 0.74);
-  { const p = geo.attributes.position, v = new THREE.Vector3();
-    for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i); const a = v.y * 0.2; p.setXYZ(i, v.x * Math.cos(a) - v.z * Math.sin(a), v.y, v.x * Math.sin(a) + v.z * Math.cos(a)); }
-    geo.computeVertexNormals(); }
-  const glass = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1, thickness: 1.7, ior: 1.5, roughness: 0.02,
-    dispersion: 0.4, attenuationColor: new THREE.Color('#bff3df'), attenuationDistance: 28, clearcoat: 0.7, clearcoatRoughness: 0.02,
-    specularIntensity: 1, envMapIntensity: 1.1, transparent: true });
-  const lens = new THREE.Mesh(geo, glass); scene.add(lens);
-  const key = new THREE.DirectionalLight(0xffffff, 2.6); key.position.set(4, 5, 6); scene.add(key);
-  const rim = new THREE.DirectionalLight(0xa8e4ce, 1.4); rim.position.set(-5, -1, -2); scene.add(rim);
+  // thin convex lens: lathe profile, diameter 3, centre thickness ~0.7 (≈ 1 : 0.23)
+  const R = 1.5, H = 0.3, E = 0.05, pts = [];
+  const N = 48;
+  for (let i = 0; i <= N; i++) { const r = R * i / N; pts.push(new THREE.Vector2(r, E + H * (1 - (r / R) ** 2))); }
+  for (let i = 1; i <= 6; i++) { const a = Math.PI / 2 - Math.PI * i / 6; pts.push(new THREE.Vector2(R + Math.cos(a) * E * 0.6, Math.sin(a) * E)); }
+  for (let i = N - 1; i >= 0; i--) { const r = R * i / N; pts.push(new THREE.Vector2(r, -(E + H * (1 - (r / R) ** 2)))); }
+  const lensGeo = new THREE.LatheGeometry(pts.reverse(), 128);
+  lensGeo.computeVertexNormals();
+  const glass = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1, thickness: 0.9, ior: 1.52, roughness: 0.012,
+    dispersion: 0.28, attenuationColor: new THREE.Color('#d8f2e8'), attenuationDistance: 40,
+    clearcoat: 1, clearcoatRoughness: 0.01, specularIntensity: 1, envMapIntensity: 1.15, transparent: true });
+  const lens = new THREE.Group();
+  const body3 = new THREE.Mesh(lensGeo, glass); body3.rotation.x = Math.PI / 2; lens.add(body3);
+  // fine rim highlight
+  const rimMat = new THREE.MeshPhysicalMaterial({ color: 0xdff3ec, metalness: 1, roughness: 0.12, envMapIntensity: 1.6, transparent: true });
+  const rimMesh = new THREE.Mesh(new THREE.TorusGeometry(R + 0.012, 0.016, 16, 220), rimMat); lens.add(rimMesh);
+  scene.add(lens);
+  // lighting comes only from the studio environment (punctual lights leave a small hotspot on glass)
 
-  // keyframes over lab progress p (0..1). x,y in world units at z=0; s=scale; r=yaw; t=tilt
+  // keyframes: x,y world at z=0, s scale, ry yaw, rx tilt (0 = facing camera), k key-light intensity
   const KD = [
-    { p: 0.00, x: 2.45, y: -0.05, s: 1.00, r: 0.25, t: 0.35 },
-    { p: 0.16, x: 2.30, y: 0.00, s: 1.05, r: 0.70, t: 0.30 },   // hero holds
-    { p: 0.30, x: 2.05, y: 0.10, s: 1.22, r: 1.55, t: 0.10 },   // 01 살펴보다: turns to face
-    { p: 0.50, x: 2.55, y: -0.10, s: 0.92, r: 2.70, t: 0.55 },  // 02 이야기하다: recedes, tilts
-    { p: 0.68, x: 1.85, y: 0.05, s: 1.30, r: 3.70, t: 0.20 },   // 03 확인하다
-    { p: 0.84, x: 0.00, y: 0.00, s: 2.10, r: 4.40, t: 0.00 },   // centers
-    { p: 1.00, x: 0.00, y: 0.00, s: 7.50, r: 4.90, t: 0.00 },   // passes the camera
+    { p: 0.00, x: 2.55, y: -0.45, s: 1.00, ry: -0.62, rx: 0.42, k: 2.2 },
+    { p: 0.20, x: 2.45, y: -0.40, s: 1.02, ry: -0.44, rx: 0.40, k: 2.2 },   // hero: right, copy reads first (0 → .18 rad)
+    { p: 0.30, x: -2.35, y: 0.05, s: 1.10, ry: 0.55, rx: 0.30, k: 2.4 },    // moves left once the hero copy has left
+    { p: 0.45, x: -2.30, y: 0.00, s: 1.12, ry: 0.80, rx: 0.42, k: 1.6 },    // 01 살펴보다
+    { p: 0.65, x: -2.20, y: 0.10, s: 1.08, ry: -0.70, rx: 0.38, k: 3.0 },   // 02 이야기하다: light/camera change, not size
+    { p: 0.72, x: -2.75, y: 0.55, s: 0.62, ry: -1.10, rx: 0.55, k: 2.2 },   // 03 확인하다: retreats to a small object
+    { p: 0.86, x: -2.85, y: 0.60, s: 0.56, ry: -1.40, rx: 0.60, k: 2.0 },
+    { p: 1.00, x: -3.20, y: 1.60, s: 0.40, ry: -1.90, rx: 0.70, k: 1.6 },   // exits up-left while the page scrolls on
   ];
-  const KM = KD.map(k => ({ ...k, x: k.p >= 0.84 ? 0 : 0, y: k.p >= 0.84 ? (k.p === 1 ? 0 : 0.2) : 1.05, s: k.s * 0.62 }));
+  const KM = [
+    { p: 0.00, x: 0, y: 1.65, s: 0.6, ry: -0.6, rx: 0.42, k: 2.2 },
+    { p: 0.20, x: 0, y: 1.65, s: 0.6, ry: -0.42, rx: 0.4, k: 2.2 },
+    { p: 0.30, x: 0, y: 1.7, s: 0.6, ry: 0.5, rx: 0.3, k: 2.4 },
+    { p: 0.45, x: 0, y: 1.7, s: 0.6, ry: 0.8, rx: 0.42, k: 1.6 },
+    { p: 0.65, x: 0, y: 1.7, s: 0.58, ry: -0.7, rx: 0.38, k: 3.0 },
+    { p: 0.72, x: 0, y: 2.15, s: 0.42, ry: -1.1, rx: 0.55, k: 2.2 },
+    { p: 0.86, x: 0, y: 2.15, s: 0.40, ry: -1.4, rx: 0.6, k: 2.0 },
+    { p: 1.00, x: 0, y: 3.40, s: 0.32, ry: -1.9, rx: 0.7, k: 1.6 },
+  ];
+  // copy windows: hero, (gap while the lens crosses), 01, 02, 03
+  const W = [[-1, 0.19], [0.30, 0.45], [0.46, 0.64], [0.66, 0.9]];
+  const SEEK = [0, 0.375, 0.55, 0.78];
+
   const smooth = t => t * t * (3 - 2 * t);
   function sample(K, p) {
     let i = 0; while (i < K.length - 2 && p > K[i + 1].p) i++;
     const a = K[i], b = K[i + 1], f = smooth(Math.min(1, Math.max(0, (p - a.p) / (b.p - a.p))));
-    const o = {}; for (const k of ['x', 'y', 's', 'r', 't']) o[k] = a[k] + (b[k] - a[k]) * f; return o;
+    const o = {}; for (const k of ['x', 'y', 's', 'ry', 'rx', 'k']) o[k] = a[k] + (b[k] - a[k]) * f; return o;
   }
-  // step windows (enter at, leave at)
-  const W = [[-1, 0.2], [0.2, 0.4], [0.4, 0.6], [0.6, 0.8]];
 
-  let target = 0, cur = 0, px = 0, py = 0, tpx = 0, tpy = 0, visible = true, active = -1;
+  let target = 0, cur = 0, px = 0, py = 0, tpx = 0, tpy = 0, visible = true, active = -2;
   const progress = () => { const r = lab.getBoundingClientRect(); return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight))); };
-  const onScroll = () => { target = progress(); };
-  addEventListener('scroll', onScroll, { passive: true });
+  const jump = (p, smoothScroll) => { const r = lab.getBoundingClientRect(); const y = scrollY + r.top + p * (r.height - innerHeight); scrollTo({ top: y, behavior: smoothScroll ? 'smooth' : 'auto' }); if (!smoothScroll) target = cur = p; };
+  addEventListener('scroll', () => { target = progress(); }, { passive: true });
   addEventListener('pointermove', e => { tpx = (e.clientX / innerWidth - .5); tpy = (e.clientY / innerHeight - .5); }, { passive: true });
-  // touch: gentle drag tilt on mobile, no scroll hijack
   let tx0 = null; addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
   addEventListener('touchmove', e => { if (tx0 != null) tpx = Math.max(-.5, Math.min(.5, (e.touches[0].clientX - tx0) / innerWidth)); }, { passive: true });
   addEventListener('touchend', () => { tx0 = null; tpx = 0; }, { passive: true });
+  document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); jump(SEEK[+el.dataset.go], true); }));
 
   function resize() {
     mobile = mq.matches;
     const w = innerWidth, h = canvas.parentElement.clientHeight;
     renderer.setPixelRatio(DPR()); renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.fov = mobile ? 38 : 30;
-    camera.updateProjectionMatrix();
+    camera.aspect = w / h; camera.fov = mobile ? 40 : 30; camera.updateProjectionMatrix();
   }
   let rw = innerWidth; addEventListener('resize', () => { if (mobile && innerWidth === rw) return; rw = innerWidth; resize(); });
   resize();
-
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(lab);
 
   function setStep(p) {
     let s = W.findIndex(([a, b]) => p > a && p <= b); if (p <= 0) s = 0;
     if (s !== active) {
-      steps.forEach((el, i) => { el.classList.toggle('on', i === s); el.classList.toggle('past', i < s); el.setAttribute('aria-hidden', i === s ? 'false' : 'true'); });
+      steps.forEach((el, i) => { el.classList.toggle('on', i === s); el.classList.toggle('past', s > i || (s < 0 && i > 0 && p > W[i][1])); el.toggleAttribute('inert', i !== s); });
       active = s;
     }
-    bars.forEach((b, i) => { const [a, z] = W[i + 1]; b.style.transform = `scaleX(${Math.min(1, Math.max(0, (p - a) / (z - a)))})`; });
-    railn.textContent = s > 0 ? '0' + s : '00';
+    navs.forEach((n, i) => { const [a, z] = W[i + 1]; n.style.setProperty('--f', Math.min(1, Math.max(0, (p - a) / (z - a))).toFixed(3)); n.classList.toggle('on', s === i + 1); });
   }
 
   const clock = new THREE.Clock(); let frames = 0, t0 = performance.now();
-  window.__p2 = { get p() { return cur; }, fps: 0, jump(p) { const r = lab.getBoundingClientRect(); scrollTo(0, scrollY + r.top + p * (r.height - innerHeight)); target = cur = p; } };
+  Object.assign(window.__p2, { get p() { return cur; }, fps: 0, jump: p => jump(p, false) });
   renderer.setAnimationLoop(() => {
     if (!visible) return;
     const t = clock.getElapsedTime();
     cur += (target - cur) * 0.09; if (Math.abs(target - cur) < 1e-4) cur = target;
     px += (tpx - px) * 0.06; py += (tpy - py) * 0.06;
     const k = sample(mobile ? KM : KD, cur);
-    lens.position.set(k.x, k.y + Math.sin(t * .6) * .05, 0);
+    lens.position.set(k.x, k.y + Math.sin(t * .55) * .04, 0);
     lens.scale.setScalar(k.s);
-    lens.rotation.set(k.t + py * .25, k.r + t * 0.06 + px * .35, 0.15);
-    glow.position.x = k.x * 0.9; glow.position.y = k.y * 0.6;
-    floor.position.y = k.y - 1.35 * k.s - 0.25; floor.material.opacity = 1;
-    // last 16%: object passes the camera, glass dissolves, paper rises
-    const end = Math.min(1, Math.max(0, (cur - 0.84) / 0.16));
-    glass.opacity = 1 - smooth(Math.max(0, (end - 0.55) / 0.45));
-    veil.style.opacity = smooth(Math.max(0, (end - 0.6) / 0.4)).toFixed(3);
+    // pointer tilt capped at 0.06 rad
+    lens.rotation.set(k.rx + py * 0.12, k.ry + px * 0.12 + Math.sin(t * .3) * .03, 0.08);
+    scene.environmentIntensity = 0.75 + k.k * 0.18;
+    back.position.x = k.x * 0.35; back.position.y = k.y * 0.25;
+    shadow.position.set(k.x, k.y - R * k.s * 0.95 - 0.12, 0.2);
+    shadow.scale.set(R * 3.0 * k.s, R * 1.1 * k.s, 1);
+    const fade = 1 - smooth(Math.min(1, Math.max(0, (cur - 0.9) / 0.1)));
+    glass.opacity = rimMat.opacity = fade; shadow.material.opacity = 0.9 * fade;
     setStep(cur);
     renderer.render(scene, camera);
     frames++; const n = performance.now(); if (n - t0 > 1000) { window.__p2.fps = Math.round(frames * 1000 / (n - t0)); frames = 0; t0 = n; }
   });
   requestAnimationFrame(() => canvas.classList.add('on'));
-  onScroll();
-  $('#go').addEventListener('click', e => { e.preventDefault(); const r = lab.getBoundingClientRect(); scrollTo({ top: scrollY + r.top + 0.3 * (r.height - innerHeight), behavior: 'smooth' }); });
+  target = cur = progress();
 }
 </script>
 </body>

@@ -135,7 +135,7 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
 .index::before{content:"";display:block;width:28px;height:1px;background:currentColor}
 .eyebrow{font-family:var(--serif-en);font-size:11px;letter-spacing:.38em;text-transform:uppercase;color:var(--accent)}
 .h2{font-family:var(--serif-kr);font-weight:300;letter-spacing:-.02em;line-height:1.18}
-.text-link{display:inline-flex;align-items:center;gap:12px;font-size:13px;letter-spacing:.14em;font-weight:500;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:5px;transition:gap .3s}
+.text-link{display:inline-flex;align-items:center;min-height:44px;gap:12px;font-size:13px;letter-spacing:.14em;font-weight:500;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:5px;transition:gap .3s}
 .text-link::after{content:"";display:block;width:22px;height:1px;background:currentColor;transition:width .3s}
 .text-link:hover{gap:18px}
 
@@ -174,7 +174,7 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
 .dr-copy .text-link{margin-top:26px}
 .contact{margin-top:clamp(32px,5svh,56px);padding-top:26px;border-top:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:0 clamp(24px,3vw,56px)}
 .contact .lab{font-family:var(--serif-en);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-.contact .tel{font-family:var(--serif-en);font-weight:400;font-size:clamp(26px,2.4vw,34px);letter-spacing:.04em;line-height:1.1;display:inline-block;border-bottom:1px solid transparent;transition:border-color .3s}
+.contact .tel{display:inline-flex!important;align-items:center;min-height:44px;font-family:var(--serif-en);font-weight:400;font-size:clamp(26px,2.4vw,34px);letter-spacing:.04em;line-height:1.1;display:inline-block;border-bottom:1px solid transparent;transition:border-color .3s}
 .contact .tel:hover{border-color:var(--ink)}
 .contact .kakao{display:inline-flex;align-items:center;gap:10px;margin-top:4px;padding:12px 18px;border:1px solid var(--ink);font-size:14px;font-weight:500;letter-spacing:.04em;transition:background .3s,color .3s}
 .contact .kakao:hover{background:var(--ink);color:var(--bg)}
@@ -391,11 +391,11 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
     const c = copy.getBoundingClientRect();
     const A = { l: c.left - s.left, t: c.top - s.top, w: c.width, h: c.height };
     A.b = A.t + A.h; A.cx = A.l + A.w / 2;
-    const gutter = parseFloat(getComputedStyle(html).getPropertyValue('--gutter')) || 22;
+    const gutter = parseFloat(getComputedStyle(hd).paddingLeft) || 22;   // resolved px (the CSS var is an unresolved clamp())
     const bar = m === 'mobile' ? (document.querySelector('.mobile-bar').getBoundingClientRect().height || 60) : 0;
     let B, origin, sc;
-    if (m === 'wide') { sc = 0.72; origin = 'left bottom'; B = { x: gutter - A.l, y: (H - H * 0.11) - A.b }; }
-    else if (m === 'stack') { sc = 0.86; origin = 'left bottom'; B = { x: gutter - A.l, y: (H - H * 0.1) - A.b }; }
+    if (m === 'wide') { sc = 1; origin = 'left bottom'; B = { x: gutter - A.l, y: (H - H * 0.11) - A.b }; }
+    else if (m === 'stack') { sc = 1; origin = 'left bottom'; B = { x: gutter - A.l, y: (H - H * 0.1) - A.b }; }
     else { sc = 0.82; origin = 'left bottom'; B = { x: gutter - A.l, y: (H - bar - 24) - A.b }; }
     return { W, H, m, f, Dw, Dh, s0, A, B, origin, sc,
       edExtra: Math.max(0, edIn.scrollHeight - H), drExtra: Math.max(0, drIn.scrollHeight - H) };
@@ -441,7 +441,8 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
       .to(cue, { opacity: 0, duration: 0.06 }, 0)
       // title: lift away on paper, then re-set in ivory over the opened photo (no half-tone crossing over the frame)
       .fromTo(copy, { opacity: 1, y: 0 }, { opacity: 0, y: -18, duration: 0.07, ease: 'power1.in' }, 0)
-      .set(copy, { x: B.x, y: B.y, scale: sc, transformOrigin: origin }, 0.075)
+      .set(copy, { x: B.x, y: B.y, scale: sc, transformOrigin: origin, textAlign: 'left' }, 0.075)
+      .set(index, { justifyContent: 'flex-start' }, 0.075)
       .set([title, sub], { color: ivory }, 0.075)
       .set(index, { color: 'rgba(241,239,233,.85)' }, 0.075)
       .to(copy, { opacity: 1, duration: 0.05, ease: 'none' }, 0.2)
