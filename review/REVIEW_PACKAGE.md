@@ -9,7 +9,7 @@
 
 | 항목 | 값 |
 |---|---|
-| title | 디오디청담 | A 프라이빗 아틀리에 — 디자인 초안 |
+| title | 디오디청담 \| A 프라이빗 아틀리에 — 디자인 초안 |
 | description | 디오디피부과의원 청담 홈페이지 디자인 초안 A안(PRIVATE ATELIER). 공개 데모이며 실제 운영 사이트가 아닙니다. |
 | robots | noindex, nofollow, noarchive |
 | JSON-LD | 없음(기획 기준: 출시 때 적용) |
@@ -29,7 +29,7 @@
 
 | 항목 | 값 |
 |---|---|
-| title | 디오디청담 | B 프리시전 아틀라스 — 디자인 초안 |
+| title | 디오디청담 \| B 프리시전 아틀라스 — 디자인 초안 |
 | description | 디오디피부과의원 청담 홈페이지 디자인 초안 B안(PRECISION ATLAS). 공개 데모이며 실제 운영 사이트가 아닙니다. |
 | robots | noindex, nofollow, noarchive |
 | JSON-LD | 없음(기획 기준: 출시 때 적용) |
@@ -49,7 +49,7 @@
 
 | 항목 | 값 |
 |---|---|
-| title | 디오디청담 | C 더 디오디 에디트 — 디자인 초안 |
+| title | 디오디청담 \| C 더 디오디 에디트 — 디자인 초안 |
 | description | 디오디피부과의원 청담 홈페이지 디자인 초안 C안(THE DOD EDIT). 공개 데모이며 실제 운영 사이트가 아닙니다. |
 | robots | noindex, nofollow, noarchive |
 | JSON-LD | 없음(기획 기준: 출시 때 적용) |
