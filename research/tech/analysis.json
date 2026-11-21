@@ -1,0 +1,342 @@
+[
+ {
+  "url": "https://lusion.co/",
+  "ok": true,
+  "title": "Lusion - Award Winning 3D and Interactive Web Studio",
+  "gl": [
+   "webgl2"
+  ],
+  "canvases": [
+   "1440x900",
+   "45x45",
+   "1442x902"
+  ],
+  "videos": [],
+  "globals": [
+   "__THREE__"
+  ],
+  "threeRev": "158",
+  "pinned": 0,
+  "sticky": 0,
+  "fonts": [
+   "Aeonik",
+   "IBMPlexMono",
+   "LusionMono"
+  ],
+  "scrollH": 900,
+  "libs": [
+   "PixiJS",
+   "three r158",
+   "three.js",
+   "three.js (html)"
+  ],
+  "jsCount": 9,
+  "mediaFiles": [
+   "https://player.vimeo.com/video/761102167?title=0&byline=0&controls=0&app_id=122963",
+   "https://lusion.dev/assets/textures/reel/desktop.mp4",
+   "https://lusion.dev/assets/textures/reel/desktop.mp4",
+   "https://lusion.dev/assets/textures/reel/desktop.mp4",
+   "https://lusion.dev/assets/textures/reel/desktop.mp4",
+   "https://player.vimeo.com/video/761102167?title=0&byline=0&controls=0&app_id=122963&ts_client_error=600010"
+  ],
+  "imageCount": 52,
+  "imageFormats": [
+   "image/svg+xml",
+   "image/webp",
+   "image/png",
+   "image/aces",
+   "image/jpeg"
+  ],
+  "frameSequenceCandidates": 0,
+  "seqSample": [],
+  "models": [
+   "https://lusion.dev/assets/textures/home/matcap.exr"
+  ]
+ },
+ {
+  "url": "https://www.igloo.inc/",
+  "ok": true,
+  "title": "Igloo Inc.",
+  "gl": [
+   "webgl2",
+   "webgl2"
+  ],
+  "canvases": [],
+  "videos": [],
+  "globals": [
+   "__THREE__"
+  ],
+  "threeRev": "165",
+  "pinned": 0,
+  "sticky": 0,
+  "fonts": [
+   "IBMPlexMono-Medium",
+   "IBMPlexMono-Regular"
+  ],
+  "scrollH": 900,
+  "libs": [
+   "Draco/GLTF",
+   "Draco/GLTF (url)",
+   "GSAP",
+   "KTX2/Basis",
+   "KTX2/Basis (url)",
+   "ScrollTrigger",
+   "three.js"
+  ],
+  "jsCount": 8,
+  "mediaFiles": [],
+  "imageCount": 50,
+  "imageFormats": [
+   "image/png",
+   "image/ktx2",
+   "image/aces"
+  ],
+  "frameSequenceCandidates": 0,
+  "seqSample": [],
+  "models": [
+   "https://www.igloo.inc/assets/geometries/igloo/igloo_cage.drc",
+   "https://www.igloo.inc/assets/geometries/intro_particles.drc",
+   "https://www.igloo.inc/assets/geometries/ground.drc",
+   "https://www.igloo.inc/assets/geometries/mountain.drc",
+   "https://www.igloo.inc/assets/geometries/igloo/patch.drc",
+   "https://www.igloo.inc/assets/geometries/shattered_ring2.drc",
+   "https://www.igloo.inc/assets/geometries/floor.drc",
+   "https://www.igloo.inc/assets/geometries/igloo.drc"
+  ]
+ },
+ {
+  "url": "https://locomotive.ca/",
+  "ok": true,
+  "title": "Locomotive | Montreal web agency",
+  "gl": [
+   "webgl",
+   "webgl2",
+   "webgl2"
+  ],
+  "canvases": [
+   "440x616",
+   "440x586"
+  ],
+  "videos": [
+   {
+    "src": "https://player.vimeo.com/progressive_redirect/playback/792718372/rendition/1080p/file.mp4?loc=external&log_user=0&signature=978abf9e4b33e3e1",
+    "muted": true,
+    "loop": true,
+    "autoplay": false,
+    "controls": false
+   }
+  ],
+  "globals": [
+   "__THREE__"
+  ],
+  "threeRev": "165",
+  "pinned": 0,
+  "sticky": 0,
+  "fonts": [
+   "HelveticaNowDisplay",
+   "LocomotiveNew",
+   "swiper-icons"
+  ],
+  "scrollH": 6598,
+  "libs": [
+   "Barba (page transition)",
+   "Draco/GLTF",
+   "Draco/GLTF (html)",
+   "Draco/GLTF (url)",
+   "GSAP",
+   "HLS",
+   "KTX2/Basis",
+   "Lenis (html)",
+   "Locomotive Scroll (html)",
+   "ScrollTrigger",
+   "three.js",
+   "three.js (html)",
+   "three.js (url)"
+  ],
+  "jsCount": 9,
+  "mediaFiles": [
+   "https://player.vimeo.com/progressive_redirect/playback/792718372/rendition/1080p/file.mp4?loc=external&log_user=0&signature=978abf9e4b33e3e143901fbcbf",
+   "https://download-video-ak.vimeocdn.com/v3-1/playback/2011feb6-4a2b-4a8f-a078-05ddc739db6d/c7567b65-e5d0b1c7?__token__=st=1795277589~exp=1795281189~acl",
+   "https://download-video-ak.vimeocdn.com/v3-1/playback/2011feb6-4a2b-4a8f-a078-05ddc739db6d/c7567b65-e5d0b1c7?__token__=st=1795277589~exp=1795281189~acl"
+  ],
+  "imageCount": 13,
+  "imageFormats": [
+   "image/jpeg",
+   "image/png"
+  ],
+  "frameSequenceCandidates": 0,
+  "seqSample": [],
+  "models": [
+   "https://locomotive.ca/assets/3d/ring.compressed.glb",
+   "https://locomotive.ca/uploads/team/3d/maureen-rigged-2.compressed.glb"
+  ]
+ },
+ {
+  "url": "https://basement.studio/",
+  "ok": true,
+  "title": "basement.studio | We make cool shit that performs.",
+  "gl": [
+   "webgl2",
+   "webgl2"
+  ],
+  "canvases": [
+   "1440x900",
+   "1440x900"
+  ],
+  "videos": [],
+  "globals": [
+   "__THREE__"
+  ],
+  "threeRev": "180",
+  "pinned": 0,
+  "sticky": 4,
+  "fonts": [
+   "Geist",
+   "Geist Fallback",
+   "Geist Mono",
+   "Geist Mono Fallback",
+   "flauta",
+   "flauta Fallback"
+  ],
+  "scrollH": 6714,
+  "libs": [
+   "Draco/GLTF",
+   "Draco/GLTF (html)",
+   "GSAP (html)",
+   "KTX2/Basis",
+   "KTX2/Basis (html)",
+   "Next.js",
+   "Next.js (html)",
+   "Next.js (url)",
+   "three.js",
+   "three.js (html)"
+  ],
+  "jsCount": 71,
+  "mediaFiles": [
+   "https://basement.studio/3d/textures/arcade-idleScreen-7c248ce4.mp4",
+   "https://basement.studio/3d/textures/arcade-idleScreen-7c248ce4.mp4",
+   "https://basement.studio/3d/textures/arcade-idleScreen-7c248ce4.mp4",
+   "https://basement.studio/3d/textures/arcade-idleScreen-7c248ce4.mp4",
+   "https://basement.studio/3d/video/video-SM_PeopleMonitorA-24a379df.mp4",
+   "https://basement.studio/3d/video/video-SM_TvScreen_1-7ab9d38c.mp4",
+   "https://basement.studio/3d/video/video-SM_PeopleMonitorD-3d411157.mp4",
+   "https://basement.studio/3d/video/video-SM_ScreenPatas-1e8af958.mp4"
+  ],
+  "imageCount": 197,
+  "imageFormats": [
+   "image/vnd.microsoft.icon",
+   "image/svg+xml",
+   "image/ktx2",
+   "image/png",
+   "image/webp",
+   "image/jpeg",
+   "image/avif"
+  ],
+  "frameSequenceCandidates": 13,
+  "seqSample": [
+   "https://basement.studio/3d/textures/bake-02-ao-f8901563.jpg",
+   "https://basement.studio/3d/textures/bake-03-ao-65209297.jpg",
+   "https://basement.studio/3d/textures/bake-06-ao-cb146198.jpg"
+  ],
+  "models": [
+   "https://basement.studio/3d/models/contactPhone-bee96b6d.glb",
+   "https://basement.studio/3d/models/officeWireframe-d770f1ee.glb",
+   "https://basement.studio/3d/models/office-077b4007.glb",
+   "https://basement.studio/3d/models/outdoorCars-d9030620.glb",
+   "https://basement.studio/3d/models/basketballNet-528bd868.glb",
+   "https://basement.studio/3d/textures/bake-01-lightmap-69b52dd9.ktx2",
+   "https://basement.studio/3d/textures/bake-01-lightmap-69b52dd9.ktx2",
+   "https://basement.studio/3d/textures/bake-SM_library_Wood-lightmap-7b2a6253.ktx2"
+  ]
+ },
+ {
+  "url": "https://a24films.com/",
+  "ok": true,
+  "title": "A24",
+  "gl": [],
+  "canvases": [],
+  "videos": [],
+  "globals": [],
+  "threeRev": null,
+  "pinned": 0,
+  "sticky": 2,
+  "fonts": [
+   "PP Neue Montreal Web Fallback Arial",
+   "PP Neue Montreal Web Fallback Roboto",
+   "PP Neue Montreal Web Fallback DejaVu Sans",
+   "PP Neue Montreal Mono Web Fallback Courier New",
+   "PP Neue Montreal Mono Web Fallback DejaVu Sans Mono",
+   "neueMontreal",
+   "neueMontrealMono"
+  ],
+  "scrollH": 8802,
+  "libs": [
+   "Next.js",
+   "Next.js (html)",
+   "Next.js (url)",
+   "Shopify",
+   "Shopify (html)",
+   "three.js (html)"
+  ],
+  "jsCount": 87,
+  "mediaFiles": [],
+  "imageCount": 32,
+  "imageFormats": [
+   "image/webp",
+   "image/vnd.microsoft.icon",
+   "image/svg+xml",
+   "image/png",
+   "image/gif"
+  ],
+  "frameSequenceCandidates": 1,
+  "seqSample": [
+   "https://a24films.com/_next/image?url=https%3A%2F%2Fapi-asset-production.s3.amazonaws.com%2Fmedia%2Fimages%2FGS_A24_PRI_KeyArt_Comp350.jpg&w=640&q=75"
+  ],
+  "models": []
+ },
+ {
+  "url": "https://www.tamburins.com/",
+  "ok": true,
+  "title": "TAMBURINS 탬버린즈 공식 온라인 스토어",
+  "gl": [],
+  "canvases": [],
+  "videos": [],
+  "globals": [],
+  "threeRev": null,
+  "pinned": 0,
+  "sticky": 1,
+  "fonts": [
+   "Inter",
+   "Inter Fallback",
+   "pretendard",
+   "pretendard Fallback",
+   "pretendardJP",
+   "pretendardJP Fallback",
+   "helvetica",
+   "helvetica Fallback",
+   "rosarivo",
+   "rosarivo Fallback"
+  ],
+  "scrollH": 1486,
+  "libs": [
+   "Next.js",
+   "Next.js (html)",
+   "Next.js (url)",
+   "PixiJS"
+  ],
+  "jsCount": 38,
+  "mediaFiles": [
+   "https://www.tamburins.com/video-policy/?_rsc=f1dnc-9OExDjbf2x",
+   "https://www.tamburins.com/kr/video-policy/"
+  ],
+  "imageCount": 36,
+  "imageFormats": [
+   "image/svg+xml",
+   "image/avif",
+   "image/gif"
+  ],
+  "frameSequenceCandidates": 0,
+  "seqSample": [],
+  "models": []
+ }
+]
