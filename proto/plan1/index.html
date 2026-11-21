@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>피부를 보는 시간 — 디오디피부과 청담</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Noto+Serif+KR:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preload" as="image" href="img/hero.webp" media="(min-width: 901px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-m.webp" media="(max-width: 900px)" fetchpriority="high">
+<style>
+:root{
+  --bg:#F1EFE9; --ink:#242622; --accent:#294A40; --white:#FFFFFF; --ivory:#F1EFE9;
+  --rule:rgba(36,38,34,.18); --mute:rgba(36,38,34,.58);
+  --serif-kr:'Noto Serif KR','Apple SD Gothic Neo',serif;
+  --serif-en:'Cormorant Garamond','Times New Roman',serif;
+  --sans:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',sans-serif;
+  --gutter:clamp(20px,3.6vw,56px);
+  --bar-h:60px;
+  --sa:env(safe-area-inset-bottom,0px);
+  --frame-shift:150px;              /* wide: photo frame axis = 50vw + shift */
+  --frame-w:min(38vw,540px);
+  --frame-h:68svh;
+  --k:0;                            /* 1 = closed inset frame, 0 = open */
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.6;word-break:keep-all;overflow-wrap:normal;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
+.en{font-family:var(--serif-en)}
+
+/* ---------- header ---------- */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:flex-start;justify-content:space-between;padding:26px var(--gutter) 0;color:var(--ink);transition:color .35s ease;pointer-events:none}
+.site-header a{pointer-events:auto}
+.wordmark{font-family:var(--serif-en);font-weight:500;font-size:20px;letter-spacing:.42em;line-height:1;display:block}
+.wordmark small{display:block;margin-top:7px;font-family:var(--sans);font-size:10px;letter-spacing:.18em;font-weight:500;opacity:.6}
+.header-cta{font-family:var(--sans);font-size:13px;letter-spacing:.14em;font-weight:500;padding-bottom:4px;border-bottom:1px solid currentColor;line-height:1.4;transition:opacity .3s}
+.header-cta:hover{opacity:.6}
+.site-header.on-photo{color:var(--ivory)}
+.site-header{transition:color .35s ease,opacity .4s ease}
+@media (max-width:900px){.site-header.reading{opacity:0;pointer-events:none}}
+
+/* ---------- scene / stage ---------- */
+.scene{position:relative}
+.stage{position:relative;overflow:hidden;isolation:isolate}
+.stage::after{ /* paper grain, static */
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.045;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size:220px 220px}
+
+/* hero layers */
+.hero{position:relative;min-height:100svh}
+.hero-frame{position:absolute;inset:0;z-index:2;overflow:hidden;
+  clip-path:inset(calc(var(--ct) * var(--k)) calc(var(--cr) * var(--k)) calc(var(--cb) * var(--k)) calc(var(--cl) * var(--k)))}
+.hero-photo{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform-origin:50% 50%}
+.motion .hero-photo img{max-width:none;inset:auto;left:var(--ix,0);top:var(--iy,0);width:var(--iw,100%);height:var(--ih,100%)}
+.hero-shade{position:absolute;inset:0;opacity:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(22,20,17,.74) 0%,rgba(22,20,17,.36) 34%,rgba(22,20,17,0) 62%),linear-gradient(to bottom,rgba(22,20,17,.34) 0%,rgba(22,20,17,0) 24%)}
+.hero-dim{position:absolute;inset:0;background:#16140f;opacity:0;pointer-events:none}
+.hero-box{position:absolute;z-index:1;pointer-events:none;background:#DAD6CC;box-shadow:0 40px 90px -40px rgba(36,38,34,.45);opacity:0}
+.hero-line{position:absolute;z-index:4;left:var(--fx,50%);top:var(--ly,50%);width:1px;height:calc(100% - var(--ly,50%));background:rgba(241,239,233,.85);transform:scaleY(0);transform-origin:50% 0;pointer-events:none}
+.scroll-cue{position:absolute;z-index:4;left:var(--fx,50%);bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--serif-en);font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--mute)}
+.scroll-cue i{display:block;width:1px;height:56px;background:linear-gradient(180deg,var(--ink),transparent);animation:cue 2.8s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0);opacity:0}30%{opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+/* hero copy — base (static / no-JS / reduced-motion): composed over the open photo */
+.hero-copy{position:absolute;z-index:5;left:var(--gutter);bottom:11svh;max-width:560px;color:var(--ivory)}
+.hero-index{display:flex;align-items:center;gap:14px;margin-bottom:28px;font-family:var(--serif-en);font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:currentColor;opacity:.85}
+.hero-index::before{content:"";display:block;width:28px;height:1px;background:currentColor}
+.hero-title{font-family:var(--serif-kr);font-weight:300;font-size:40px;line-height:1.28;letter-spacing:-.012em}
+.hero-title .ph{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em 0 0;margin-right:-.04em}
+.hero-title .ph-i{display:inline-block}
+.hero-sub{margin-top:16px;font-family:var(--serif-en);font-weight:400;font-size:14px;line-height:1.7;letter-spacing:.06em;color:currentColor;opacity:.8}
+
+/* ---------- motion mode: p=0 plate composition ---------- */
+.motion .scene{height:400svh}
+.motion .stage{position:sticky;top:0;height:100svh}
+.motion .hero{position:absolute;inset:0}
+.motion .hero-shade{opacity:0}
+.motion .hero-copy{color:var(--ink);will-change:transform}
+.motion .hero-index{color:var(--accent);opacity:1;margin-bottom:38px}
+.motion .hero-title{font-size:56px}
+.motion .hero-sub{color:var(--mute);opacity:1;margin-top:18px}
+.motion .hero-box{opacity:1}
+/* wide ≥1367: title beside frame, frame on 50vw + shift */
+@media (min-width:1367px){
+  .motion .hero-box{left:calc(50% + var(--frame-shift) - var(--frame-w) / 2);top:calc(50% - var(--frame-h) / 2);width:var(--frame-w);height:var(--frame-h)}
+  .motion .hero-copy{left:var(--gutter);bottom:calc(50svh - var(--frame-h) / 2);max-width:calc(50vw + var(--frame-shift) - var(--frame-w) / 2 - var(--gutter) - 48px)}
+}
+/* stacked 901–1366: title above frame, 48px gap */
+@media (min-width:901px) and (max-width:1366px){
+  :root{--frame-w:min(38vw,480px);--frame-h:48svh;--frame-shift:0px}
+  .motion .hero-grid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:safe center;padding:100px var(--gutter) 60px}
+  .motion .hero-copy{position:relative;left:auto;bottom:auto;max-width:none;text-align:center;margin-bottom:48px;order:-1}
+  .motion .hero-index{justify-content:center;margin-bottom:16px}
+  .motion .hero-title{font-size:44px;line-height:1.3}
+  .motion .hero-sub{margin-top:14px}
+  .motion .hero-box{position:relative;width:var(--frame-w);height:var(--frame-h);flex:none}
+  .scroll-cue{display:none}
+}
+/* mobile ≤900 */
+@media (max-width:900px){
+  :root{--gutter:22px;--frame-w:64vw;--frame-h:80vw;--frame-shift:0px}
+  .site-header{padding-top:24px}
+  .wordmark{font-size:17px}
+  .header-cta{display:none}
+  .scroll-cue{display:none}
+  .hero-copy{bottom:calc(var(--bar-h) + var(--sa) + 24px);right:var(--gutter);max-width:none}
+  .hero-title{font-size:28px}
+  .motion .hero-grid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:stretch;justify-content:safe center;padding:78px var(--gutter) calc(var(--bar-h) + var(--sa) + 24px)}
+  .motion .hero-box{position:relative;width:var(--frame-w);height:var(--frame-h);flex:none;align-self:center;box-shadow:0 30px 60px -30px rgba(36,38,34,.45)}
+  .motion .hero-copy{position:relative;left:auto;right:auto;bottom:auto;padding-top:22px}
+  .motion .hero-index{margin-bottom:12px;font-size:10px}
+  .motion .hero-title{font-size:34px;line-height:1.32}
+  .motion .hero-sub{font-size:12px;margin-top:10px}
+}
+
+/* ---------- panels (editorial / staff) ---------- */
+.panel{position:relative;background:var(--white);color:var(--ink)}
+.motion .panel{position:absolute;left:0;right:0;top:100%;height:100%;z-index:6;will-change:transform;overflow:hidden}
+.panel-in{padding:clamp(72px,11svh,120px) var(--gutter) clamp(48px,8svh,80px)}
+.motion .panel-in{min-height:100%;align-content:center}
+.motion .dr{align-content:start;padding-top:clamp(72px,12svh,132px)}
+.index{display:flex;align-items:center;gap:14px;font-family:var(--serif-en);font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--accent)}
+.index::before{content:"";display:block;width:28px;height:1px;background:currentColor}
+.eyebrow{font-family:var(--serif-en);font-size:11px;letter-spacing:.38em;text-transform:uppercase;color:var(--accent)}
+.h2{font-family:var(--serif-kr);font-weight:300;letter-spacing:-.02em;line-height:1.18}
+.text-link{display:inline-flex;align-items:center;gap:12px;font-size:13px;letter-spacing:.14em;font-weight:500;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:5px;transition:gap .3s}
+.text-link::after{content:"";display:block;width:22px;height:1px;background:currentColor;transition:width .3s}
+.text-link:hover{gap:18px}
+
+/* editorial */
+.ed{display:grid;grid-template-columns:minmax(0,7fr) minmax(300px,5fr);gap:0 clamp(40px,5vw,88px);align-items:center}
+.ed-fig{position:relative;width:100%;height:min(64svh,620px);overflow:hidden;background:#E9E7E1}
+.ed-fig img{width:100%;height:100%;object-fit:cover;object-position:50% 60%;transform-origin:50% 50%}
+.ed-copy{max-width:440px}
+.ed-copy .index{margin-bottom:26px}
+.ed-copy .h2{font-size:clamp(36px,3.7vw,54px);margin-bottom:26px}
+.ed-copy p.lead{font-family:var(--serif-kr);font-weight:400;font-size:16px;line-height:1.95;color:var(--ink)}
+.ed-room{display:grid;grid-template-columns:132px 1fr;gap:18px;align-items:center;margin-top:22px;padding-top:22px;border-top:1px solid var(--rule)}
+.ed-room figure{overflow:hidden;background:#E9E7E1;aspect-ratio:4/3}
+.ed-room img{width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+.ed-room p{font-family:var(--serif-kr);font-size:15px;line-height:1.8}
+.fields{list-style:none;margin-top:26px;border-top:1px solid var(--ink)}
+.fields li{border-bottom:1px solid var(--rule)}
+.fields a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:13px 0;font-size:15px;letter-spacing:.01em;font-weight:500;transition:color .25s}
+.fields a:hover{color:var(--accent)}
+.fields a small{font-family:var(--sans);font-weight:400;font-size:12px;color:var(--mute);letter-spacing:0}
+.fields a .arr{font-family:var(--serif-en);font-size:14px;color:var(--accent);margin-left:auto}
+.fields .fields-note{display:block;margin-top:12px;font-size:12px;color:var(--mute)}
+
+/* staff + contact */
+.panel-dr{background:var(--bg)}
+.dr{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:0 clamp(40px,5vw,88px);align-items:start}
+.dr-fig{width:100%;max-width:400px;aspect-ratio:4/5;overflow:hidden;background:#E9E7E1}
+.dr-fig img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.dr-copy .index{margin-bottom:22px}
+.dr-copy .h2{font-size:clamp(30px,2.8vw,40px);margin-bottom:28px}
+.staff{list-style:none;border-top:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(24px,3vw,48px)}
+.staff li{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.staff .nm{font-family:var(--serif-kr);font-weight:400;font-size:22px;letter-spacing:-.01em}
+.staff .rl{font-size:12px;letter-spacing:.08em;color:var(--mute)}
+.staff .num{font-family:var(--serif-en);font-size:11px;letter-spacing:.2em;color:var(--mute);margin-right:14px}
+.dr-copy .text-link{margin-top:26px}
+.contact{margin-top:clamp(32px,5svh,56px);padding-top:26px;border-top:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:0 clamp(24px,3vw,56px)}
+.contact .lab{font-family:var(--serif-en);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.contact .tel{font-family:var(--serif-en);font-weight:400;font-size:clamp(26px,2.4vw,34px);letter-spacing:.04em;line-height:1.1;display:inline-block;border-bottom:1px solid transparent;transition:border-color .3s}
+.contact .tel:hover{border-color:var(--ink)}
+.contact .kakao{display:inline-flex;align-items:center;gap:10px;margin-top:4px;padding:12px 18px;border:1px solid var(--ink);font-size:14px;font-weight:500;letter-spacing:.04em;transition:background .3s,color .3s}
+.contact .kakao:hover{background:var(--ink);color:var(--bg)}
+.contact .hours{font-size:13px;line-height:1.75;color:var(--ink)}
+.contact .hours div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--rule);padding:4px 0}
+.contact .hours dt{color:var(--mute)}
+.contact .hours dd{font-variant-numeric:tabular-nums}
+.contact .hours .nt{margin-top:8px;font-size:12px;color:var(--mute)}
+
+/* ---------- reveal initial states (motion only) ---------- */
+.motion .ed-fig{clip-path:inset(0 100% 0 0)}
+.motion .ed-fig img{transform:scale(1.12)}
+.motion .rv{opacity:0;transform:translateY(28px)}
+
+/* ---------- footer / mobile bar ---------- */
+.site-footer{background:var(--ink);color:rgba(241,239,233,.7);padding:56px var(--gutter) calc(56px + var(--sa));font-size:12px;letter-spacing:.06em;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.site-footer .en{letter-spacing:.3em;text-transform:uppercase;font-size:11px}
+.mobile-bar{display:none}
+
+@media (max-width:900px){
+  body{padding-bottom:calc(var(--bar-h) + var(--sa))}
+  .panel-in{padding:76px var(--gutter) calc(var(--bar-h) + var(--sa) + 36px)}
+  .ed{grid-template-columns:1fr;gap:28px 0}
+  .ed-fig{height:auto;aspect-ratio:16/10;order:2}
+  .ed-copy{max-width:none;order:1}
+  .ed-copy .h2{font-size:clamp(30px,8.2vw,36px);margin-bottom:18px}
+  .ed-copy p.lead{font-size:15px;line-height:1.85}
+  .ed-aside{order:3}
+  .ed-room{grid-template-columns:112px 1fr;margin-top:0;padding-top:0;border-top:0}
+  .fields{margin-top:24px}
+  .dr{grid-template-columns:1fr}
+  .dr-fig{display:none}
+  .dr-copy .h2{margin-bottom:22px}
+  .staff{grid-template-columns:1fr}
+  .staff .nm{font-size:20px}
+  .contact{grid-template-columns:1fr;gap:22px 0;padding-top:22px}
+  .contact .hours{max-width:360px}
+  .mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:stretch;height:calc(var(--bar-h) + var(--sa));padding:0 0 var(--sa);background:var(--accent);color:var(--bg)}
+  .mobile-bar a{flex:1;min-height:48px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:14px;letter-spacing:.06em;font-weight:500}
+  .mobile-bar a + a{border-left:1px solid rgba(241,239,233,.22)}
+  .mobile-bar a small{font-family:var(--serif-en);font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.7}
+  .site-footer{padding-bottom:calc(40px + var(--sa))}
+}
+@media (max-width:900px) and (max-height:620px){ .motion .hero-title{font-size:30px} .motion .hero-grid{padding-top:70px} }
+
+@media (prefers-reduced-motion:reduce){
+  .scroll-cue i{animation:none;transform:none;opacity:1}
+  .text-link,.fields a,.header-cta{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="hd">
+  <a class="wordmark" href="#top" aria-label="DOD 디오디피부과 청담">DOD<small>디오디피부과 청담</small></a>
+  <a class="header-cta" href="#contact">진료 문의</a>
+</header>
+
+<main id="top">
+  <section class="scene" id="scene" aria-label="디오디피부과 청담 소개">
+    <div class="stage" id="stage">
+
+      <!-- 01 · hero -->
+      <div class="hero">
+        <div class="hero-grid">
+          <div class="hero-box" id="box" aria-hidden="true"></div>
+          <div class="hero-copy" id="copy">
+            <p class="hero-index">01 / A Private Ritual</p>
+            <h1 class="hero-title" id="title"><span class="ph"><span class="ph-i">피부를</span></span> <span class="ph"><span class="ph-i">보는</span></span> <span class="ph"><span class="ph-i">시간,</span></span><br><span class="ph"><span class="ph-i">디오디피부과</span></span> <span class="ph"><span class="ph-i">청담</span></span></h1>
+            <p class="hero-sub">A PRIVATE RITUAL — dermatology on demand</p>
+          </div>
+        </div>
+        <div class="hero-frame" id="frame">
+          <div class="hero-photo" id="photo">
+            <picture>
+              <source media="(max-width: 900px)" srcset="img/hero-m.webp">
+              <img src="img/hero.webp" width="2292" height="2260" alt="디오디피부과 청담 복도. 안쪽 문에 dod, dermatology on demand 로고가 있다" fetchpriority="high" decoding="async">
+            </picture>
+          </div>
+          <div class="hero-shade" id="shade"></div>
+          <div class="hero-dim" id="dim"></div>
+        </div>
+        <div class="hero-line" id="line" aria-hidden="true"></div>
+        <a class="scroll-cue" id="cue" href="#atelier" aria-label="다음 화면으로"><i></i>Scroll</a>
+      </div>
+
+      <!-- 02 · editorial -->
+      <section class="panel panel-ed" id="atelier" aria-labelledby="h-atelier">
+        <div class="panel-in ed">
+          <figure class="ed-fig" id="edfig">
+            <picture>
+              <source media="(max-width: 900px)" srcset="img/lounge-m.webp">
+              <img src="img/lounge.webp" width="1920" height="1172" alt="디오디피부과 청담 라운지" loading="lazy" decoding="async">
+            </picture>
+          </figure>
+          <div class="ed-copy">
+            <p class="index rv">02 / Private Atelier</p>
+            <h2 class="h2 rv" id="h-atelier">먼저 듣고,<br>세심하게 살핍니다.</h2>
+            <p class="lead rv">관심 부위와 피부 상태를 바탕으로 의료진과 진료 방향을 상담합니다.</p>
+            <div class="ed-room rv">
+              <figure>
+                <picture>
+                  <source media="(max-width: 900px)" srcset="img/room-m.webp">
+                  <img src="img/room.webp" width="1600" height="1111" alt="독립된 1인 시술실" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>독립된 1인 시술실을 안내합니다.</p>
+            </div>
+            <ul class="fields rv" aria-label="진료 분야">
+              <li><a href="https://www.dodskin.com/lifting" target="_blank" rel="noopener">리프팅 <span class="arr">→</span></a></li>
+              <li><a href="https://www.dodskin.com/booster" target="_blank" rel="noopener">콜라겐·스킨부스터 <span class="arr">→</span></a></li>
+              <li><a href="https://www.dodskin.com/stemcell" target="_blank" rel="noopener">재생 프로그램 <small>의료진 상담이 필요합니다.</small><span class="arr">→</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · staff + contact -->
+      <section class="panel panel-dr" id="contact" aria-labelledby="h-staff">
+        <div class="panel-in dr">
+          <figure class="dr-fig rv">
+            <img src="img/consult.webp" width="800" height="1650" alt="디오디피부과 청담 진료실" loading="lazy" decoding="async">
+          </figure>
+          <div class="dr-copy">
+            <p class="index rv">03 / Medical Staff</p>
+            <h2 class="h2 rv" id="h-staff">진료를 함께할 의료진</h2>
+            <ol class="staff" aria-label="의료진">
+              <li class="rv"><span><span class="num">01</span><span class="nm">이준</span></span><span class="rl">대표원장</span></li>
+              <li class="rv"><span><span class="num">02</span><span class="nm">안정식</span></span><span class="rl">원장</span></li>
+              <li class="rv"><span><span class="num">03</span><span class="nm">황승경</span></span><span class="rl">원장</span></li>
+              <li class="rv"><span><span class="num">04</span><span class="nm">이준원</span></span><span class="rl">원장</span></li>
+              <li class="rv"><span><span class="num">05</span><span class="nm">김진아</span></span><span class="rl">박사 · 연구</span></li>
+            </ol>
+            <a class="text-link rv" href="https://www.dodskin.com/staff" target="_blank" rel="noopener">의료진 소개 보기</a>
+            <div class="contact rv">
+              <div>
+                <p class="lab">Call</p>
+                <a class="tel" href="tel:02-6203-6263">02-6203-6263</a>
+              </div>
+              <div>
+                <p class="lab">Kakao</p>
+                <a class="kakao" href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener">카카오톡으로 진료 문의</a>
+              </div>
+              <div>
+                <p class="lab">Hours</p>
+                <dl class="hours">
+                  <div><dt>월–목</dt><dd>10:00–19:00</dd></div>
+                  <div><dt>금</dt><dd>10:00–21:00</dd></div>
+                  <div><dt>토</dt><dd>10:00–16:00</dd></div>
+                  <div><dt>휴게(월–금)</dt><dd>13:00–14:00</dd></div>
+                  <p class="nt">일요일·공휴일은 병원에 확인해 주세요.</p>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>디자인 초안 · 탱탱소프트</span>
+    <span class="en">DOD Dermatology · Cheongdam</span>
+  </footer>
+</main>
+
+<nav class="mobile-bar" aria-label="진료 문의">
+  <a href="tel:02-6203-6263"><small>Call</small>전화 문의</a>
+  <a href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener"><small>Kakao</small>카카오 문의</a>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !window.gsap || !window.ScrollTrigger) return;          // static, in-flow fallback
+  const html = document.documentElement;
+  html.classList.add('motion');
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+
+  const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
+  const scene = $('#scene'), stage = $('#stage'), hd = $('#hd'), frame = $('#frame'), photo = $('#photo'), img = photo.querySelector('img');
+  const box = $('#box'), copy = $('#copy'), title = $('#title'), sub = copy.querySelector('.hero-sub'), index = copy.querySelector('.hero-index');
+  const phs = $$('#title .ph'), phi = $$('#title .ph-i'), shade = $('#shade'), dim = $('#dim'), line = $('#line'), cue = $('#cue');
+  const ed = $('#atelier'), edIn = ed.querySelector('.panel-in'), edFig = $('#edfig'), edImg = edFig.querySelector('img'), edItems = $$('#atelier .rv');
+  const dr = $('#contact'), drIn = dr.querySelector('.panel-in'), drItems = $$('#contact .rv');
+  const mode = () => innerWidth <= 900 ? 'mobile' : innerWidth <= 1366 ? 'stack' : 'wide';
+  const RATIO = 2292 / 2260;
+
+  // Lenis: desktop wheel smoothing only (no touch hijack)
+  let lenis = null;
+  if (window.Lenis && matchMedia('(pointer: fine)').matches && innerWidth > 900 && !/nolenis/.test(location.search)) {
+    lenis = new Lenis({ smoothWheel: true, syncTouch: false, lerp: 0.1 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  let tl = null, st = null, geo = null;
+
+  function measure() {
+    const W = innerWidth, H = stage.clientHeight, m = mode();
+    const s = stage.getBoundingClientRect();
+    const b = box.getBoundingClientRect();
+    const f = { l: b.left - s.left, t: b.top - s.top, w: b.width, h: b.height };
+    f.cx = f.l + f.w / 2; f.cy = f.t + f.h / 2;
+    // full-bleed cover size of the hero photo at scale 1
+    const Dw = (W / H > RATIO) ? W : H * RATIO, Dh = Dw / RATIO;
+    const s0 = Math.max(f.w / Dw, f.h / Dh);
+    const c = copy.getBoundingClientRect();
+    const A = { l: c.left - s.left, t: c.top - s.top, w: c.width, h: c.height };
+    A.b = A.t + A.h; A.cx = A.l + A.w / 2;
+    const gutter = parseFloat(getComputedStyle(html).getPropertyValue('--gutter')) || 22;
+    const bar = m === 'mobile' ? (document.querySelector('.mobile-bar').getBoundingClientRect().height || 60) : 0;
+    let B, origin, sc;
+    if (m === 'wide') { sc = 0.72; origin = 'left bottom'; B = { x: gutter - A.l, y: (H - H * 0.11) - A.b }; }
+    else if (m === 'stack') { sc = 0.86; origin = 'left bottom'; B = { x: gutter - A.l, y: (H - H * 0.1) - A.b }; }
+    else { sc = 0.82; origin = 'left bottom'; B = { x: gutter - A.l, y: (H - bar - 24) - A.b }; }
+    return { W, H, m, f, Dw, Dh, s0, A, B, origin, sc,
+      edExtra: Math.max(0, edIn.scrollHeight - H), drExtra: Math.max(0, drIn.scrollHeight - H) };
+  }
+
+  function build() {
+    if (tl) { tl.scrollTrigger && tl.scrollTrigger.kill(); tl.kill(); }
+    gsap.set([copy, title, sub, index, ...phi, photo, img, shade, dim, line, cue, box, ed, dr, edFig, edImg, edIn, drIn, ...edItems, ...drItems], { clearProps: 'all' });
+    hd.classList.remove('on-photo');
+    geo = measure();
+    const { W, H, m, f, s0, A, B, origin, sc } = geo;
+    // frame inset as % of the stage box
+    frame.style.setProperty('--ct', (f.t / H * 100).toFixed(4) + '%');
+    frame.style.setProperty('--cr', ((W - f.l - f.w) / W * 100).toFixed(4) + '%');
+    frame.style.setProperty('--cb', ((H - f.t - f.h) / H * 100).toFixed(4) + '%');
+    frame.style.setProperty('--cl', (f.l / W * 100).toFixed(4) + '%');
+    stage.style.setProperty('--fx', f.cx.toFixed(2) + 'px');
+    const ly = H / 2 + geo.Dh * 0.1, copyTop = A.b + B.y - A.h * sc;   // final (scaled) title block top
+    stage.style.setProperty('--ly', ly.toFixed(2) + 'px');
+    line.style.height = Math.max(0, copyTop - 28 - ly).toFixed(2) + 'px';
+    line.style.display = (copyTop - 28 - ly) < 48 ? 'none' : '';
+    img.style.setProperty('--iw', geo.Dw.toFixed(2) + 'px'); img.style.setProperty('--ih', geo.Dh.toFixed(2) + 'px');
+    img.style.setProperty('--ix', ((W - geo.Dw) / 2).toFixed(2) + 'px'); img.style.setProperty('--iy', ((H - geo.Dh) / 2).toFixed(2) + 'px');
+    const tx0 = f.cx - W / 2, ty0 = f.cy - H / 2;
+    const ivory = '#F1EFE9';
+
+    tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: {
+      trigger: scene, start: 'top top', end: 'bottom bottom', scrub: true,
+      onUpdate: self => {
+        const p = self.progress;
+        hd.classList.toggle('on-photo', p > 0.16 && p < 0.56);
+        hd.classList.toggle('reading', p > 0.6);
+        window.__p = p;
+      }
+    } });
+    st = tl.scrollTrigger;
+
+    // ---- 0 → 0.3 : frame opens, camera settles, title moves to its lower position
+    tl.fromTo(frame, { '--k': 1 }, { '--k': 0, duration: 0.3, ease: 'power2.inOut' }, 0)
+      .fromTo(photo, { x: tx0, y: ty0, scale: s0 }, { x: 0, y: 0, scale: 1, duration: 0.3, ease: 'power2.inOut' }, 0)
+      .to(photo, { scale: 1.035, duration: 0.3, ease: 'none' }, 0.3)
+      .to(box, { opacity: 0, duration: 0.12, ease: 'power1.out' }, 0)
+      .to(cue, { opacity: 0, duration: 0.06 }, 0)
+      // title: lift away on paper, then re-set in ivory over the opened photo (no half-tone crossing over the frame)
+      .fromTo(copy, { opacity: 1, y: 0 }, { opacity: 0, y: -18, duration: 0.07, ease: 'power1.in' }, 0)
+      .set(copy, { x: B.x, y: B.y, scale: sc, transformOrigin: origin }, 0.075)
+      .set([title, sub], { color: ivory }, 0.075)
+      .set(index, { color: 'rgba(241,239,233,.85)' }, 0.075)
+      .to(copy, { opacity: 1, duration: 0.05, ease: 'none' }, 0.2)
+      .fromTo(phi, { yPercent: 112 }, { yPercent: 0, duration: 0.09, stagger: 0.012, ease: 'power3.out', immediateRender: false }, 0.2)
+      .to(shade, { opacity: 1, duration: 0.18, ease: 'power1.inOut' }, 0.07)
+      // ---- 0.3 → 0.5 : line draws from the wall logo, photo dims
+      .fromTo(line, { scaleY: 0 }, { scaleY: 1, duration: 0.17, ease: 'power2.out' }, 0.32)
+      .to(dim, { opacity: 0.32, duration: 0.2, ease: 'power1.inOut' }, 0.3)
+      // ---- 0.5 → 0.8 : editorial panel slides over
+      .fromTo(ed, { yPercent: 0 }, { yPercent: -100, duration: 0.13, ease: 'power2.inOut' }, 0.5)
+      .to(copy, { opacity: 0, duration: 0.07 }, 0.5)
+      .to(line, { opacity: 0, duration: 0.07 }, 0.54)
+      .to(edFig, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.13, ease: 'power3.inOut' }, 0.555)
+      .fromTo(edImg, { scale: 1.12 }, { scale: 1, duration: 0.17, ease: 'power2.out' }, 0.555)
+      .to(edItems, { opacity: 1, y: 0, duration: 0.08, stagger: 0.018, ease: 'power2.out' }, 0.575)
+      .to(edIn, { y: -geo.edExtra, duration: 0.08, ease: 'none' }, 0.71)
+      // ---- 0.8 → 1 : staff + contact
+      .to(ed, { yPercent: -200, duration: 0.09, ease: 'power1.inOut' }, 0.8)
+      .fromTo(dr, { yPercent: 0 }, { yPercent: -100, duration: 0.09, ease: 'power1.inOut' }, 0.8)
+      .to(drItems, { opacity: 1, y: 0, duration: 0.06, stagger: 0.006, ease: 'power2.out' }, 0.855)
+      .to(drIn, { y: -geo.drExtra, duration: 0.06, ease: 'none' }, 0.935)
+      .to({}, { duration: 0.0001 }, 0.9999);
+    if (tl.duration() > 1.0001) console.warn('plan1: timeline overran', tl.duration());
+  }
+
+  function intro() {
+    if (st && st.progress > 0.02) return;
+    const t = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    t.from(phi, { yPercent: 112, duration: 1.1, stagger: 0.085 }, 0.15)
+     .from([index, sub], { opacity: 0, y: 10, duration: 0.9, stagger: 0.2 }, 0.5)
+     .from(frame, { opacity: 0, duration: 1.2, ease: 'power2.out' }, 0)
+     .from(img, { scale: 1.08, duration: 1.8, ease: 'power3.out' }, 0)
+     .from([hd, cue], { opacity: 0, duration: 0.9, ease: 'power1.out' }, 0.6);
+  }
+
+  let started = false;
+  function start() {
+    if (started) return; started = true;
+    build();
+    ScrollTrigger.refresh();
+    intro();
+  }
+  // measure with web fonts ready (FLIP positions depend on glyph widths), fallback timer
+  const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+  Promise.race([fontsReady, new Promise(r => setTimeout(r, 1800))]).then(start);
+  if (document.fonts) document.fonts.ready.then(() => { if (started) { build(); ScrollTrigger.refresh(); } });
+
+  let lastW = innerWidth, lastH = innerHeight, rt;
+  addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => {
+      const mobile = innerWidth <= 900;
+      if (innerWidth === lastW && (mobile || innerHeight === lastH)) return;   // ignore iOS address-bar height jitter
+      lastW = innerWidth; lastH = innerHeight;
+      if (started) { build(); ScrollTrigger.refresh(); }
+    }, 160);
+  });
+
+  // header CTA / cue: smooth jump through Lenis when present
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href'); if (id === '#top') { e.preventDefault(); (lenis ? lenis.scrollTo(0) : scrollTo({ top: 0, behavior: 'smooth' })); return; }
+    if (!st) return;
+    e.preventDefault();
+    const target = id === '#contact' ? 1 : 0.8;
+    const y = st.start + (st.end - st.start) * target;
+    lenis ? lenis.scrollTo(y, { duration: 1.6 }) : scrollTo({ top: y, behavior: 'smooth' });
+  }));
+
+  window.__plan1 = {
+    get st() { return st; }, get geo() { return geo; }, get lenis() { return lenis; },
+    scrollToP(p, immediate = true) {
+      const y = st.start + (st.end - st.start) * p;
+      if (lenis) lenis.scrollTo(y, { immediate, force: true }); else scrollTo(0, y);
+      ScrollTrigger.update();
+    }
+  };
+})();
+</script>
+</body>
+</html>

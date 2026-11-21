@@ -4,6 +4,6 @@ node_modules/
 .scratch/
 review/live/
 research/**/*.png
-proto/plan1/
-research/dod_official_assets/
 research/webjangi/
+research/dod_official_assets/
+docs/DOD_A_ART_PLATE_*.html
