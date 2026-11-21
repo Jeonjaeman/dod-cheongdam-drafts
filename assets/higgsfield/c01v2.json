@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-11-21T16:01:39.598338Z",
+    "display_name": "Nano Banana Pro",
+    "id": "5bea79a2-9a46-4c45-98f6-8b96f1a056f8",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160139_5bea79a2-9a46-4c45-98f6-8b96f1a056f8_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Premium contemporary beauty magazine cover still life, full-bleed matte deep burgundy background and floor target hex #802B3A, peach translucent glass sculpture and sculptural bright white satin ribbon, expressive direct studio flash with crisp shadows, lower-half object placement and generous clean burgundy space in upper half for typography, sophisticated bold art-school composition. No ivory, no cream background, no beige paper, no branches, no flowers, no plants, no cosmetic packaging, no face, no medical claims, no text, no logo. 4:5.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160139_5bea79a2-9a46-4c45-98f6-8b96f1a056f8.png",
+    "status": "completed"
+  }
+]

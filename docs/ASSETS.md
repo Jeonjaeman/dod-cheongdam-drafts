@@ -4,9 +4,22 @@
 
 | 파일 | 용도 | 모델 | 비율·해상도 | 크레딧 | job id | 생성 시각(UTC) | 상태 |
 |---|---|---|---|---|---|---|---|
-| assets/higgsfield/a01.webp (+ -900) | A01 히어로 우측 58% | nano_banana_pro | 16:9 · 2k | 2 | e4376db2-e2ff-47be-8f5d-d834d01792cc | 2026-11-21 15:39 | 리사 검수 대기 |
-| assets/higgsfield/b01.webp (+ -900) | B01 WebGL 참조·대체 포스터 | nano_banana_pro | 16:9 · 2k | 2 | 6bd08d0c-bdf1-4445-adf6-6e7cf7023837 | 2026-11-21 15:39 | 리사 검수 대기 |
-| assets/higgsfield/c01.webp (+ -900) | C01 표지 정물 | nano_banana_pro | 4:5 · 2k | 2 | e24dbbe0-e601-49a9-a03a-59017d0de72d | 2026-11-21 15:39 | 리사 검수 대기 |
+| assets/higgsfield/a01.webp (+ -900) | A01 히어로 우측 58% | nano_banana_pro | 16:9 · 2k | 2 | e4376db2-e2ff-47be-8f5d-d834d01792cc | 2026-11-21 15:39 | 리사 미승인 → v2로 교체(파일 제거) |
+| assets/higgsfield/b01.webp (+ -900) | B01 WebGL 참조·대체 포스터 | nano_banana_pro | 16:9 · 2k | 2 | 6bd08d0c-bdf1-4445-adf6-6e7cf7023837 | 2026-11-21 15:39 | 리사 미승인 → v2로 교체(파일 제거) |
+| assets/higgsfield/c01.webp (+ -900) | C01 표지 정물 | nano_banana_pro | 4:5 · 2k | 2 | e24dbbe0-e601-49a9-a03a-59017d0de72d | 2026-11-21 15:39 | 리사 미승인 → v2로 교체(파일 제거) |
 
 프롬프트: docs/DOD_THREE_DESIGN_DIRECTIONS_V0.3.md 의 A01/B01/C01 원문 그대로(수정 없음). 원본 PNG(*-src.png)는 git 제외, 로컬 보관.
 잔여 크레딧: 2,523.5 → 2,517.5
+
+## 2차 (디자인 명세 v0.5 프롬프트, 2026-11-21 16:01 UTC)
+
+| 파일 | 용도 | 모델 | 비율·해상도 | 크레딧 | job id | 상태 |
+|---|---|---|---|---|---|---|
+| assets/higgsfield/a01v2.webp (+ -900) | A01 히어로 | nano_banana_pro | 16:9 · 2k | 2 | 95bbdb88-086a-438e-a107-258f4135564b | 리사 검수 대기 |
+| assets/higgsfield/a03.webp (+ -900) | A03 리넨 근접 컷 | nano_banana_pro | 4:5 · 2k | 2 | 58130fe1-4ae8-4984-aebd-b61c3c27d76c | 리사 검수 대기 |
+| assets/higgsfield/b01v2.webp (+ -900) | B01 WebGL 대체 포스터 | nano_banana_pro | 16:9 · 2k | 2 | a87176f6-b7b3-4b3b-9ba0-cac2b48a06ae | 리사 검수 대기 |
+| assets/higgsfield/c01v2.webp (+ -900) | C01 버건디 표지 | nano_banana_pro | 4:5 · 2k | 2 | 5bea79a2-9a46-4c45-98f6-8b96f1a056f8 | 리사 검수 대기 |
+
+A01 프롬프트는 v0.5 원문에서 `generous quiet negative space on left` → `balanced material detail across the frame, central crop-safe composition`(리사 지시). A03은 리사 지정 프롬프트. 나머지는 v0.5 원문.
+모서리 실측색: b01v2 #071516 / #051314 / #0B1618 / #101F24 (CSS #08171A와 근접), c01v2 상단 #803A44 · #8D313E, 하단 #3D0E14 · #5C121F (바닥 그림자로 어두움 → 가장자리 그라데이션 필요).
+이번 소다 누적 사용: 1차 6 + 2차 8 = 14 크레딧. (계정 잔액 변동에는 다른 팀 Seedance·GPT Image 사용분이 섞여 있음)

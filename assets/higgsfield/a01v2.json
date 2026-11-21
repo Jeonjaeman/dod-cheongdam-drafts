@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-11-21T16:01:39.693778Z",
+    "display_name": "Nano Banana Pro",
+    "id": "95bbdb88-086a-438e-a107-258f4135564b",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160139_95bbdb88-086a-438e-a107-258f4135564b_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "16:9",
+      "batch_size": 1,
+      "height": 1536,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Extreme close-up abstract study of ivory travertine surface and translucent linen folds, warm raking late-afternoon light, tactile material textures fill the entire frame edge to edge, sculptural composition, balanced material detail across the frame, central crop-safe composition, premium Korean luxury editorial. No window, no garden, no room, no interior, no architecture, no building, no vase, no clinic, no people, no text, no logo, no medical equipment. 16:9.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2752
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160139_95bbdb88-086a-438e-a107-258f4135564b.png",
+    "status": "completed"
+  }
+]

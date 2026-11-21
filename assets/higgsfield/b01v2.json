@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-11-21T16:01:39.973496Z",
+    "display_name": "Nano Banana Pro",
+    "id": "a87176f6-b7b3-4b3b-9ba0-cac2b48a06ae",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160139_a87176f6-b7b3-4b3b-9ba0-cac2b48a06ae_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "16:9",
+      "batch_size": 1,
+      "height": 1536,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Single sculptural translucent optical glass lens, non-biological abstract geometry, subtle pale jade highlights, almost-black deep teal seamless background target hex #08171A, background and floor uniformly dark, subdued caustics localized directly beneath object, no bright teal gradient, off-center object on right with empty upper left, premium abstract editorial still life, realistic glass, no skin, no faces, no cells, no charts, no text, no logo. 16:9.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2752
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_160139_a87176f6-b7b3-4b3b-9ba0-cac2b48a06ae.png",
+    "status": "completed"
+  }
+]
