@@ -41,7 +41,9 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
 .site-header a{pointer-events:auto}
 .wordmark{font-family:var(--serif-en);font-weight:500;font-size:20px;letter-spacing:.42em;line-height:1;display:block}
 .wordmark small{display:block;margin-top:7px;font-family:var(--sans);font-size:10px;letter-spacing:.18em;font-weight:500;opacity:.6}
-.header-cta{font-family:var(--sans);font-size:13px;letter-spacing:.14em;font-weight:500;padding-bottom:4px;border-bottom:1px solid currentColor;line-height:1.4;transition:opacity .3s}
+.header-cta{position:relative;font-family:var(--sans);font-size:13px;letter-spacing:.14em;font-weight:500;padding-bottom:4px;border-bottom:1px solid currentColor;line-height:1.4;transition:opacity .3s}
+.header-cta::before,.wordmark::before{content:"";position:absolute;inset:-12px -14px}
+.wordmark{position:relative}
 .header-cta:hover{opacity:.6}
 .site-header.on-photo{color:var(--ivory)}
 .site-header{transition:color .35s ease,opacity .4s ease}
@@ -240,7 +242,7 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
         <div class="hero-grid">
           <div class="hero-box" id="box" aria-hidden="true"></div>
           <div class="hero-copy" id="copy">
-            <p class="hero-index">01 / A Private Ritual</p>
+            <p class="hero-index">01 / Cheongdam, Seoul</p>
             <h1 class="hero-title" id="title"><span class="ph"><span class="ph-i">피부를</span></span> <span class="ph"><span class="ph-i">보는</span></span> <span class="ph"><span class="ph-i">시간,</span></span><br><span class="ph"><span class="ph-i">디오디피부과</span></span> <span class="ph"><span class="ph-i">청담</span></span></h1>
             <p class="hero-sub">A PRIVATE RITUAL — dermatology on demand</p>
           </div>
