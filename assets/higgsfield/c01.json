@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-11-21T15:39:37.839241Z",
+    "display_name": "Nano Banana Pro",
+    "id": "e24dbbe0-e601-49a9-a03a-59017d0de72d",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_153937_e24dbbe0-e601-49a9-a03a-59017d0de72d_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Premium contemporary beauty magazine still life, sculptural burgundy fabric ribbon, peach translucent glass, ivory paper folds, expressive direct studio flash and crisp shadow, sophisticated art-school composition, room for oversized typography, no cosmetic packaging, no face, no medical claims, no text, no logo. 4:5.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FMAFhK0ahPAz4p3S6TsVum2VWZ/hf_20261121_153937_e24dbbe0-e601-49a9-a03a-59017d0de72d.png",
+    "status": "completed"
+  }
+]
