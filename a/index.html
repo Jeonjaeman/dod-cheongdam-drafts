@@ -6,73 +6,177 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>디오디청담 | A 프라이빗 아틀리에 — 디자인 초안</title>
 <meta name="description" content="디오디피부과의원 청담 홈페이지 디자인 초안 A안(PRIVATE ATELIER). 공개 데모이며 실제 운영 사이트가 아닙니다.">
-<link rel="stylesheet" href="../shared/skeleton.css">
+<meta name="theme-color" content="#F3EFE7">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Noto+Serif+KR:wght@500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preload" as="image" href="../assets/higgsfield/a01.webp" media="(min-width: 768px)">
+<link rel="preload" as="image" href="../assets/higgsfield/a01-900.webp" media="(max-width: 767px)">
+<link rel="stylesheet" href="style.css">
 </head>
-<body data-draft="A">
-<div class="demo-bar" role="note">디자인 초안(데모)입니다 · 실제 상담 접수·개인정보 수집 없음 · <a href="https://www.dodskin.com/" rel="noopener">공식 홈페이지</a></div>
-<nav class="toc" aria-label="섹션 목차">
-  <a href="#A01">A01</a><a href="#A02">A02</a><a href="#A03">A03</a><a href="#A04">A04</a><a href="#A05">A05</a><a href="#A06">A06</a><a href="#A07">A07</a>
-</nav>
+<body>
+<a class="skip" href="#A01">본문 바로가기</a>
+<div class="demo-bar" role="note">디자인 초안(데모) · 실제 상담 접수·개인정보 수집 없음 ·&nbsp;<a href="https://www.dodskin.com/" rel="noopener">공식 홈페이지</a></div>
+
+<header class="site-header">
+  <a class="brand" href="#A01" aria-label="디오디피부과의원 청담 처음으로">
+    <span class="brand-en">D·O·D</span><span class="brand-ko">디오디피부과 청담</span>
+  </a>
+  <nav class="gnb" aria-label="주요 메뉴">
+    <a href="#A02">진료 철학</a>
+    <a href="#A03">공간</a>
+    <a href="#A04">의료진</a>
+    <a href="#A05">진료</a>
+    <a href="#A07">오시는 길</a>
+  </nav>
+  <div class="lang" aria-label="언어 선택 — 현재 한국어 데모, 다른 언어는 공식 사이트로 이동">
+    <span class="lang-now" aria-current="true">KR</span>
+    <a href="https://en.dodskin.com/" rel="noopener" lang="en" hreflang="en">EN</a>
+    <a href="https://cn.dodskin.com/" rel="noopener" lang="zh-Hans" hreflang="zh-Hans">简体</a>
+    <a href="https://jp.dodskin.com/" rel="noopener" lang="ja" hreflang="ja">日本語</a>
+    <a href="https://tw.dodskin.com/" rel="noopener" lang="zh-Hant" hreflang="zh-Hant">繁體</a>
+  </div>
+</header>
+
 <main>
-  <section id="A01" data-section="A01 hero">
-    <span class="sec-no">A01 · HERO</span>
-    <h1>나의 피부에 집중하는 시간</h1>
-    <p>피부 상태를 살피고, 나에게 맞는 진료를 상담합니다.</p>
-    <a class="cta" href="#A07">진료 상담 안내</a>
+  <!-- A01 HERO: 42:58 분할 시네마틱 -->
+  <section id="A01" class="hero" data-section="A01 hero" aria-labelledby="A01-title">
+    <div class="hero-copy">
+      <p class="eyebrow" data-reveal>PRIVATE ATELIER</p>
+      <h1 id="A01-title" class="display">
+        <span class="phrase" data-phrase>나의 피부에</span>
+        <span class="phrase" data-phrase>집중하는 시간</span>
+      </h1>
+      <p class="lead" data-phrase>피부 상태를 살피고,<br class="br-pc"> 나에게 맞는 진료를 상담합니다.</p>
+      <a class="btn" href="#A07" data-phrase>진료 상담 안내</a>
+      <div class="hero-index" aria-hidden="true"><span>01</span><i></i><span>07</span></div>
+    </div>
+    <figure class="hero-media">
+      <div class="mask" data-mask>
+        <picture>
+          <source media="(max-width: 767px)" srcset="../assets/higgsfield/a01-900.webp">
+          <img src="../assets/higgsfield/a01.webp" alt="" width="1920" height="1080" fetchpriority="high" data-parallax>
+        </picture>
+      </div>
+      <figcaption class="gen-note">생성 이미지 · 분위기 연출이며 실제 병원 공간이 아닙니다</figcaption>
+    </figure>
   </section>
 
-  <section id="A02" data-section="A02 philosophy">
-    <span class="sec-no">A02 · PHILOSOPHY</span>
-    <h2>먼저 듣고, 세심하게 살핍니다.</h2>
-    <p>관심 부위와 피부 상태를 바탕으로 의료진과 진료 방향을 상담합니다.</p>
+  <!-- A02 PHILOSOPHY -->
+  <section id="A02" class="philosophy" data-section="A02 philosophy" aria-labelledby="A02-title">
+    <p class="sec-label" data-reveal><span>02</span>Philosophy</p>
+    <h2 id="A02-title" class="title" data-reveal>먼저 듣고,<br> 세심하게 살핍니다.</h2>
+    <p class="body" data-reveal>관심 부위와 피부 상태를 바탕으로<br class="br-pc"> 의료진과 진료 방향을 상담합니다.</p>
   </section>
 
-  <section id="A03" data-section="A03 private">
-    <span class="sec-no">A03 · PRIVATE</span>
-    <h2>나에게 집중하는 공간</h2>
-    <p>독립된 1인 시술실을 안내합니다.</p>
-    <p class="note">실제 시설 사진은 고객 제공 자산으로 교체 예정. 생성 이미지는 추상 소재로만 사용합니다.</p>
+  <!-- A03 PRIVATE SPACE -->
+  <section id="A03" class="private" data-section="A03 private" aria-labelledby="A03-title">
+    <figure class="private-media">
+      <div class="mask" data-mask>
+        <img src="../assets/higgsfield/a01-900.webp" alt="" width="900" height="506" loading="lazy" data-parallax>
+      </div>
+      <figcaption class="gen-note">추상 소재 연출 · 실제 시설 사진은 병원 제공 자료로 교체 예정</figcaption>
+    </figure>
+    <div class="private-copy">
+      <p class="sec-label" data-reveal><span>03</span>Private Room</p>
+      <h2 id="A03-title" class="title" data-reveal>나에게 집중하는 공간</h2>
+      <p class="body" data-reveal>독립된 1인 시술실을 안내합니다.</p>
+    </div>
   </section>
 
-  <section id="A04" data-section="A04 people">
-    <span class="sec-no">A04 · PEOPLE</span>
-    <h2>진료의 기준을 만드는 의료진</h2>
-    <p>의료진 소개와 진료 분야를 확인하세요.</p>
-    <a class="cta" href="https://www.dodskin.com/" rel="noopener">의료진 알아보기</a>
+  <!-- A04 PEOPLE -->
+  <section id="A04" class="people" data-section="A04 people" aria-labelledby="A04-title">
+    <div class="people-copy">
+      <p class="sec-label" data-reveal><span>04</span>Doctors</p>
+      <h2 id="A04-title" class="title" data-reveal>진료를 함께할 의료진</h2>
+      <p class="body" data-reveal>의료진 소개와 진료 분야를 확인하세요.</p>
+      <a class="link-arrow" href="https://www.dodskin.com/" rel="noopener" data-reveal>의료진 알아보기</a>
+    </div>
+    <figure class="people-photo" data-reveal>
+      <div class="photo-slot" role="img" aria-label="의료진 사진 자리">
+        <span>의료진 사진</span>
+        <small>병원이 제공하고 사용을 허락한 사진으로 채웁니다</small>
+      </div>
+    </figure>
   </section>
 
-  <section id="A05" data-section="A05 care">
-    <span class="sec-no">A05 · CARE</span>
-    <h2>피부의 고민에 맞춰 살펴보세요.</h2>
-    <ul class="cards">
-      <li><h3>리프팅</h3><a href="https://www.dodskin.com/" rel="noopener">공식 안내 보기</a></li>
-      <li><h3>콜라겐·스킨부스터</h3><a href="https://www.dodskin.com/" rel="noopener">공식 안내 보기</a></li>
-      <li><h3>재생 프로그램</h3><p class="note">의료진 상담이 필요합니다.</p><a href="https://www.dodskin.com/" rel="noopener">공식 안내 보기</a></li>
-    </ul>
-  </section>
-
-  <section id="A06" data-section="A06 journey">
-    <span class="sec-no">A06 · JOURNEY</span>
-    <h2>상담부터 방문까지</h2>
-    <ol>
-      <li>문의</li>
-      <li>일정 안내</li>
-      <li>내원 상담</li>
+  <!-- A05 CARE -->
+  <section id="A05" class="care" data-section="A05 care" aria-labelledby="A05-title">
+    <p class="sec-label" data-reveal><span>05</span>Care</p>
+    <h2 id="A05-title" class="title" data-reveal>피부의 고민에 맞춰<br> 살펴보세요.</h2>
+    <ol class="care-list">
+      <li data-reveal>
+        <span class="care-no">i</span>
+        <h3>리프팅</h3>
+        <a class="link-arrow" href="https://www.dodskin.com/" rel="noopener">공식 안내 보기<span class="sr-only"> — 리프팅</span></a>
+      </li>
+      <li data-reveal>
+        <span class="care-no">ii</span>
+        <h3>콜라겐·스킨부스터</h3>
+        <a class="link-arrow" href="https://www.dodskin.com/" rel="noopener">공식 안내 보기<span class="sr-only"> — 콜라겐·스킨부스터</span></a>
+      </li>
+      <li data-reveal>
+        <span class="care-no">iii</span>
+        <h3>재생 프로그램</h3>
+        <p class="care-note">의료진 상담이 필요합니다.</p>
+        <a class="link-arrow" href="https://www.dodskin.com/" rel="noopener">공식 안내 보기<span class="sr-only"> — 재생 프로그램</span></a>
+      </li>
     </ol>
-    <p class="note">문의는 예약 확정이 아닙니다. 일정은 병원 안내 후 정해집니다.</p>
   </section>
 
-  <section id="A07" data-section="A07 visit">
-    <span class="sec-no">A07 · VISIT</span>
-    <h2>청담에서 만나는 디오디</h2>
-    <address>
-      디오디피부과의원 청담<br>
-      서울 강남구 도산대로 423<br>
-      <a href="tel:0262036263">02-6203-6263</a>
-    </address>
-    <a class="cta" href="https://naver.me/x3j4pB4z" rel="noopener">방문 안내 보기</a>
+  <!-- A06 JOURNEY -->
+  <section id="A06" class="journey" data-section="A06 journey" aria-labelledby="A06-title">
+    <div class="journey-head">
+      <p class="sec-label" data-reveal><span>06</span>Journey</p>
+      <h2 id="A06-title" class="title" data-reveal>상담부터 방문까지</h2>
+    </div>
+    <ol class="journey-steps" data-journey>
+      <li><span class="step-no">01</span><h3>문의</h3><p>전화로 방문 상담을 문의합니다.</p></li>
+      <li><span class="step-no">02</span><h3>일정 안내</h3><p>병원에서 가능한 일정을 안내합니다.</p></li>
+      <li><span class="step-no">03</span><h3>내원 상담</h3><p>피부 상태를 살피고 의료진과 진료 방향을 상담합니다.</p></li>
+    </ol>
+    <p class="fine" data-reveal>문의만으로 예약이 확정되지는 않습니다.</p>
+  </section>
+
+  <!-- A07 VISIT -->
+  <section id="A07" class="visit" data-section="A07 visit" aria-labelledby="A07-title">
+    <div class="visit-copy">
+      <p class="sec-label" data-reveal><span>07</span>Visit</p>
+      <h2 id="A07-title" class="title" data-reveal>청담에서 만나는 디오디</h2>
+      <address class="visit-address" data-reveal>
+        디오디피부과의원 청담<br>
+        서울 강남구 도산대로 423
+      </address>
+      <div class="visit-actions" data-reveal>
+        <a class="btn btn-solid" href="tel:02-6203-6263">전화로 방문 문의<span class="btn-sub">02-6203-6263</span></a>
+        <a class="btn" href="https://naver.me/x3j4pB4z" rel="noopener">방문 안내 보기</a>
+      </div>
+    </div>
+    <div class="hours" data-reveal>
+      <h3 class="hours-title">진료 시간</h3>
+      <dl>
+        <div><dt>월–목</dt><dd>10:00 – 19:00</dd></div>
+        <div><dt>금</dt><dd>10:00 – 21:00</dd></div>
+        <div><dt>토</dt><dd>10:00 – 16:00</dd></div>
+        <div><dt>휴게</dt><dd>13:00 – 14:00 <small>(월–금)</small></dd></div>
+      </dl>
+      <p class="fine">공식 홈페이지 진료 안내 기준입니다. 일요일·공휴일은 병원에 확인해 주세요.</p>
+    </div>
   </section>
 </main>
-<footer>디자인 초안 A — PRIVATE ATELIER · 탱탱소프트 · 이 페이지는 검색 색인 대상이 아닙니다.</footer>
+
+<footer class="site-footer">
+  <p>디자인 초안 A — PRIVATE ATELIER · 탱탱소프트</p>
+  <p>이 페이지는 검색 색인 대상이 아니며, 실제 병원 운영 사이트는 <a href="https://www.dodskin.com/" rel="noopener">dodskin.com</a>입니다.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="main.js" defer></script>
 </body>
 </html>
