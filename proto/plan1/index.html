@@ -112,33 +112,45 @@ canvas{display:block}
 .hero-over .ov-note{position:absolute;right:clamp(22px,4vw,64px);top:clamp(80px,12svh,120px);color:var(--ivory);text-shadow:0 1px 16px rgba(26,23,20,.6)}
 .hero-over .ov-cue{position:absolute;left:clamp(22px,4vw,64px);top:clamp(80px,12svh,120px);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:var(--mute-l)}
 
-/* ============ WHY (Scene B) ============ */
+/* ============ WHY (Scene B) · Space, in layers ============ */
+/* 사진 무대(왼쪽 ~70%) + 문구 열(오른쪽 ~30%). 실사진 세 장이 깊이 평면으로 겹치고, 장마다 한 장씩 전경으로 온다. */
 .why{position:relative;background:var(--esp);color:var(--ivory);z-index:3;border-radius:var(--radius) var(--radius) 0 0;overflow:clip}
-.why-stage{position:relative;height:100svh;min-height:560px;overflow:hidden}
-.ch{position:absolute;inset:0}
-.ch-fig{position:absolute;top:0;right:0;bottom:0;width:62%;overflow:hidden;background:#231d19}
-.ch-fig img,.ch-fig canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 50%}
-.ch-fig::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--esp) 0%,rgba(26,23,20,.55) 22%,rgba(26,23,20,0) 50%);pointer-events:none}
-.ch-fig .fig-cap{position:absolute;right:28px;bottom:24px;z-index:2;display:flex;align-items:baseline;gap:10px;color:var(--ivory);text-shadow:0 1px 12px rgba(0,0,0,.5);font-size:12.5px;letter-spacing:.04em}
-.ch-fig .fig-cap .it{font-size:14px;opacity:.75}
-.ch-fig .fig-cap .ai-note{display:block;width:100%;text-align:right}
-.ch-copy{position:absolute;left:var(--gutter);top:0;bottom:0;width:min(40%,520px);display:flex;flex-direction:column;justify-content:center;padding:96px 0 72px;z-index:2}
-.ch-copy .eyebrow{color:var(--gold)}
-.ch-num{font-family:var(--serif);font-weight:300;font-size:clamp(120px,15vw,220px);line-height:.9;color:var(--gold);margin:18px 0 22px;letter-spacing:-.02em;overflow:hidden}
-.ch-num span{display:block}
-.ch-copy .h2{font-size:clamp(28px,2.8vw,42px);color:var(--ivory);margin-bottom:20px}
-.ch-copy .lead{color:var(--mute-l);max-width:420px}
-.ch-copy .cap{position:absolute;left:0;bottom:36px;font-size:12.5px;color:var(--mute-l);display:flex;gap:12px;align-items:baseline}
-.ch-copy .cap .it{font-size:14px}
-.why-idx{position:absolute;right:var(--gutter);top:calc(74px + 2svh);z-index:3;display:flex;gap:10px;align-items:center;font-family:var(--serif);font-size:13px;letter-spacing:.2em;color:var(--mute-l)}
-.why-idx i{display:block;width:26px;height:1px;background:rgba(244,240,232,.35);transition:background .3s}
-.why-idx i.on{background:var(--gold)}
-@media (min-width:769px) and (max-height:700px){
-  .ch-num{font-size:clamp(100px,13vw,160px);margin:10px 0 14px}
-  .ch-copy .h2{font-size:clamp(26px,2.6vw,34px);margin-bottom:12px}
-  .ch-copy .lead{font-size:14px;line-height:1.7}
-  .ch-copy{padding:84px 0 64px}
-  .ch-copy .cap{bottom:24px}
+.why-stage{position:relative;height:100svh;min-height:560px;overflow:hidden;background:radial-gradient(120% 90% at 20% 90%,#33281f 0%,var(--esp) 55%,#141110 100%)}
+.why-deck{position:absolute;left:0;top:0;bottom:0;width:70%;perspective:1200px;perspective-origin:62% 40%}
+.why-rail{position:absolute;left:4%;top:21%;bottom:12%;width:1px;background:linear-gradient(rgba(166,139,99,.55),transparent);transform:translateX(-26px);pointer-events:none}
+.plane{position:absolute;left:0;top:0;width:64%;aspect-ratio:3/2;margin:0;transform-origin:50% 50%;will-change:transform;background:#231d19;
+  box-shadow:-40px 50px 90px rgba(0,0,0,.55),0 0 0 1px rgba(166,139,99,.35)}
+.plane::before{content:"";position:absolute;inset:-14px;border:1px solid rgba(166,139,99,.5);pointer-events:none}
+.plane::after{content:"";position:absolute;inset:0;background:#141110;opacity:var(--dim,0);pointer-events:none;border-top-right-radius:var(--rad,0px)}
+.plane img,.plane canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-top-right-radius:var(--rad,0px)}
+.plane canvas{opacity:0;transition:opacity .4s}
+.plane canvas.on{opacity:1}
+.motion .plane:has(canvas.on) img{visibility:hidden} /* 스크럽 캔버스가 그 자리를 덮음 */
+.plane figcaption{position:absolute;left:0;top:100%;margin-top:14px;display:flex;gap:16px;white-space:nowrap;font-size:11px;letter-spacing:.16em;color:var(--gold);opacity:var(--cap,1)}
+.plane figcaption .ai-note{color:var(--mute-l);letter-spacing:.14em;opacity:1}
+.why-eng{position:absolute;right:4%;bottom:7%;width:44%;text-align:right;font-size:clamp(40px,4.2vw,62px);line-height:.9;letter-spacing:-.01em;color:var(--ivory);opacity:.92;pointer-events:none}
+.why-eng small{display:block;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:14px}
+.why-foot{position:absolute;left:3vw;bottom:14px;font-size:11px;letter-spacing:.1em;color:var(--mute-l);z-index:2}
+.why-copy{position:absolute;right:0;top:0;bottom:0;width:30%;display:grid;grid-template-rows:auto auto auto;align-content:center;padding:96px 4vw 72px 3vw;border-left:1px solid rgba(166,139,99,.22);z-index:2}
+.ch-copy{grid-area:1/1}
+.motion .ch-copy:not([data-ch="1"]){opacity:0}
+.ch-num{font-family:var(--serif);font-weight:400;font-variant-numeric:lining-nums;font-size:clamp(96px,10vw,150px);line-height:.86;letter-spacing:-.03em;color:var(--gold);margin-bottom:10px;overflow:hidden}
+.ch-num .n{display:flex;align-items:flex-start}
+.ch-num small{font-family:var(--sans);font-size:14px;letter-spacing:.2em;color:var(--mute-l);margin:.14em 0 0 8px;line-height:1}
+.ch-copy .h2{font-size:clamp(24px,1.9vw,30px);color:var(--ivory);margin:4px 0 14px}
+.ch-copy .lead{font-size:15px;max-width:30ch;color:var(--mute-l);line-height:1.7}
+.ch-copy .ai-note{display:none;margin-top:10px;color:var(--mute-l)}
+.why-jump{grid-area:2/1;display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.why-jump button{appearance:none;background:transparent;cursor:pointer;font-family:inherit;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border:1px solid rgba(166,139,99,.45);font-size:13px;letter-spacing:.06em;color:var(--mute-l);transition:background .3s,color .3s,border-color .3s}
+.why-jump button:hover{color:var(--ivory)}
+.why-jump button[aria-pressed="true"]{background:var(--gold);color:var(--esp);border-color:var(--gold)}
+.why-eng-m{display:none}
+@media (min-width:901px) and (max-height:700px){
+  .ch-num{font-size:clamp(84px,9vw,110px)}
+  .ch-copy .h2{font-size:clamp(22px,1.8vw,26px);margin-bottom:10px}
+  .ch-copy .lead{font-size:14px}
+  .why-copy{padding:84px 3vw 64px 2.6vw}
+  .why-jump{margin-top:18px}
 }
 
 /* ============ RAIL (Scene C) ============ */
@@ -241,11 +253,22 @@ canvas{display:block}
 .motion .site-footer{margin-top:0}
 
 /* static (no-JS / reduced motion) */
-html:not(.motion) .why-stage{height:auto;min-height:0}
-html:not(.motion) .ch{position:relative;min-height:100svh}
-html:not(.motion) .ch + .ch{border-top:1px solid var(--rule-l)}
-html:not(.motion) .ch-fig canvas{display:none}
-.motion .ch-fig:has(canvas) img.f{visibility:hidden} /* 스크럽 캔버스가 그 자리를 덮음 */
+/* why: 세 장면을 사진/문구 두 열의 그리드로 차례로 펼침(겹침·변형 없음) */
+html:not(.motion) .why-stage{height:auto;min-height:0;display:grid;grid-template-columns:70fr 30fr;align-items:center;padding:80px 0 56px}
+html:not(.motion) .why-deck,html:not(.motion) .why-copy{display:contents}
+html:not(.motion) .why-rail{display:none}
+html:not(.motion) .plane{position:relative;left:auto;top:auto;width:auto;grid-column:1;margin:5vh 8% 5vh 6%}
+html:not(.motion) .plane canvas{display:none}
+html:not(.motion) .plane:nth-of-type(1){grid-row:1}
+html:not(.motion) .plane:nth-of-type(2){grid-row:2}
+html:not(.motion) .plane:nth-of-type(3){grid-row:3}
+html:not(.motion) .ch-copy{grid-column:2;align-self:center;padding:0 4vw 0 3vw}
+html:not(.motion) .ch-copy[data-ch="1"]{grid-row:1}
+html:not(.motion) .ch-copy[data-ch="2"]{grid-row:2}
+html:not(.motion) .ch-copy[data-ch="3"]{grid-row:3}
+html:not(.motion) .why-jump{grid-column:2;grid-row:4;padding:0 4vw 0 3vw}
+html:not(.motion) .why-eng{position:relative;right:auto;bottom:auto;width:auto;grid-column:1;grid-row:4;justify-self:end;padding-right:8%}
+html:not(.motion) .why-foot{position:relative;left:auto;bottom:auto;grid-column:1/-1;grid-row:5;padding:28px 3vw 0}
 html:not(.motion) .rail-stage{height:auto;min-height:0;padding:120px 0 80px;overflow-x:auto;overflow-y:hidden;display:block}
 html:not(.motion) .rail-head{position:relative;top:auto;left:var(--gutter);margin-bottom:60px}
 html:not(.motion) .rail-track{margin-top:0;padding-bottom:70px}
@@ -277,22 +300,8 @@ html:not(.motion) .hero-over{display:none}
   .hero-over .ov-note{right:var(--gutter);top:76px}
   .hero-over .ov-cue{display:none}
   .motion .hero{height:340svh}
-  .motion .why{height:460svh}
-
-  .why-stage{min-height:0}
-  .ch-fig{width:100%;bottom:auto;height:50svh}
-  .ch-fig::after{background:linear-gradient(0deg,var(--esp) 0%,rgba(26,23,20,.35) 18%,rgba(26,23,20,0) 40%)}
-  .ch-fig .fig-cap{right:var(--gutter);bottom:18px}
-  .ch-copy{left:var(--gutter);right:var(--gutter);width:auto;top:50svh;bottom:0;padding:18px 0 calc(var(--bar-h) + var(--sa) + 40px);justify-content:flex-start}
-  .ch-num{font-size:clamp(72px,22vw,96px);margin:8px 0 10px}
-  .ch-copy .h2{font-size:clamp(24px,6.6vw,30px);margin-bottom:10px}
-  .ch-copy .lead{font-size:14px;line-height:1.7}
-  .ch-copy .cap{bottom:calc(var(--bar-h) + var(--sa) + 14px);font-size:12px}
-  .why-idx{right:var(--gutter);top:calc(50svh - 34px)}
-  html:not(.motion) .ch{min-height:0;padding-bottom:48px}
-  html:not(.motion) .ch-fig{position:relative;height:56vw}
-  html:not(.motion) .ch-copy{position:relative;top:auto;padding:28px 0 0}
-  html:not(.motion) .ch-copy .cap{position:relative;bottom:auto;margin-top:18px}
+  .why-copy{bottom:calc(var(--bar-h) + var(--sa) + 30px)}
+  .why-foot{bottom:calc(var(--bar-h) + var(--sa) + 8px)}
 
   .rail-stage{min-height:0;height:auto;padding:100px 0 60px;display:block;overflow:visible}
   .rail-head{position:relative;top:auto;margin:0 var(--gutter) 40px;max-width:none}
@@ -322,6 +331,44 @@ html:not(.motion) .hero-over{display:none}
   .mobile-bar a + a{border-left:1px solid rgba(244,240,232,.18)}
   .mobile-bar a small{font-family:var(--serif);font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.7}
   .site-footer{padding-bottom:calc(36px + var(--sa))}
+}
+
+/* ============ WHY · MOBILE/TABLET ≤900 ============ */
+/* 강한 3D 회전 없음. 현재 사진 한 장(≤350px) + 다음 사진 가장자리만, 문구는 아래. */
+@media (max-width:900px){
+  .motion .why{height:380svh}
+  .why-stage{min-height:0}
+  .why-deck{left:var(--gutter);right:0;width:auto;top:calc(74px + 1svh);bottom:auto;height:min(45svh,350px);perspective:none}
+  .why-rail,.why-eng{display:none}
+  .plane{width:86%;height:100%;aspect-ratio:auto;box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 0 1px rgba(166,139,99,.35)}
+  .plane::before{inset:-8px}
+  .plane figcaption{display:none}
+  .why-copy{left:var(--gutter);right:var(--gutter);width:auto;top:calc(74px + 1svh + min(45svh,350px) + 22px);padding:0;border-left:0;align-content:start}
+  .ch-num{font-size:64px;line-height:.9;margin-bottom:4px}
+  .ch-num small{font-size:12px}
+  .ch-copy .h2{font-size:clamp(22px,6vw,26px);margin:2px 0 8px}
+  .ch-copy .lead{font-size:14px;max-width:none}
+  .ch-copy .ai-note{display:block}
+  .why-jump{margin-top:16px}
+  .why-jump a,.why-jump button{min-height:44px;padding:0 12px;font-size:12px}
+  .why-eng-m{display:block;grid-area:3/1;font-size:30px;line-height:1;margin-top:20px;color:var(--ivory)}
+  .why-foot{left:var(--gutter);right:var(--gutter)}
+  html:not(.motion) .why-stage{grid-template-columns:1fr;padding:72px 0 40px}
+  html:not(.motion) .plane{margin:0 var(--gutter) 22px;height:auto;aspect-ratio:3/2;width:auto}
+  html:not(.motion) .plane:nth-of-type(1){grid-row:1}
+  html:not(.motion) .plane:nth-of-type(2){grid-row:3}
+  html:not(.motion) .plane:nth-of-type(3){grid-row:5}
+  html:not(.motion) .ch-copy{grid-column:1;padding:0 var(--gutter) 44px}
+  html:not(.motion) .ch-copy[data-ch="1"]{grid-row:2}
+  html:not(.motion) .ch-copy[data-ch="2"]{grid-row:4}
+  html:not(.motion) .ch-copy[data-ch="3"]{grid-row:6}
+  html:not(.motion) .why-jump{grid-column:1;grid-row:7;padding:0 var(--gutter)}
+  html:not(.motion) .why-eng-m{grid-column:1;grid-row:8;padding:0 var(--gutter)}
+  html:not(.motion) .why-foot{grid-row:9;left:auto;right:auto;bottom:auto;padding:24px var(--gutter) 0}
+}
+@media (max-width:900px) and (max-height:700px){
+  .motion .why-eng-m{display:none}
+  .ch-num{font-size:52px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -384,53 +431,52 @@ html:not(.motion) .hero-over{display:none}
   </section>
 
   <!-- ===== Scene B · why ===== -->
-  <section class="why" id="why" aria-label="디오디를 선택하는 이유">
+  <section class="why" id="why" aria-label="공간을 겹쳐 읽는 세 장면">
     <div class="why-stage" id="whyStage">
-      <div class="why-idx" aria-hidden="true"><i class="on"></i><i></i><i></i><span id="whyIdx">01 / 03</span></div>
+      <div class="why-deck" id="whyDeck">
+        <span class="why-rail" aria-hidden="true"></span>
+        <figure class="plane" id="why-ch1" data-ch="1">
+          <img src="../_media/img/083-1200.webp" srcset="../_media/img/083-1200.webp 1200w, ../_media/img/083.webp 2880w" sizes="100vw" width="1200" height="835" alt="독립된 1인 시술실. 침대와 작은 테이블, 간접 조명" loading="lazy" decoding="async">
+          <figcaption><span>Fig. 01 — 시술실</span></figcaption>
+        </figure>
+        <figure class="plane" id="why-ch2" data-ch="2">
+          <img src="../_media/img/096-1200.webp" srcset="../_media/img/096-1200.webp 1200w, ../_media/img/096.webp 2880w" sizes="100vw" width="1200" height="835" alt="상담실. 책상과 모니터, 두 개의 의자" loading="lazy" decoding="async">
+          <figcaption><span>Fig. 02 — 상담실</span></figcaption>
+        </figure>
+        <figure class="plane" id="why-ch3" data-ch="3">
+          <img src="img/lounge-040.webp" width="1919" height="1080" alt="라운지. 창가의 소파와 책장" loading="lazy" decoding="async">
+          <canvas id="c3" aria-hidden="true"></canvas>
+          <figcaption><span>Fig. 03 — 라운지</span><span class="ai-note">실제 공간 사진 기반 AI 연출</span></figcaption>
+        </figure>
+        <p class="why-eng it" aria-hidden="true">In Quiet Detail.<small>Space, in layers</small></p>
+      </div>
 
-      <article class="ch" data-ch="1">
-        <div class="ch-fig">
-          <img class="f" src="../_media/img/083.webp" width="2880" height="2004" alt="독립된 1인 시술실. 침대와 작은 테이블, 간접 조명" loading="lazy" decoding="async">
-          <p class="fig-cap"><span class="it">Fig. 01</span><span>시술실</span></p>
+      <div class="why-copy" id="whyCopy">
+        <div class="ch-copy" data-ch="1">
+          <p class="ch-num" aria-hidden="true"><span class="n">01<small>/ 03</small></span></p>
+          <h2 class="h2">공식 사진으로 살펴보는<br>시술 공간.</h2>
+          <p class="lead">공간을 겹쳐 읽는 세 장면 중 첫 번째, 시술실입니다.</p>
         </div>
-        <div class="ch-copy">
-          <p class="eyebrow">Why DOD · Reason</p>
-          <p class="ch-num" aria-hidden="true"><span>01</span></p>
-          <h2 class="h2">문 너머의<br>조용한 방.</h2>
-          <p class="lead">독립된 1인 시술실을 안내합니다. 공식 공간 사진으로 시술 공간의 구성과 디테일을 살펴봅니다.</p>
-          <p class="cap"><span class="it">Scene 02</span><span>시술실 — 문 너머의 조용한 방</span></p>
+        <div class="ch-copy" data-ch="2">
+          <p class="ch-num" aria-hidden="true"><span class="n">02<small>/ 03</small></span></p>
+          <h2 class="h2">책상과 창가,<br>상담 공간의 디테일.</h2>
+          <p class="lead">공간을 겹쳐 읽는 세 장면 중 두 번째, 상담실입니다.</p>
         </div>
-      </article>
+        <div class="ch-copy" data-ch="3">
+          <p class="ch-num" aria-hidden="true"><span class="n">03<small>/ 03</small></span></p>
+          <h2 class="h2">라운지의 재질과<br>빛을 읽습니다.</h2>
+          <p class="lead">공간을 겹쳐 읽는 세 장면 중 세 번째, 라운지입니다.</p>
+          <p class="ai-note">실제 공간 사진 기반 AI 연출</p>
+        </div>
+        <div class="why-jump" role="group" aria-label="장면 선택">
+          <button type="button" data-ch="1" aria-pressed="true">01 시술실</button>
+          <button type="button" data-ch="2" aria-pressed="false">02 상담실</button>
+          <button type="button" data-ch="3" aria-pressed="false">03 라운지</button>
+        </div>
+        <p class="why-eng-m it" aria-hidden="true">In Quiet Detail.</p>
+      </div>
 
-      <article class="ch" data-ch="2">
-        <div class="ch-fig">
-          <img class="f" src="../_media/img/096.webp" width="2880" height="2004" alt="상담실. 책상과 모니터, 두 개의 의자" loading="lazy" decoding="async">
-          <img class="f2" src="../_media/img/079.webp" width="1399" height="2880" alt="유리문 너머의 상담실. 유리에 dod 로고" loading="lazy" decoding="async">
-          <p class="fig-cap"><span class="it">Fig. 02</span><span>상담실</span></p>
-        </div>
-        <div class="ch-copy">
-          <p class="eyebrow">Why DOD · Reason</p>
-          <p class="ch-num" aria-hidden="true"><span>02</span></p>
-          <h2 class="h2">먼저 듣고,<br>세심하게 살핍니다.</h2>
-          <p class="lead">관심 부위와 피부 상태를 바탕으로 의료진과 진료 방향을 상담합니다.</p>
-          <p class="cap"><span class="it">Scene 03</span><span>상담실 — 유리문 너머</span></p>
-        </div>
-      </article>
-
-      <article class="ch" data-ch="3">
-        <div class="ch-fig">
-          <img class="f" src="img/lounge-040.webp" width="1919" height="1080" alt="라운지. 창가의 소파와 책장" loading="lazy" decoding="async">
-          <canvas id="c3"></canvas>
-          <p class="fig-cap"><span class="it">Fig. 03</span><span>라운지</span><span class="ai-note">실제 공간 사진 기반 AI 연출</span></p>
-        </div>
-        <div class="ch-copy">
-          <p class="eyebrow">Why DOD · Reason</p>
-          <p class="ch-num" aria-hidden="true"><span>03</span></p>
-          <h2 class="h2">빛이 드는 라운지에서<br>차례를 기다립니다.</h2>
-          <p class="lead">접수와 대기가 이루어지는 라운지입니다. 처음 오시는 날, 접수에서 상담실까지 안내해 드립니다.</p>
-          <p class="cap"><span class="it">Scene 04</span><span>라운지 — 창가</span></p>
-        </div>
-      </article>
+      <p class="why-foot">공식 공간 사진 · 편집 연출</p>
     </div>
   </section>
 
@@ -562,6 +608,12 @@ html:not(.motion) .hero-over{display:none}
     document.querySelectorAll('#heroSlot source, #heroSlot img').forEach(el => {
       const a = el.tagName === 'SOURCE' ? 'srcset' : 'src'; el.setAttribute(a, el.getAttribute(a).replace('001.webp', '120.webp'));
     });
+    // static why: chips jump to the stacked chapter photo
+    document.querySelectorAll('.why-jump button').forEach(b => b.addEventListener('click', () => {
+      const f = document.getElementById('why-ch' + b.dataset.ch); if (!f) return;
+      document.querySelectorAll('.why-jump button').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+      f.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' });
+    }));
     return;
   }
   const html = document.documentElement; html.classList.add('motion');
@@ -589,11 +641,12 @@ html:not(.motion) .hero-over{display:none}
   const hero = $('#hero'), heroStage = $('#heroStage'), heroBars = $('#heroBars'), heroEd = $('#heroEd'), heroSlot = $('#heroSlot'), heroCopy = $('#heroCopy');
   const heroMedia = $('#heroMedia'), c1 = $('#c1'), heroOver = $('#heroOver'), h1ov = $('#h1ov'), ovSub = $('#ovSub'), ovIt = $('#ovIt'), ovItI = ovIt.querySelector('.ln-i');
   const ovCopy = heroOver.querySelector('.ov-copy'), ovNote = heroOver.querySelector('.ov-note'), ovCue = heroOver.querySelector('.ov-cue');
-  const why = $('#why'), whyStage = $('#whyStage'), chs = $$('.ch'), whyIdx = $('#whyIdx'), whyDots = $$('.why-idx i');
+  const why = $('#why'), whyStage = $('#whyStage'), whyDeck = $('#whyDeck'), whyJump = $('#why .why-jump'), planes = $$('#whyDeck .plane'), copies = $$('#why .ch-copy'), nums = $$('#why .ch-num .n'), jumps = $$('#why .why-jump button');
+  const whyMob = () => innerWidth <= 900;
   const rail = $('#rail'), railStage = $('#railStage'), railTrack = $('#railTrack'), railProg = $('#railProg');
   const visit = $('#visit'), visitFig = $('#visitFig');
 
-  let fs1 = null, fs3 = null, fs1Mode = null, fs3Mode = null;
+  let fs1 = null, fs3 = null, fs1Mode = null;
   const triggers = [];
   let splitOv = null;
 
@@ -606,12 +659,10 @@ html:not(.motion) .hero-over{display:none}
     fs1 = new FrameScrub(c1, { base: '../_media/s1/' + m + '/', count: 120, ext: 'webp', focusX: .5, focusY: m === 'pc' ? .45 : .5, onFirst: () => { c1.style.opacity = 1; } });
   }
   function ensureFs3() {
-    const m = isMobile() ? 'm' : 'pc';
-    if (fs3 && fs3Mode === m) return;
-    if (fs3) fs3.destroy();
-    fs3Mode = m;
+    // 라운지 평면은 모든 폭에서 가로 상자이므로 가로(pc) 프레임만 사용
+    if (fs3) return;
     const c3 = $('#c3');
-    fs3 = new FrameScrub(c3, { base: '../_media/s3/' + m + '/', count: 90, ext: 'webp', focusX: .5, focusY: .5, onFirst: () => { c3.style.opacity = 1; } });
+    fs3 = new FrameScrub(c3, { base: '../_media/s3/pc/', count: 90, ext: 'webp', focusX: .5, focusY: .5, onFirst: () => { c3.classList.add('on'); } });
   }
 
   // ---------- header theme: the top-most layer under the header decides ----------
@@ -697,19 +748,41 @@ html:not(.motion) .hero-over{display:none}
     updateHeader();
   }
 
-  // ---------- WHY ----------
+  // ---------- WHY · Space, in layers ----------
+  // 무대 좌표: l/t/w = 무대 폭·높이 비율(%), z = translateZ(px). 역할 front/mid/back + 후퇴 경로 out(전경 사진이 뒤·왼쪽으로 물러나며 사라지는 지점)
+  const WHY_SLOTS = {
+    pc: { front: { l: 4, t: 21, w: 64, z: 60, ry: -4, rx: 1, dim: 0, rad: 28, op: 1, cap: 1 },
+          mid:   { l: 40, t: 7, w: 50, z: -140, ry: -6, rx: 2, dim: .42, rad: 0, op: 1, cap: 0 },
+          back:  { l: 60, t: 1, w: 40, z: -300, ry: -6, rx: 2, dim: .62, rad: 0, op: 1, cap: 0 },
+          out:   { l: -8, t: 27, w: 54, z: -180, ry: -6, rx: 2, dim: .35, rad: 10, op: 0, cap: 0 } },
+    m:  { front: { l: 0, t: 0, w: 86, z: 0, ry: 0, rx: 0, dim: 0, rad: 18, op: 1, cap: 0 },
+          mid:   { l: 89, t: 0, w: 86, z: 0, ry: 0, rx: 0, dim: .45, rad: 0, op: 1, cap: 0 },
+          back:  { l: 178, t: 0, w: 86, z: 0, ry: 0, rx: 0, dim: .65, rad: 0, op: 1, cap: 0 },
+          out:   { l: -16, t: 0, w: 86, z: 0, ry: 0, rx: 0, dim: .35, rad: 18, op: 0, cap: 0 } }
+  };
+  // 진행 구간(핀 구간 u = 0..1): 읽기 01 0–.20 · 전환1 .20–.36 · 읽기 02 .36–.58 · 전환2 .58–.74 · 읽기 03 .74–1 (그 뒤 커버 구간)
+  const WHY_T = [[.20, .36], [.58, .74]], WHY_CO = [[.20, .26], [.58, .64]], WHY_CI = [[.265, .325], [.645, .705]];
+  const WHY_JUMP_U = [.08, .47, .86];   // 각 장 읽기 구간의 가운데(핀 구간 u 기준)
   let WH = null;
   function buildWhy() {
-    const H = whyStage.clientHeight, mob = isMobile();
-    const figs = chs.map(ch => ch.querySelector('.ch-fig')), copies = chs.map(ch => ch.querySelector('.ch-copy'));
-    const imgs = chs.map(ch => Array.from(ch.querySelectorAll('.ch-fig img'))), nums = chs.map(ch => ch.querySelector('.ch-num span'));
+    const H = whyStage.clientHeight, mob = whyMob();
     const c3 = $('#c3');
-    gsap.set([why, whyStage, ...chs, ...figs, ...copies, ...nums, ...imgs.flat(), c3], { clearProps: 'all' });
-    c3.style.opacity = fs3 && fs3.ok[0] ? 1 : 0;
-    ensureFs3(); fs3.resize();
+    gsap.set([why, whyStage, ...planes, ...copies, ...nums], { clearProps: 'all' });
+    planes.forEach(pl => { pl.style.removeProperty('--dim'); pl.style.removeProperty('--rad'); pl.style.removeProperty('--cap'); });
+    ensureFs3();
+    const DW = whyDeck.clientWidth, DH = whyDeck.clientHeight;
+    const W0 = planes[0].offsetWidth, H0 = planes[0].offsetHeight;     // 평면은 전경 크기로 배치되고, 뒤 역할은 scale로 줄임(전경이 가장 선명)
+    const S = WHY_SLOTS[mob ? 'm' : 'pc'];
+    const sl = k => { const s = S[k]; const w = s.w / 100 * DW, h = mob ? DH : w * H0 / W0;
+      return { x: s.l / 100 * DW + w / 2 - W0 / 2, y: s.t / 100 * DH + h / 2 - H0 / 2, sc: w / W0, z: s.z, ry: s.ry, rx: s.rx, dim: s.dim, rad: s.rad, op: s.op, cap: s.cap }; };
+    const slots = [sl('front'), sl('mid'), sl('back')], out = sl('out');
+    // 캔버스 해상도는 전경 크기 기준(뒤에 있을 때 잡으면 전경에서 흐려짐)
+    const d = Math.min(devicePixelRatio || 1, 2), persp = mob ? 1 : 1200 / (1200 - S.front.z);
+    c3.width = Math.max(1, Math.round(W0 * slots[0].sc * persp * d)); c3.height = Math.max(1, Math.round(H0 * slots[0].sc * persp * d));
+    fs3.dirty = true; fs3.drawn = -1;
     const D = why.offsetHeight - H, coverStart = 1 - H / D;
-    WH = { figs, copies, imgs, nums, c3, coverStart, mob };
-    const st = ScrollTrigger.create({
+    WH = { slots, out, coverStart, mob, H, D, st: null };
+    const st = WH.st = ScrollTrigger.create({
       trigger: why, start: 'top top', end: '+=' + D, scrub: true,
       onUpdate: self => whyUpdate(self.progress),
       onRefresh: self => whyUpdate(self.progress)
@@ -721,45 +794,57 @@ html:not(.motion) .hero-over{display:none}
     }));
     whyUpdate(0);
   }
+  const lerpSlot = (A, B, t) => { const o = {}; for (const k in A) o[k] = lerp(A[k], B[k], t); return o; };
   function whyUpdate(p) {
-    const { figs, copies, imgs, nums, c3, coverStart } = WH;
-    const ends = [0.25, 0.5, coverStart];
-    // chapter k occupies [start_k, end_k]; transition zone = first 10% of each chapter after the first
-    const bounds = [[0, ends[0]], [ends[0], ends[1]], [ends[1], ends[2]]];
-    let active = p < ends[0] ? 0 : p < ends[1] ? 1 : 2;
-    chs.forEach((ch, k) => {
-      const [a, b] = bounds[k];
-      const tin = k === 0 ? 1 : E.io(seg(p, a, a + 0.06));          // fade in
-      const tout = k === 2 ? 0 : E.io(seg(p, b, b + 0.06));         // fade out (next chapter's fade in covers it)
-      const vis = Math.min(tin, 1 - tout);
-      const local = seg(p, a, b);
-      gsap.set(ch, { autoAlpha: vis > 0.001 ? 1 : 0 });
-      gsap.set(figs[k], { opacity: vis });
-      // copy: in by lines (y) then stable; out upward
-      const cy = (1 - tin) * 36 - tout * 36;
-      gsap.set(copies[k], { opacity: vis, y: cy });
-      gsap.set(nums[k], { yPercent: (1 - tin) * 100 - tout * 100 });
-      if (k === 0) {
-        // slow crop change: scale 1.16 → 1, drift right→left
-        gsap.set(imgs[0][0], { scale: lerp(1.16, 1.0, E.si(local)), xPercent: lerp(3, -2, local), transformOrigin: '60% 50%' });
-      } else if (k === 1) {
-        // 096 → 079 crossfade at the chapter's second half, with crop changes on both
-        const x = E.io(seg(local, 0.5, 0.64));
-        gsap.set(imgs[1][0], { scale: lerp(1.12, 1.02, E.si(seg(local, 0, 0.6))), xPercent: lerp(2, -2, local), opacity: 1 });
-        gsap.set(imgs[1][1], { opacity: x, scale: lerp(1.18, 1.0, E.si(seg(local, 0.5, 1))), yPercent: lerp(4, -3, seg(local, 0.5, 1)), transformOrigin: '50% 40%' });
+    const { slots, out, coverStart, mob } = WH;
+    const u = seg(p, 0, coverStart);
+    // s: 0 = 01 전경, 1 = 02 전경, 2 = 03 전경 (전환 중엔 소수)
+    const s = u < WHY_T[0][0] ? 0 : u < WHY_T[1][0] ? E.io(seg(u, WHY_T[0][0], WHY_T[0][1])) : 1 + E.io(seg(u, WHY_T[1][0], WHY_T[1][1]));
+    const k = Math.min(2, Math.floor(s)), t = s - k;
+    planes.forEach((pl, i) => {
+      const r0 = (i - k + 3) % 3, r1 = (i - k + 2) % 3;     // 현재 역할 → 다음 역할 (0 front, 1 mid, 2 back)
+      let st, zi;
+      if (t <= 0) { st = slots[r0]; zi = 30 - r0 * 10; }
+      else if (r0 === 0) {
+        // 전경 사진: 앞 절반은 뒤·왼쪽으로 물러나며 사라지고(아직 맨 위), 뒤 절반은 back 자리에서 다시 떠오름(맨 아래)
+        if (t < .5) { st = lerpSlot(slots[0], out, E.o(Math.min(1, t / (mob ? .4 : .5)))); zi = 30; }
+        else { st = Object.assign({}, slots[2], { op: E.o((t - .5) / .5) }); zi = 10; }
       } else {
-        // lounge lateral dolly (s3, 90 frames) scrubbed through the chapter
-        fs3.progress(E.si(seg(local, 0.0, 0.92)));
-        gsap.set(c3, { scale: lerp(1.04, 1.0, local) });
+        st = lerpSlot(slots[r0], slots[r1], mob ? E.o(t) : t);   // 모바일: 다음 사진이 빨리 도착해 무대가 비지 않음
+        zi = r1 === 0 ? (t < .5 ? 20 : 30) : (t < .5 ? 10 : 20);  // 떠오르는 사진은 사라지는 전경 아래, 전경 소멸 뒤 곧바로 맨 위
       }
+      let z = st.z;
+      if (i === 2 && k === 2 && t <= 0) z += 24 * E.si(seg(u, WHY_T[1][1], 1));   // 03 읽기: 미세한 접근
+      gsap.set(pl, { x: st.x, y: st.y, z, scale: st.sc, rotationY: st.ry, rotationX: st.rx, opacity: st.op, zIndex: zi });
+      pl.style.setProperty('--dim', st.dim.toFixed(3)); pl.style.setProperty('--rad', st.rad.toFixed(1) + 'px'); pl.style.setProperty('--cap', st.cap.toFixed(3));
     });
-    whyIdx.textContent = '0' + (active + 1) + ' / 03';
-    whyDots.forEach((d, i) => d.classList.toggle('on', i === active));
-    // cover phase under the rail curtain
+    // 라운지 프레임 스크럽: 03이 전경으로 오기 시작할 때부터 끝까지
+    fs3.progress(E.si(seg(u, WHY_T[1][0], 1)));
+    // 문구: 한 세트만. 이전 세트가 완전히 나간 뒤 다음 세트가 들어옴 (.27 → .29, .65 → .67)
+    copies.forEach((cp, j) => {
+      const tin = j === 0 ? 1 : E.o(seg(u, WHY_CI[j - 1][0], WHY_CI[j - 1][1]));
+      const tout = j === 2 ? 0 : E.io(seg(u, WHY_CO[j][0], WHY_CO[j][1]));
+      const vis = Math.min(tin, 1 - tout);
+      gsap.set(cp, { autoAlpha: vis, y: (1 - tin) * 28 - tout * 28 });
+      gsap.set(nums[j], { yPercent: (1 - tin) * 100 - tout * 100 });
+    });
+    const active = u < (WHY_CO[0][1] + WHY_CI[0][0]) / 2 ? 0 : u < (WHY_CO[1][1] + WHY_CI[1][0]) / 2 ? 1 : 2;
+    jumps.forEach((b, j) => b.setAttribute('aria-pressed', j === active ? 'true' : 'false'));
+    // cover phase under the rail curtain: 칩은 다음 지면이 덮기 시작하면 바로 숨김(보이는데 못 누르는 상태 방지)
     const c = E.si(seg(p, coverStart, 1));
+    const jumpOut = E.o(seg(p, coverStart, coverStart + 0.12 * (1 - coverStart)));
+    gsap.set(whyJump, { opacity: 1 - jumpOut, pointerEvents: p > coverStart ? 'none' : 'auto' });
+    if (p > coverStart) { whyJump.setAttribute('inert', ''); whyJump.setAttribute('aria-hidden', 'true'); } else { whyJump.removeAttribute('inert'); whyJump.removeAttribute('aria-hidden'); }
     gsap.set(whyStage, { scale: 1 - 0.07 * c, transformOrigin: '50% 60%', filter: 'brightness(' + (1 - 0.5 * c) + ')' });
     updateHeader();
   }
+  // 장면 칩: 핀 구간 안의 해당 장 읽기 지점으로 스크롤 (ScrollTrigger start/end 기준)
+  const whyJumpY = j => WH.st.start + (WH.st.end - WH.st.start) * WHY_JUMP_U[j] * WH.coverStart;
+  jumps.forEach(b => b.addEventListener('click', () => {
+    if (!WH || !WH.st) return;
+    const y = whyJumpY(+b.dataset.ch - 1);
+    lenis ? lenis.scrollTo(y, { duration: 1.4 }) : scrollTo({ top: y, behavior: 'smooth' });
+  }));
 
   // ---------- RAIL ----------
   function buildRail() {
@@ -868,7 +953,7 @@ html:not(.motion) .hero-over{display:none}
     const id = a.getAttribute('href'); const el = id === '#top' ? document.body : document.querySelector(id);
     if (!el) return; e.preventDefault();
     let y = id === '#top' ? 0 : el.getBoundingClientRect().top + scrollY;
-    if (id === '#why') y += innerHeight;            // past the curtain, onto chapter 01
+    if (id === '#why' && WH && WH.st) y = whyJumpY(0);   // past the curtain, onto chapter 01
     lenis ? lenis.scrollTo(y, { duration: 1.6 }) : scrollTo({ top: y, behavior: 'smooth' });
   }));
 

@@ -341,7 +341,8 @@ canvas{display:block}
   .sp1{display:block;padding:64px var(--gutter) 48px}
   .sp1-h{padding-bottom:14px}
   .sp1-vol{display:block;text-align:left;margin-bottom:10px}
-  .sp1-pic{width:88%;margin-left:12%}
+  .sp1-pic{width:auto;margin:0 calc(var(--gutter) * -1)}
+  .sp1-pic figcaption{padding:0 var(--gutter)}
   .sp1-pic .ph{aspect-ratio:4/3;max-height:none}
   .sp1-pic figcaption{order:-1;margin:0 0 8px;font-size:11px}
   .sp1-word{display:block;font-size:26vw;margin:-.3em 0 0 -2px;line-height:1}
@@ -359,7 +360,7 @@ canvas{display:block}
   .pp-h{margin-bottom:10px}
   .pp-care .ph{aspect-ratio:4/3}
   .pp-word.care{font-size:24vw;margin:-.3em 0 0}
-  .pp-res{width:62%;margin:calc(.5 * 16vw + 28px) 0 0 auto}
+  .pp-res{width:62%;margin:calc(.5 * 16vw + 72px) 0 0 auto}
   .pp-word.res{font-size:16vw}
   .roster{margin-top:52px}
   .roster div{grid-template-columns:1fr;gap:4px}
