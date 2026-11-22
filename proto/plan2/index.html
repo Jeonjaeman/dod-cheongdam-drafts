@@ -10,446 +10,848 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_lib/lenis.css">
+<link rel="preload" as="image" href="../_media/s2/pc/001.webp" media="(min-width:768px)">
+<link rel="preload" as="image" href="../_media/s2/m/001.webp" media="(max-width:767px)">
 <style>
 :root{
-  --bg:#061B20; --bg2:#0A252B; --text:#EDF6F2; --acc:#A2D5C5; --fog:#9DB5AE; --line:rgba(162,213,197,.2);
-  --paper:#EDF3F0; --ink:#0D2328; --mute-ink:rgba(13,35,40,.62);
+  --ink:#0B1620; --ink2:#10202C; --ink3:#162431; --paper:#F5F3EF; --paper2:#ECE9E2;
+  --on-ink:#F3F5F6; --on-ink-2:rgba(243,245,246,.72); --on-ink-3:rgba(243,245,246,.5);
+  --on-paper:#101418; --on-paper-2:rgba(16,20,24,.7); --on-paper-3:rgba(16,20,24,.48);
+  --cyan:#9FC2CF; --teal:#2F6F7A; --line-i:rgba(243,245,246,.22); --line-p:rgba(16,20,24,.18);
   --sans:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',sans-serif;
-  --grot:'Space Grotesk','Pretendard Variable',sans-serif;
-  --gutter:clamp(20px,4.4vw,64px); --bar-h:64px; --sa:env(safe-area-inset-bottom,0px);
+  --serif:'Bodoni Moda','Pretendard Variable',serif;
+  --g:clamp(20px,4vw,56px); --hdr:72px; --bar:64px; --sa:env(safe-area-inset-bottom,0px);
+  --rad:clamp(40px,6vw,120px);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--bg);-webkit-text-size-adjust:100%}
-body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{background:var(--ink);-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--on-ink);background:var(--ink);line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 a,button{color:inherit;text-decoration:none;font:inherit;background:none;border:0;cursor:pointer}
-a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
-.g{font-family:var(--grot);font-weight:500;letter-spacing:.24em;text-transform:uppercase;font-size:12px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
+.serif{font-family:var(--serif)}
+.cap{font-size:12.5px;line-height:1.5;letter-spacing:.01em}
+.cap i{font-family:var(--serif);font-style:italic;margin-right:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* header */
-.hd{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px var(--gutter);pointer-events:none;transition:background .4s}
-.hd a{pointer-events:auto;display:inline-flex;align-items:center;min-height:48px}
-.wm{font-family:var(--grot);font-weight:600;font-size:17px;letter-spacing:.16em;padding-right:12px}
-.hd-cta{font-size:14px;font-weight:500;letter-spacing:.04em;padding:0 4px}
-.hd.solid{background:rgba(6,27,32,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+/* ---------- header ---------- */
+.hd{position:fixed;inset:0 0 auto 0;z-index:60;height:var(--hdr);display:flex;align-items:center;justify-content:space-between;padding:0 var(--g);color:var(--on-ink);transition:color .5s;pointer-events:none}
+.hd a{pointer-events:auto;display:inline-flex;align-items:center;min-height:44px}
+.hd .mark{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:.14em;line-height:1;padding-right:8px}
+.hd .mark small{font-family:var(--sans);font-weight:500;font-size:10.5px;letter-spacing:.22em;margin-left:14px;opacity:.7;text-transform:uppercase}
+.hd nav{display:flex;gap:26px}
+.hd nav a{font-size:14px;letter-spacing:.02em;border-bottom:1px solid transparent;transition:border-color .2s}
+.hd nav a:hover{border-bottom-color:currentColor}
+.hd.light{color:var(--on-paper)}
+@media (max-width:767px){.hd nav a:not(.keep){display:none}.hd .mark small{display:none}}
 
-/* ---------- 3D scene ---------- */
-.lab{position:relative;height:500svh}
-.lab-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--bg)}
-#gl{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.4s ease}
-#gl.on{opacity:1}
-.step{position:absolute;z-index:2;opacity:0;visibility:hidden;transform:translateY(22px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1),visibility 0s .55s}
-.step.on{opacity:1;visibility:visible;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.2,1) .05s,transform .9s cubic-bezier(.2,.7,.2,1) .05s,visibility 0s}
-.step.past{transform:translateY(-22px)}
-/* hero copy: left */
-.s0{left:var(--gutter);top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;max-width:640px;padding-bottom:6svh}
-.s0 .g{color:var(--acc);margin-bottom:30px}
-.h1{font-weight:600;font-size:72px;line-height:1.14;letter-spacing:-.035em}
-.lead{margin-top:30px;font-size:17px;line-height:1.7;color:var(--fog)}
-.btn{display:inline-flex;align-items:center;gap:16px;margin-top:40px;min-height:52px;padding:0 28px;border:1px solid rgba(237,246,242,.5);border-radius:999px;font-weight:500;font-size:15px;transition:background .3s,color .3s,border-color .3s;align-self:flex-start}
-.btn:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
-/* step copy: right */
-.sx{right:var(--gutter);top:0;bottom:0;width:min(40vw,540px);display:flex;flex-direction:column;justify-content:center;padding-bottom:4svh}
-.sx .no{font-family:var(--grot);font-size:14px;letter-spacing:.2em;color:var(--acc);margin-bottom:20px}
-.h2{font-weight:600;font-size:clamp(44px,4.4vw,64px);line-height:1.12;letter-spacing:-.035em}
-.sx p.body{margin-top:22px;font-size:17px;line-height:1.75;color:#C9DAD4}
-.sx figure{margin-top:30px;display:flex;gap:18px;align-items:center}
-.sx figure img{width:148px;height:110px;object-fit:cover;border-radius:4px}
-.sx figcaption{font-size:13px;color:var(--fog);line-height:1.6}
-.fx{list-style:none;margin-top:28px;border-top:1px solid rgba(237,246,242,.4)}
-.fx li{border-bottom:1px solid var(--line)}
-.fx a{display:flex;justify-content:space-between;align-items:center;min-height:56px;font-size:19px;font-weight:500;transition:color .25s,padding .25s}
-.fx a:hover{color:var(--acc);padding-left:8px}
-.fx a span{font-family:var(--grot);font-size:13px;color:var(--acc);letter-spacing:.06em}
-.fx-note{margin-top:14px;font-size:13px;color:var(--fog)}
-/* step nav */
-.snav{position:absolute;z-index:3;left:var(--gutter);bottom:calc(24px + var(--sa));width:min(44vw,620px);border-top:1px solid var(--line);display:flex;gap:clamp(18px,3vw,48px)}
-.snav button{display:flex;align-items:center;gap:12px;min-height:52px;font-size:15px;color:var(--fog);transition:color .3s;position:relative}
-.snav button i{font-style:normal;font-family:var(--grot);font-size:13px;color:var(--acc);opacity:.8}
-.snav button::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--acc);transform:scaleX(var(--f,0));transform-origin:left}
-.snav button.on{color:var(--text)}
-.brand-note{position:absolute;z-index:3;right:var(--gutter);bottom:calc(38px + var(--sa));color:rgba(237,246,242,.62);font-size:13px}
+/* ---------- Scene A : atlas ---------- */
+.atlas{position:relative;height:600svh;z-index:1}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--ink)}
+.stage-in{position:absolute;inset:0;transform-origin:50% 60%}
+.txt{position:absolute;left:0;top:var(--hdr);bottom:0;width:45%;padding:0 clamp(24px,3vw,48px) 0 var(--g)}
+.view{position:absolute;top:var(--hdr);right:var(--g);bottom:calc(var(--hdr) - 8px);width:calc(55% - var(--g));background:var(--ink2);overflow:hidden}
+.view canvas,.view img.fb{position:absolute;inset:0;width:100%;height:100%;display:block}
+#fc{z-index:1}
+#gl{z-index:2;opacity:0}
+.view img.fb{z-index:2;opacity:0;object-fit:cover;object-position:50% 55%}
+.nogl .view img.fb{display:block}
+.view .ovl{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:visible}
+.view .ovl *{vector-effect:non-scaling-stroke}
+.view .ret{position:absolute;z-index:3;left:0;top:0;width:72px;height:72px;margin:-36px 0 0 -36px;pointer-events:none;opacity:0}
+.view .ret::before,.view .ret::after{content:"";position:absolute;background:var(--cyan)}
+.view .ret::before{left:50%;top:0;width:1px;height:100%;transform:translateX(-50%)}
+.view .ret::after{top:50%;left:0;height:1px;width:100%;transform:translateY(-50%)}
+.view .ret i{position:absolute;inset:14px;border:1px solid var(--cyan);border-radius:50%}
+.view .tag{position:absolute;z-index:4;right:16px;top:16px;display:flex;align-items:center;gap:10px;color:var(--on-ink);font-size:11px;letter-spacing:.2em;text-transform:uppercase;background:rgba(11,22,32,.55);padding:8px 12px;backdrop-filter:blur(6px);opacity:0;pointer-events:none}
+.view .tag b{font-family:var(--serif);font-weight:400;font-size:15px;letter-spacing:0;text-transform:none}
+.view .tag .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.figcap{position:absolute;left:0;right:0;bottom:0;height:var(--hdr);display:flex;align-items:center;justify-content:space-between;gap:16px;padding-right:var(--g);width:calc(55% - var(--g));margin-left:auto;color:var(--on-ink-2)}
+.figcap .cap{position:absolute;left:0;top:0;height:100%;display:flex;align-items:center;gap:8px;opacity:0;white-space:nowrap}
+.figcap .cap.on{opacity:1}
+.figcap .cap i{color:var(--on-ink)}
+.figcap .cap em{font-style:normal;color:var(--on-ink-3);margin-left:10px}
 
-/* ---------- reading (dark) ---------- */
-.sec{padding:clamp(96px,14vh,150px) var(--gutter);position:relative}
-.sec + .sec{border-top:1px solid var(--line)}
-.sec-h{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:20px clamp(32px,5vw,96px);align-items:end;margin-bottom:clamp(40px,6vh,64px)}
-.sec-h .g{color:var(--acc)}
-.sec .h2{font-size:clamp(36px,3.8vw,56px)}
-.grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:32px clamp(32px,5vw,96px);align-items:start}
-.staff-fig img{width:100%;aspect-ratio:4/5;max-height:520px;object-fit:cover;object-position:50% 40%;border-radius:4px}
-.staff-fig figcaption{margin-top:10px;font-size:13px;color:var(--fog)}
-.tbl{width:100%;border-collapse:collapse;border-top:1px solid rgba(237,246,242,.5)}
-.tbl th,.tbl td{text-align:left;padding:22px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
-.tbl th{font-family:var(--grot);font-weight:500;width:72px;font-size:13px;color:var(--acc)}
-.tbl td.nm{font-size:clamp(24px,2.2vw,30px);font-weight:600;letter-spacing:-.02em}
-.tbl td.rl{text-align:right;font-size:15px;color:var(--fog)}
-.more{display:inline-flex;gap:10px;align-items:center;min-height:48px;margin-top:22px;font-weight:500;font-size:15px;color:var(--acc);border-bottom:1px solid currentColor}
-/* light inset (≤ ~30% of the section) */
-.inset{background:var(--paper);color:var(--ink);border-radius:6px;padding:clamp(24px,3vw,40px);max-width:640px}
-.qs{list-style:none}
-.qs li{display:grid;grid-template-columns:44px 1fr;gap:6px;padding:16px 0;border-bottom:1px solid rgba(13,35,40,.14);font-size:17px;font-weight:500;line-height:1.55}
-.qs li:last-child{border-bottom:0}
-.qs b{font-family:var(--grot);font-weight:500;font-size:13px;color:#2E6A5C;padding-top:4px}
-.q-note{margin-top:14px;font-size:13px;color:var(--fog)}
-.ct{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px clamp(24px,3vw,56px);border-top:1px solid rgba(237,246,242,.4);padding-top:30px}
-.ct .g{color:var(--acc);margin-bottom:14px;display:block}
-.ct .tel{display:inline-flex;align-items:center;min-height:48px;font-family:var(--grot);font-size:clamp(26px,2.4vw,36px);font-weight:500;letter-spacing:.02em}
-.ct .kk{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:999px;background:var(--acc);color:var(--bg);font-weight:600}
-.ct dl div{display:flex;justify-content:space-between;gap:16px;padding:6px 0;border-bottom:1px solid var(--line);font-size:15px}
-.ct dt{color:var(--fog)} .ct dd{font-variant-numeric:tabular-nums}
-.ct .addr{font-size:16px;line-height:1.7}
-.ct .addr a{display:inline-flex;min-height:48px;align-items:center;color:var(--acc);border-bottom:1px solid currentColor;font-size:15px}
-.ft{border-top:1px solid var(--line);color:rgba(237,246,242,.55);padding:36px var(--gutter) calc(36px + var(--sa));font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+/* text windows */
+.tw{position:absolute;left:var(--g);right:clamp(24px,3vw,48px);top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;opacity:0;visibility:hidden;padding-bottom:8vh}
+.tw.on{visibility:visible}
+.tw .eyebrow{color:var(--cyan);display:flex;gap:16px;align-items:baseline}
+.tw .eyebrow .n{font-family:var(--serif);font-size:14px;letter-spacing:.14em;font-weight:400}
+.tw .eyebrow .n em{font-style:normal;opacity:.5}
+.h1{font-size:clamp(40px,4.3vw,64px);font-weight:500;line-height:1.14;letter-spacing:-.03em;margin-top:clamp(28px,5vh,56px)}
+.lead{margin-top:26px;max-width:22em;font-size:16px;font-weight:300;line-height:1.85;color:var(--on-ink-2)}
+.cta{display:inline-flex;align-items:center;gap:12px;min-height:48px;margin-top:clamp(24px,4vh,40px);font-size:15px;border-bottom:1px solid var(--on-ink);align-self:flex-start;transition:gap .3s,color .3s}
+.cta:hover{gap:20px;color:var(--cyan);border-color:var(--cyan)}
+.h2{font-size:clamp(30px,3vw,44px);font-weight:500;line-height:1.25;letter-spacing:-.025em;margin-top:clamp(22px,4vh,40px);max-width:14em}
+.tw p.body{margin-top:22px;max-width:24em;font-size:16px;font-weight:300;line-height:1.85;color:var(--on-ink-2)}
+.tw .note{margin-top:28px;color:var(--on-ink-3);max-width:26em}
+.steps{list-style:none;margin-top:clamp(20px,3.5vh,34px);border-top:1px solid var(--line-i)}
+.steps li{display:grid;grid-template-columns:64px 1fr;gap:0 16px;padding:16px 0;border-bottom:1px solid var(--line-i);transition:opacity .4s}
+.steps .no{font-family:var(--serif);font-size:30px;line-height:1;color:var(--on-ink-3);transition:color .4s;padding-top:2px}
+.steps h3{font-size:clamp(20px,1.7vw,24px);font-weight:500;letter-spacing:-.02em;line-height:1.3;display:flex;gap:12px;align-items:baseline}
+.steps h3 span{font-family:var(--serif);font-style:italic;font-weight:400;font-size:15px;color:var(--cyan);letter-spacing:0}
+.steps p{grid-column:2;font-size:14.5px;font-weight:300;line-height:1.75;color:var(--on-ink-2);max-height:0;overflow:hidden;opacity:0;transition:max-height .5s,opacity .4s,margin .5s}
+.steps li.on .no{color:var(--cyan)}
+.steps li.on p{max-height:6em;opacity:1;margin-top:8px}
+.steps li.dim{opacity:.45}
+.rule{position:absolute;left:var(--g);right:clamp(24px,3vw,48px);bottom:calc(28px + var(--sa));display:flex;align-items:flex-end;gap:16px;color:var(--on-ink-3)}
+.rule svg{width:min(260px,60%);height:18px;overflow:visible}
+.rule .lab{font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.rule .lab b{color:var(--on-ink);font-weight:500}
+
+/* ---------- Scene B : evidence (paper) ---------- */
+.evid{position:relative;z-index:2;margin-top:-100svh;background:var(--paper);color:var(--on-paper);border-radius:var(--rad) var(--rad) 0 0;box-shadow:0 -30px 80px rgba(0,0,0,.35)}
+.evid-pin{position:relative;height:320svh}
+.evid-stage{position:sticky;top:0;height:100svh;overflow:hidden;padding:calc(var(--hdr) + 2vh) var(--g) 0}
+.evid-stage .eyebrow{color:var(--teal);display:flex;gap:16px;align-items:baseline}
+.evid-stage .eyebrow .n{font-family:var(--serif);font-size:14px;letter-spacing:.14em;font-weight:400}
+.evid-stage .eyebrow .n em{font-style:normal;opacity:.5}
+.ev-h{margin-top:clamp(16px,3vh,32px);font-size:clamp(34px,3.6vw,54px);font-weight:500;line-height:1.18;letter-spacing:-.03em;max-width:16em;opacity:0}
+.ev-h .slot{display:inline-block;width:.66em;height:1em;vertical-align:-.02em;position:relative;font-family:var(--serif);font-weight:400;font-size:1.12em;line-height:1}
+.ev-h .slot span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0}
+.ev-sub{margin-top:14px;font-size:15px;font-weight:300;line-height:1.8;color:var(--on-paper-2);max-width:30em;opacity:0}
+.big{position:absolute;left:50%;top:50%;width:.66em;height:1em;font-size:min(44svh,36vw);font-family:var(--serif);font-weight:400;line-height:1;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);transform-origin:0 0;color:transparent;-webkit-text-stroke:1px var(--on-paper);will-change:transform;z-index:3}
+.big span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--on-paper);-webkit-text-stroke:0;clip-path:inset(0 0 100% 0)}
+.ev-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:0 clamp(32px,5vw,96px);margin-top:clamp(20px,4vh,44px)}
+.rows{list-style:none;border-top:1px solid var(--on-paper)}
+.rows li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:0 20px;align-items:baseline;padding:clamp(12px,2.2vh,22px) 0;border-bottom:1px solid var(--line-p);opacity:0;transform:translateY(16px)}
+.rows .no{font-family:var(--serif);font-size:clamp(44px,5vh,64px);line-height:.9;letter-spacing:-.02em}
+.rows h3{font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.02em;line-height:1.3;display:flex;gap:12px;align-items:baseline}
+.rows h3 span{font-family:var(--serif);font-style:italic;font-weight:400;font-size:16px;color:var(--teal);letter-spacing:0}
+.rows p{margin-top:6px;font-size:15px;font-weight:300;line-height:1.75;color:var(--on-paper-2);max-width:30em}
+.figs{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
+.figs figure{opacity:0;transform:translateY(20px)}
+.figs .frame{overflow:hidden;background:var(--paper2);aspect-ratio:4/3}
+.figs img{width:100%;height:100%;object-fit:cover}
+.figs figcaption{margin-top:10px;color:var(--on-paper-3)}
+.figs figure:nth-child(2){margin-top:14%}
+
+.evid-more{padding:clamp(72px,10vh,120px) var(--g) clamp(96px,14vh,160px)}
+.em-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px clamp(32px,6vw,120px)}
+.em-h{font-size:clamp(28px,2.6vw,40px);font-weight:500;letter-spacing:-.025em;line-height:1.25;margin-top:18px}
+.em .eyebrow{color:var(--teal)}
+.tbl{width:100%;border-collapse:collapse;border-top:1px solid var(--on-paper);margin-top:28px}
+.tbl th,.tbl td{text-align:left;padding:16px 0;border-bottom:1px solid var(--line-p);vertical-align:baseline}
+.tbl th{font-family:var(--serif);font-weight:400;width:56px;font-size:15px;color:var(--teal)}
+.tbl td.nm{font-size:clamp(20px,1.8vw,26px);font-weight:500;letter-spacing:-.02em}
+.tbl td.rl{text-align:right;font-size:14px;color:var(--on-paper-2)}
+.more{display:inline-flex;gap:10px;align-items:center;min-height:44px;margin-top:16px;font-size:14px;border-bottom:1px solid var(--on-paper);transition:gap .3s}
+.more:hover{gap:18px}
+.fx{list-style:none;margin-top:28px;border-top:1px solid var(--on-paper)}
+.fx li{border-bottom:1px solid var(--line-p)}
+.fx a{display:flex;justify-content:space-between;align-items:center;min-height:56px;font-size:clamp(18px,1.6vw,22px);font-weight:500;letter-spacing:-.01em;transition:padding .25s,color .25s}
+.fx a:hover{padding-left:8px;color:var(--teal)}
+.fx a span{font-family:var(--serif);font-style:italic;font-weight:400;font-size:15px;color:var(--teal)}
+.fx-note{margin-top:12px;font-size:13px;color:var(--on-paper-3)}
+.qs{list-style:none;margin-top:28px;border-top:1px solid var(--on-paper)}
+.qs li{display:grid;grid-template-columns:56px 1fr;gap:6px;padding:14px 0;border-bottom:1px solid var(--line-p);font-size:16px;font-weight:400;line-height:1.6}
+.qs b{font-family:var(--serif);font-weight:400;font-size:15px;color:var(--teal);padding-top:2px}
+.q-note{margin-top:12px;font-size:13px;color:var(--on-paper-3)}
+.em-fig{margin-top:40px;max-width:360px}
+.em-fig .frame{aspect-ratio:16/10;overflow:hidden;background:var(--paper2)}
+.em-fig img{width:100%;height:100%;object-fit:cover}
+.em-fig figcaption{margin-top:10px;color:var(--on-paper-3)}
+
+/* ---------- Scene C : spaces (ink) ---------- */
+.spaces{position:relative;z-index:3;background:var(--ink);color:var(--on-ink);border-radius:var(--rad) var(--rad) 0 0;margin-top:calc(var(--rad) * -1);height:460svh}
+.sp-stage{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;grid-template-columns:2fr 1fr}
+.sp-pic{position:relative;overflow:hidden;background:var(--ink2)}
+.sp-pic figure{position:absolute;inset:0;opacity:0}
+.sp-pic img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transform-origin:50% 50%}
+.sp-pic::before{content:"";position:absolute;left:0;right:0;top:0;height:140px;z-index:2;background:linear-gradient(180deg,rgba(11,22,32,.7),rgba(11,22,32,0))}
+.sp-pic::after{content:"";position:absolute;top:0;bottom:0;right:0;width:160px;z-index:2;background:linear-gradient(90deg,rgba(11,22,32,0),rgba(11,22,32,.55))}
+.sp-pic .cap{position:absolute;left:var(--g);bottom:28px;z-index:3;color:var(--on-ink-2)}
+.sp-txt{position:relative;padding:calc(var(--hdr) + 2vh) var(--g) calc(36px + var(--sa)) clamp(32px,4vw,64px);display:flex;flex-direction:column}
+.sp-txt .eyebrow{color:var(--cyan);display:flex;gap:16px;align-items:baseline}
+.sp-txt .eyebrow .n{font-family:var(--serif);font-size:14px;letter-spacing:.14em;font-weight:400}
+.sp-txt .eyebrow .n em{font-style:normal;opacity:.5}
+.sp-idx{margin-top:clamp(24px,6vh,64px);font-family:var(--serif);font-size:clamp(56px,7vw,110px);line-height:.9;letter-spacing:-.03em;display:flex;align-items:baseline;gap:10px}
+.sp-idx .cur{display:inline-block;min-width:1.3em}
+.sp-idx small{font-size:.3em;color:var(--on-ink-3)}
+.sp-copy{position:relative;margin-top:clamp(20px,4vh,40px);min-height:11em}
+.sp-copy .item{position:absolute;inset:0;opacity:0;visibility:hidden}
+.sp-copy h3{font-size:clamp(26px,2.4vw,36px);font-weight:500;letter-spacing:-.025em;line-height:1.25;display:flex;flex-direction:column;gap:6px}
+.sp-copy h3 span{font-family:var(--serif);font-style:italic;font-weight:400;font-size:17px;color:var(--cyan);letter-spacing:0}
+.sp-copy p{margin-top:16px;font-size:15px;font-weight:300;line-height:1.8;color:var(--on-ink-2);max-width:22em}
+.sp-list{list-style:none;margin-top:auto;border-top:1px solid var(--line-i);padding-top:14px}
+.sp-list li{display:flex;gap:14px;align-items:center;min-height:36px;font-size:14px;color:var(--on-ink-3);transition:color .3s}
+.sp-list li i{font-family:var(--serif);font-style:normal;font-size:12px;letter-spacing:.1em;width:24px}
+.sp-list li .bar{flex:1;height:1px;background:var(--line-i);position:relative;overflow:hidden}
+.sp-list li .bar::before{content:"";position:absolute;inset:0;background:var(--cyan);transform:scaleX(var(--f,0));transform-origin:left}
+.sp-list li.on{color:var(--on-ink)}
+
+/* ---------- Ending : visit (ink) ---------- */
+.visit{position:relative;z-index:3;background:var(--ink);color:var(--on-ink);display:grid;grid-template-columns:1fr 1fr;min-height:100svh;border-top:1px solid var(--line-i)}
+.visit .pic{position:relative;overflow:hidden;min-height:60vh}
+.visit .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.visit .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,32,.5) 0%,rgba(11,22,32,0) 30%,rgba(11,22,32,0) 70%,rgba(11,22,32,.6) 100%)}
+.visit .pic .cap{position:absolute;left:var(--g);bottom:28px;z-index:2;color:var(--on-ink-2)}
+.visit .txt{position:relative;inset:auto;width:auto;padding:calc(var(--hdr) + 4vh) var(--g) clamp(48px,8vh,88px) clamp(40px,5vw,88px);display:flex;flex-direction:column}
+.visit .eyebrow{color:var(--cyan);display:flex;gap:16px;align-items:baseline}
+.visit .eyebrow .n{font-family:var(--serif);font-size:14px;letter-spacing:.14em;font-weight:400}
+.visit .eyebrow .n em{font-style:normal;opacity:.5}
+.visit .big-v{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(64px,8vw,132px);line-height:.9;letter-spacing:-.02em;margin-top:24px;color:var(--on-ink)}
+.visit h2{font-size:clamp(28px,2.6vw,40px);font-weight:500;letter-spacing:-.025em;line-height:1.25;margin-top:28px}
+.visit .lead{margin-top:16px;font-size:15px}
+.v-rows{list-style:none;margin-top:auto;padding-top:40px;border-top:1px solid var(--on-ink)}
+.v-rows li{display:grid;grid-template-columns:110px 1fr;align-items:center;min-height:52px;border-bottom:1px solid var(--line-i);font-size:15px;gap:12px}
+.v-rows li .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);font-weight:500}
+.v-rows a{display:inline-flex;align-items:center;min-height:44px;border-bottom:1px solid transparent;transition:border-color .2s}
+.v-rows a:hover{border-bottom-color:currentColor}
+.v-rows .tel{font-family:var(--serif);font-size:clamp(24px,2vw,30px);letter-spacing:.02em}
+.v-rows .kk{background:var(--cyan);color:var(--ink);padding:0 20px;min-height:44px;font-weight:600;border-radius:999px}
+.v-rows dl{display:grid;grid-template-columns:auto auto;gap:4px 24px;padding:10px 0;font-variant-numeric:tabular-nums}
+.v-rows dt{color:var(--on-ink-3)}
+.v-rows .langs{display:flex;gap:14px;flex-wrap:wrap}
+.v-rows .langs a{font-family:var(--serif);letter-spacing:.08em;font-size:14px}
+.ft{background:var(--ink);border-top:1px solid var(--line-i);color:var(--on-ink-3);padding:28px var(--g) calc(32px + var(--sa));font-size:12px;letter-spacing:.02em;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:3}
 .mbar{display:none}
-.rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
-.rv.in{opacity:1;transform:none}
 
-/* static fallback (no WebGL / reduced motion) */
-.static .lab{height:auto}
-.static .lab-stage{position:relative;height:auto;padding:120px var(--gutter) 64px;background:url(img/poster.webp) right 6% top 120px/min(46vw,620px) no-repeat,radial-gradient(70% 60% at 72% 30%,#123a3c 0%,#0a2a2f 35%,var(--bg) 75%)}
-.static .step{position:relative;inset:auto;opacity:1;visibility:visible;transform:none;width:auto;max-width:620px;margin-bottom:96px;padding:0}
-.static .s0{min-height:70svh}
-.static #gl,.static .snav{display:none}
-.static .brand-note{position:relative;right:auto;bottom:auto}
-.static .rv{opacity:1;transform:none}
+/* ---------- static (reduced motion / no JS) ---------- */
+.static .atlas{height:auto}
+.static .stage{position:relative;height:auto;overflow:visible;padding-bottom:40px}
+.static .stage-in{position:relative;inset:auto}
+.static .txt,.static .view{position:relative;inset:auto;width:auto;top:auto;bottom:auto}
+.static .txt{padding-top:calc(var(--hdr) + 24px)}
+.static .tw{position:relative;inset:auto;opacity:1;visibility:visible;padding:24px 0;max-width:640px}
+.static .view{margin:24px var(--g) 0;height:60vh;right:auto}
+.static .view img.fb{opacity:1}
+.static #gl,.static #fc,.static .ret,.static .tag,.static .rule,.static .figcap .cap{display:none}
+.static .figcap .cap.on{display:flex;position:relative;opacity:1;padding:0 var(--g)}
+.static .figcap{position:relative;width:auto;margin:0}
+.static .steps li p{max-height:none;opacity:1;margin-top:8px}
+.static .evid{margin-top:0}
+.static .evid-pin{height:auto}
+.static .evid-stage{position:relative;height:auto;padding-bottom:48px}
+.static .big{display:none}
+.static .ev-h,.static .ev-sub,.static .rows li,.static .figs figure{opacity:1;transform:none}
+.static .ev-h .slot span{opacity:1}
+.static .spaces{height:auto}
+.static .sp-stage{position:relative;height:auto;display:block}
+.static .sp-pic{height:auto}
+.static .sp-pic figure{position:relative;opacity:1;margin-bottom:24px}
+.static .sp-pic img{transform:none;aspect-ratio:3/2}
+.static .sp-pic .cap{position:relative;left:auto;bottom:auto;padding:0 var(--g) 24px}
+.static .sp-copy{min-height:0}
+.static .sp-copy .item{position:relative;opacity:1;visibility:visible;margin-bottom:32px}
+.static .sp-list{display:none}
 
-@media (max-width:1100px) and (min-width:901px){ .h1{font-size:60px} }
-@media (max-width:900px){
-  :root{--gutter:22px}
-  body{padding-bottom:calc(var(--bar-h) + var(--sa))}
-  .hd-cta{display:none}
-  .s0,.sx{left:var(--gutter);right:var(--gutter);top:auto;bottom:calc(var(--bar-h) + var(--sa) + 76px);width:auto;max-width:none;padding:0;justify-content:flex-end}
-  .s0 .g{margin-bottom:16px}
-  .h1{font-size:36px;line-height:1.22}
-  .lead{margin-top:16px;font-size:15px}
-  .btn{margin-top:22px;min-height:48px}
-  .h2{font-size:clamp(32px,9vw,38px)}
-  .sx p.body{margin-top:12px;font-size:15px;line-height:1.7}
-  .sx figure{margin-top:14px}
-  .sx figure img{width:104px;height:78px}
-  .fx{margin-top:14px}
-  .fx a{min-height:46px;font-size:16px}
-  .snav{left:var(--gutter);right:var(--gutter);width:auto;bottom:calc(var(--bar-h) + var(--sa) + 12px);gap:0;justify-content:space-between}
-  .snav button{font-size:13px;gap:6px;min-height:48px}
-  .brand-note{right:auto;left:var(--gutter);bottom:auto;top:76px;font-size:12px}
-  .sec-h,.grid{grid-template-columns:1fr}
-  .staff-fig img{aspect-ratio:16/10}
-  .tbl th{width:44px}
-  .ct{grid-template-columns:1fr}
-  .static .lab-stage{background:url(img/poster.webp) center 70px/86vw no-repeat,radial-gradient(90% 50% at 50% 20%,#123a3c 0%,var(--bg) 70%);padding-top:calc(70px + 86vw)}
-  .mbar{position:fixed;inset:auto 0 0 0;z-index:50;display:flex;gap:10px;height:calc(var(--bar-h) + var(--sa));padding:8px var(--gutter) calc(8px + var(--sa));background:var(--bg);border-top:1px solid var(--line)}
-  .mbar a{flex:1;display:flex;align-items:center;justify-content:center;border-radius:999px;font-weight:600;font-size:15px;min-height:48px;border:1px solid rgba(237,246,242,.4)}
-  .mbar a:first-child{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+@media (max-width:1100px){
+  .txt{width:48%}
+  .view{width:calc(52% - var(--g))}
+  .figcap{width:calc(52% - var(--g))}
 }
-@media (max-width:900px) and (max-height:700px){ .h1{font-size:32px} .h2{font-size:30px} .sx figure{display:none} }
-@media (prefers-reduced-motion:reduce){.btn,.fx a{transition:none}}
+@media (max-width:900px){
+  :root{--hdr:64px}
+  body{padding-bottom:calc(var(--bar) + var(--sa))}
+  .view{top:var(--hdr);left:var(--g);right:var(--g);width:auto;height:46svh;bottom:auto}
+  .txt{top:calc(var(--hdr) + 46svh);bottom:calc(var(--bar) + var(--sa));width:auto;left:0;right:0;padding:0}
+  .tw{left:var(--g);right:var(--g);justify-content:flex-start;padding:22px 0 0}
+  .h1{font-size:clamp(30px,8.6vw,38px);margin-top:14px}
+  .lead{margin-top:12px;font-size:14.5px;line-height:1.7}
+  .cta{margin-top:16px;min-height:44px}
+  .h2{font-size:clamp(24px,6.6vw,30px);margin-top:12px}
+  .tw p.body{margin-top:10px;font-size:14.5px;line-height:1.7}
+  .tw .note{margin-top:12px;font-size:12px}
+  .steps{margin-top:10px}
+  .steps li{padding:9px 0;grid-template-columns:44px 1fr}
+  .steps .no{font-size:22px}
+  .steps h3{font-size:17px}
+  .steps p{font-size:13px;line-height:1.6}
+  .steps li.on p{margin-top:4px}
+  .rule{display:none}
+  .figcap{position:absolute;top:calc(var(--hdr) + 46svh);bottom:auto;left:var(--g);right:var(--g);width:auto;height:30px;padding:0;margin:0}
+  .figcap .cap{font-size:11px}
+  .figcap .cap em{display:none}
+  .view .tag{right:10px;top:10px;padding:6px 10px;font-size:10px}
+  .evid{margin-top:-100svh}
+  .evid-pin{height:auto}
+  .evid-stage{position:relative;height:auto;padding:calc(var(--hdr) + 8px) var(--g) 48px}
+  .big{display:none}
+  .ev-h .slot span{opacity:1}
+  .ev-grid{grid-template-columns:1fr;gap:32px}
+  .rows li{grid-template-columns:56px 1fr}
+  .figs figure:nth-child(2){margin-top:0}
+  .em-grid{grid-template-columns:1fr}
+  .spaces{height:420svh}
+  .sp-stage{grid-template-columns:1fr;grid-template-rows:52svh 1fr}
+  .sp-pic::after{display:none}
+  .sp-pic .cap{bottom:14px;font-size:11px}
+  .sp-txt{padding:18px var(--g) calc(12px + var(--bar) + var(--sa))}
+  .sp-idx{margin-top:8px;font-size:48px}
+  .sp-copy{margin-top:12px;min-height:9em}
+  .sp-copy h3{font-size:22px}
+  .sp-copy p{margin-top:8px;font-size:14px;line-height:1.65}
+  .sp-list li{min-height:30px;font-size:12px}
+  .visit{grid-template-columns:1fr;min-height:0}
+  .visit .pic{min-height:58vw}
+  .visit .txt{padding:36px var(--g) 48px}
+  .visit .big-v{font-size:64px}
+  .visit h2{font-size:26px}
+  .v-rows{padding-top:24px;margin-top:32px}
+  .v-rows li{grid-template-columns:88px 1fr}
+  .mbar{position:fixed;inset:auto 0 0 0;z-index:70;display:flex;gap:10px;height:calc(var(--bar) + var(--sa));padding:8px var(--g) calc(8px + var(--sa));background:var(--ink);border-top:1px solid var(--line-i)}
+  .mbar a{flex:1;display:flex;align-items:center;justify-content:center;border-radius:999px;font-weight:600;font-size:14px;min-height:48px;border:1px solid rgba(243,245,246,.4)}
+  .mbar a:first-child{background:var(--cyan);color:var(--ink);border-color:var(--cyan)}
+  .static .view{margin:12px var(--g) 0;height:52vw}
+  .static .txt{padding-top:12px}
+}
+@media (max-width:900px) and (max-height:700px){
+  .view{height:40svh}.txt{top:calc(var(--hdr) + 40svh)}.figcap{top:calc(var(--hdr) + 40svh)}
+  .h1{font-size:28px}.tw .note{display:none}.steps li.on p{display:none}
+}
+@media (min-width:901px) and (max-height:720px){
+  .h1{font-size:clamp(36px,3.8vw,52px)}.h2{font-size:clamp(26px,2.6vw,36px)}
+  .steps li{padding:10px 0}.steps .no{font-size:24px}.steps h3{font-size:19px}.steps p{font-size:13.5px}
+  .rows li{padding:10px 0}.rows .no{font-size:40px}.rows p{font-size:14px}
+  .ev-h{font-size:clamp(30px,3.2vw,44px)}
+}
+@media (prefers-reduced-motion:reduce){.cta,.fx a,.more{transition:none}}
 </style>
 <style id="nolink">a.plain{pointer-events:none;cursor:text;text-decoration:none;border-bottom:0!important;background-image:none!important}a.plain::before,a.plain::after{content:none!important}</style>
 </head>
 <body>
 <header class="hd" id="hd">
-  <a class="wm" href="#top" aria-label="DOD 디오디피부과 청담">DOD</a>
-  <a class="hd-cta" href="#contact">진료 문의</a>
+  <a class="mark" href="#top" aria-label="DOD 디오디피부과 청담">DOD<small>Clinical Atlas</small></a>
+  <nav aria-label="주요 메뉴">
+    <a href="#evid" data-to="#evid">진료 과정</a>
+    <a href="#spaces" data-to="#spaces">공간</a>
+    <a href="#visit" data-to="#visit" class="keep">진료 문의</a>
+  </nav>
 </header>
 
 <main id="top">
-  <!-- P2-01 · P2-02 : real-time lens + three-step explanation -->
-  <section class="lab" id="lab" aria-label="디오디의 진료 과정">
-    <div class="lab-stage" id="stage">
-      <canvas id="gl" aria-hidden="true"></canvas>
+  <!-- Scene A -->
+  <section class="atlas" id="atlas" aria-label="피부를 살피고, 진료를 이야기하다">
+    <div class="stage">
+      <div class="stage-in" id="stageIn">
+        <div class="txt">
+          <div class="tw on" data-w="0">
+            <p class="eyebrow"><span class="n">01 <em>/ 03</em></span><span>Observation</span></p>
+            <h1 class="h1" id="h1">피부를 살피고,<br>진료를 이야기하다.</h1>
+            <p class="lead">진단에서 상담까지, 디오디가 피부를 살피는 순서를 차례로 보여드립니다.</p>
+            <a class="cta" href="#evid" data-to="#evid">진료 과정 보기 <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="tw" data-w="1">
+            <p class="eyebrow"><span class="n">01 <em>/ 03</em></span><span>Observation point</span></p>
+            <h2 class="h2">가까이 들여다보는 것에서 진료가 시작됩니다.</h2>
+            <p class="body">피부 상태와 신경 쓰이는 부분을 의료진과 함께 살펴봅니다.</p>
+            <p class="note cap">오른쪽 현미경 장면은 공식 연구 이미지를 바탕으로 한 AI 연출이며, 피부 진단 장면이 아닙니다.</p>
+          </div>
+          <div class="tw" data-w="2">
+            <p class="eyebrow"><span class="n">02 <em>/ 03</em></span><span>Consultation</span></p>
+            <h2 class="h2">살펴본 내용을 바탕으로, 진료 방향을 함께 이야기합니다.</h2>
+            <p class="body">관심 부위와 이전 시술 이력, 일정을 바탕으로 진료 방향을 상담합니다.</p>
+            <p class="note cap">확대 영역은 공식 홈페이지 진료 장면 사진의 일부입니다.</p>
+          </div>
+          <div class="tw" data-w="3">
+            <p class="eyebrow"><span class="n">03 <em>/ 03</em></span><span>Process</span></p>
+            <h2 class="h2">진료는 세 단계로 이어집니다.</h2>
+            <ol class="steps" id="steps">
+              <li><span class="no">01</span><h3>살펴보다 <span>Observe</span></h3><p>피부 상태와 신경 쓰이는 부분을 의료진과 함께 살펴봅니다.</p></li>
+              <li><span class="no">02</span><h3>이야기하다 <span>Discuss</span></h3><p>살펴본 내용을 바탕으로 진료 방향을 함께 이야기합니다.</p></li>
+              <li><span class="no">03</span><h3>확인하다 <span>Follow up</span></h3><p>진료 뒤 궁금한 점과 변화를 다시 확인합니다.</p></li>
+            </ol>
+          </div>
+          <div class="rule" aria-hidden="true">
+            <svg viewBox="0 0 260 18" preserveAspectRatio="none" id="ruleSvg"></svg>
+            <span class="lab"><b id="ruleLab">Context</b> · Scale</span>
+          </div>
+        </div>
 
-      <div class="step s0 on" data-s="0">
-        <p class="g">DOD Cheongdam</p>
-        <h1 class="h1">피부를 살피고,<br>진료를 이야기하다.</h1>
-        <p class="lead">진단 과정부터 상담까지,<br>디오디의 진료를 살펴보세요.</p>
-        <a class="btn" href="#step-1" data-go="1">진료 과정 보기 <span aria-hidden="true">→</span></a>
+        <div class="view" id="view">
+          <canvas id="fc" aria-hidden="true"></canvas>
+          <canvas id="gl" aria-hidden="true"></canvas>
+          <img class="fb" src="../_media/img/087.webp" alt="디오디피부과 청담 진료 장면 (공식 홈페이지 사진)" loading="lazy" decoding="async">
+          <svg class="ovl" id="ovl" aria-hidden="true">
+            <g stroke="#9FC2CF" fill="none" stroke-width="1">
+              <path id="corners" d=""></path>
+              <line id="hLine" x1="0" y1="0" x2="0" y2="0" opacity=".32"></line>
+              <line id="vLine" x1="0" y1="0" x2="0" y2="0" opacity=".32"></line>
+              <line id="leader" x1="0" y1="0" x2="0" y2="0" opacity="0"></line>
+            </g>
+          </svg>
+          <div class="ret" id="ret"><i></i></div>
+          <div class="tag" id="tag"><span class="dot"></span><span>확대 영역</span><b id="zoomTxt">×1.0</b></div>
+        </div>
+        <div class="figcap" id="figcap">
+          <p class="cap" data-f="s2"><i>Fig. 01</i>현미경<em>공식 연구 이미지 기반 AI 연출</em></p>
+          <p class="cap" data-f="c"><i>Fig. 02</i>진료 장면<em>공식 홈페이지 사진</em></p>
+          <p class="cap" data-f="d"><i>Fig. 03</i>진단 장비<em>공식 홈페이지 사진</em></p>
+          <p class="cap" data-f="r"><i>Fig. 04</i>상담실<em>공식 홈페이지 사진</em></p>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="step sx" data-s="1" id="step-1">
-        <p class="no">01 / 03</p>
-        <h2 class="h2">살펴보다</h2>
-        <p class="body">MetaVu 진단 시스템을 안내합니다. 피부 상태와 관심 부위를 의료진과 함께 살펴봅니다.</p>
-        <figure><img src="img/device.webp" width="824" height="800" alt="공식 홈페이지의 장비 사진" loading="lazy" decoding="async"><figcaption>공식 홈페이지 사진</figcaption></figure>
+  <!-- Scene B -->
+  <section class="evid" id="evid" aria-labelledby="evh">
+    <div class="evid-pin">
+      <div class="evid-stage" id="evStage">
+        <p class="eyebrow"><span class="n">02 <em>/ 03</em></span><span>Process</span></p>
+        <h2 class="ev-h" id="evh"><span class="slot" id="slot" aria-hidden="true"><span>3</span></span><span class="sr">3</span>단계로 이어지는 진료</h2>
+        <p class="ev-sub" id="evsub">세 단계는 순서대로 이어집니다. 각 단계에서 무엇을 하는지만 적었습니다.</p>
+        <div class="ev-grid">
+          <ol class="rows" id="rows">
+            <li><span class="no">01</span><div><h3>살펴보다 <span>Observe</span></h3><p>피부 상태와 신경 쓰이는 부분을 의료진과 함께 살펴봅니다.</p></div></li>
+            <li><span class="no">02</span><div><h3>이야기하다 <span>Discuss</span></h3><p>살펴본 내용을 바탕으로 진료 방향을 함께 이야기합니다.</p></div></li>
+            <li><span class="no">03</span><div><h3>확인하다 <span>Follow up</span></h3><p>진료 뒤 궁금한 점과 변화를 다시 확인합니다.</p></div></li>
+          </ol>
+          <div class="figs" id="figs">
+            <figure><div class="frame"><img src="../_media/img/083-1200.webp" alt="디오디피부과 청담 시술실" loading="lazy" decoding="async" width="1200" height="835"></div><figcaption class="cap"><i>Fig. 05</i>시술실 — 공식 홈페이지 사진</figcaption></figure>
+            <figure><div class="frame"><img src="img/lounge-1200.webp" alt="디오디피부과 청담 라운지" loading="lazy" decoding="async" width="1200" height="732"></div><figcaption class="cap"><i>Fig. 06</i>라운지 — 공식 홈페이지 사진</figcaption></figure>
+          </div>
+        </div>
+        <div class="big serif" id="big" aria-hidden="true">3<span>3</span></div>
       </div>
-      <div class="step sx" data-s="2">
-        <p class="no">02 / 03</p>
-        <h2 class="h2">이야기하다</h2>
-        <p class="body">관심 부위와 이전 시술 이력, 일정을 바탕으로 진료 방향을 상담합니다.</p>
-        <figure><img src="img/consult.webp" width="1200" height="900" alt="공식 홈페이지에 게시된 의료진 진료 장면" loading="lazy" decoding="async"><figcaption>의료진의 진료 모습</figcaption></figure>
+    </div>
+
+    <div class="evid-more em">
+      <div class="em-grid">
+        <div>
+          <p class="eyebrow rv">Medical staff &amp; research</p>
+          <h2 class="em-h rv">진료를 함께할<br>의료진과 연구진</h2>
+          <table class="tbl rv">
+            <tbody>
+              <tr><th>01</th><td class="nm">이준</td><td class="rl">대표원장</td></tr>
+              <tr><th>02</th><td class="nm">안정식</td><td class="rl">원장</td></tr>
+              <tr><th>03</th><td class="nm">황승경</td><td class="rl">원장</td></tr>
+              <tr><th>04</th><td class="nm">이준원</td><td class="rl">원장</td></tr>
+              <tr><th>05</th><td class="nm">김진아</td><td class="rl">박사 · 연구진</td></tr>
+            </tbody>
+          </table>
+          
+          <figure class="em-fig rv"><div class="frame"><img src="../_media/img/080-1200.webp" alt="디오디 연구실 (공식 홈페이지 사진)" loading="lazy" decoding="async" width="1200" height="750"></div><figcaption class="cap"><i>Fig. 07</i>연구실 — 공식 홈페이지 사진</figcaption></figure>
+        </div>
+        <div>
+          <p class="eyebrow rv">Fields</p>
+          <h2 class="em-h rv">진료 분야를 확인하세요</h2>
+          <ul class="fx rv" aria-label="진료 분야">
+            <li><a class="plain">리프팅</a></li>
+            <li><a class="plain">콜라겐 · 스킨부스터</a></li>
+            <li><a class="plain">재생 프로그램</a></li>
+          </ul>
+          <p class="fx-note rv">시술 선택과 적용 여부는 의료진 상담이 필요합니다.</p>
+          <p class="eyebrow rv" style="margin-top:56px">Before consultation</p>
+          <h2 class="em-h rv">상담 전에 준비할 질문</h2>
+          <ol class="qs rv">
+            <li><b>Q1</b>가장 궁금한 부위나 변화는 무엇인가요?</li>
+            <li><b>Q2</b>이전에 받은 시술과 시기는 언제인가요?</li>
+            <li><b>Q3</b>회복과 일정에서 고려할 점이 있나요?</li>
+            <li><b>Q4</b>복용 중인 약과 알레르기는 의료진에게 직접 알려 주세요.</li>
+          </ol>
+          <p class="q-note rv">입력하거나 저장하는 곳은 없습니다. 상담 때 의료진에게 직접 이야기해 주세요.</p>
+        </div>
       </div>
-      <div class="step sx" data-s="3">
-        <p class="no">03 / 03</p>
-        <h2 class="h2">확인하다</h2>
-        <p class="body">진료 분야별 안내를 읽고, 나에게 필요한 질문을 준비합니다.</p>
-        <ul class="fx" aria-label="진료 분야">
-          <li><a class="plain">리프팅</a></li>
-          <li><a class="plain">콜라겐·스킨부스터</a></li>
-          <li><a class="plain">재생 프로그램</a></li>
+    </div>
+  </section>
+
+  <!-- Scene C -->
+  <section class="spaces" id="spaces" aria-label="디오디 청담의 공간">
+    <div class="sp-stage">
+      <div class="sp-pic" id="spPic">
+        <figure><img src="img/lounge.webp" alt="디오디피부과 청담 라운지" width="1920" height="1172" decoding="async"></figure>
+        <figure><img src="img/corridor.webp" alt="디오디피부과 청담 복도" width="1800" height="1774" loading="lazy" decoding="async"></figure>
+        <figure><img src="../_media/img/096.webp" alt="디오디피부과 청담 상담실" width="2880" height="2004" loading="lazy" decoding="async"></figure>
+        <figure><img src="../_media/img/083.webp" alt="디오디피부과 청담 시술실" width="2880" height="2004" loading="lazy" decoding="async"></figure>
+        <p class="cap" id="spCap"><i>Fig. 08</i>공식 홈페이지 사진</p>
+      </div>
+      <div class="sp-txt">
+        <p class="eyebrow"><span class="n">03 <em>/ 03</em></span><span>Spaces</span></p>
+        <p class="sp-idx" aria-hidden="true"><span class="cur" id="spCur">01</span><small>/ 04</small></p>
+        <div class="sp-copy" id="spCopy">
+          <div class="item"><h3>라운지 <span>Lounge</span></h3><p>진료를 기다리는 시간을 위한 공간입니다. 밝은 창과 낮은 소파, 서가가 있습니다.</p></div>
+          <div class="item"><h3>복도 <span>Corridor</span></h3><p>접수에서 상담실과 시술실로 이어지는 복도입니다. 벽면에 dod 로고가 새겨져 있습니다.</p></div>
+          <div class="item"><h3>상담실 <span>Consultation</span></h3><p>의료진과 마주 앉아 살펴본 내용과 진료 방향을 이야기하는 방입니다.</p></div>
+          <div class="item"><h3>시술실 <span>Treatment</span></h3><p>독립된 1인 시술실을 안내합니다. 시술 전후로 머무르는 침대와 테이블이 있습니다.</p></div>
+        </div>
+        <ul class="sp-list" id="spList" aria-hidden="true">
+          <li><i>01</i>라운지<span class="bar"></span></li>
+          <li><i>02</i>복도<span class="bar"></span></li>
+          <li><i>03</i>상담실<span class="bar"></span></li>
+          <li><i>04</i>시술실<span class="bar"></span></li>
         </ul>
-        <p class="fx-note">시술 선택과 적용 여부는 의료진 상담이 필요합니다.</p>
-      </div>
-
-      <nav class="snav" aria-label="진료 과정 단계">
-        <button type="button" data-go="1"><i>01</i>살펴보다</button>
-        <button type="button" data-go="2"><i>02</i>이야기하다</button>
-        <button type="button" data-go="3"><i>03</i>확인하다</button>
-      </nav>
-      <p class="brand-note">입체 오브젝트는 브랜드 그래픽입니다.</p>
-    </div>
-  </section>
-
-  <!-- P2-03 -->
-  <section class="sec" aria-labelledby="h-staff">
-    <div class="sec-h">
-      <p class="g rv">Medical Staff &amp; Research</p>
-      <h2 class="h2 rv" id="h-staff">진료를 함께할<br>의료진과 연구진</h2>
-    </div>
-    <div class="grid">
-      <figure class="staff-fig rv"><img src="img/room.webp" width="800" height="1650" alt="디오디피부과 청담 진료실" loading="lazy" decoding="async"><figcaption>디오디 청담 진료실</figcaption></figure>
-      <div>
-        <table class="tbl rv">
-          <caption class="g" style="text-align:left;color:var(--fog);padding-bottom:14px;caption-side:top;letter-spacing:.12em">의료진 · 연구진</caption>
-          <tbody>
-            <tr><th>01</th><td class="nm">이준</td><td class="rl">대표원장</td></tr>
-            <tr><th>02</th><td class="nm">안정식</td><td class="rl">원장</td></tr>
-            <tr><th>03</th><td class="nm">황승경</td><td class="rl">원장</td></tr>
-            <tr><th>04</th><td class="nm">이준원</td><td class="rl">원장</td></tr>
-            <tr><th>05</th><td class="nm">김진아</td><td class="rl">박사 · 연구진</td></tr>
-          </tbody>
-        </table>
-        
       </div>
     </div>
   </section>
 
-  <!-- P2-05 (P2-04 진료 분야는 03 확인하다 장면 안에 있음) -->
-  <section class="sec" aria-labelledby="h-q">
-    <div class="grid">
-      <div>
-        <p class="g rv" style="color:var(--acc)">Before Consultation</p>
-        <h2 class="h2 rv" id="h-q" style="margin-top:20px">상담 전에<br>준비할 질문</h2>
-        <p class="q-note rv">입력하거나 저장하는 곳은 없습니다. 상담 때 의료진에게 직접 이야기해 주세요.</p>
-      </div>
-      <div class="inset rv">
-        <ol class="qs">
-          <li><b>Q1</b>가장 궁금한 부위나 변화는 무엇인가요?</li>
-          <li><b>Q2</b>이전에 받은 시술과 시기는 언제인가요?</li>
-          <li><b>Q3</b>회복과 일정에서 고려할 점이 있나요?</li>
-          <li><b>Q4</b>복용 중인 약과 알레르기는 의료진에게 직접 알려 주세요.</li>
-        </ol>
-      </div>
+  <!-- Ending -->
+  <section class="visit" id="visit" aria-labelledby="vh">
+    <div class="pic">
+      <img src="../_media/img/079.webp" alt="디오디피부과 청담 복도와 상담실" width="1399" height="2880" loading="lazy" decoding="async">
+      <p class="cap"><i>Fig. 09</i>공식 홈페이지 사진</p>
+    </div>
+    <div class="txt">
+      <p class="eyebrow rv"><span class="n">Location</span><span>Visit — DOD Cheongdam</span></p>
+      <p class="big-v rv" aria-hidden="true">Visit</p>
+      <h2 id="vh" class="rv">청담에서 만납니다.</h2>
+      <p class="lead rv">처음 오시는 날, 접수에서 안내해 드립니다. 궁금한 점은 전화나 카카오톡으로 먼저 물어보셔도 됩니다.</p>
+      <ul class="v-rows rv">
+        <li><span class="k">Address</span><span>디오디피부과의원 청담 · 서울 강남구 도산대로 423 </span></li>
+        <li><span class="k">Tel</span><a class="tel" href="tel:02-6203-6263">02-6203-6263</a></li>
+        <li><span class="k">Kakao</span><span><a class="plain">카카오톡으로 문의</a></span></li>
+        <li><span class="k">Hours</span><dl><dt>월–목</dt><dd>10:00–19:00</dd><dt>금</dt><dd>10:00–21:00</dd><dt>토</dt><dd>10:00–16:00</dd><dt>휴게(월–금)</dt><dd>13:00–14:00</dd><dt>일 · 공휴일</dt><dd>병원에 확인</dd></dl></li>
+        <li><span class="k">Language</span><span class="langs"><a class="plain">EN</a><a class="plain">CN</a><a class="plain">JP</a><a class="plain">TW</a></span></li>
+      </ul>
     </div>
   </section>
-
-  <!-- P2-06 -->
-  <section class="sec" id="contact" aria-labelledby="h-ct">
-    <p class="g rv" style="color:var(--acc)">Contact</p>
-    <h2 class="h2 rv" id="h-ct" style="margin:20px 0 clamp(40px,6vh,64px)">진료 문의</h2>
-    <div class="ct rv">
-      <div><span class="g">Call</span><a class="tel" href="tel:02-6203-6263">02-6203-6263</a></div>
-      <div><span class="g">Kakao</span><a class="plain">카카오톡으로 문의</a></div>
-      <div>
-        <span class="g">Hours</span>
-        <dl>
-          <div><dt>월–목</dt><dd>10:00–19:00</dd></div>
-          <div><dt>금</dt><dd>10:00–21:00</dd></div>
-          <div><dt>토</dt><dd>10:00–16:00</dd></div>
-          <div><dt>휴게(월–금)</dt><dd>13:00–14:00</dd></div>
-        </dl>
-        <p style="margin-top:10px;font-size:13px;color:var(--fog)">일요일·공휴일은 병원에 확인해 주세요.</p>
-      </div>
-      <div class="addr"><span class="g">Address</span>디오디피부과의원 청담<br>서울 강남구 도산대로 423<br></div>
-    </div>
-  </section>
-  <footer class="ft"><span>디자인 초안 · 탱탱소프트</span><span>DOD Dermatology · Cheongdam</span></footer>
+  <footer class="ft">
+    <span>디자인 초안 · 탱탱소프트</span>
+    <span>현미경 장면: 공식 연구 이미지 기반 AI 연출 · 공간 사진: 공식 홈페이지 사진(일부 업스케일)</span>
+  </footer>
 </main>
 
 <nav class="mbar" aria-label="진료 문의">
   <a href="tel:02-6203-6263">전화 문의</a>
-  <a href="#contact">상담 안내</a>
+  <a href="#visit">상담 안내</a>
 </nav>
 
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script src="../_lib/gsap.min.js"></script>
+<script src="../_lib/ScrollTrigger.min.js"></script>
+<script src="../_lib/SplitText.min.js"></script>
+<script src="../_lib/Flip.min.js"></script>
+<script src="../_lib/lenis.min.js"></script>
+<script src="../_lib/framescrub.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}</script>
 <script>
 (() => {
   const b = document.body;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || /static/.test(location.search);
   if (reduce) b.classList.add('static');
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.rv').forEach(el => io.observe(el));
-  const hd = document.getElementById('hd'), lab = document.getElementById('lab');
-  const onS = () => hd.classList.toggle('solid', lab.getBoundingClientRect().bottom < 80);
-  addEventListener('scroll', onS, { passive: true }); onS();
   const c = document.createElement('canvas');
-  if (!(c.getContext('webgl2') || c.getContext('webgl'))) b.classList.add('static');
-  window.__p2fail = setTimeout(() => { if (!window.__p2) b.classList.add('static'); }, 6000);
+  if (!(c.getContext('webgl2') || c.getContext('webgl'))) b.classList.add('nogl');
+  window.__glfail = setTimeout(() => { if (!window.__p2) b.classList.add('nogl'); }, 9000);
+})();
+</script>
+<script>
+/* ===== page motion (GSAP + Lenis), runs for everyone; static mode skips pins ===== */
+(() => {
+  gsap.registerPlugin(ScrollTrigger, SplitText, Flip);
+  const S = document.body.classList.contains('static');
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const mobile = () => matchMedia('(max-width: 900px)').matches;
+  window.__P2 = { S, mobile };
+
+  /* Lenis */
+  let lenis = null;
+  if (!S) {
+    lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    window.__P2.lenis = lenis;
+  }
+  $$('[data-to]').forEach(a => a.addEventListener('click', e => {
+    const el = $(a.dataset.to); if (!el) return; e.preventDefault();
+    const off = a.dataset.to === '#evid' ? 0 : 0;
+    if (lenis) lenis.scrollTo(el, { offset: off, duration: 1.4 }); else el.scrollIntoView({ behavior: 'smooth' });
+  }));
+
+  /* header theme by section */
+  const hd = $('#hd');
+  const secs = [['#atlas', 'dark'], ['#evid', 'light'], ['#spaces', 'dark'], ['#visit', 'dark']];
+  const theme = t => hd.classList.toggle('light', t === 'light');
+  secs.forEach(([sel, t], i) => ScrollTrigger.create({ trigger: sel, start: 'top 36px', end: 'bottom 36px',
+    onEnter: () => theme(t), onEnterBack: () => theme(t), onLeaveBack: () => theme(secs[Math.max(0, i - 1)][1]) }));
+
+  /* generic reveals */
+  $$('.rv').forEach(el => gsap.fromTo(el, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } }));
+
+  /* H1 masked line reveal */
+  document.fonts.ready.then(() => {
+    SplitText.create('#h1', { type: 'lines', mask: 'lines', autoSplit: true, onSplit(self) {
+      return gsap.from(self.lines, { yPercent: 110, duration: 1.3, stagger: .1, ease: 'power4.out', delay: .15 });
+    } });
+    gsap.from('.tw[data-w="0"] .lead, .tw[data-w="0"] .cta, .tw[data-w="0"] .eyebrow', { autoAlpha: 0, y: 14, duration: 1, stagger: .08, ease: 'power3.out', delay: .5 });
+  });
+
+  if (S) {
+    $('#fc').style.display = 'none'; $('.view img.fb').style.opacity = 1;
+    $$('.figcap .cap').forEach(c => c.classList.toggle('on', c.dataset.f === 'c'));
+    $$('#steps li').forEach(l => l.classList.add('on'));
+    return;
+  }
+
+  /* ---------- Scene A : scroll progress → window state ---------- */
+  const atlas = $('#atlas'), stageIn = $('#stageIn'), tws = $$('.tw'), stepLis = $$('#steps li');
+  const W = [[-1, .17], [.19, .36], [.38, .55], [.57, .84]];
+  let active = 0, A = { p: 0, target: 0 };
+  window.__P2.A = A;
+  const showW = (el, dir) => { el.classList.add('on'); el.removeAttribute('inert'); gsap.killTweensOf(el); gsap.fromTo(el, { autoAlpha: 0, y: dir > 0 ? 28 : -28 }, { autoAlpha: 1, y: 0, duration: .8, ease: 'power3.out', overwrite: true }); };
+  const hideW = (el, dir) => { el.setAttribute('inert', ''); gsap.killTweensOf(el); gsap.to(el, { autoAlpha: 0, y: dir > 0 ? -22 : 22, duration: .4, ease: 'power2.in', overwrite: true, onComplete: () => el.classList.remove('on') }); };
+  tws.forEach((el, i) => { if (i) el.setAttribute('inert', ''); });
+  gsap.set(tws[0], { autoAlpha: 1, y: 0 });
+  const ruleLab = $('#ruleLab'), ruleSvg = $('#ruleSvg');
+  { let d = ''; for (let i = 0; i <= 40; i++) { const x = i * 6.5, h = i % 10 === 0 ? 18 : i % 5 === 0 ? 11 : 6; d += `M${x} 18V${18 - h}`; }
+    ruleSvg.innerHTML = `<path d="${d}" stroke="rgba(243,245,246,.4)" stroke-width="1" fill="none"/><path id="ruleOn" d="${d}" stroke="#9FC2CF" stroke-width="1" fill="none" style="clip-path:inset(0 100% 0 0)"/><circle id="ruleDot" cx="0" cy="18" r="2.5" fill="#9FC2CF"/>`; }
+  const ruleOn = $('#ruleOn'), ruleDot = $('#ruleDot');
+  const LAB = [[0, 'Context'], [.19, 'Observation'], [.38, 'Consultation'], [.57, 'Process'], [.84, 'Evidence']];
+  function setStep(p) {
+    let s = W.findIndex(([a, z]) => p > a && p <= z); if (p <= 0) s = 0;
+    if (s !== active) {
+      const dir = (s < 0 ? W.length : s) > (active < 0 ? W.length : active) ? 1 : -1;
+      tws.forEach((el, i) => { if (i === s) showW(el, dir); else if (el.classList.contains('on')) hideW(el, dir); });
+      active = s;
+    }
+    if (s === 3) { const q = (p - .57) / (.84 - .57); const k = q < .34 ? 0 : q < .67 ? 1 : 2; stepLis.forEach((li, i) => { li.classList.toggle('on', i === k); li.classList.toggle('dim', i !== k); }); }
+    ruleOn.style.clipPath = `inset(0 ${(100 - p * 100).toFixed(2)}% 0 0)`; ruleDot.setAttribute('cx', (p * 260).toFixed(1));
+    let lab = LAB[0][1]; for (const [a, l] of LAB) if (p >= a) lab = l; if (ruleLab.textContent !== lab) ruleLab.textContent = lab;
+  }
+  ScrollTrigger.create({ trigger: atlas, start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: st => { A.target = st.progress; } });
+  gsap.ticker.add(() => {
+    A.p += (A.target - A.p) * .14; if (Math.abs(A.target - A.p) < 1e-4) A.p = A.target;
+    setStep(A.p);
+    // rear layer sinks while the evidence page covers it (p .8 → 1)
+    const c = Math.min(1, Math.max(0, (A.p - .8) / .2));
+    stageIn.style.transform = `scale(${1 - .06 * c})`; stageIn.style.filter = `brightness(${1 - .45 * c})`;
+  });
+
+  /* ---------- Scene B : number landing + rows (pinned, scrubbed) ---------- */
+  let evTL = null;
+  function buildEv() {
+    if (evTL) { evTL.scrollTrigger && evTL.scrollTrigger.kill(); evTL.kill(); evTL = null; }
+    const big = $('#big'), slot = $('#slot'), slotTxt = slot.firstElementChild, rows = $$('#rows li'), figs = $$('#figs figure');
+    gsap.set([big, '#evh', '#evsub', rows, figs], { clearProps: 'all' });
+    if (mobile()) { gsap.set(['#evh', '#evsub', rows, figs], { autoAlpha: 1, y: 0 }); gsap.set(slotTxt, { opacity: 1 }); gsap.set(big, { display: 'none' }); return; }
+    gsap.set(big, { display: 'flex' }); gsap.set(slotTxt, { opacity: 0 });
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '.evid-pin', start: 'top top', end: 'bottom bottom', scrub: .4 } });
+    tl.fromTo(big, { autoAlpha: 0, scale: 1.12 }, { autoAlpha: 1, scale: 1, duration: .8, ease: 'power2.out' }, 0)
+      .to(big.querySelector('span'), { clipPath: 'inset(0 0 0% 0)', duration: 1.2, ease: 'none' }, .3)
+      .to('#evh', { autoAlpha: 1, duration: .6 }, 1.4)
+      .add(Flip.fit(big, slot, { scale: true, duration: 1.4, ease: 'power3.inOut' }), 1.5)
+      .to(big, { autoAlpha: 0, duration: .15 }, 2.85).to(slotTxt, { opacity: 1, duration: .15 }, 2.85)
+      .to('#evsub', { autoAlpha: 1, y: 0, duration: .6 }, 2.6);
+    rows.forEach((r, i) => tl.to(r, { autoAlpha: 1, y: 0, duration: .6, ease: 'power3.out' }, 3.1 + i * .55));
+    figs.forEach((f, i) => tl.to(f, { autoAlpha: 1, y: 0, duration: .7, ease: 'power3.out' }, 3.4 + i * .8));
+    tl.to({}, { duration: .6 });
+    evTL = tl;
+  }
+  buildEv();
+
+  /* ---------- Scene C : pinned space gallery ---------- */
+  const figsC = $$('#spPic figure'), items = $$('#spCopy .item'), lis = $$('#spList li'), cur = $('#spCur');
+  const N = figsC.length; let cIdx = -1;
+  gsap.set(figsC[0], { autoAlpha: 1 }); gsap.set(figsC[0].querySelector('img'), { scale: 1 });
+  items.forEach((it, i) => { if (i) it.setAttribute('inert', ''); });
+  const showItem = (i, dir) => {
+    items.forEach((it, k) => {
+      if (k === i) { it.removeAttribute('inert'); gsap.fromTo(it, { autoAlpha: 0, y: dir > 0 ? 26 : -26 }, { autoAlpha: 1, y: 0, duration: .7, ease: 'power3.out', overwrite: true }); }
+      else if (k === cIdx) { it.setAttribute('inert', ''); gsap.to(it, { autoAlpha: 0, y: dir > 0 ? -20 : 20, duration: .35, ease: 'power2.in', overwrite: true }); }
+    });
+    gsap.fromTo(cur, { yPercent: dir > 0 ? 40 : -40, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: .6, ease: 'power3.out', overwrite: true, onStart: () => { cur.textContent = String(i + 1).padStart(2, '0'); } });
+  };
+  ScrollTrigger.create({ trigger: '#spaces', start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: st => {
+    const p = st.progress, seg = 1 / N;
+    const i = Math.min(N - 1, Math.floor(p / seg)), local = (p - i * seg) / seg;
+    // crossfade in the last 22% of each segment
+    const f = Math.min(1, Math.max(0, (local - .78) / .22));
+    figsC.forEach((fg, k) => {
+      const img = fg.querySelector('img');
+      let a = 0, sc = 1.08;
+      if (k === i) { a = 1 - f; sc = 1 + .06 * local * (1 - f) + .0; }
+      else if (k === i + 1) { a = f; sc = 1.08 - .08 * f; }
+      fg.style.opacity = a; fg.style.visibility = a > 0 ? 'visible' : 'hidden'; img.style.transform = `scale(${sc})`;
+    });
+    const ti = f > .5 && i < N - 1 ? i + 1 : i;
+    if (ti !== cIdx) { showItem(ti, ti > cIdx ? 1 : -1); cIdx = ti; }
+    lis.forEach((li, k) => { li.classList.toggle('on', k === ti); li.style.setProperty('--f', k < i ? 1 : k === i ? Math.min(1, local / .78).toFixed(3) : 0); });
+  } });
+
+  /* header: give the CTA readable contrast when it sits over bright photo areas on the right */
+  let rw = innerWidth; addEventListener('resize', () => { if (mobile() && innerWidth === rw) return; rw = innerWidth; buildEv(); ScrollTrigger.refresh(); });
 })();
 </script>
 <script type="module">
 import * as THREE from 'three';
-
-const body = document.body;
-if (!body.classList.contains('static')) {
-  window.__p2 = {}; clearTimeout(window.__p2fail);
+const body = document.body, P = window.__P2;
+if (!P.S) {
   const $ = s => document.querySelector(s);
-  const lab = $('#lab'), canvas = $('#gl'), steps = [...document.querySelectorAll('.step')], navs = [...document.querySelectorAll('.snav button')];
-  const mq = matchMedia('(max-width: 900px)');
-  const chrome = [document.querySelector('.snav'), document.querySelector('.brand-note')];
-  let mobile = mq.matches;
+  const view = $('#view'), fc = $('#fc'), glc = $('#gl'), fb = $('.view img.fb');
+  const ret = $('#ret'), tag = $('#tag'), zoomTxt = $('#zoomTxt'), hLine = $('#hLine'), vLine = $('#vLine'), leader = $('#leader'), corners = $('#corners'), ovl = $('#ovl');
+  const caps = [...document.querySelectorAll('.figcap .cap')];
+  const isM = () => matchMedia('(max-width: 767px)').matches;
+  let mob = isM();
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
-  const DPR = () => Math.min(devicePixelRatio, mobile ? 1.5 : 1.75);
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.9;
-  renderer.setClearColor(0x061b20, 1);
+  /* frame scrub (2D) — s2 microscope push-in */
+  const fs = new FrameScrub(fc, { base: mob ? '../_media/s2/m/' : '../_media/s2/pc/', count: 120, ext: 'webp', focusX: .5, focusY: mob ? .45 : .5 });
+  P.fs = fs;
+
+  /* photos: id → {src, w, h, target(u,v from top-left), focus} */
+  const PH = {
+    s2: { src: mob ? '../_media/s2/m/120.webp' : '../_media/s2/pc/120.webp', u: mob ? .5 : .5, v: mob ? .42 : .40, fx: .5, fy: mob ? .45 : .5 },
+    c:  { src: mob ? '../_media/img/087-1200.webp' : '../_media/img/087.webp', u: .44, v: .50, fx: .5, fy: .55 },
+    d:  { src: mob ? '../_media/img/072-1200.webp' : '../_media/img/072.webp', u: .56, v: .44, fx: .5, fy: .5 },
+    r:  { src: mob ? '../_media/img/096-1200.webp' : '../_media/img/096.webp', u: .30, v: .44, fx: .4, fy: .5 },
+  };
+  const ORDER = ['s2', 'c', 'd', 'r'];
+  // photo timeline: photo X is fully shown from p (crossfade of width .06 ends at p)
+  const PT = [['s2', 0], ['c', .34], ['d', .60], ['c', .69], ['r', .78]];
+  const XW = .06;
+  // lens keyframes: photo-space target, scale s (0..1), zoom z
+  const K = [
+    { p: .20, ph: 's2', s: 0.0, z: 1.0 }, { p: .27, ph: 's2', s: 1.0, z: 1.0 }, { p: .33, ph: 's2', s: 1.0, z: 1.75 },
+    { p: .40, ph: 'c', s: 1.0, z: 1.85 }, { p: .55, ph: 'c', s: 1.0, z: 1.95 },
+    { p: .62, ph: 'd', s: .92, z: 1.85 }, { p: .67, ph: 'd', s: .92, z: 1.95 },
+    { p: .71, ph: 'c', s: .92, z: 1.85 }, { p: .76, ph: 'c', s: .92, z: 1.95 },
+    { p: .80, ph: 'r', s: .92, z: 1.85 }, { p: .86, ph: 'r', s: .92, z: 1.95 },
+    { p: 1.00, ph: 'r', s: .18, z: 1.3, du: -.12, dv: -.2 },
+  ];
+  const sm = t => t * t * (3 - 2 * t), clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  /* three ------------------------------------------------------------ */
+  const renderer = new THREE.WebGLRenderer({ canvas: glc, antialias: true, powerPreference: 'high-performance' });
+  renderer.toneMapping = THREE.NoToneMapping; renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.setClearColor(0x10202c, 1);
   const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100); camera.position.set(0, 0, 10);
+  const ZP = -2.2, ZD = -0.34;   // photo plane z, magnifier disk z
+  // studio environment for the glass (broad soft boxes → long highlights, no hotspots)
   const pmrem = new THREE.PMREMGenerator(renderer);
-  // studio environment: wide softboxes and thin strips → broad highlights + fine rim lines (no small square hotspots)
-  const envScene = new THREE.Scene(); envScene.background = new THREE.Color(0x04161a);
-  const box = (w, h, c, x, y, z, ry = 0, rx = 0) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide })); m.position.set(x, y, z); m.rotation.set(rx, ry, 0); envScene.add(m); };
-  box(16, 3.2, new THREE.Color(2.2, 2.4, 2.35), 0, 7, 0, 0, Math.PI / 2);      // overhead long softbox
-  box(0.5, 12, new THREE.Color(3.2, 3.4, 3.3), -8, 0, 1, Math.PI / 2);         // left strip → rim line
-  box(0.35, 12, new THREE.Color(2.0, 2.3, 2.2), 8, 0, -1, -Math.PI / 2);       // right strip
-  box(10, 6, new THREE.Color(0.35, 0.55, 0.5), 0, -1, 9, Math.PI);           // soft front fill (teal)
-  box(18, 2, new THREE.Color(0.25, 0.42, 0.38), 0, -6, 0, 0, -Math.PI / 2);    // floor bounce
-  scene.environment = pmrem.fromScene(envScene, 0.035).texture;
-  scene.environmentIntensity = 1.0;
-  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-  camera.position.set(0, 0, 10);
+  const env = new THREE.Scene(); env.background = new THREE.Color(0x0b1620);
+  const box = (w, h, c, x, y, z, ry = 0, rx = 0) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide })); m.position.set(x, y, z); m.rotation.set(rx, ry, 0); env.add(m); };
+  box(16, 3, new THREE.Color(1.6, 1.7, 1.75), 0, 7, 0, 0, Math.PI / 2);
+  box(.5, 12, new THREE.Color(2.0, 2.2, 2.3), -8, 0, 1, Math.PI / 2);
+  box(.35, 12, new THREE.Color(1.3, 1.5, 1.6), 8, 0, -1, -Math.PI / 2);
+  box(10, 6, new THREE.Color(.25, .35, .4), 0, -1, 9, Math.PI);
+  scene.environment = pmrem.fromScene(env, .04).texture; scene.environmentIntensity = 1;
 
-  // opaque backdrop: broad soft light + one wide diagonal band — no lines (transmission refracts opaque objects only)
-  const bgc = document.createElement('canvas'); bgc.width = 2048; bgc.height = 1024;
-  { const g = bgc.getContext('2d');
-    g.fillStyle = '#061B20'; g.fillRect(0, 0, 2048, 1024);
-    let gr = g.createRadialGradient(1024, 560, 0, 1024, 560, 760);
-    gr.addColorStop(0, '#1f4440'); gr.addColorStop(0.3, '#0f2e30'); gr.addColorStop(0.7, '#081f24'); gr.addColorStop(1, '#061B20');
-    g.fillStyle = gr; g.fillRect(0, 0, 2048, 1024);
-    g.save(); g.translate(1024, 512); g.rotate(-0.42);
-    gr = g.createLinearGradient(0, -260, 0, 260);
-    gr.addColorStop(0, 'rgba(162,213,197,0)'); gr.addColorStop(0.44, 'rgba(190,226,214,.08)'); gr.addColorStop(0.5, 'rgba(220,240,233,.16)'); gr.addColorStop(0.56, 'rgba(190,226,214,.08)'); gr.addColorStop(1, 'rgba(162,213,197,0)');
-    g.fillStyle = gr; g.fillRect(-1400, -260, 2800, 520); g.restore();
-    gr = g.createRadialGradient(1300, 300, 0, 1300, 300, 420);
-    gr.addColorStop(0, 'rgba(237,246,242,.07)'); gr.addColorStop(1, 'rgba(237,246,242,0)');
-    g.fillStyle = gr; g.fillRect(0, 0, 2048, 1024); }
-  const bgTex = new THREE.CanvasTexture(bgc); bgTex.colorSpace = THREE.SRGBColorSpace;
-  const back = new THREE.Mesh(new THREE.PlaneGeometry(44, 22), new THREE.MeshBasicMaterial({ map: bgTex }));
-  back.position.z = -6; scene.add(back);
+  /* textures */
+  const loader = new THREE.TextureLoader(); const TEX = {}; const ready = {};
+  const loadTex = id => new Promise(res => loader.load(PH[id].src, t => { t.colorSpace = THREE.SRGBColorSpace; t.minFilter = THREE.LinearMipmapLinearFilter; t.generateMipmaps = true; t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy()); TEX[id] = t; ready[id] = 1; res(t); }, undefined, () => res(null)));
+  const blank = new THREE.DataTexture(new Uint8Array([16, 32, 44, 255]), 1, 1); blank.needsUpdate = true; blank.colorSpace = THREE.SRGBColorSpace;
 
-  // soft contact light under the lens (not refracted; sits in front of the backdrop)
-  const shc = document.createElement('canvas'); shc.width = shc.height = 256;
-  { const g = shc.getContext('2d'); const gr = g.createRadialGradient(128, 128, 0, 128, 128, 128);
-    gr.addColorStop(0, 'rgba(190,232,218,.55)'); gr.addColorStop(0.45, 'rgba(120,180,165,.18)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256); }
-  const shTex = new THREE.CanvasTexture(shc);
-  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: shTex, transparent: true, depthWrite: false, opacity: .9 }));
-  shadow.rotation.x = -Math.PI / 2; scene.add(shadow);
+  const frag = `
+    uniform sampler2D tA, tB; uniform vec2 sA, oA, sB, oB; uniform float mixv, dim, vig;
+    uniform vec2 center, rad; uniform float zoom; uniform int mag;
+    varying vec2 vUv;
+    void main(){
+      vec2 pu = vUv;
+      float e = 0.0;
+      if (mag == 1) { pu = center + (vUv - 0.5) * 2.0 * rad; pu = center + (pu - center) / zoom; e = length((vUv - 0.5) * 2.0); }
+      vec3 a = texture2D(tA, pu * sA + oA).rgb;
+      vec3 b = texture2D(tB, pu * sB + oB).rgb;
+      vec3 c = mix(a, b, mixv) * dim;
+      c *= 1.0 - vig * smoothstep(0.72, 1.0, e);
+      gl_FragColor = vec4(c, 1.0);
+      #include <colorspace_fragment>
+    }`;
+  const vert = `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`;
+  const mkU = (mag) => ({ tA: { value: blank }, tB: { value: blank }, sA: { value: new THREE.Vector2(1, 1) }, oA: { value: new THREE.Vector2() }, sB: { value: new THREE.Vector2(1, 1) }, oB: { value: new THREE.Vector2() },
+    mixv: { value: 0 }, dim: { value: 1 }, vig: { value: mag ? .22 : 0 }, center: { value: new THREE.Vector2(.5, .5) }, rad: { value: new THREE.Vector2(.2, .2) }, zoom: { value: 1 }, mag: { value: mag ? 1 : 0 } });
+  const photoMat = new THREE.ShaderMaterial({ uniforms: mkU(false), vertexShader: vert, fragmentShader: frag });
+  const diskMat = new THREE.ShaderMaterial({ uniforms: mkU(true), vertexShader: vert, fragmentShader: frag });
+  const photo = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), photoMat); photo.position.z = ZP; scene.add(photo);
+  const disk = new THREE.Mesh(new THREE.CircleGeometry(1, 96), diskMat); disk.position.z = ZD; scene.add(disk);
 
-  // thin convex lens: lathe profile, diameter 3, centre thickness ~0.7 (≈ 1 : 0.23)
-  const R = 1.5, H = 0.3, E = 0.05, pts = [];
-  const N = 48;
-  for (let i = 0; i <= N; i++) { const r = R * i / N; pts.push(new THREE.Vector2(r, E + H * (1 - (r / R) ** 2))); }
-  for (let i = 1; i <= 6; i++) { const a = Math.PI / 2 - Math.PI * i / 6; pts.push(new THREE.Vector2(R + Math.cos(a) * E * 0.6, Math.sin(a) * E)); }
-  for (let i = N - 1; i >= 0; i--) { const r = R * i / N; pts.push(new THREE.Vector2(r, -(E + H * (1 - (r / R) ** 2)))); }
-  const lensGeo = new THREE.LatheGeometry(pts.reverse(), 128);
-  lensGeo.computeVertexNormals();
-  const glass = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1, thickness: 0.9, ior: 1.52, roughness: 0.012,
-    dispersion: 0.28, attenuationColor: new THREE.Color('#d8f2e8'), attenuationDistance: 40,
-    clearcoat: 1, clearcoatRoughness: 0.01, specularIntensity: 1, envMapIntensity: 1.15, transparent: true });
-  const lens = new THREE.Group();
-  const body3 = new THREE.Mesh(lensGeo, glass); body3.rotation.x = Math.PI / 2; lens.add(body3);
-  // fine rim highlight
-  const rimMat = new THREE.MeshPhysicalMaterial({ color: 0xdff3ec, metalness: 1, roughness: 0.12, envMapIntensity: 1.6, transparent: true });
-  const rimMesh = new THREE.Mesh(new THREE.TorusGeometry(R + 0.012, 0.016, 16, 220), rimMat); lens.add(rimMesh);
+  /* thin convex lens (lathe), physical glass */
+  const R = 1.5, H = .3, E = .05, pts = [], NN = 48;
+  for (let i = 0; i <= NN; i++) { const r = R * i / NN; pts.push(new THREE.Vector2(r, E + H * (1 - (r / R) ** 2))); }
+  for (let i = 1; i <= 6; i++) { const a = Math.PI / 2 - Math.PI * i / 6; pts.push(new THREE.Vector2(R + Math.cos(a) * E * .6, Math.sin(a) * E)); }
+  for (let i = NN - 1; i >= 0; i--) { const r = R * i / NN; pts.push(new THREE.Vector2(r, -(E + H * (1 - (r / R) ** 2)))); }
+  const lensGeo = new THREE.LatheGeometry(pts.reverse(), 128); lensGeo.computeVertexNormals();
+  const glass = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1, thickness: .7, ior: 1.5, roughness: .02, dispersion: .18,
+    attenuationColor: new THREE.Color('#dff0f4'), attenuationDistance: 40, clearcoat: 1, clearcoatRoughness: .02, specularIntensity: .9, envMapIntensity: .9, transparent: true });
+  const lens = new THREE.Group(); const lbody = new THREE.Mesh(lensGeo, glass); lbody.rotation.x = Math.PI / 2; lens.add(lbody);
+  const rimMat = new THREE.MeshPhysicalMaterial({ color: 0xe6f1f4, metalness: 1, roughness: .18, envMapIntensity: 1.2, transparent: true });
+  lens.add(new THREE.Mesh(new THREE.TorusGeometry(R + .012, .014, 16, 220), rimMat));
   scene.add(lens);
-  // lighting comes only from the studio environment (punctual lights leave a small hotspot on glass)
 
-  // keyframes: x,y world at z=0, s scale, ry yaw, rx tilt (0 = facing camera), k key-light intensity
-  const KD = [
-    { p: 0.00, x: 2.55, y: -0.45, s: 1.00, ry: -0.62, rx: 0.42, k: 2.2 },
-    { p: 0.20, x: 2.45, y: -0.40, s: 1.02, ry: -0.44, rx: 0.40, k: 2.2 },   // hero: right, copy reads first (0 → .18 rad)
-    { p: 0.30, x: -2.35, y: 0.05, s: 1.10, ry: 0.55, rx: 0.30, k: 2.4 },    // moves left once the hero copy has left
-    { p: 0.45, x: -2.30, y: 0.00, s: 1.12, ry: 0.80, rx: 0.42, k: 1.6 },    // 01 살펴보다
-    { p: 0.65, x: -2.20, y: 0.10, s: 1.08, ry: -0.70, rx: 0.38, k: 3.0 },   // 02 이야기하다: light/camera change, not size
-    { p: 0.72, x: -2.75, y: 0.55, s: 0.62, ry: -1.10, rx: 0.55, k: 2.2 },   // 03 확인하다: retreats to a small object
-    { p: 0.86, x: -2.85, y: 0.60, s: 0.56, ry: -1.40, rx: 0.60, k: 2.0 },
-    { p: 1.00, x: -3.20, y: 1.60, s: 0.40, ry: -1.90, rx: 0.70, k: 1.6 },   // exits up-left while the page scrolls on
-  ];
-  const KM = [
-    { p: 0.00, x: 0, y: 1.65, s: 0.6, ry: -0.6, rx: 0.42, k: 2.2 },
-    { p: 0.20, x: 0, y: 1.65, s: 0.6, ry: -0.42, rx: 0.4, k: 2.2 },
-    { p: 0.30, x: 0, y: 1.7, s: 0.6, ry: 0.5, rx: 0.3, k: 2.4 },
-    { p: 0.45, x: 0, y: 1.7, s: 0.6, ry: 0.8, rx: 0.42, k: 1.6 },
-    { p: 0.65, x: 0, y: 1.7, s: 0.58, ry: -0.7, rx: 0.38, k: 3.0 },
-    { p: 0.72, x: 0, y: 2.15, s: 0.42, ry: -1.1, rx: 0.55, k: 2.2 },
-    { p: 0.86, x: 0, y: 2.15, s: 0.40, ry: -1.4, rx: 0.6, k: 2.0 },
-    { p: 1.00, x: 0, y: 3.40, s: 0.32, ry: -1.9, rx: 0.7, k: 1.6 },
-  ];
-  // copy windows: hero, (gap while the lens crosses), 01, 02, 03
-  const W = [[-1, 0.19], [0.30, 0.45], [0.46, 0.64], [0.66, 1.01]];   // 03 stays until the next section takes over
-  const SEEK = [0, 0.375, 0.55, 0.78];
-
-  const smooth = t => t * t * (3 - 2 * t);
-  function sample(K, p) {
-    let i = 0; while (i < K.length - 2 && p > K[i + 1].p) i++;
-    const a = K[i], b = K[i + 1], f = smooth(Math.min(1, Math.max(0, (p - a.p) / (b.p - a.p))));
-    const o = {}; for (const k of ['x', 'y', 's', 'ry', 'rx', 'k']) o[k] = a[k] + (b[k] - a[k]) * f; return o;
-  }
-
-  let target = 0, cur = 0, px = 0, py = 0, tpx = 0, tpy = 0, visible = true, active = -2;
-  const progress = () => { const r = lab.getBoundingClientRect(); return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight))); };
-  const jump = (p, smoothScroll) => { const r = lab.getBoundingClientRect(); const y = scrollY + r.top + p * (r.height - innerHeight); scrollTo({ top: y, behavior: smoothScroll ? 'smooth' : 'auto' }); if (!smoothScroll) target = cur = p; };
-  addEventListener('scroll', () => { target = progress(); }, { passive: true });
-  addEventListener('pointermove', e => { tpx = (e.clientX / innerWidth - .5); tpy = (e.clientY / innerHeight - .5); }, { passive: true });
-  let tx0 = null; addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
-  addEventListener('touchmove', e => { if (tx0 != null) tpx = Math.max(-.5, Math.min(.5, (e.touches[0].clientX - tx0) / innerWidth)); }, { passive: true });
-  addEventListener('touchend', () => { tx0 = null; tpx = 0; }, { passive: true });
-  document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); jump(SEEK[+el.dataset.go], true); }));
-
+  /* sizing */
+  let vw = 1, vh = 1, PW = 1, PHh = 1, ASP = 1;
   function resize() {
-    mobile = mq.matches;
-    const w = innerWidth, h = canvas.parentElement.clientHeight;
-    renderer.setPixelRatio(DPR()); renderer.setSize(w, h, false);
-    camera.aspect = w / h; camera.fov = mobile ? 40 : 30; camera.updateProjectionMatrix();
+    mob = isM();
+    vw = view.clientWidth; vh = view.clientHeight; ASP = vw / vh;
+    renderer.setPixelRatio(Math.min(devicePixelRatio, mob ? 1.5 : 1.75)); renderer.setSize(vw, vh, false);
+    camera.aspect = ASP; camera.fov = mob ? 38 : 30; camera.updateProjectionMatrix();
+    PHh = 2 * (10 - ZP) * Math.tan(camera.fov * Math.PI / 360); PW = PHh * ASP;
+    photo.scale.set(PW, PHh, 1);
+    ovl.setAttribute('viewBox', `0 0 ${vw} ${vh}`); ovl.setAttribute('width', vw); ovl.setAttribute('height', vh);
+    const m = 18, l = 22; corners.setAttribute('d', `M${m} ${m + l}V${m}H${m + l} M${vw - m - l} ${m}H${vw - m}V${m + l} M${m} ${vh - m - l}V${vh - m}H${m + l} M${vw - m - l} ${vh - m}H${vw - m}V${vh - m - l}`);
+    corners.setAttribute('opacity', .55);
   }
-  let rw = innerWidth; addEventListener('resize', () => { if (mobile && innerWidth === rw) return; rw = innerWidth; resize(); });
+  let rw = innerWidth; addEventListener('resize', () => { if (mob && innerWidth === rw) return; rw = innerWidth; resize(); });
   resize();
-  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(lab);
 
-  function setStep(p) {
-    let s = W.findIndex(([a, b]) => p > a && p <= b); if (p <= 0) s = 0;
-    if (s !== active) {
-      steps.forEach((el, i) => { el.classList.toggle('on', i === s); el.classList.toggle('past', s > i || (s < 0 && i > 0 && p > W[i][1])); el.toggleAttribute('inert', i !== s); });
-      active = s;
-    }
-    navs.forEach((n, i) => { const [a, z] = W[i + 1]; n.style.setProperty('--f', Math.min(1, Math.max(0, (p - a) / (z - a))).toFixed(3)); n.classList.toggle('on', s === i + 1); });
+  const cover = id => { // scale/offset so the texture covers the plane
+    const t = TEX[id]; if (!t) return { s: [1, 1], o: [0, 0] };
+    const ta = t.image.width / t.image.height, p = PH[id];
+    if (ta > ASP) { const sx = ASP / ta; return { s: [sx, 1], o: [(1 - sx) * p.fx, 0] }; }
+    const sy = ta / ASP; return { s: [1, sy], o: [0, (1 - sy) * (1 - p.fy)] };
+  };
+  const toPlane = (id, u, v) => { const c = cover(id); return [(u - c.o[0]) / c.s[0], (1 - v - c.o[1]) / c.s[1]]; }; // texture (from top-left) → plane uv (v up)
+  const setPair = (U, a, b, m) => { const ca = cover(a), cb = cover(b); U.tA.value = TEX[a] || blank; U.tB.value = TEX[b] || blank; U.sA.value.set(...ca.s); U.oA.value.set(...ca.o); U.sB.value.set(...cb.s); U.oB.value.set(...cb.o); U.mixv.value = m; };
+
+  function photoAt(p) { // → {a,b,m}
+    let a = PT[0][0], b = a, m = 0;
+    for (let i = 1; i < PT.length; i++) { const [id, at] = PT[i]; if (p >= at - XW) { a = PT[i - 1][0]; b = id; m = sm(clamp((p - (at - XW)) / XW, 0, 1)); if (m >= 1) { a = id; m = 0; } } }
+    return { a, b, m };
+  }
+  function lensAt(p) {
+    let i = 0; while (i < K.length - 2 && p > K[i + 1].p) i++;
+    const a = K[i], b = K[i + 1], f = sm(clamp((p - a.p) / (b.p - a.p), 0, 1));
+    const pa = toPlane(a.ph, PH[a.ph].u + (a.du || 0), PH[a.ph].v + (a.dv || 0)), pb = toPlane(b.ph, PH[b.ph].u + (b.du || 0), PH[b.ph].v + (b.dv || 0));
+    return { u: pa[0] + (pb[0] - pa[0]) * f, v: pa[1] + (pb[1] - pa[1]) * f, s: a.s + (b.s - a.s) * f, z: a.z + (b.z - a.z) * f };
   }
 
-  const clock = new THREE.Clock(); let frames = 0, t0 = performance.now();
-  Object.assign(window.__p2, { get p() { return cur; }, fps: 0, jump: p => jump(p, false) });
-  renderer.setAnimationLoop(() => {
+  /* pointer → tiny tilt */
+  let tpx = 0, tpy = 0, px = 0, py = 0;
+  addEventListener('pointermove', e => { tpx = e.clientX / innerWidth - .5; tpy = e.clientY / innerHeight - .5; }, { passive: true });
+
+  let glOn = false, visible = true, capCur = '';
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(view);
+  const V3 = new THREE.Vector3();
+  const clock = new THREE.Clock();
+  function frame() {
     if (!visible) return;
-    const t = clock.getElapsedTime();
-    cur += (target - cur) * 0.09; if (Math.abs(target - cur) < 1e-4) cur = target;
-    px += (tpx - px) * 0.06; py += (tpy - py) * 0.06;
-    const k = sample(mobile ? KM : KD, cur);
-    lens.position.set(k.x, k.y + Math.sin(t * .55) * .04, 0);
-    lens.scale.setScalar(k.s);
-    // pointer tilt capped at 0.06 rad
-    lens.rotation.set(k.rx + py * 0.12, k.ry + px * 0.12 + Math.sin(t * .3) * .03, 0.08);
-    scene.environmentIntensity = 0.75 + k.k * 0.18;
-    back.position.x = k.x * 0.35; back.position.y = k.y * 0.25;
-    shadow.position.set(k.x, k.y - R * k.s * 0.95 - 0.12, 0.2);
-    shadow.scale.set(R * 3.0 * k.s, R * 1.1 * k.s, 1);
-    const fade = 1 - smooth(Math.min(1, Math.max(0, (cur - 0.9) / 0.1)));
-    glass.opacity = rimMat.opacity = fade; shadow.material.opacity = 0.9 * fade;
-    setStep(cur);
-    chrome.forEach(el => el.style.opacity = (1 - smooth(Math.min(1, Math.max(0, (cur - 0.88) / 0.08)))).toFixed(3));
-    renderer.render(scene, camera);
-    frames++; const n = performance.now(); if (n - t0 > 1000) { window.__p2.fps = Math.round(frames * 1000 / (n - t0)); frames = 0; t0 = n; }
-  });
-  requestAnimationFrame(() => canvas.classList.add('on'));
-  target = cur = progress();
+    const p = P.A.p, t = clock.getElapsedTime();
+    // 0 → .20 : frame scrub
+    const f = sm(clamp(p / .20, 0, 1)); fs.progress(f);
+    // reticle travels from centre to the objective (plane coords of s2 target)
+    const [su, sv] = toPlane('s2', PH.s2.u, PH.s2.v);
+    const ru = .5 + (su - .5) * f, rv = .5 + ((1 - sv) - .5) * f;
+    const retA = p < .02 ? 0 : (1 - sm(clamp((p - .19) / .05, 0, 1))) * sm(clamp((p - .02) / .06, 0, 1));
+    ret.style.opacity = retA; ret.style.transform = `translate(${(ru * vw).toFixed(1)}px,${(rv * vh).toFixed(1)}px) scale(${(1 - .25 * f).toFixed(3)})`;
+    // GL layer in over frames (.19 → .25)
+    const g = sm(clamp((p - .19) / .06, 0, 1));
+    if (!glOn && g > 0) { glOn = true; }
+    glc.style.opacity = g; if (body.classList.contains('nogl')) fb.style.opacity = g;
+    // photo mix
+    const ph = photoAt(p); setPair(photoMat.uniforms, ph.a, ph.b, ph.m); setPair(diskMat.uniforms, ph.a, ph.b, ph.m);
+    const capId = ph.m > .5 ? ph.b : ph.a; if (capId !== capCur) { capCur = capId; caps.forEach(c => c.classList.toggle('on', c.dataset.f === capId)); }
+    // lens
+    const L = lensAt(p);
+    px += (tpx - px) * .06; py += (tpy - py) * .06;
+    const wx = (L.u - .5) * PW, wy = (L.v - .5) * PHh;             // on photo plane
+    const kL = 10 / (10 - ZP), kD = (10 - ZD) / (10 - ZP);          // perspective scale to z=0 and z=ZD
+    const s = Math.max(.0001, L.s);
+    lens.position.set(wx * kL, wy * kL + Math.sin(t * .6) * .015, 0); lens.scale.setScalar(s);
+    lens.rotation.set(.06 + py * .12, px * .14 + Math.sin(t * .35) * .025, 0);
+    disk.position.set(wx * kD, wy * kD, ZD); const rd = R * s * .975; disk.scale.setScalar(rd * kD);
+    const rp = rd * kD / kD * ((10 - ZP) / (10 - ZD)); // disk radius projected onto the photo plane
+    diskMat.uniforms.center.value.set(L.u, L.v); diskMat.uniforms.rad.value.set(rp / PW, rp / PHh); diskMat.uniforms.zoom.value = L.z;
+    const dim = 1 - .35 * sm(clamp((p - .86) / .14, 0, 1)); photoMat.uniforms.dim.value = dim; diskMat.uniforms.dim.value = dim;
+    glass.opacity = rimMat.opacity = clamp(s * 2, 0, 1);
+    disk.visible = s > .02; lens.visible = s > .02;
+    // overlay: coordinate hairlines through the lens, leader line + zoom tag
+    const on = s > .5 && p < .9;
+    V3.copy(lens.position).project(camera); const lx = (V3.x * .5 + .5) * vw, ly = (-V3.y * .5 + .5) * vh;
+    const lr = (R * s * kL * 0) + (R * s) * (vh / (2 * 10 * Math.tan(camera.fov * Math.PI / 360))); // lens radius in px at z=0
+    const lineA = on ? .3 : p < .19 ? .3 * retA : 0;
+    const cx = on ? lx : ru * vw, cy = on ? ly : rv * vh;
+    hLine.setAttribute('x1', 0); hLine.setAttribute('x2', vw); hLine.setAttribute('y1', cy); hLine.setAttribute('y2', cy); hLine.setAttribute('opacity', lineA);
+    vLine.setAttribute('y1', 0); vLine.setAttribute('y2', vh); vLine.setAttribute('x1', cx); vLine.setAttribute('x2', cx); vLine.setAttribute('opacity', lineA);
+    const tx = vw - 16 - tag.offsetWidth / 2, ty = 16 + tag.offsetHeight / 2;
+    const ang = Math.atan2(ty - ly, tx - lx); const ex = lx + Math.cos(ang) * (lr + 6), ey = ly + Math.sin(ang) * (lr + 6);
+    leader.setAttribute('x1', tx); leader.setAttribute('y1', ty); leader.setAttribute('x2', ex); leader.setAttribute('y2', ey); leader.setAttribute('opacity', on ? .6 : 0);
+    tag.style.opacity = on ? 1 : 0; const zt = '×' + L.z.toFixed(1); if (zoomTxt.textContent !== zt) zoomTxt.textContent = zt;
+    if (g > 0 && !body.classList.contains('nogl')) renderer.render(scene, camera);
+  }
+  Promise.all([loadTex('s2'), loadTex('c')]).then(() => { window.__p2 = { renderer, fs }; clearTimeout(window.__glfail); gsap.ticker.add(frame); loadTex('d'); loadTex('r'); });
+  addEventListener('resize', () => { /* photo scale already updated in resize() */ });
 }
 </script>
 </body>

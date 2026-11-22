@@ -11,192 +11,311 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../_lib/lenis.css">
 <link rel="preload" as="image" href="img/key-a.webp" media="(min-width: 901px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/key-a-m.webp" media="(max-width: 900px)" fetchpriority="high">
 <style>
 :root{
-  --paper:#FFFFFF; --ink:#231F20; --wine:#802B3A; --wine-l:#B5646E; --cream:#F7F3F1;
-  --rule:rgba(35,31,32,.16); --mute:rgba(35,31,32,.62);
+  --paper:#F4EFE8; --white:#FFFFFF; --ink:#221B19; --wine:#7E2B3A; --wine-d:#5E1F2B; --wine-l:#C98A95; --cream:#F7F1EA;
+  --rule:rgba(34,27,25,.16); --mute:rgba(34,27,25,.62);
   --disp:'Bodoni Moda','Didot','Times New Roman',serif;
-  --serif:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',sans-serif;
   --sans:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',sans-serif;
   --gutter:clamp(20px,3.4vw,56px); --bar-h:60px; --sa:env(safe-area-inset-bottom,0px);
+  --arch:clamp(56px,8vw,160px);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--paper);-webkit-text-size-adjust:100%}
+html{background:var(--wine);-webkit-text-size-adjust:100%}
 body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
-.eb{font-family:var(--disp);font-style:italic;font-weight:400;font-size:15px;letter-spacing:.02em}
+canvas{display:block}
+.eb{font-family:var(--disp);font-style:italic;font-weight:400;font-size:15px;letter-spacing:.03em}
+.lab{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+.ai{font-size:11px;letter-spacing:.04em;opacity:.78}
 
-/* header */
-.hd{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:18px var(--gutter);color:var(--cream);pointer-events:none;transition:color .35s,background .35s}
-.hd a{pointer-events:auto;position:relative}
-.hd a::before{content:"";position:absolute;inset:-12px}
+/* ---------- header ---------- */
+.hd{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:14px var(--gutter);color:#fff;pointer-events:none;transition:color .35s,background .35s,box-shadow .35s}
+.hd a{pointer-events:auto;position:relative;display:inline-flex;align-items:center;min-height:44px}
+.hd a::before{content:"";position:absolute;inset:-8px -12px}
 .wm{font-family:var(--disp);font-weight:900;font-size:22px;letter-spacing:.06em}
-.hd-cta{font-size:13px;font-weight:600;letter-spacing:.08em;border-bottom:1px solid currentColor;padding-bottom:3px}
-.hd.ink{color:var(--ink)}
-.hd.ink.solid{background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--rule)}
-.hd.on-dark{background:var(--wine)}
-.hd a{display:inline-flex;align-items:center;min-height:44px}
+.hd-vol{font-family:var(--disp);font-style:italic;font-size:15px;letter-spacing:.08em;position:absolute;left:50%;transform:translateX(-50%);transition:opacity .3s}
+.hd-cta{font-size:13px;font-weight:600;letter-spacing:.08em;border-bottom:1px solid currentColor;padding-bottom:3px;min-height:auto!important}
+.hd-cta::before{inset:-14px -12px!important}
+.hd.ink{color:var(--ink);background:rgba(244,239,232,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--rule)}
+.hd.ink .hd-vol{opacity:.7}
 
-/* ---------- mask scene ---------- */
-.mask-scene{position:relative}
+/* ---------- Scene A: cover + letter mask + live frames + pull quote ---------- */
+.cover{position:relative;height:620svh}
 .stage{position:relative;height:100svh;overflow:hidden;background:var(--wine)}
-.layer{position:absolute;inset:0}
-.layer img{width:100%;height:100%;object-fit:cover}
 .mast,.edit{position:absolute;z-index:3;pointer-events:none;max-width:none}
 .cv{position:absolute;inset:0;z-index:4;color:#fff;pointer-events:none}
 .cv a{pointer-events:auto}
 .cv-meta{position:absolute;left:var(--gutter);right:var(--gutter);top:var(--edB,300px);padding-top:14px;border-top:1px solid rgba(255,255,255,.42);display:flex;justify-content:space-between;gap:16px;font-family:var(--disp);font-style:italic;font-size:17px;letter-spacing:.08em}
 .cv-body{position:absolute;left:var(--gutter);right:var(--gutter);top:calc(var(--edB,300px) + 96px);bottom:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.96fr);gap:clamp(32px,5vw,80px)}
-.hero h1{font-family:var(--sans);font-weight:600;font-size:64px;line-height:1.18;letter-spacing:-.03em}
+.hero h1{font-family:var(--sans);font-weight:600;font-size:clamp(44px,4.6vw,66px);line-height:1.16;letter-spacing:-.03em}
 .hero p{margin-top:26px;font-size:17px;line-height:1.75;opacity:.88;max-width:24em}
 .hero .cta{display:inline-flex;align-items:center;gap:18px;margin-top:36px;min-height:52px;padding:0 26px;border:1px solid rgba(255,255,255,.8);border-radius:999px;font-weight:600;font-size:15px;transition:background .3s,color .3s}
 .hero .cta:hover{background:#fff;color:var(--wine)}
 .cv-figs{position:relative;margin-top:20px;align-self:start}
 .cv-figs figure{pointer-events:none}
-.cv-figs .ph{overflow:hidden}
+.cv-figs .ph{overflow:hidden;background:#3a1c22}
 .cv-figs img{width:100%;height:100%;object-fit:cover}
 .fig1 .ph{height:min(calc(100svh - var(--edB,300px) - 96px - 20px - 34px - 32px), 36vw)}   /* caption bottom ≤ viewport − 32px */
-/* Fig.02 sits to the LEFT of Fig.01 (no overlap), bottom-aligned, caption inside the first screen */
-.fig2{position:absolute;right:calc(100% + 28px);bottom:0;width:clamp(96px,8.5vw,120px)}   /* 2:3 → max 180px tall */
+.fig2{position:absolute;right:calc(100% + 28px);bottom:0;width:clamp(96px,8.5vw,120px)}   /* 2:3 → ≤180px tall, left of Fig.01 */
 @media (min-width:901px) and (max-height:700px){.fig2{display:none}}
 .fig2 .ph{aspect-ratio:2/3}
-.cv-figs figcaption{margin-top:8px;font-size:13px;color:rgba(255,255,255,.88)}
+.cv-figs figcaption{margin-top:8px;font-size:13px;color:rgba(255,255,255,.88);display:flex;justify-content:space-between;gap:12px}
 .cv-figs figcaption i{font-family:var(--disp);font-size:14px;margin-right:6px}
-#B{z-index:2}
-#B.masked{-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.chap{position:absolute;z-index:5;left:var(--gutter);bottom:calc(48px + var(--sa));color:var(--cream);opacity:0}
-.chap .eb{display:block;margin-bottom:10px;opacity:.85}
-.chap-grad{position:absolute;z-index:4;left:0;right:0;bottom:0;height:55%;background:linear-gradient(to top,rgba(20,12,12,.62),rgba(20,12,12,0));opacity:0;pointer-events:none}
-.chap h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.2vw,48px);line-height:1.25;letter-spacing:-.02em}
-.edge{position:absolute;z-index:3;left:var(--gutter);top:50%;font-family:var(--disp);font-weight:900;font-size:clamp(60px,7vw,120px);line-height:1;color:var(--wine);writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);opacity:0;pointer-events:none}
-.collage-bg{position:absolute;inset:0;z-index:1;background:var(--paper);opacity:0}
-.hd-vol{font-family:var(--disp);font-style:italic;font-size:16px;letter-spacing:.08em;position:absolute;left:50%;transform:translateX(-50%);transition:opacity .3s}
-.hd.ink .hd-vol{opacity:0}
+.film{position:absolute;inset:0;z-index:2;opacity:0;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;background:#3a1c22;transform-origin:50% 50%}
+.film canvas{position:absolute;inset:0;width:100%;height:100%}
+.film .ai{position:absolute;right:var(--gutter);bottom:calc(20px + var(--sa));color:rgba(255,255,255,.8);z-index:2}
+.chap{position:absolute;z-index:5;left:var(--gutter);bottom:calc(56px + var(--sa));color:#fff;opacity:0;max-width:min(560px,80vw)}
+.chap .eb{display:block;margin-bottom:12px;opacity:.9;font-size:17px}
+.chap h2{font-weight:500;font-size:clamp(30px,3.4vw,52px);line-height:1.22;letter-spacing:-.02em}
+.chap p{margin-top:14px;font-size:15px;opacity:.85;max-width:26em}
+.chap-grad{position:absolute;z-index:4;left:0;bottom:0;width:min(900px,100%);height:62%;background:radial-gradient(120% 100% at 0% 100%,rgba(22,10,12,.7),rgba(22,10,12,0) 70%);opacity:0;pointer-events:none}
+/* pull-quote page (paper curtain over the receding film) */
+.qpage{position:absolute;inset:0;z-index:7;background:var(--paper);color:var(--ink);border-radius:var(--arch) var(--arch) 0 0;transform:translateY(102%);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;padding:clamp(72px,12vh,120px) var(--gutter) calc(48px + var(--sa));overflow:hidden}
+.qpage .qmark{position:absolute;left:var(--gutter);top:clamp(56px,9vh,90px);font-family:var(--disp);font-size:clamp(120px,14vw,220px);line-height:.7;color:var(--wine);opacity:.22;pointer-events:none}
+.qpage .ql{position:relative;z-index:1;align-self:center}
+.qpage .ql .lab{color:var(--wine);display:block;margin-bottom:28px}
+.quote{font-weight:500;font-size:clamp(30px,3.6vw,56px);line-height:1.3;letter-spacing:-.025em}
+.qpage .by{margin-top:28px;font-family:var(--disp);font-style:italic;font-size:17px;color:var(--wine)}
+.qpage .qr{position:relative;align-self:end;justify-self:end;max-width:28em;font-size:15px;line-height:1.85;color:var(--mute)}
+.qpage .qr p + p{margin-top:12px}
+.qpage .nxt{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-top:22px;font-weight:600;font-size:14px;color:var(--ink);border-bottom:1px solid var(--ink);pointer-events:auto}
+.qpage .nxt i{font-family:var(--disp);color:var(--wine)}
 
-.card{position:absolute;z-index:4;opacity:0;will-change:transform}
-.card figure{overflow:hidden;background:#ddd}
-.card img{width:100%;height:100%;object-fit:cover}
-.cap{background:var(--paper);padding:10px 0 0;font-size:13px;line-height:1.5}
-.cap b{display:block;font-family:var(--disp);font-style:italic;font-weight:400;font-size:14px;color:var(--wine);margin-bottom:2px}
-.cap span{font-family:var(--serif);font-weight:500;font-size:15px}
-.cap a{display:inline-flex;min-height:44px;align-items:center;color:var(--wine);border-bottom:1px solid currentColor;font-size:13px;font-weight:600;margin-top:2px}
-.card.txt{background:var(--cream);padding:22px;border:1px solid var(--rule)}
-.card.txt ul{list-style:none;margin-top:10px}
-.card.txt li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--rule);font-size:14px}
-.card.txt li em{font-style:normal;color:var(--mute);font-size:12px}
-.card.txt li a{display:flex;justify-content:space-between;width:100%;min-height:44px;align-items:center}
-.capB{position:absolute;z-index:4;opacity:0;font-size:13px;background:var(--paper);padding:10px 0 0}
-.capB b{display:block;font-family:var(--disp);font-style:italic;font-weight:400;font-size:14px;color:var(--wine)}
-.capB span{font-family:var(--serif);font-weight:500;font-size:15px}
-
-/* ---------- reading sections ---------- */
-.sec{padding:clamp(96px,14vh,168px) var(--gutter)}
-.sec h2{font-family:var(--serif);font-weight:500;font-size:clamp(34px,3.8vw,60px);line-height:1.2;letter-spacing:-.025em}
-.sec .eb{color:var(--wine);display:block;margin-bottom:18px}
-.toc-h{display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--ink);font-family:var(--disp);font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+/* ---------- contents (pinned chapter index) ---------- */
+.toc{position:relative;height:480svh;background:var(--paper)}
+.toc .stage{background:var(--paper);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px);padding:calc(72px + 2vh) var(--gutter) calc(32px + var(--sa));color:var(--ink)}
+.toc-h{grid-column:1/-1;display:flex;justify-content:space-between;align-self:start;padding-bottom:12px;border-bottom:1px solid var(--ink);font-family:var(--disp);font-size:13px;letter-spacing:.18em;text-transform:uppercase}
 .toc-h i{letter-spacing:.04em;text-transform:none;font-size:14px}
-.space{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px clamp(32px,5vw,88px);align-items:start;margin-top:clamp(28px,4vh,48px)}
-.big-n{display:block;font-family:var(--disp);font-weight:400;font-size:clamp(110px,11vw,170px);line-height:.85;letter-spacing:-.04em}
-.space-copy h2{margin-top:22px}
-.space-copy p{margin-top:16px;font-size:17px;color:var(--mute)}
-.next{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-top:40px;font-size:14px;font-weight:600;border-bottom:1px solid var(--ink)}
-.next i{font-family:var(--disp);color:var(--wine);letter-spacing:.06em}
-.crop .ph{overflow:hidden;aspect-ratio:1728/1200}
-.crop img{width:100%;height:100%;object-fit:cover}
-.crop figcaption{display:flex;justify-content:space-between;margin-top:10px;font-size:13px;color:var(--mute)}
-.crop figcaption i{font-family:var(--disp);color:var(--wine);margin-right:6px}
-.toc{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);margin-top:clamp(56px,8vh,96px);border-top:1px solid var(--ink)}
-.toc li + li{border-left:1px solid var(--rule)}
-.toc a{display:flex;flex-direction:column;gap:2px;min-height:72px;padding:14px 14px 14px 0;font-weight:600;font-size:15px}
-.toc li + li a{padding-left:14px}
-.toc a i{font-family:var(--disp);font-weight:400;font-size:17px;color:var(--wine)}
-.toc a small{font-weight:400;font-size:12px;color:var(--mute)}
-.toc a:hover{color:var(--wine)}
-.mk{overflow:hidden;padding-bottom:.1em}
-.mk span{display:inline-block}
-.people{background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.ppl{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--ink);margin-top:clamp(40px,6vh,64px)}
-.ppl li{padding:26px 18px 30px 0;border-right:1px solid var(--rule)}
+.toc-l{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:0}
+.cnum{position:relative;height:clamp(110px,14vw,190px);overflow:hidden;margin-left:-.04em}
+.cnum span{position:absolute;left:0;top:0;font-family:var(--disp);font-weight:400;font-size:clamp(120px,15vw,210px);line-height:.86;letter-spacing:-.04em;color:var(--wine);opacity:0}
+.ctit{position:relative;margin-top:22px;min-height:7.2em}
+.ctit .ct{position:absolute;left:0;top:0;right:0;visibility:hidden}
+.ctit .eb{display:block;color:var(--wine);margin-bottom:10px}
+.ctit h2{font-weight:500;font-size:clamp(30px,3.4vw,52px);line-height:1.22;letter-spacing:-.025em}
+.ctit p{margin-top:14px;font-size:16px;color:var(--mute);max-width:26em}
+.ctit a{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:10px;font-weight:600;font-size:14px;border-bottom:1px solid var(--ink)}
+.ctit a i{font-family:var(--disp);color:var(--wine);font-style:italic}
+.toc-prog{display:flex;gap:6px;margin-top:28px}
+.toc-prog b{width:28px;height:2px;background:var(--rule);position:relative;overflow:hidden}
+.toc-prog b::after{content:"";position:absolute;inset:0;background:var(--wine);transform:scaleX(var(--f,0));transform-origin:left}
+.toc-r{position:relative;min-height:0;align-self:stretch}
+.cpic{position:absolute;inset:0;border-radius:50% 50% 0 0 / var(--arch) var(--arch) 0 0;overflow:hidden;background:#d9d1c5}
+.cpic figure{position:absolute;inset:0;visibility:hidden}
+.cpic img{width:100%;height:100%;object-fit:cover}
+.cpic figcaption{position:absolute;left:22px;bottom:16px;right:22px;display:flex;justify-content:space-between;color:#fff;font-size:13px;text-shadow:0 1px 8px rgba(0,0,0,.45)}
+.cpic figcaption i{font-family:var(--disp);margin-right:6px}
+
+/* ---------- chapter opener (s1 corridor) ---------- */
+.opener{position:relative;height:360svh;background:#1d1113}
+.opener .stage{position:sticky;top:0;background:#1d1113;color:#fff}
+.opener canvas{position:absolute;inset:0;width:100%;height:100%}
+.op-grad{position:absolute;inset:auto 0 0 0;height:60%;background:linear-gradient(to top,rgba(20,10,12,.72),rgba(20,10,12,0));pointer-events:none}
+.op-txt{position:absolute;left:var(--gutter);bottom:calc(64px + var(--sa));z-index:2;max-width:min(620px,86vw)}
+.op-txt .lab{display:block;color:rgba(255,255,255,.82);margin-bottom:16px}
+.op-txt .big{font-family:var(--disp);font-weight:400;font-size:clamp(84px,12vw,180px);line-height:.9;letter-spacing:-.02em}
+.op-txt h2{margin-top:16px;font-weight:500;font-size:clamp(28px,3.2vw,48px);line-height:1.22;letter-spacing:-.02em}
+.op-txt p{margin-top:14px;font-size:15px;opacity:.85;max-width:28em}
+.opener .ai{position:absolute;right:var(--gutter);bottom:calc(20px + var(--sa));color:rgba(255,255,255,.8);z-index:2}
+.op-wrap{position:absolute;inset:0;transform-origin:50% 50%}
+
+/* ---------- spreads ---------- */
+.spread{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,4vw,80px);min-height:100svh;padding:clamp(96px,12vh,150px) var(--gutter) clamp(72px,10vh,120px);align-items:center;background:var(--paper)}
+.spread.flip{grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.spread.flip .sp-txt{order:2}
+.spread.flip .sp-pic{order:1}
+.spread.first{border-radius:var(--arch) var(--arch) 0 0}
+.spread.dark{background:var(--wine);color:var(--cream)}
+.sp-txt{align-self:center}
+.sp-txt .lab{display:block;color:var(--wine);margin-bottom:12px}
+.spread.dark .sp-txt .lab{color:var(--wine-l)}
+.sp-txt .big{display:block;font-family:var(--disp);font-weight:400;font-size:clamp(120px,15vw,220px);line-height:.85;letter-spacing:-.04em;color:var(--wine);margin-left:-.04em}
+.spread.dark .sp-txt .big{color:var(--cream)}
+.sp-txt h2{margin-top:22px;font-weight:500;font-size:clamp(30px,3.4vw,52px);line-height:1.22;letter-spacing:-.025em}
+.sp-txt p{margin-top:18px;font-size:16px;line-height:1.8;color:var(--mute);max-width:26em}
+.spread.dark .sp-txt p{color:rgba(247,241,234,.78)}
+.sp-txt .next{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-top:28px;font-size:14px;font-weight:600;border-bottom:1px solid currentColor}
+.sp-txt .next i{font-family:var(--disp);font-style:italic;color:var(--wine)}
+.spread.dark .next i{color:var(--wine-l)}
+.sp-pic{position:relative}
+.sp-pic .ph{overflow:hidden;border-radius:var(--arch) var(--arch) 0 0;aspect-ratio:4/3;background:#d9d1c5;max-height:calc(100svh - 220px)}
+.spread.flip .sp-pic .ph{border-radius:var(--arch) 0 0 var(--arch)}
+.sp-pic img{width:100%;height:100%;object-fit:cover}
+.sp-pic figcaption{display:flex;justify-content:space-between;margin-top:12px;font-size:13px;color:var(--mute)}
+.spread.dark figcaption{color:rgba(247,241,234,.7)}
+.sp-pic figcaption i{font-family:var(--disp);margin-right:6px}
+.inset{position:absolute;left:calc(-1 * clamp(20px,3vw,48px));bottom:14%;width:clamp(150px,20vw,260px);z-index:2;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.inset .ph2{overflow:hidden;aspect-ratio:1/1;border-radius:0}
+.inset figcaption{margin-top:8px;font-size:12px;color:rgba(247,241,234,.75)}
+.inset figcaption i{font-family:var(--disp);margin-right:6px}
+.tx{list-style:none;margin-top:28px;border-top:1px solid var(--ink)}
+.tx a{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--rule);transition:color .25s;min-height:44px}
+.tx a:hover{color:var(--wine)}
+.tx .t{font-weight:500;font-size:clamp(20px,1.8vw,26px);letter-spacing:-.02em}
+.tx .s{font-size:12px;color:var(--mute);white-space:nowrap}
+.small{margin-top:14px;font-size:13px;color:var(--mute)}
+
+/* ---------- people (interview on process & space, no faces) ---------- */
+.people{position:relative;z-index:2;background:var(--white);padding:clamp(96px,12vh,150px) var(--gutter) clamp(80px,10vh,120px)}
+.pp-h{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,4vw,80px);align-items:end}
+.pp-h .lab{display:block;color:var(--wine);margin-bottom:12px}
+.pp-h .big{display:block;font-family:var(--disp);font-weight:400;font-size:clamp(120px,15vw,220px);line-height:.85;letter-spacing:-.04em;color:var(--wine);margin-left:-.04em}
+.pp-h h2{font-weight:500;font-size:clamp(30px,3.4vw,52px);line-height:1.22;letter-spacing:-.025em}
+.pp-h p{margin-top:14px;font-size:16px;color:var(--mute);max-width:30em}
+.pp-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,80px);margin-top:clamp(40px,6vh,72px);align-items:start}
+.qa{list-style:none;border-top:2px solid var(--ink)}
+.qa li{display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:14px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.qa li i{font-family:var(--disp);font-style:italic;font-size:18px;color:var(--wine)}
+.qa li b{display:block;font-weight:600;font-size:18px;letter-spacing:-.01em}
+.qa li p{margin-top:8px;font-size:15px;line-height:1.8;color:var(--mute)}
+.pp-pic{position:sticky;top:90px}
+.pp-pic .ph{overflow:hidden;border-radius:0 0 var(--arch) var(--arch);aspect-ratio:16/10;background:#d9d1c5}
+.pp-pic img{width:100%;height:100%;object-fit:cover}
+.pp-pic figcaption{display:flex;justify-content:space-between;margin-top:12px;font-size:13px;color:var(--mute)}
+.pp-pic figcaption i{font-family:var(--disp);margin-right:6px}
+.ppl{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--ink);margin-top:clamp(40px,6vh,72px)}
+.ppl li{padding:22px 18px 26px 0;border-right:1px solid var(--rule)}
 .ppl li + li{padding-left:18px}
 .ppl li:last-child{border-right:0}
 .ppl .n{font-family:var(--disp);font-style:italic;color:var(--wine);font-size:14px}
-.ppl .nm{display:block;margin-top:34px;font-family:var(--serif);font-weight:600;font-size:clamp(26px,2.4vw,36px);letter-spacing:-.02em}
+.ppl .nm{display:block;margin-top:26px;font-weight:600;font-size:clamp(24px,2.2vw,32px);letter-spacing:-.02em}
 .ppl .rl{display:block;margin-top:6px;font-size:13px;color:var(--mute)}
-.lnk{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:28px;font-weight:600;font-size:14px;color:var(--wine);border-bottom:1px solid currentColor}
-.tx{list-style:none;margin-top:clamp(40px,6vh,64px);border-top:2px solid var(--ink)}
-.tx a{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:clamp(22px,3vh,32px) 0;border-bottom:1px solid var(--rule);transition:color .25s}
-.tx a:hover{color:var(--wine)}
-.tx .t{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3vw,44px);letter-spacing:-.02em}
-.tx .s{font-size:13px;color:var(--mute)}
-.small{margin-top:16px;font-size:13px;color:var(--mute)}
-.visit{background:var(--wine);color:var(--cream)}
-.visit .eb{color:#E9C9CD}
-.vg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px clamp(24px,3vw,56px);margin-top:clamp(40px,6vh,72px);border-top:1px solid rgba(251,248,243,.3);padding-top:30px}
-.vg .lab{font-family:var(--disp);font-style:italic;font-size:14px;color:#E9C9CD;margin-bottom:12px;display:block}
-.vg .tel{display:inline-flex;align-items:center;min-height:48px;font-family:var(--disp);font-weight:700;font-size:clamp(26px,2.4vw,36px)}
-.vg .kk{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;background:var(--cream);color:var(--wine);font-weight:700}
-.vg dl div{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid rgba(251,248,243,.2);font-size:14px}
-.vg dd{font-variant-numeric:tabular-nums}
-.vg a.u{display:inline-flex;min-height:44px;align-items:center;border-bottom:1px solid currentColor;font-size:14px}
-.langs{display:flex;gap:18px;flex-wrap:wrap}
-.langs a{min-height:44px;display:inline-flex;align-items:center;font-family:var(--disp);font-size:16px;border-bottom:1px solid rgba(251,248,243,.5)}
-.ft{background:var(--ink);color:rgba(244,241,236,.55);padding:40px var(--gutter) calc(40px + var(--sa));font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.lnk{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:24px;font-weight:600;font-size:14px;color:var(--wine);border-bottom:1px solid currentColor}
+
+/* ---------- closing page: visit ---------- */
+.visit{position:relative;z-index:2;background:var(--paper);padding:clamp(80px,10vh,120px) 0 0}
+.vs-h{display:flex;justify-content:space-between;align-items:end;gap:24px;padding:0 var(--gutter) 28px}
+.vs-h .lab{display:block;color:var(--wine);margin-bottom:12px}
+.vs-h h2{font-weight:500;font-size:clamp(34px,4vw,64px);line-height:1.15;letter-spacing:-.03em}
+.vs-h .eb{color:var(--wine);font-size:17px;text-align:right}
+.vs-wide{position:relative;height:clamp(320px,62svh,640px);overflow:hidden;background:#2a1d1f}
+.vs-wide img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.vs-wide figcaption{position:absolute;left:var(--gutter);right:var(--gutter);bottom:18px;display:flex;justify-content:space-between;color:#fff;font-size:13px;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.vs-wide figcaption i{font-family:var(--disp);margin-right:6px}
+.vs-g{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(28px,4vw,80px);padding:clamp(48px,7vh,80px) var(--gutter) clamp(56px,8vh,96px)}
+.map{border-top:2px solid var(--ink);padding-top:22px}
+.map .lab{display:block;color:var(--wine)}
+.map .addr{margin-top:18px;font-weight:500;font-size:clamp(26px,2.8vw,40px);line-height:1.25;letter-spacing:-.025em}
+.map .addr small{display:block;font-size:15px;font-weight:400;color:var(--mute);margin-top:8px;letter-spacing:0}
+.map .mp{margin-top:26px;position:relative;height:clamp(180px,24vh,260px);border:1px solid var(--rule);background:
+  linear-gradient(var(--rule) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--rule) 1px,transparent 1px) 0 0/48px 48px,var(--white)}
+.map .mp .road{position:absolute;left:0;right:0;top:56%;height:10px;background:rgba(126,43,58,.12)}
+.map .mp .road2{position:absolute;top:0;bottom:0;left:38%;width:8px;background:rgba(126,43,58,.08)}
+.map .mp .pin{position:absolute;left:46%;top:36%;width:14px;height:14px;border-radius:50%;background:var(--wine);box-shadow:0 0 0 8px rgba(126,43,58,.18)}
+.map .mp .pl{position:absolute;left:calc(46% + 20px);top:calc(36% - 6px);font-size:13px;font-weight:600;white-space:nowrap}
+.map .mp .rd{position:absolute;left:12px;top:calc(56% + 14px);font-size:11px;letter-spacing:.1em;color:var(--mute)}
+.map .mp a{position:absolute;right:14px;bottom:12px;display:inline-flex;align-items:center;min-height:44px;padding:0 16px;background:var(--ink);color:#fff;font-size:13px;font-weight:600}
+.info{border-top:2px solid var(--ink);padding-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.info .lab{display:block;color:var(--wine);margin-bottom:10px}
+.info dl div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.info dd{font-variant-numeric:tabular-nums}
+.info .note{margin-top:10px;font-size:12px;color:var(--mute)}
+.info .tel{display:inline-flex;align-items:center;min-height:48px;font-family:var(--disp);font-weight:700;font-size:clamp(26px,2.4vw,34px);letter-spacing:.01em}
+.info .kk{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;background:var(--wine);color:#fff;font-weight:700;margin-top:10px}
+.info .kk:hover{background:var(--wine-d)}
+.langs{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px}
+.langs a{min-height:44px;display:inline-flex;align-items:center;font-family:var(--disp);font-size:15px;border-bottom:1px solid var(--rule)}
+.ft{position:relative;z-index:2;background:var(--ink);color:rgba(244,239,232,.6);padding:36px var(--gutter) calc(36px + var(--sa));font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .mbar{display:none}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
+.poster{display:none}
 
-/* static fallback (no JS / reduced motion): readable stack */
-.static .stage{height:auto;background:none;overflow:visible}
-.static .layer{position:relative;height:72svh}
-.static #B,.static .edge,.static .collage-bg,.static .mast,.static .edit{display:none}
+/* ---------- static fallback (no JS / reduced motion) ---------- */
+.static .cover{height:auto}
+.static .cover .stage{height:auto;min-height:100svh;overflow:visible}
 .static .cv{position:relative;height:100svh}
-.static .cv-meta{top:110px}
-.static .cv-body{top:200px}
-.static .chap{display:none}
-.static .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:40px var(--gutter);padding:96px var(--gutter)}
-.static .card,.static .capB{position:relative;opacity:1;left:auto!important;top:auto!important;width:auto!important;transform:none!important}
-.static .capB{display:none}
+.static .film,.static .chap,.static .chap-grad{display:none}
+.static .qpage{position:relative;transform:none;border-radius:0;min-height:70svh}
+.static .poster{display:block;position:relative;height:70svh;overflow:hidden}
+.static .poster img{width:100%;height:100%;object-fit:cover}
+.static .poster .ai{position:absolute;right:var(--gutter);bottom:18px;color:#fff}
+.static .toc{height:auto}
+.static .toc .stage{height:auto;grid-template-columns:1fr;min-height:0}
+.static .cnum{display:none}
+.static .ctit{min-height:0;display:grid;gap:28px}
+.static .ctit .ct{position:relative;visibility:visible}
+.static .toc-r{height:60svh}
+.static .cpic figure{visibility:visible}
+.static .cpic figure:not(:first-child){display:none}
+.static .toc-prog{display:none}
+.static .opener{height:auto}
+.static .opener .stage{position:relative}
+.static .opener canvas{display:none}
 .static .rv{opacity:1;transform:none}
+.static .spread.first{border-radius:0}
 
 @media (max-width:900px){
-  :root{--gutter:22px}
+  :root{--gutter:22px;--arch:44px}
   body{padding-bottom:calc(var(--bar-h) + var(--sa))}
-  .hd-cta{display:none}
-  .hd-vol{display:none}
+  .hd-cta,.hd-vol{display:none}
   .cv-meta{font-size:13px;letter-spacing:.04em;padding-top:10px}
   .cv-body{top:calc(var(--edB,240px) + 62px);grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:0;bottom:calc(var(--bar-h) + var(--sa))}
-  .hero h1{font-size:36px;line-height:1.24}
+  .hero h1{font-size:clamp(32px,9.4vw,40px);line-height:1.22}
   .hero p{margin-top:14px;font-size:15px}
   .hero .cta{margin-top:20px;min-height:48px}
   .cv-figs{margin-top:26px}
   .fig1 .ph{height:auto;aspect-ratio:16/10}
   .fig2{display:none}
-  .edge{display:none}
-  .chap{bottom:calc(var(--bar-h) + var(--sa) + 28px)}
+  .chap{bottom:calc(var(--bar-h) + var(--sa) + 36px)}
   .chap h2{font-size:clamp(26px,7.4vw,32px)}
-  .edge{font-size:52px;top:calc(50% - 30px)}
-  .card.txt{padding:14px}
-  .card.txt li{font-size:13px;padding:5px 0}
-  .cap span,.capB span{font-size:14px}
-  .space{grid-template-columns:1fr}
-  .toc{grid-template-columns:repeat(3,1fr)}
-  .toc li:nth-child(4){border-left:0}
-  .toc li:nth-child(n+4){border-top:1px solid var(--rule)}
-  .toc li:nth-child(4) a{padding-left:0}
-  .toc a{min-height:64px}
+  .film .ai,.opener .ai{bottom:calc(var(--bar-h) + var(--sa) + 10px)}
+  .qpage{grid-template-columns:1fr;gap:20px;padding:72px var(--gutter) calc(var(--bar-h) + var(--sa) + 24px);align-content:center}
+  .qpage .qmark{font-size:120px;top:40px}
+  .quote{font-size:clamp(26px,7vw,34px)}
+  .qpage .qr{justify-self:start;align-self:start;font-size:14px}
+  .toc .stage{grid-template-columns:1fr;grid-template-rows:auto auto minmax(0,1fr);gap:16px;padding:76px var(--gutter) calc(var(--bar-h) + var(--sa) + 16px)}
+  .toc-l{justify-content:start}
+  .cnum{height:72px}
+  .cnum span{font-size:84px}
+  .ctit{margin-top:10px;min-height:9.4em}
+  .ctit h2{font-size:clamp(24px,6.6vw,30px)}
+  .ctit p{font-size:14px;margin-top:8px}
+  .ctit a{margin-top:4px}
+  .toc-prog{margin-top:12px}
+  .toc-r{min-height:160px}
+  .cpic figcaption{left:14px;right:14px;bottom:12px;font-size:12px}
+  .op-txt{bottom:calc(var(--bar-h) + var(--sa) + 40px)}
+  .op-txt .big{font-size:clamp(72px,22vw,110px)}
+  .spread,.spread.flip{grid-template-columns:1fr;gap:28px;padding:72px var(--gutter) 64px}
+  .spread.flip .sp-txt{order:1}
+  .spread.flip .sp-pic{order:2}
+  .sp-txt .big{font-size:clamp(96px,28vw,130px)}
+  .sp-pic .ph{aspect-ratio:4/5;max-height:none}
+  .spread.flip .sp-pic .ph{border-radius:var(--arch) var(--arch) 0 0}
+  .inset{left:auto;right:-6px;bottom:-24px;width:38%}
+  .pp-h,.pp-b{grid-template-columns:1fr}
+  .pp-pic{position:relative;top:auto;order:-1}
   .ppl{grid-template-columns:1fr}
-  .ppl li,.ppl li + li{padding:18px 0;border-right:0;border-bottom:1px solid var(--rule);display:flex;align-items:baseline;gap:16px}
-  .ppl .nm{margin-top:0;font-size:24px}
+  .ppl li,.ppl li + li{padding:16px 0;border-right:0;border-bottom:1px solid var(--rule);display:flex;align-items:baseline;gap:16px}
+  .ppl .nm{margin-top:0;font-size:22px}
   .ppl .rl{margin-left:auto;margin-top:0}
-  .vg{grid-template-columns:1fr}
-  .static .cards{grid-template-columns:1fr}
-  .mbar{position:fixed;inset:auto 0 0 0;z-index:50;display:flex;gap:10px;height:calc(var(--bar-h) + var(--sa));padding:6px var(--gutter) calc(6px + var(--sa));background:var(--wine);color:#fff}
+  .vs-h{flex-direction:column;align-items:start}
+  .vs-h .eb{text-align:left}
+  .vs-wide{height:52svh}
+  .vs-g{grid-template-columns:1fr}
+  .info{grid-template-columns:1fr}
+  .mbar{position:fixed;inset:auto 0 0 0;z-index:70;display:flex;gap:10px;height:calc(var(--bar-h) + var(--sa));padding:6px var(--gutter) calc(6px + var(--sa));background:var(--wine);color:#fff}
   .mbar a{flex:1;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;min-height:48px;border-radius:999px;border:1px solid rgba(255,255,255,.7)}
   .mbar a:first-child{background:#fff;color:var(--wine);border-color:#fff}
+}
+@media (min-width:901px) and (max-height:720px){
+  .toc .stage{padding-top:70px}
+  .cnum{height:96px}.cnum span{font-size:110px}
+  .ctit{margin-top:12px;min-height:6.6em}
+  .ctit h2{font-size:clamp(26px,2.8vw,36px)}
+  .ctit p{font-size:14px;margin-top:8px}
+  .spread{padding:84px var(--gutter) 60px}
+  .sp-txt .big{font-size:clamp(90px,10vw,130px)}
+  .sp-pic .ph{max-height:calc(100svh - 150px)}
+  .qpage{padding-top:64px}
+  .quote{font-size:clamp(26px,3vw,40px)}
 }
 </style>
 <style id="nolink">a.plain{pointer-events:none;cursor:text;text-decoration:none;border-bottom:0!important;background-image:none!important}a.plain::before,a.plain::after{content:none!important}</style>
@@ -209,10 +328,9 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
 </header>
 
 <main id="top">
-  <section class="mask-scene" id="scene" aria-label="디오디를 소개하는 여섯 가지 이야기">
+  <!-- Scene A: cover → letter mask (live frames) → full-bleed dolly → pull quote -->
+  <section class="cover" id="cover" aria-label="표지">
     <div class="stage" id="stage">
-      <!-- P3-01 cover -->
-      <div class="layer" id="A" aria-hidden="false"></div>
       <img class="mast" id="mast" alt="" aria-hidden="true">
       <img class="edit" id="edit" alt="" aria-hidden="true">
       <div class="cv" id="cv">
@@ -221,63 +339,135 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
           <div class="hero" id="hero">
             <h1>피부를 마주하는<br>여러 시선</h1>
             <p>공간과 사람, 진료의 이야기를 통해<br>디오디를 만나보세요.</p>
-            <a class="cta" href="#stories" id="read">이야기 읽기 <span aria-hidden="true">⟶</span></a>
+            <a class="cta" href="#toc" id="read">이야기 읽기 <span aria-hidden="true">⟶</span></a>
           </div>
           <div class="cv-figs" id="cvphoto">
-            <figure class="fig1"><div class="ph"><img src="img/key-a.webp" width="1919" height="1080" alt="디오디피부과 청담 라운지" fetchpriority="high"></div><figcaption><i>Fig.01</i> 디오디 청담 라운지</figcaption></figure>
+            <figure class="fig1"><div class="ph"><img src="img/key-a.webp" width="1919" height="1080" alt="디오디피부과 청담 라운지" fetchpriority="high"></div><figcaption><span><i>Fig.01</i> 디오디 청담 라운지</span><span>DOD Cheongdam</span></figcaption></figure>
             <figure class="fig2"><div class="ph"><img src="img/hall.webp" width="440" height="660" alt="디오디피부과 청담 복도" loading="eager"></div><figcaption><i>Fig.02</i> 복도</figcaption></figure>
           </div>
         </div>
       </div>
-      <!-- B: revealed through the DOD letterforms -->
-      <div class="collage-bg" id="cbg"></div>
-      <div class="layer" id="B">
-        <picture><source media="(max-width: 900px)" srcset="img/space-m.webp"><img src="img/space.webp" width="1920" height="896" alt="디오디피부과 청담 시술 공간" loading="eager"></picture>
+      <!-- live frame scrub revealed through the DOD letterforms -->
+      <div class="film" id="film" aria-hidden="true">
+        <canvas id="c3"></canvas>
+        <span class="ai">실제 공간 사진 기반 AI 연출</span>
       </div>
       <div class="chap-grad" id="cgrad" aria-hidden="true"></div>
-      <div class="chap" id="chap"><span class="eb">01 — 공간</span><h2>한 사람에게<br>집중하는 공간</h2></div>
-      <div class="edge" id="edge" aria-hidden="true">DOD</div>
-      <p class="capB" id="capB"><b>01 공간</b><span>한 사람에게 집중하는 공간</span></p>
-
-      <!-- P3-02 stories (set 1: 02-04, set 2: 05-06) -->
-      <div class="cards" id="stories">
-        <div class="card" data-k="diag"><figure style="aspect-ratio:1/1"><img src="img/diag.webp" width="800" height="800" alt="공식 홈페이지의 장비 사진" loading="lazy"></figure><p class="cap"><b>02 진단</b><span>피부 상태를 살피는 출발점</span></p></div>
-        <div class="card" data-k="consult"><figure style="aspect-ratio:4/3"><img src="img/consult.webp" width="1000" height="750" alt="공식 홈페이지에 게시된 의료진 진료 장면" loading="lazy"></figure><p class="cap"><b>03 상담</b><span>궁금한 점을 나누는 시간</span></p></div>
-        <div class="card txt" data-k="people"><p class="cap" style="padding:0;background:none"><b>04 의료진과 연구진</b><span>진료와 연구를 이어가는 사람들</span></p>
-          <ul><li>이준 <em>대표원장</em></li><li>안정식 <em>원장</em></li><li>황승경 <em>원장</em></li><li>이준원 <em>원장</em></li><li>김진아 <em>박사·연구진</em></li></ul></div>
-        <div class="card txt" data-k="fields"><p class="cap" style="padding:0;background:none"><b>05 진료 분야</b><span>리프팅, 콜라겐·스킨부스터, 재생 프로그램</span></p>
-          <ul><li><a class="plain">리프팅 <em></em></a></li><li><a class="plain">콜라겐·스킨부스터 <em></em></a></li><li><a class="plain">재생 프로그램 <em></em></a></li></ul></div>
-        <div class="card" data-k="visit"><figure style="aspect-ratio:3/1"><img src="img/visit.webp" width="1200" height="400" alt="디오디피부과 청담 안내 데스크" loading="lazy"></figure><p class="cap"><b>06 방문</b><span>서울 강남구 도산대로 423</span><br><a class="plain">지도 열기</a></p></div>
+      <div class="chap" id="chap"><span class="eb">01 — Space</span><h2>한 사람에게<br>집중하는 공간</h2><p>청담 라운지. 오후의 빛이 머무는 자리에서 이야기를 시작합니다.</p></div>
+      <div class="poster"><img src="../_media/s3/pc/060.webp" width="2400" height="1352" alt="디오디 청담 라운지" loading="lazy"><span class="ai">실제 공간 사진 기반 AI 연출</span></div>
+      <!-- paper curtain: editorial pull quote -->
+      <div class="qpage" id="qpage">
+        <span class="qmark" aria-hidden="true">“</span>
+        <div class="ql">
+          <span class="lab">Editor's note</span>
+          <p class="quote" id="quote">피부는 서두르면 보이지 않습니다.<br>천천히 보아야<br>보이는 것이 있습니다.</p>
+          <p class="by" id="qby">— DOD Edit, Vol.01 Cheongdam</p>
+        </div>
+        <div class="qr" id="qr">
+          <p>이 호는 디오디 청담을 공간, 진단, 상담, 사람, 진료 분야, 방문이라는 여섯 면으로 읽습니다. 사진은 모두 청담 공간에서 촬영한 실제 장면입니다.</p>
+          <p>진료 과정과 상담 운영에 대한 안내는 공식 홈페이지 자료를 기준으로 합니다.</p>
+          <a class="nxt" href="#toc"><i>Contents</i> 여섯 가지 이야기 ↓</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- P3-03 -->
-  <section class="sec contents" id="space" aria-labelledby="h-space">
-    <p class="toc-h"><span>Vol.01 / Contents</span><i>DOD Cheongdam</i></p>
-    <div class="space">
-      <div class="space-copy">
-        <span class="big-n" aria-hidden="true">01</span>
-        <h2 id="h-space" class="mk"><span>공간을 읽다</span></h2>
-        <p class="rv">독립된 1인 시술실을 안내합니다.</p>
-        <a class="next rv" href="#people"><i>Next · 04</i> 사람을 만나다</a>
+  <!-- Contents: pinned chapter index, titles swap with masked lines, photos swap under an arch -->
+  <section class="toc" id="toc" aria-label="목차">
+    <div class="stage" id="tstage">
+      <p class="toc-h"><span>Vol.01 / Contents</span><i>DOD Cheongdam</i></p>
+      <div class="toc-l">
+        <div class="cnum" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span></div>
+        <div class="ctit" id="ctit">
+          <div class="ct"><span class="eb">Chapter 01 — Space</span><h2>한 사람에게<br>집중하는 공간</h2><p>라운지와 복도, 독립된 1인 시술실까지. 청담 공간을 걸어서 읽습니다.</p><a href="#opener"><i>Read</i> 공간을 읽다 →</a></div>
+          <div class="ct"><span class="eb">Chapter 02 — Diagnosis</span><h2>피부 상태를<br>살피는 출발점</h2><p>피부 상태와 관심 부위를 의료진과 함께 살펴보는 것에서 진료가 시작됩니다.</p><a href="#spread2"><i>Read</i> 진단을 읽다 →</a></div>
+          <div class="ct"><span class="eb">Chapter 03 — Consultation</span><h2>궁금한 점을<br>나누는 시간</h2><p>관심 부위와 이전 시술 이력, 일정을 바탕으로 진료 방향을 상담합니다.</p><a href="#spread2"><i>Read</i> 상담을 읽다 →</a></div>
+          <div class="ct"><span class="eb">Chapter 04 — People</span><h2>진료와 연구를<br>이어가는 사람들</h2><p>진료를 맡는 의료진과 연구를 맡는 연구진. 역할을 구분해 소개합니다.</p><a href="#people"><i>Read</i> 사람을 만나다 →</a></div>
+          <div class="ct"><span class="eb">Chapter 05 — Fields</span><h2>리프팅, 콜라겐·스킨부스터,<br>재생 프로그램</h2><p>진료 분야별 안내를 읽고, 나에게 필요한 질문을 준비합니다.</p><a href="#spread3"><i>Read</i> 진료 분야 →</a></div>
+          <div class="ct"><span class="eb">Chapter 06 — Visit</span><h2>서울 강남구<br>도산대로 423</h2><p>진료시간과 문의 채널, 찾아오는 길을 한 장에 담았습니다.</p><a href="#visit"><i>Read</i> 방문 안내 →</a></div>
+        </div>
+        <div class="toc-prog" id="tprog" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b></div>
       </div>
-      <figure class="crop" id="crop"><div class="ph"><img src="img/room.webp" width="1728" height="1200" alt="디오디피부과 청담 1인 시술실" loading="lazy"></div><figcaption><span><i>Fig.03</i> 1인 시술 공간</span><span>디오디 청담 · 공간</span></figcaption></figure>
+      <div class="toc-r">
+        <div class="cpic" id="cpic">
+          <figure><div class="wipe"><picture><source media="(max-width:900px)" srcset="img/key-a-m.webp"><img src="img/key-a.webp" width="1919" height="1080" alt="디오디 청담 라운지" loading="lazy"></picture></div><figcaption><span><i>Fig.03</i> 라운지</span><span>Space</span></figcaption></figure>
+          <figure><div class="wipe"><img src="../_media/img/072-1200.webp" srcset="../_media/img/072-1200.webp 1200w, ../_media/img/072.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="1165" alt="공식 홈페이지의 진단 장비 사진" loading="lazy"></div><figcaption><span><i>Fig.04</i> 진단 장비</span><span>Diagnosis</span></figcaption></figure>
+          <figure><div class="wipe"><img src="../_media/img/096-1200.webp" srcset="../_media/img/096-1200.webp 1200w, ../_media/img/096.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="835" alt="디오디 청담 상담실" loading="lazy"></div><figcaption><span><i>Fig.05</i> 상담실</span><span>Consultation</span></figcaption></figure>
+          <figure><div class="wipe"><img src="../_media/img/076-1200.webp" srcset="../_media/img/076-1200.webp 1200w, ../_media/img/076.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="750" alt="연구용 현미경" loading="lazy"></div><figcaption><span><i>Fig.06</i> 연구</span><span>People</span></figcaption></figure>
+          <figure><div class="wipe"><img src="../_media/img/070-1200.webp" srcset="../_media/img/070-1200.webp 1200w, ../_media/img/070.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="835" alt="공식 홈페이지의 제품 사진" loading="lazy"></div><figcaption><span><i>Fig.07</i> 진료 분야</span><span>Fields</span></figcaption></figure>
+          <figure><div class="wipe"><picture><source media="(max-width:900px)" srcset="img/space-m.webp"><img src="img/space.webp" width="1920" height="896" alt="디오디 청담 시술 공간 복도" loading="lazy"></picture></div><figcaption><span><i>Fig.08</i> 청담</span><span>Visit</span></figcaption></figure>
+        </div>
+      </div>
     </div>
-    <ol class="toc" aria-label="여섯 가지 이야기">
-      <li><a href="#space"><i>01</i>공간<small>현재 장</small></a></li>
-      <li><a href="#stories" data-p=".47"><i>02</i>진단</a></li>
-      <li><a href="#stories" data-p=".52"><i>03</i>상담</a></li>
-      <li><a href="#people"><i>04</i>사람<small>의료진·연구진</small></a></li>
-      <li><a href="#treat"><i>05</i>진료 분야</a></li>
-      <li><a href="#visit"><i>06</i>방문</a></li>
-    </ol>
   </section>
 
-  <!-- P3-04 -->
-  <section class="sec people" id="people" aria-labelledby="h-ppl">
-    <span class="eb rv">Meeting the people</span>
-    <h2 class="mk" id="h-ppl"><span>사람을 만나다</span></h2>
+  <!-- Chapter 01 opener: corridor dolly-in (s1) -->
+  <section class="opener" id="opener" aria-label="1장 공간">
+    <div class="stage">
+      <div class="op-wrap" id="opwrap">
+        <canvas id="c1"></canvas>
+        <img class="poster" src="../_media/s1/pc/120.webp" width="2400" height="2366" alt="디오디 청담 복도와 dod 로고" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div class="op-grad" aria-hidden="true"></div>
+      </div>
+      <div class="op-txt" id="optxt">
+        <span class="lab">Chapter 01 — Space</span>
+        <div class="big">공간</div>
+        <h2 class="mkl">복도 끝, dod 로고가 보이는 문 앞에서</h2>
+        <p class="mkl">청담 공간은 긴 복도를 따라 독립된 방으로 이어집니다. 한 사람에게 집중하기 위해 동선을 나눴습니다.</p>
+      </div>
+      <span class="ai">실제 공간 사진 기반 AI 연출</span>
+    </div>
+  </section>
+
+  <!-- Spread 01: text 1/3 · photo 2/3 -->
+  <section class="spread first" id="spread1" aria-labelledby="h-s1">
+    <div class="sp-txt">
+      <span class="lab">Chapter 01 — Space</span>
+      <span class="big rv">01</span>
+      <h2 id="h-s1" class="mkl">공간을 읽다</h2>
+      <p class="mkl">독립된 1인 시술실을 안내합니다. 침대와 조명, 수납까지 한 사람의 시술에 맞춰 둔 방입니다.</p>
+      <a class="next rv" href="#spread2"><i>Next · 02</i> 진단과 상담</a>
+    </div>
+    <figure class="sp-pic crop">
+      <div class="ph"><img src="../_media/img/083-1200.webp" srcset="../_media/img/083-1200.webp 1200w, ../_media/img/083.webp 2880w" sizes="(max-width:900px) 100vw, 64vw" width="1200" height="835" alt="디오디 청담 1인 시술실" loading="lazy"></div>
+      <figcaption><span><i>Fig.09</i> 1인 시술실</span><span>DOD Cheongdam · 공간</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- Spread 02·03: photo 2/3 · text 1/3, burgundy -->
+  <section class="spread flip dark" id="spread2" aria-labelledby="h-s2">
+    <div class="sp-txt">
+      <span class="lab">Chapter 02 · 03 — Diagnosis, Consultation</span>
+      <span class="big rv">02</span>
+      <h2 id="h-s2" class="mkl">살피고,<br>이야기하다</h2>
+      <p class="mkl">피부 상태와 관심 부위를 의료진과 함께 살펴보는 것에서 진료가 시작됩니다. 이어지는 상담에서는 이전 시술 이력과 일정을 바탕으로 진료 방향을 정합니다.</p>
+      <a class="next rv" href="#people"><i>Next · 04</i> 사람을 만나다</a>
+    </div>
+    <figure class="sp-pic crop">
+      <div class="ph"><img src="../_media/img/096-1200.webp" srcset="../_media/img/096-1200.webp 1200w, ../_media/img/096.webp 2880w" sizes="(max-width:900px) 100vw, 64vw" width="1200" height="835" alt="디오디 청담 상담실" loading="lazy"></div>
+      <figcaption><span><i>Fig.10</i> 상담실</span><span>DOD Cheongdam · 상담</span></figcaption>
+      <figure class="inset rv"><div class="ph2"><img src="../_media/img/072-1200.webp" width="1200" height="1165" alt="공식 홈페이지의 진단 장비 사진" loading="lazy"></div><figcaption><i>Fig.11</i> 진단 장비</figcaption></figure>
+    </figure>
+  </section>
+
+  <!-- Chapter 04: people — interview on process and space (no faces) -->
+  <section class="people" id="people" aria-labelledby="h-ppl">
+    <div class="pp-h">
+      <div><span class="lab">Chapter 04 — People</span><span class="big rv">04</span></div>
+      <div><h2 id="h-ppl" class="mkl">사람을 만나다</h2><p class="mkl">얼굴보다 과정으로 소개합니다. 진료를 맡는 의료진과 연구를 맡는 연구진의 역할을 나누어 묻고 답했습니다.</p></div>
+    </div>
+    <div class="pp-b">
+      <ol class="qa rv">
+        <li><i>Q1</i><div><b>진료는 어디에서 시작되나요?</b><p>피부 상태와 관심 부위를 의료진과 함께 살펴보는 것에서 시작합니다. 진단 안내 후 상담으로 이어집니다.</p></div></li>
+        <li><i>Q2</i><div><b>상담에서는 무엇을 이야기하나요?</b><p>관심 부위와 이전 시술 이력, 회복과 일정에서 고려할 점을 바탕으로 진료 방향을 함께 정합니다. 복용 중인 약과 알레르기는 의료진에게 직접 알려 주세요.</p></div></li>
+        <li><i>Q3</i><div><b>시술은 어떤 공간에서 진행되나요?</b><p>독립된 1인 시술실에서 진행합니다. 긴 복도를 따라 방을 나눈 것은 한 사람에게 집중하기 위해서입니다.</p></div></li>
+        <li><i>Q4</i><div><b>진료와 연구는 어떻게 이어지나요?</b><p>진료는 의료진이, 연구는 연구진이 맡습니다. 자세한 소개는 공식 홈페이지의 의료진 안내에서 확인하실 수 있습니다.</p></div></li>
+      </ol>
+      <figure class="pp-pic crop">
+        <div class="ph"><img src="../_media/img/076-1200.webp" srcset="../_media/img/076-1200.webp 1200w, ../_media/img/076.webp 2880w" sizes="(max-width:900px) 100vw, 56vw" width="1200" height="750" alt="연구용 현미경" loading="lazy"></div>
+        <figcaption><span><i>Fig.12</i> 연구</span><span>DOD · 연구진</span></figcaption>
+      </figure>
+    </div>
     <ol class="ppl rv">
       <li><span class="n">i.</span><span class="nm">이준</span><span class="rl">대표원장</span></li>
       <li><span class="n">ii.</span><span class="nm">안정식</span><span class="rl">원장</span></li>
@@ -288,31 +478,64 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
     
   </section>
 
-  <!-- P3-05 -->
-  <section class="sec" id="treat" aria-labelledby="h-tx">
-    <span class="eb rv">Continue the story</span>
-    <h2 class="mk" id="h-tx"><span>진료 이야기를 이어가세요</span></h2>
-    <ul class="tx rv">
-      <li><a class="plain"><span class="t">리프팅</span></a></li>
-      <li><a class="plain"><span class="t">콜라겐·스킨부스터</span></a></li>
-      <li><a class="plain"><span class="t">재생 프로그램</span></a></li>
-      <li><a class="plain"><span class="t">현재 안내</span></a></li>
-    </ul>
-    <p class="small rv">시술 선택과 적용 여부는 의료진 상담이 필요합니다.</p>
+  <!-- Spread 05: text 1/3 · photo 2/3 -->
+  <section class="spread" id="spread3" aria-labelledby="h-s3">
+    <div class="sp-txt">
+      <span class="lab">Chapter 05 — Fields</span>
+      <span class="big rv">05</span>
+      <h2 id="h-s3" class="mkl">진료 이야기를<br>이어가세요</h2>
+      <ul class="tx rv">
+        <li><a class="plain"><span class="t">리프팅</span></a></li>
+        <li><a class="plain"><span class="t">콜라겐·스킨부스터</span></a></li>
+        <li><a class="plain"><span class="t">재생 프로그램</span></a></li>
+        <li><a class="plain"><span class="t">현재 안내</span></a></li>
+      </ul>
+      <p class="small rv">시술 선택과 적용 여부는 의료진 상담이 필요합니다.</p>
+    </div>
+    <figure class="sp-pic crop">
+      <div class="ph"><img src="../_media/img/070-1200.webp" srcset="../_media/img/070-1200.webp 1200w, ../_media/img/070.webp 2880w" sizes="(max-width:900px) 100vw, 64vw" width="1200" height="835" alt="공식 홈페이지의 제품 사진" loading="lazy"></div>
+      <figcaption><span><i>Fig.13</i> 공식 홈페이지 사진</span><span>DOD · 진료 분야</span></figcaption>
+    </figure>
   </section>
 
-  <!-- P3-06 -->
-  <section class="sec visit" id="visit" aria-labelledby="h-visit">
-    <span class="eb rv">The next story, in Cheongdam</span>
-    <h2 class="rv" id="h-visit">다음 이야기는, 청담에서</h2>
-    <div class="vg rv">
-      <div><span class="lab">Kakao</span><a class="plain">카카오톡으로 진료 문의</a><p style="margin-top:18px"><span class="lab" style="margin-bottom:6px">Call</span><a class="tel" href="tel:02-6203-6263">02-6203-6263</a></p></div>
-      <div><span class="lab">Hours</span><dl><div><dt>월–목</dt><dd>10:00–19:00</dd></div><div><dt>금</dt><dd>10:00–21:00</dd></div><div><dt>토</dt><dd>10:00–16:00</dd></div><div><dt>휴게(월–금)</dt><dd>13:00–14:00</dd></div></dl><p style="margin-top:10px;font-size:12px;opacity:.75">일요일·공휴일은 병원에 확인해 주세요.</p></div>
-      <div><span class="lab">Address</span><p>디오디피부과의원 청담<br>서울 강남구 도산대로 423</p></div>
-      <div><span class="lab">Official sites</span><div class="langs"><a lang="en" class="plain">English</a><a lang="zh-Hans" class="plain">简体中文</a><a lang="ja" class="plain">日本語</a><a lang="zh-Hant" class="plain">繁體中文</a></div></div>
+  <!-- Chapter 06: closing page -->
+  <section class="visit" id="visit" aria-labelledby="h-visit">
+    <div class="vs-h">
+      <div><span class="lab">Chapter 06 — Visit</span><h2 id="h-visit" class="mkl">다음 이야기는,<br>청담에서</h2></div>
+      <p class="eb rv">The next story, in Cheongdam</p>
+    </div>
+    <figure class="vs-wide crop">
+      <picture><source media="(max-width:900px)" srcset="img/space-m.webp"><img src="img/space.webp" width="1920" height="896" alt="디오디 청담 시술 공간 복도" loading="lazy"></picture>
+      <figcaption><span><i>Fig.14</i> 시술 공간 복도</span><span>디오디피부과의원 청담</span></figcaption>
+    </figure>
+    <div class="vs-g">
+      <div class="map rv">
+        <span class="lab">Address</span>
+        <p class="addr">서울 강남구 도산대로 423<small>디오디피부과의원 청담</small></p>
+        <div class="mp" aria-hidden="false">
+          <span class="road"></span><span class="road2"></span>
+          <span class="pin"></span><span class="pl">디오디피부과 청담</span>
+          <span class="rd">도산대로</span>
+          
+        </div>
+      </div>
+      <div class="info rv">
+        <div>
+          <span class="lab">Hours</span>
+          <dl><div><dt>월–목</dt><dd>10:00–19:00</dd></div><div><dt>금</dt><dd>10:00–21:00</dd></div><div><dt>토</dt><dd>10:00–16:00</dd></div><div><dt>휴게(월–금)</dt><dd>13:00–14:00</dd></div></dl>
+          <p class="note">일요일·공휴일은 병원에 확인해 주세요.</p>
+        </div>
+        <div>
+          <span class="lab">Contact</span>
+          <a class="tel" href="tel:02-6203-6263">02-6203-6263</a><br>
+          <a class="plain">카카오톡으로 진료 문의</a>
+          <span class="lab" style="margin-top:26px">Official sites</span>
+          <div class="langs"><a lang="en" class="plain">English</a><a lang="zh-Hans" class="plain">简体中文</a><a lang="ja" class="plain">日本語</a><a lang="zh-Hant" class="plain">繁體中文</a></div>
+        </div>
+      </div>
     </div>
   </section>
-  <footer class="ft"><span>디자인 초안 · 탱탱소프트</span><span>DOD Dermatology · Cheongdam</span></footer>
+  <footer class="ft"><span>디자인 초안 · 탱탱소프트</span><span>공간 영상: 실제 사진 기반 AI 카메라 연출 · 사진: 디오디 청담</span><span>DOD Dermatology · Cheongdam</span></footer>
 </main>
 
 <nav class="mbar" aria-label="진료 문의">
@@ -320,32 +543,45 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
   <a href="#visit">상담 안내</a>
 </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="../_lib/gsap.min.js"></script>
+<script src="../_lib/ScrollTrigger.min.js"></script>
+<script src="../_lib/SplitText.min.js"></script>
+<script src="../_lib/lenis.min.js"></script>
+<script src="../_lib/framescrub.js"></script>
 <script>
 (() => {
   const body = document.body, hd = document.getElementById('hd');
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || !window.gsap || !window.ScrollTrigger) { body.classList.add('static'); return; }
-  gsap.registerPlugin(ScrollTrigger);
+  if (reduce || !window.gsap || !window.ScrollTrigger || !window.FrameScrub) { body.classList.add('static'); headerStatic(); return; }
+  gsap.registerPlugin(ScrollTrigger, SplitText);
   ScrollTrigger.config({ ignoreMobileResize: true });
-  const $ = s => document.querySelector(s);
-  const scene = $('#scene'), stage = $('#stage'), A = $('#A'), B = $('#B'), mast = $('#mast'), hero = $('#hero'), chap = $('#chap'), edge = $('#edge'), cbg = $('#cbg'), capB = $('#capB');
-  const card = k => document.querySelector(`.card[data-k="${k}"]`);
-  const C = { diag: card('diag'), consult: card('consult'), people: card('people'), fields: card('fields'), visit: card('visit') };
+  const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
+  const cover = $('#cover'), stage = $('#stage'), film = $('#film'), mast = $('#mast'), edit = $('#edit'), cv = $('#cv'), hero = $('#hero'), chap = $('#chap'), cgrad = $('#cgrad'), qpage = $('#qpage');
+  const mobile = () => innerWidth <= 900, mFrames = () => innerWidth < 768;
 
+  // ---- Lenis ----
   let lenis = null;
-  if (window.Lenis && matchMedia('(pointer: fine)').matches && innerWidth > 900) {
-    lenis = new Lenis({ smoothWheel: true, lerp: 0.1 });
+  if (window.Lenis) {
+    lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
   }
+  const goTo = (y, d = 1.6) => lenis ? lenis.scrollTo(y, { duration: d }) : scrollTo({ top: y, behavior: 'smooth' });
 
-  // ---- DOD letter mask rendered with the loaded display face ----
-  let M = null, E = null; const edit = $('#edit'), cv = $('#cv'), hdEl = $('#hd');   // {url, w, h, ax, ay} canvas size and anchor (inside first D stem) as fractions
+  // ---- frame scrubs (s3 lounge lateral dolly, s1 corridor dolly-in) ----
+  let s3 = null, s1 = null, frameMode = null;
+  function makeScrubs() {
+    const m = mFrames(); if (frameMode === m) return; frameMode = m;
+    if (s3) s3.destroy(); if (s1) s1.destroy();
+    s3 = new FrameScrub($('#c3'), { base: m ? '../_media/s3/m/' : '../_media/s3/pc/', count: 90, ext: 'webp', focusX: .5, focusY: .5 });
+    s1 = new FrameScrub($('#c1'), { base: m ? '../_media/s1/m/' : '../_media/s1/pc/', count: 120, ext: 'webp', focusX: .5, focusY: .5 });
+    s3.progress(0); s1.progress(0);
+  }
+
+  // ---- DOD letter mask rendered with the loaded display face (same canvas image = visible masthead) ----
+  let M = null, E = null;
   function makeMask() {
     const fs = 600, c = document.createElement('canvas'), g = c.getContext('2d');
     g.font = `900 ${fs}px "Bodoni Moda"`;
@@ -354,7 +590,6 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
     c.width = w; c.height = h;
     g.font = `900 ${fs}px "Bodoni Moda"`; g.fillStyle = '#fff'; g.textBaseline = 'alphabetic';
     g.fillText('DOD', 4 + m.actualBoundingBoxLeft, 4 + m.actualBoundingBoxAscent);
-    // anchor: middle of the widest opaque run on the centre row of the first D (its stem)
     const row = Math.round(h / 2), data = g.getImageData(0, row, Math.round(w * 0.3), 1).data;
     let best = [0, 0], s = -1;
     for (let x = 0; x <= data.length / 4; x++) {
@@ -362,7 +597,6 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
       if (on && s < 0) s = x; if (!on && s >= 0) { if (x - s > best[1] - best[0]) best = [s, x]; s = -1; }
     }
     M = { url: c.toDataURL('image/png'), w, h, asc: m.actualBoundingBoxAscent, ax: (best[0] + best[1]) / 2 / w, ay: 0.5, stem: (best[1] - best[0]) / w };
-    // EDIT in the italic cut, same size and baseline
     const c2 = document.createElement('canvas'), g2 = c2.getContext('2d');
     g2.font = `italic 400 ${fs}px "Bodoni Moda"`;
     const m2 = g2.measureText('EDIT');
@@ -370,147 +604,176 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
     g2.font = `italic 400 ${fs}px "Bodoni Moda"`; g2.fillStyle = '#fff';
     g2.fillText('EDIT', 4 + m2.actualBoundingBoxLeft, 4 + m2.actualBoundingBoxAscent);
     E = { url: c2.toDataURL('image/png'), w: c2.width, h: c2.height, asc: m2.actualBoundingBoxAscent };
-    edit.src = E.url;
-    B.classList.add('masked'); mast.src = M.url;
-    B.style.webkitMaskImage = B.style.maskImage = `url(${M.url})`;
+    edit.src = E.url; mast.src = M.url;
+    film.style.webkitMaskImage = film.style.maskImage = `url(${M.url})`;
   }
 
   let geo = null, tl = null, st = null;
-  const P = { s: 1 };   // mask scale
+  const P = { s: 1 };
   function applyMask() {
     if (!M || !geo) return;
     const mw = geo.mw * P.s, mh = mw * M.h / M.w;
     const x = geo.sx - M.ax * mw, y = geo.sy - M.ay * mh;
-    B.style.webkitMaskSize = B.style.maskSize = `${mw}px ${mh}px`;
-    B.style.webkitMaskPosition = B.style.maskPosition = `${x}px ${y}px`;
+    film.style.webkitMaskSize = film.style.maskSize = `${mw}px ${mh}px`;
+    film.style.webkitMaskPosition = film.style.maskPosition = `${x}px ${y}px`;
   }
-
-  const mobile = () => innerWidth <= 900;
   function layout() {
     const W = innerWidth, H = stage.clientHeight, mob = mobile();
-    // masthead geometry = mask geometry at s=1
-    const gut = parseFloat(getComputedStyle(hdEl).paddingLeft) || 22;
+    const gut = parseFloat(getComputedStyle(hd).paddingLeft) || 22;
     const mh = mob ? Math.min(66, W * 0.17) : Math.max(84, Math.min(150, W * 0.087));
     const mw = mh * M.w / M.h;
-    const top = mob ? 88 : 112;
-    const left = gut;
+    const top = mob ? 88 : 112, left = gut;
     mast.style.width = mw + 'px'; mast.style.left = left + 'px'; mast.style.top = top + 'px';
     const k = mw / M.w, ew = E.w * k, eh = E.h * k;
     const el = mob ? left + mw * 0.26 : left + mw + mh * 0.06, et = mob ? top + mh + 4 : top + (M.asc - E.asc) * k;
     edit.style.width = ew + 'px'; edit.style.left = el + 'px'; edit.style.top = et + 'px';
     stage.style.setProperty('--edB', (Math.max(top + mh, et + eh) + (mob ? 14 : 18)) + 'px');
     geo = { W, H, mob, mw, sx: left + M.ax * mw, sy: top + mh * 0.5 };
-    // mask must cover the viewport: stem width * s > 2 * max distance from anchor
-    const need = 3.2 * Math.max(geo.sx, W - geo.sx, geo.sy, H - geo.sy) / (M.stem * mw) ;
+    const need = 3.2 * Math.max(geo.sx, W - geo.sx, geo.sy, H - geo.sy) / (M.stem * mw);
     geo.sMax = Math.max(need, 12);
-    // collage slots (centre of card, width) in px
-    const S = mob ? {
-      B: { cx: .72, cy: .29, sc: .42 },
-      diag: { cx: .27, cy: .235, w: .42 }, consult: { cx: .72, cy: .755, w: .46 }, people: { cx: .27, cy: .6, w: .46 },
-      fields: { cx: .5, cy: .3, w: .86 }, visit: { cx: .5, cy: .68, w: .86 }
-    } : {
-      B: { cx: .5, cy: .47, sc: .38 },
-      diag: { cx: .19, cy: .30, w: .15 }, consult: { cx: .80, cy: .27, w: .19 }, people: { cx: .79, cy: .74, w: .2 },
-      fields: { cx: .3, cy: .46, w: .34 }, visit: { cx: .7, cy: .46, w: .36 }
-    };
-    for (const k of Object.keys(C)) { const s = S[k]; C[k].style.width = (s.w * W) + 'px'; C[k].style.left = (s.cx * W - s.w * W / 2) + 'px'; C[k].style.top = '0px'; }
-    geo.S = S;
-    return geo;
   }
 
-  function build() {
-    if (tl) { tl.scrollTrigger && tl.scrollTrigger.kill(); tl.kill(); }
-    gsap.set([A, B, mast, edit, cv, hero, chap, edge, cbg, capB, ...Object.values(C)], { clearProps: 'transform,opacity' });
-    P.s = 1;
-    layout(); applyMask();
-    const { W, H, S, mob } = geo;
-    const cy = (k) => S[k].cy * H - C[k].offsetHeight / 2;
-    // B's centre card position
-    const bScale = S.B.sc, bY = (S.B.cy - 0.5) * H, bX = (S.B.cx - 0.5) * W;
-    capB.style.left = (S.B.cx * W - W * bScale / 2) + 'px'; capB.style.width = (W * bScale) + 'px';
-    capB.style.top = (S.B.cy * H + H * bScale / 2) + 'px';
-    scene.style.height = (mob ? 620 : 640) + 'svh';
+  // ---- SplitText helpers (after fonts) ----
+  const splits = [];
+  const split = el => { const s = new SplitText(el, { type: 'lines', mask: 'lines', linesClass: 'ln' }); splits.push(s); return s; };
+  const revertSplits = () => { while (splits.length) splits.pop().revert(); };
 
-    tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: scene, start: 'top top', end: 'bottom bottom', scrub: true, pin: stage, pinSpacing: false,
-      onUpdate: self => { window.__p = self.progress; headerTone(); } } });
+  let quoteS = null, byS = null;
+  function buildCover() {
+    if (tl) { tl.scrollTrigger && tl.scrollTrigger.kill(); tl.kill(); }
+    gsap.set([film, mast, edit, cv, hero, chap, cgrad, qpage], { clearProps: 'transform,opacity,filter' });
+    P.s = 1; layout(); applyMask();
+    const { H, mob } = geo;
+    gsap.set(qpage, { y: 0, yPercent: 102 });
+    quoteS = split('#quote'); byS = split('#qby');
+    gsap.set([...quoteS.lines, ...byS.lines], { yPercent: 110 });
+    gsap.set('#qr', { opacity: 0, y: 24 });
+
+    tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: cover, start: 'top top', end: 'bottom bottom', scrub: true, pin: stage, pinSpacing: false,
+      onUpdate: self => { window.__p = self.progress; s3.progress(gsap.utils.clamp(0, 1, (self.progress - 0.05) / 0.48)); headerTone(); } } });
     st = tl.scrollTrigger;
-    // 0 → .06 hold. .06 → .12: hero copy leaves, DOM masthead hands over to the mask (B inside letters)
-    tl.to(cv, { opacity: 0, y: -40, duration: 0.025, ease: 'power2.in' }, 0.03)
-      .to(edit, { opacity: 0, x: 30, duration: 0.05 }, 0.05)
-      .fromTo(B, { opacity: 0 }, { opacity: 1, duration: 0.05 }, 0.07)
-      .to(mast, { opacity: 0, duration: 0.04 }, 0.09)
-    // .12 → .32: zoom through the D stem until B fills the screen
+    tl.to(cv, { opacity: 0, y: -40, duration: 0.03, ease: 'power2.in' }, 0.04)
+      .to(edit, { opacity: 0, x: 30, duration: 0.04 }, 0.06)
+      // the white letters become a window: masked film fades in exactly where the masthead sits
+      .fromTo(film, { opacity: 0 }, { opacity: 1, duration: 0.04 }, 0.07)
+      .to(mast, { opacity: 0, duration: 0.03 }, 0.09)
+      // zoom through the D stem until the live dolly fills the screen
       .to(P, { s: geo.sMax, duration: 0.2, ease: 'power3.in', onUpdate: applyMask }, 0.12)
-      .set(B, { webkitMaskImage: 'none', maskImage: 'none' }, 0.321)
-      .fromTo(chap, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.04 }, 0.3)
-      .fromTo('#cgrad', { opacity: 0 }, { opacity: 1, duration: 0.04 }, 0.29)
-      .to('#cgrad', { opacity: 0, duration: 0.03 }, 0.37)
-    // .36 → .46: chapter title leaves, B shrinks to the centre card, the paper ground and edge type arrive
-      .to(chap, { opacity: 0, duration: 0.03 }, 0.37)
-      .to(cbg, { opacity: 1, duration: 0.01 }, 0.37)
-      .to(B, { scale: bScale, x: bX, y: bY, duration: 0.09, ease: 'power3.inOut' }, 0.37)
-      .fromTo(edge, { opacity: 0, x: -30 }, { opacity: mob ? .2 : 1, x: 0, duration: 0.06, ease: 'power2.out' }, 0.42)
-      .fromTo(capB, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.03 }, 0.45)
-    // .46 → .62: stories 02–04 arrive with different travel (parallax) — 4 items on screen max
-      .fromTo(C.diag, { opacity: 0, y: cy('diag') + H * .5 }, { opacity: 1, y: cy('diag'), duration: 0.1, ease: 'power3.out' }, 0.46)
-      .fromTo(C.consult, { opacity: 0, y: cy('consult') + H * .8 }, { opacity: 1, y: cy('consult'), duration: 0.12, ease: 'power3.out' }, 0.49)
-      .fromTo(C.people, { opacity: 0, y: cy('people') + H * .6 }, { opacity: 1, y: cy('people'), duration: 0.11, ease: 'power3.out' }, 0.53)
-    // drift while held
-      .to(C.diag, { y: cy('diag') - H * (mob ? .01 : .04), duration: 0.1 }, 0.62)
-      .to(C.consult, { y: cy('consult') - H * (mob ? .015 : .07), duration: 0.1 }, 0.62)
-      .to(C.people, { y: cy('people') - H * (mob ? .005 : .02), duration: 0.1 }, 0.62)
-    // .72 → .82: set 1 lifts away at different speeds, set 2 (05, 06) arrives
-      .to(C.diag, { y: -H * .6, opacity: 0, duration: 0.08, ease: 'power2.in' }, 0.72)
-      .to(B, { y: bY - H * .9, duration: 0.09, ease: 'power2.in' }, 0.735)
-      .to(capB, { y: -H * .9, opacity: 0, duration: 0.09, ease: 'power2.in' }, 0.735)
-      .to(C.consult, { y: -H * .7, opacity: 0, duration: 0.08, ease: 'power2.in' }, 0.75)
-      .to(C.people, { y: -H * .9, opacity: 0, duration: 0.08, ease: 'power2.in' }, 0.755)
-      .fromTo(C.fields, { opacity: 0, y: cy('fields') + H * .6 }, { opacity: 1, y: cy('fields'), duration: 0.1, ease: 'power3.out' }, 0.8)
-      .fromTo(C.visit, { opacity: 0, y: cy('visit') + H * .9 }, { opacity: 1, y: cy('visit'), duration: 0.12, ease: 'power3.out' }, 0.82)
-      .to(edge, { opacity: 0.18, duration: 0.05 }, 0.8)
+      .set(film, { webkitMaskImage: 'none', maskImage: 'none' }, 0.321)
+      .fromTo(cgrad, { opacity: 0 }, { opacity: 1, duration: 0.04 }, 0.32)
+      .fromTo(chap, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.04 }, 0.33)
+      .to(chap, { opacity: 0, y: -16, duration: 0.03 }, 0.47)
+      .to(cgrad, { opacity: 0, duration: 0.03 }, 0.47)
+      // paper curtain with depth: film recedes and dims as the quote page covers it
+      .fromTo(film, { scale: 1, filter: 'brightness(1)' }, { scale: 0.9, filter: 'brightness(.45)', duration: 0.12, ease: 'power2.inOut', immediateRender: false }, 0.5)
+      .to(qpage, { yPercent: 0, duration: 0.12, ease: 'power2.inOut' }, 0.5)
+      .to(quoteS.lines, { yPercent: 0, duration: 0.07, stagger: 0.025, ease: 'power3.out' }, 0.6)
+      .to(byS.lines, { yPercent: 0, duration: 0.05 }, 0.72)
+      .to('#qr', { opacity: 1, y: 0, duration: 0.06 }, 0.76)
       .to({}, { duration: 0.0001 }, 0.9999);
   }
 
+  // ---- contents: pinned chapter swap ----
+  let ttl = null, tst = null;
+  function buildToc() {
+    if (ttl) { ttl.scrollTrigger && ttl.scrollTrigger.kill(); ttl.kill(); }
+    const nums = $$('.cnum span'), cts = $$('#ctit .ct'), figs = $$('#cpic figure'), prog = $$('#tprog b');
+    gsap.set([nums, cts, figs, $$('#cpic .wipe'), $$('#cpic img')], { clearProps: 'all' });
+    const n = cts.length, seg = 1 / n;
+    const lines = cts.map(ct => { const s1 = split(ct.querySelector('h2')); const s2 = split(ct.querySelector('p')); return [...s1.lines, ...s2.lines]; });
+    cts.forEach((ct, i) => { gsap.set(ct, { visibility: 'visible' }); gsap.set(lines[i], { yPercent: i ? 110 : 0 }); gsap.set([ct.querySelector('.eb'), ct.querySelector('a')], { opacity: i ? 0 : 1, y: i ? 14 : 0 }); });
+    nums.forEach((el, i) => gsap.set(el, { opacity: i ? 0 : 1, yPercent: i ? 60 : 0 }));
+    figs.forEach((f, i) => { gsap.set(f, { visibility: 'visible', zIndex: i }); gsap.set(f.querySelector('.wipe'), { clipPath: i ? 'inset(100% 0% 0% 0%)' : 'inset(0% 0% 0% 0%)' }); gsap.set(f.querySelector('img'), { scale: i ? 1.18 : 1 }); });
+    ttl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#toc', start: 'top top', end: 'bottom bottom', scrub: true, pin: '#tstage', pinSpacing: false,
+      onUpdate: self => { const p = self.progress * n; prog.forEach((b, i) => b.style.setProperty('--f', gsap.utils.clamp(0, 1, p - i))); } } });
+    tst = ttl.scrollTrigger;
+    for (let i = 1; i < n; i++) {
+      const t = i * seg - seg * 0.28, d = seg * 0.3;
+      ttl.to(lines[i - 1], { yPercent: -110, duration: d * 0.8, stagger: 0.012, ease: 'power2.in' }, t)
+         .to([cts[i - 1].querySelector('.eb'), cts[i - 1].querySelector('a')], { opacity: 0, y: -10, duration: d * 0.5 }, t)
+         .to(nums[i - 1], { opacity: 0, yPercent: -60, duration: d * 0.8, ease: 'power2.in' }, t)
+         .to(figs[i].querySelector('.wipe'), { clipPath: 'inset(0% 0% 0% 0%)', duration: d * 1.3, ease: 'power2.inOut' }, t)
+         .to(figs[i].querySelector('img'), { scale: 1, duration: d * 1.6, ease: 'power2.out' }, t)
+         .to(figs[i - 1].querySelector('img'), { scale: 0.94, duration: d * 1.3, ease: 'power2.inOut' }, t)
+         .fromTo(lines[i], { yPercent: 110 }, { yPercent: 0, duration: d, stagger: 0.02, ease: 'power3.out' }, t + d * 0.55)
+         .fromTo(nums[i], { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, duration: d, ease: 'power3.out' }, t + d * 0.55)
+         .fromTo([cts[i].querySelector('.eb'), cts[i].querySelector('a')], { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: d * 0.8 }, t + d * 0.9);
+    }
+    ttl.to({}, { duration: 0.0001 }, 0.9999);
+  }
+
+  // ---- chapter opener: s1 scrub, then the first spread covers it (rear layer sinks) ----
+  let opTriggers = [];
+  function buildOpener() {
+    opTriggers.forEach(t => t.kill()); opTriggers = [];
+    const wrap = $('#opener');
+    opTriggers.push(ScrollTrigger.create({ trigger: wrap, start: 'top top', end: () => '+=' + (wrap.offsetHeight - innerHeight * 2), scrub: true, onUpdate: self => s1.progress(self.progress) }));
+    opTriggers.push(gsap.fromTo('#opwrap', { scale: 1, filter: 'brightness(1)' }, { scale: 1.08, filter: 'brightness(.4)', ease: 'none', scrollTrigger: { trigger: '#spread1', start: 'top bottom', end: 'top top', scrub: true } }).scrollTrigger);
+    const ls = $$('#optxt .mkl').flatMap(el => split(el).lines);
+    opTriggers.push(gsap.fromTo([$('#optxt .lab'), $('#optxt .big')], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: 'expo.out', scrollTrigger: { trigger: wrap, start: 'top 60%', toggleActions: 'play none none reverse' } }).scrollTrigger);
+    opTriggers.push(gsap.fromTo(ls, { yPercent: 110 }, { yPercent: 0, duration: 1, stagger: 0.08, ease: 'expo.out', scrollTrigger: { trigger: wrap, start: 'top 40%', toggleActions: 'play none none reverse' } }).scrollTrigger);
+  }
+
+  // ---- reading sections: masked title lines, crop reveals ----
+  let secTriggers = [];
+  function buildSections() {
+    secTriggers.forEach(t => t.kill()); secTriggers = [];
+    $$('.spread .mkl, .people .mkl, .visit .mkl').forEach(el => {
+      const s = split(el);
+      secTriggers.push(gsap.fromTo(s.lines, { yPercent: 110 }, { yPercent: 0, duration: 1, stagger: 0.08, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' } }).scrollTrigger);
+    });
+    $$('.sp-pic.crop').forEach(f => {
+      const ph = f.querySelector('.ph'), flip = f.closest('.spread').classList.contains('flip');
+      const from = flip ? 'inset(10% 0% 10% 18%)' : 'inset(10% 18% 10% 0%)';
+      secTriggers.push(gsap.fromTo(ph, { clipPath: from }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: f, start: 'top 92%', end: 'top 30%', scrub: true } }).scrollTrigger);
+      secTriggers.push(gsap.fromTo(ph.querySelector('img'), { scale: 1.22 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: f, start: 'top 92%', end: 'top 30%', scrub: true } }).scrollTrigger);
+    });
+    secTriggers.push(gsap.fromTo('.pp-pic .ph', { clipPath: 'inset(0% 0% 24% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: '.pp-pic', start: 'top 90%', end: 'top 40%', scrub: true } }).scrollTrigger);
+    secTriggers.push(gsap.fromTo('.vs-wide img', { scale: 1.18, yPercent: -4 }, { scale: 1, yPercent: 4, ease: 'none', scrollTrigger: { trigger: '.vs-wide', start: 'top bottom', end: 'bottom top', scrub: true } }).scrollTrigger);
+  }
+
+  function buildAll() {
+    revertSplits(); makeScrubs();
+    buildCover(); buildToc(); buildOpener(); buildSections();
+    ScrollTrigger.refresh();
+  }
+
   function start() {
-    makeMask(); build(); ScrollTrigger.refresh();
-    // intro: masthead rises out of the image, copy follows
+    makeMask(); buildAll();
     if (st.progress < 0.02) {
-      // masthead clip reveal (< 900ms), H1 phrases 100ms apart
       gsap.fromTo([mast, edit], { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 0.85, stagger: 0.12, ease: 'expo.out', delay: 0.1, clearProps: 'clipPath' });
       gsap.from(hero.children, { y: 22, opacity: 0, duration: 0.9, stagger: 0.1, ease: 'expo.out', delay: 0.35 });
       gsap.from('#cvphoto .ph img', { scale: 1.08, duration: 1.4, ease: 'power3.out', delay: 0.2 }); gsap.from('#cvphoto figure', { opacity: 0, y: 24, duration: 1, stagger: 0.15, ease: 'expo.out', delay: 0.3 });
       gsap.from('#meta', { opacity: 0, duration: 0.8, delay: 0.5 });
     }
+    headerTone();
   }
-  const ready = document.fonts ? Promise.all([document.fonts.load('900 100px "Bodoni Moda"'), document.fonts.load('italic 400 100px "Bodoni Moda"'), document.fonts.ready]) : Promise.resolve();
+  const ready = document.fonts ? Promise.all([document.fonts.load('900 100px "Bodoni Moda"'), document.fonts.load('italic 400 100px "Bodoni Moda"'), document.fonts.load('500 20px "Pretendard Variable"'), document.fonts.ready]) : Promise.resolve();
   Promise.race([ready, new Promise(r => setTimeout(r, 2500))]).then(start);
 
   let lw = innerWidth, lh = innerHeight, rt;
-  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (innerWidth === lw && (mobile() || innerHeight === lh)) return; lw = innerWidth; lh = innerHeight; build(); ScrollTrigger.refresh(); }, 160); });
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (innerWidth === lw && (mobile() || innerHeight === lh)) return; lw = innerWidth; lh = innerHeight; buildAll(); }, 160); });
 
-  // header solid background on reading sections
-  // header tone follows what is under it: cover/photo = white; white paper = ink on a solid ground (collage captions slide under it)
+  // ---- header tone: white over burgundy/photos, ink over paper ----
   function headerTone() {
-    const p = window.__p || 0, inScene = scene.getBoundingClientRect().bottom > 60;
-    let ink, solid;
-    if (inScene) { ink = p > 0.365; solid = ink; }
-    else { const el = document.elementFromPoint(innerWidth / 2, 70); const dark = el && el.closest('.visit, .ft'); ink = !dark; solid = true; }
-    hd.classList.toggle('ink', ink); hd.classList.toggle('solid', solid); hd.classList.toggle('on-dark', !ink && solid);
+    const p = window.__p || 0, r = cover.getBoundingClientRect();
+    let ink;
+    if (r.bottom > innerHeight + 10) ink = p > 0.58;
+    else { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && el.closest('.opener, .spread.dark, .ft, .cover'); ink = !dark; }
+    hd.classList.toggle('ink', ink);
   }
+  function headerStatic() { addEventListener('scroll', () => { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && el.closest('.cover, .opener, .spread.dark, .ft'); hd.classList.toggle('ink', !dark); }, { passive: true }); }
   addEventListener('scroll', headerTone, { passive: true });
 
-  document.querySelectorAll('a[href^="#"]:not([data-p])').forEach(a => a.addEventListener('click', e => {
+  // ---- anchors ----
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const id = a.getAttribute('href'); let y;
-    if (id === '#top') y = 0; else if (id === '#stories') y = st.start + (st.end - st.start) * 0.31; else return;
-    e.preventDefault(); lenis ? lenis.scrollTo(y, { duration: 1.8 }) : scrollTo({ top: y, behavior: 'smooth' });
+    if (id === '#top') y = 0;
+    else if (id === '#toc') y = tst.start + 1;
+    else { const t = document.querySelector(id); if (!t) return; y = t.getBoundingClientRect().top + scrollY; if (id === '#opener') y += 1; }
+    e.preventDefault(); goTo(y, 1.8);
   }));
-  // later chapters keep the cover's editorial grammar: one crop reveal + short title masks (links stay clickable)
-  gsap.fromTo('#crop .ph', { clipPath: 'inset(14% 22% 14% 22%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: '#crop', start: 'top 92%', end: 'top 30%', scrub: true } });
-  gsap.fromTo('#crop img', { scale: 1.22 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '#crop', start: 'top 92%', end: 'top 30%', scrub: true } });
-  gsap.fromTo('.big-n', { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: '.big-n', start: 'top 88%' } });
-  document.querySelectorAll('.mk span').forEach(el => gsap.fromTo(el, { yPercent: 110 }, { yPercent: 0, duration: 0.9, ease: 'expo.out', scrollTrigger: { trigger: el.parentElement, start: 'top 88%' } }));
-  document.querySelectorAll('.toc a[data-p]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const y = st.start + (st.end - st.start) * parseFloat(a.dataset.p); lenis ? lenis.scrollTo(y, { duration: 1.6 }) : scrollTo({ top: y, behavior: 'smooth' }); }));
-  window.__plan3 = { scrollToP(p) { const y = st.start + (st.end - st.start) * p; lenis ? lenis.scrollTo(y, { immediate: true, force: true }) : scrollTo(0, y); ScrollTrigger.update(); }, get geo() { return geo; } };
+  window.__plan3 = { scrollToP(p) { const y = st.start + (st.end - st.start) * p; lenis ? lenis.scrollTo(y, { immediate: true, force: true }) : scrollTo(0, y); ScrollTrigger.update(); }, get geo() { return geo; }, get s3() { return s3; }, get s1() { return s1; } };
 })();
 </script>
 </body>
