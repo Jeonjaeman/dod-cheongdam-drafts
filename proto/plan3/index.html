@@ -199,7 +199,7 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
   .mbar a:first-child{background:#fff;color:var(--wine);border-color:#fff}
 }
 </style>
-<style id="nolink">a.nolink{cursor:default}</style>
+<style id="nolink">a.plain{pointer-events:none;cursor:text;text-decoration:none;border-bottom:0!important;background-image:none!important}a.plain::before,a.plain::after{content:none!important}</style>
 </head>
 <body>
 <header class="hd" id="hd">
@@ -246,8 +246,8 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
         <div class="card txt" data-k="people"><p class="cap" style="padding:0;background:none"><b>04 의료진과 연구진</b><span>진료와 연구를 이어가는 사람들</span></p>
           <ul><li>이준 <em>대표원장</em></li><li>안정식 <em>원장</em></li><li>황승경 <em>원장</em></li><li>이준원 <em>원장</em></li><li>김진아 <em>박사·연구진</em></li></ul></div>
         <div class="card txt" data-k="fields"><p class="cap" style="padding:0;background:none"><b>05 진료 분야</b><span>리프팅, 콜라겐·스킨부스터, 재생 프로그램</span></p>
-          <ul><li><a class="nolink" aria-disabled="true">리프팅 <em>→</em></a></li><li><a class="nolink" aria-disabled="true">콜라겐·스킨부스터 <em>→</em></a></li><li><a class="nolink" aria-disabled="true">재생 프로그램 <em>→</em></a></li></ul></div>
-        <div class="card" data-k="visit"><figure style="aspect-ratio:3/1"><img src="img/visit.webp" width="1200" height="400" alt="디오디피부과 청담 안내 데스크" loading="lazy"></figure><p class="cap"><b>06 방문</b><span>서울 강남구 도산대로 423</span><br><a class="nolink" aria-disabled="true">지도 열기 →</a></p></div>
+          <ul><li><a class="plain">리프팅 <em></em></a></li><li><a class="plain">콜라겐·스킨부스터 <em></em></a></li><li><a class="plain">재생 프로그램 <em></em></a></li></ul></div>
+        <div class="card" data-k="visit"><figure style="aspect-ratio:3/1"><img src="img/visit.webp" width="1200" height="400" alt="디오디피부과 청담 안내 데스크" loading="lazy"></figure><p class="cap"><b>06 방문</b><span>서울 강남구 도산대로 423</span><br><a class="plain">지도 열기</a></p></div>
       </div>
     </div>
   </section>
@@ -285,7 +285,7 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
       <li><span class="n">iv.</span><span class="nm">이준원</span><span class="rl">원장</span></li>
       <li><span class="n">v.</span><span class="nm">김진아</span><span class="rl">박사 · 연구진</span></li>
     </ol>
-    <a class="lnk rv nolink" aria-disabled="true">의료진 소개 보기 →</a>
+    
   </section>
 
   <!-- P3-05 -->
@@ -293,10 +293,10 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
     <span class="eb rv">Continue the story</span>
     <h2 class="mk" id="h-tx"><span>진료 이야기를 이어가세요</span></h2>
     <ul class="tx rv">
-      <li><a class="nolink" aria-disabled="true"><span class="t">리프팅</span><span class="s">dodskin.com/lifting →</span></a></li>
-      <li><a class="nolink" aria-disabled="true"><span class="t">콜라겐·스킨부스터</span><span class="s">dodskin.com/booster →</span></a></li>
-      <li><a class="nolink" aria-disabled="true"><span class="t">재생 프로그램</span><span class="s">dodskin.com/stemcell →</span></a></li>
-      <li><a class="nolink" aria-disabled="true"><span class="t">현재 안내</span><span class="s">dodskin.com/event →</span></a></li>
+      <li><a class="plain"><span class="t">리프팅</span></a></li>
+      <li><a class="plain"><span class="t">콜라겐·스킨부스터</span></a></li>
+      <li><a class="plain"><span class="t">재생 프로그램</span></a></li>
+      <li><a class="plain"><span class="t">현재 안내</span></a></li>
     </ul>
     <p class="small rv">시술 선택과 적용 여부는 의료진 상담이 필요합니다.</p>
   </section>
@@ -306,10 +306,10 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
     <span class="eb rv">The next story, in Cheongdam</span>
     <h2 class="rv" id="h-visit">다음 이야기는, 청담에서</h2>
     <div class="vg rv">
-      <div><span class="lab">Kakao</span><a class="kk nolink" aria-disabled="true">카카오톡으로 진료 문의</a><p style="margin-top:18px"><span class="lab" style="margin-bottom:6px">Call</span><a class="tel" href="tel:02-6203-6263">02-6203-6263</a></p></div>
+      <div><span class="lab">Kakao</span><a class="plain">카카오톡으로 진료 문의</a><p style="margin-top:18px"><span class="lab" style="margin-bottom:6px">Call</span><a class="tel" href="tel:02-6203-6263">02-6203-6263</a></p></div>
       <div><span class="lab">Hours</span><dl><div><dt>월–목</dt><dd>10:00–19:00</dd></div><div><dt>금</dt><dd>10:00–21:00</dd></div><div><dt>토</dt><dd>10:00–16:00</dd></div><div><dt>휴게(월–금)</dt><dd>13:00–14:00</dd></div></dl><p style="margin-top:10px;font-size:12px;opacity:.75">일요일·공휴일은 병원에 확인해 주세요.</p></div>
-      <div><span class="lab">Address</span><p>디오디피부과의원 청담<br>서울 강남구 도산대로 423</p><a class="u nolink" aria-disabled="true">네이버 지도 열기 →</a></div>
-      <div><span class="lab">Official sites</span><div class="langs"><a lang="en" class="nolink" aria-disabled="true">English</a><a lang="zh-Hans" class="nolink" aria-disabled="true">简体中文</a><a lang="ja" class="nolink" aria-disabled="true">日本語</a><a lang="zh-Hant" class="nolink" aria-disabled="true">繁體中文</a></div></div>
+      <div><span class="lab">Address</span><p>디오디피부과의원 청담<br>서울 강남구 도산대로 423</p></div>
+      <div><span class="lab">Official sites</span><div class="langs"><a lang="en" class="plain">English</a><a lang="zh-Hans" class="plain">简体中文</a><a lang="ja" class="plain">日本語</a><a lang="zh-Hant" class="plain">繁體中文</a></div></div>
     </div>
   </section>
   <footer class="ft"><span>디자인 초안 · 탱탱소프트</span><span>DOD Dermatology · Cheongdam</span></footer>
@@ -317,7 +317,7 @@ a:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
 
 <nav class="mbar" aria-label="진료 문의">
   <a href="tel:02-6203-6263">전화 문의</a>
-  <a class="nolink" aria-disabled="true">카카오 문의</a>
+  <a href="#visit" >카카오 문의</a>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
