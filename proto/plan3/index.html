@@ -391,6 +391,34 @@ canvas{display:block}
   .quote{font-size:clamp(26px,3vw,40px)}
 }
 @media (max-width:767px){.hd.sc:not(.ink){background:rgba(24,14,14,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}}
+/* v2.2 리사 톤 보강(Care/Research 두 사진만) */
+/* DOD #people — bounded tonal polish (print tone), filters on the two photos only */
+#people .pp-care img,
+#people .pp-res img {
+  filter: saturate(.52) sepia(.16) contrast(1.06) brightness(.95);
+  transition: filter .4s ease;
+}
+
+/* clinical087: bright/flat cool white → warm mid-gray paper key, keep face + mask readable */
+#people .pp-care img {
+  filter: saturate(.48) sepia(.2) contrast(1.08) brightness(.9);
+}
+
+/* research080: green/teal cast → neutralised, slightly lifted so the hood/scope read as fabric and metal, not slime */
+#people .pp-res img {
+  filter: saturate(.36) sepia(.24) contrast(1.05) brightness(1.03);
+}
+
+/* burgundy words print INTO the photo where they overlap (ink on paper), unchanged on bare paper */
+#people .pp-word.care,
+#people .pp-word.res {
+  mix-blend-mode: multiply;
+}
+
+/* heading untouched; grid unchanged */
+#people .pp-sp { isolation: isolate; }
+#people .pp-h  { color: inherit; }
+
 </style>
 <style id="nolink">a.plain{pointer-events:none;cursor:text;text-decoration:none;border-bottom:0!important;background-image:none!important}a.plain::before,a.plain::after{content:none!important}</style>
 </head>
