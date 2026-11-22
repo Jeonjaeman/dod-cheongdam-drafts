@@ -12,7 +12,7 @@
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:#111;color:#f4f2ee;font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-.bar{padding:0 20px;font-size:12.5px;text-align:center;background:#2a2a2a;color:#cfcac2}
+.bar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 10px;padding:0 20px;font-size:12.5px;text-align:center;background:#2a2a2a;color:#cfcac2}
 .bar a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;text-underline-offset:3px}
 .wrap{max-width:1440px;margin:0 auto;padding:0 40px}
 header{padding:72px 0 36px}
@@ -37,7 +37,7 @@ h2{margin:.35rem 0 .6rem;font-size:22px;line-height:1.4;font-weight:600;letter-s
 .meta ul{margin:0;padding:0 0 0 1.1em;color:#d6d0c6;font-size:14.5px}
 .meta ul li{margin:.2rem 0}
 .meta .fine{margin-top:.9rem;font-size:12.5px;color:#8c877f}
-.go{margin-top:auto;padding-top:1.5rem}
+.meta>.go{margin-top:auto;padding-top:1.5rem}
 .go a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border:1px solid #f4f2ee;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;transition:background .25s,color .25s}
 .go a:hover{background:#f4f2ee;color:#111}
 .a .thumb{background:#F3EFE7}.b .thumb{background:#08171A}.c .thumb{background:#F8F5EE}
@@ -47,7 +47,7 @@ footer{padding:0 0 48px;font-size:13px;color:#8c877f}
 </style>
 </head>
 <body>
-<div class="bar" role="note">디자인 초안(데모) 모음입니다 · 비교용 현재 공식 사이트: <a href="https://www.dodskin.com/" rel="noopener">dodskin.com 보기</a></div>
+<nav class="bar" aria-label="자료 이동"><a href="https://jeonjaeman.github.io/dod-cheongdam/">← 리뉴얼 제안서</a><span aria-hidden="true">·</span><a href="https://jeonjaeman.github.io/dod-cheongdam/report.html">AI 검색 진단 보고서</a><span aria-hidden="true">·</span><span>비교용 현재 공식 사이트: <a href="https://www.dodskin.com/" rel="noopener">dodskin.com</a></span></nav>
 <div class="wrap">
 <header>
   <p class="eyebrow">DOD CHEONGDAM · RENEWAL DRAFTS</p>
