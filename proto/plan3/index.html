@@ -47,7 +47,7 @@ canvas{display:block}
 .hd,.gnb-panel{--gnb-bg:var(--paper);--gnb-fg:var(--ink);--gnb-mute:var(--mute);--gnb-line:var(--rule);--gnb-accent:var(--wine);--gnb-pbg:var(--paper);--gnb-pfg:var(--ink);--gnb-pmute:var(--mute);--gnb-pline:var(--rule);--gnb-g:var(--gutter);--gnb-bar:var(--bar-h)}
 .hd .gnb a::before,.hd .gnb-burger::before{content:none}
 .hd .hd-cta{margin-left:auto;white-space:nowrap}
-@media (min-width:1280px){.hd .hd-vol{display:none}}
+@media (min-width:1280px){.hd .hd-vol{position:static;transform:none;margin-left:14px;font-size:13px;white-space:nowrap;opacity:.8}.hd .gnb{margin-left:clamp(20px,2vw,40px)}}
 
 /* ---------- Scene A: cover + letter mask + live frames + pull quote ---------- */
 .cover{position:relative;height:620svh}

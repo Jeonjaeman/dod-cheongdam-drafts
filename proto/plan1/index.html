@@ -396,7 +396,7 @@ html:not(.motion) .hero-over{display:none}
     <a class="cta" href="#visit">진료 문의</a>
   </nav>
 </header>
-<script>window.GNB_MAP={'시설안내':'#why','의료진 및 연구진':'#rail','오시는길':'#visit'};window.__gnbLenis=function(){return window.__plan1&&window.__plan1.lenis};</script>
+<script>window.GNB_MAP={'시설안내':'#why','의료진 및 연구진':'#staff1','오시는길':'#visit'};window.__gnbLenis=function(){return window.__plan1&&window.__plan1.lenis};</script>
 <script src="../_lib/gnb.js"></script>
 
 <main id="top">
@@ -547,7 +547,7 @@ html:not(.motion) .hero-over{display:none}
             <figcaption><span><span class="it">06</span> <span class="k">연구</span></span><span class="d">Research</span></figcaption>
           </figure>
         </div>
-        <div class="card text alt">
+        <div class="card text alt" id="staff1">
           <div>
             <p class="eyebrow">People · 의료진과 연구진</p>
             <h3 class="h2">진료를 함께할<br>의료진.</h3>
@@ -657,6 +657,7 @@ html:not(.motion) .hero-over{display:none}
   const visit = $('#visit'), visitFig = $('#visitFig');
 
   let fs1 = null, fs3 = null, fs1Mode = null;
+  let railJump = null;   // PC 가로 rail: 마지막(의료진) 카드가 다 들어온 진행 지점의 스크롤 y
   const triggers = [];
   let splitOv = null;
 
@@ -864,6 +865,7 @@ html:not(.motion) .hero-over{display:none}
     gsap.set(cards, { clearProps: 'all' });
     const H = railStage.clientHeight;
     if (mob) {
+      railJump = null;
       rail.style.height = '';
       cards.forEach(card => triggers.push(ScrollTrigger.create({ trigger: card, start: 'top 88%', once: true, onEnter: () => gsap.fromTo(card, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }) })));
     } else {
@@ -878,6 +880,7 @@ html:not(.motion) .hero-over{display:none}
         onRefresh: self => railUpdate(self.progress, dist, travelEnd, coverStart, cards)
       });
       triggers.push(st);
+      railJump = () => st.start + (st.end - st.start) * travelEnd * 0.985;
       railUpdate(0, dist, travelEnd, coverStart, cards);
     }
     triggers.push(ScrollTrigger.create({
@@ -964,6 +967,7 @@ html:not(.motion) .hero-over{display:none}
     if (!el) return; e.preventDefault();
     let y = id === '#top' ? 0 : el.getBoundingClientRect().top + scrollY;
     if (id === '#why' && WH && WH.st) y = whyJumpY(0);   // past the curtain, onto chapter 01
+    if (id === '#staff1') y = railJump ? railJump() : el.getBoundingClientRect().top + scrollY - 80;   // PC: 가로 rail 끝 의료진 카드 / 모바일: 카드 위
     lenis ? lenis.scrollTo(y, { duration: 1.6 }) : scrollTo({ top: y, behavior: 'smooth' });
   }));
 
