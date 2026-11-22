@@ -245,6 +245,7 @@ html:not(.motion) .why-stage{height:auto;min-height:0}
 html:not(.motion) .ch{position:relative;min-height:100svh}
 html:not(.motion) .ch + .ch{border-top:1px solid var(--rule-l)}
 html:not(.motion) .ch-fig canvas{display:none}
+.motion .ch-fig:has(canvas) img.f{visibility:hidden} /* 스크럽 캔버스가 그 자리를 덮음 */
 html:not(.motion) .rail-stage{height:auto;min-height:0;padding:120px 0 80px;overflow-x:auto;overflow-y:hidden;display:block}
 html:not(.motion) .rail-head{position:relative;top:auto;left:var(--gutter);margin-bottom:60px}
 html:not(.motion) .rail-track{margin-top:0;padding-bottom:70px}
@@ -450,19 +451,19 @@ html:not(.motion) .hero-over{display:none}
         </div>
         <div class="card med">
           <figure>
-            <img src="../_media/img/096-1200.webp" width="1200" height="835" alt="상담실" loading="lazy" decoding="async">
+            <img src="../_media/img/096-1200.webp" srcset="../_media/img/096-1200.webp 1200w, ../_media/img/096.webp 2880w" sizes="100vw" width="1200" height="835" alt="상담실" loading="lazy" decoding="async">
             <figcaption><span><span class="it">02</span> <span class="k">상담실</span></span><span class="d">Consultation</span></figcaption>
           </figure>
         </div>
         <div class="card tall">
           <figure>
-            <img src="../_media/img/079-1200.webp" width="583" height="1200" alt="유리문 너머의 상담실" loading="lazy" decoding="async">
+            <img src="../_media/img/079-1200.webp" srcset="../_media/img/079-1200.webp 583w, ../_media/img/079.webp 1399w" sizes="100vw" width="583" height="1200" alt="유리문 너머의 상담실" loading="lazy" decoding="async">
             <figcaption><span><span class="it">03</span> <span class="k">복도</span></span><span class="d">Corridor</span></figcaption>
           </figure>
         </div>
         <div class="card med">
           <figure>
-            <img src="../_media/img/083-1200.webp" width="1200" height="835" alt="독립된 1인 시술실" loading="lazy" decoding="async">
+            <img src="../_media/img/083-1200.webp" srcset="../_media/img/083-1200.webp 1200w, ../_media/img/083.webp 2880w" sizes="100vw" width="1200" height="835" alt="독립된 1인 시술실" loading="lazy" decoding="async">
             <figcaption><span><span class="it">04</span> <span class="k">시술실</span></span><span class="d">Private room</span></figcaption>
           </figure>
         </div>
@@ -480,13 +481,13 @@ html:not(.motion) .hero-over{display:none}
         </div>
         <div class="card med">
           <figure>
-            <img src="../_media/img/072-1200.webp" width="1200" height="1165" alt="MetaVu 피부 진단 장비" loading="lazy" decoding="async">
+            <img src="../_media/img/072-1200.webp" srcset="../_media/img/072-1200.webp 1200w, ../_media/img/072.webp 2880w" sizes="100vw" width="1200" height="1165" alt="MetaVu 피부 진단 장비" loading="lazy" decoding="async">
             <figcaption><span><span class="it">05</span> <span class="k">진단</span></span><span class="d">MetaVu 진단 시스템을 안내합니다</span></figcaption>
           </figure>
         </div>
         <div class="card med">
           <figure>
-            <img src="../_media/img/076-1200.webp" width="1200" height="750" alt="현미경" loading="lazy" decoding="async">
+            <img src="../_media/img/076-1200.webp" srcset="../_media/img/076-1200.webp 1200w, ../_media/img/076.webp 2880w" sizes="100vw" width="1200" height="750" alt="현미경" loading="lazy" decoding="async">
             <figcaption><span><span class="it">06</span> <span class="k">연구</span></span><span class="d">Research</span></figcaption>
           </figure>
         </div>
@@ -874,5 +875,6 @@ html:not(.motion) .hero-over{display:none}
   window.__plan1 = { get lenis() { return lenis; }, get fs1() { return fs1; }, get fs3() { return fs3; }, triggers };
 })();
 </script>
+<script src="../_lib/imgsizes.js"></script>
 </body>
 </html>

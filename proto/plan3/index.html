@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../_lib/lenis.css">
 <link rel="preload" as="image" href="img/key-a.webp" media="(min-width: 901px)" fetchpriority="high">
-<link rel="preload" as="image" href="img/key-a-m.webp" media="(max-width: 900px)" fetchpriority="high">
 <style>
 :root{
   --paper:#F4EFE8; --white:#FFFFFF; --ink:#221B19; --wine:#7E2B3A; --wine-d:#5E1F2B; --wine-l:#C98A95; --cream:#F7F1EA;
@@ -284,6 +283,7 @@ canvas{display:block}
   .toc-prog{margin-top:12px}
   .toc-r{min-height:160px}
   .cpic figcaption{left:14px;right:14px;bottom:12px;font-size:12px}
+  .cpic{bottom:auto;height:min(100%,356px)}
   .op-txt{bottom:calc(var(--bar-h) + var(--sa) + 40px)}
   .op-txt .big{font-size:clamp(72px,22vw,110px)}
   .spread,.spread.flip{grid-template-columns:1fr;gap:28px;padding:72px var(--gutter) 64px}
@@ -395,12 +395,12 @@ canvas{display:block}
       </div>
       <div class="toc-r">
         <div class="cpic" id="cpic">
-          <figure><div class="wipe"><picture><source media="(max-width:900px)" srcset="img/key-a-m.webp"><img src="img/key-a.webp" width="1919" height="1080" alt="디오디 청담 라운지" loading="lazy"></picture></div><figcaption><span><i>Fig.03</i> 라운지</span><span>Space</span></figcaption></figure>
+          <figure><div class="wipe"><img src="img/key-a.webp" width="1919" height="1080" alt="디오디 청담 라운지" loading="lazy"></div><figcaption><span><i>Fig.03</i> 라운지</span><span>Space</span></figcaption></figure>
           <figure><div class="wipe"><img src="../_media/img/072-1200.webp" srcset="../_media/img/072-1200.webp 1200w, ../_media/img/072.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="1165" alt="공식 홈페이지의 진단 장비 사진" loading="lazy"></div><figcaption><span><i>Fig.04</i> 진단 장비</span><span>Diagnosis</span></figcaption></figure>
           <figure><div class="wipe"><img src="../_media/img/096-1200.webp" srcset="../_media/img/096-1200.webp 1200w, ../_media/img/096.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="835" alt="디오디 청담 상담실" loading="lazy"></div><figcaption><span><i>Fig.05</i> 상담실</span><span>Consultation</span></figcaption></figure>
           <figure><div class="wipe"><img src="../_media/img/076-1200.webp" srcset="../_media/img/076-1200.webp 1200w, ../_media/img/076.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="750" alt="연구용 현미경" loading="lazy"></div><figcaption><span><i>Fig.06</i> 연구</span><span>People</span></figcaption></figure>
           <figure><div class="wipe"><img src="../_media/img/070-1200.webp" srcset="../_media/img/070-1200.webp 1200w, ../_media/img/070.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="835" alt="공식 홈페이지의 제품 사진" loading="lazy"></div><figcaption><span><i>Fig.07</i> 진료 분야</span><span>Fields</span></figcaption></figure>
-          <figure><div class="wipe"><picture><source media="(max-width:900px)" srcset="img/space-m.webp"><img src="img/space.webp" width="1920" height="896" alt="디오디 청담 시술 공간 복도" loading="lazy"></picture></div><figcaption><span><i>Fig.08</i> 청담</span><span>Visit</span></figcaption></figure>
+          <figure><div class="wipe"><picture><source media="(max-width:900px)" srcset="../_media/img/079.webp" width="1399" height="2880"><img src="img/space.webp" width="1920" height="896" alt="디오디 청담 공간" loading="lazy"></picture></div><figcaption><span><i>Fig.08</i> 청담</span><span>Visit</span></figcaption></figure>
         </div>
       </div>
     </div>
@@ -451,7 +451,7 @@ canvas{display:block}
     <figure class="sp-pic crop">
       <div class="ph"><img src="../_media/img/096-1200.webp" srcset="../_media/img/096-1200.webp 1200w, ../_media/img/096.webp 2880w" sizes="(max-width:900px) 100vw, 64vw" width="1200" height="835" alt="디오디 청담 상담실" loading="lazy"></div>
       <figcaption><span><i>Fig.10</i> 상담실</span><span>DOD Cheongdam · 상담</span></figcaption>
-      <figure class="inset rv"><div class="ph2"><img src="../_media/img/072-1200.webp" width="1200" height="1165" alt="공식 홈페이지의 진단 장비 사진" loading="lazy"></div><figcaption><i>Fig.11</i> 진단 장비</figcaption></figure>
+      <figure class="inset rv"><div class="ph2"><img src="../_media/img/072-1200.webp" srcset="../_media/img/072-1200.webp 1200w, ../_media/img/072.webp 2880w" sizes="100vw" width="1200" height="1165" alt="공식 홈페이지의 진단 장비 사진" loading="lazy"></div><figcaption><i>Fig.11</i> 진단 장비</figcaption></figure>
     </figure>
   </section>
 
@@ -511,8 +511,8 @@ canvas{display:block}
       <p class="eb rv">The next story, in Cheongdam</p>
     </div>
     <figure class="vs-wide crop">
-      <picture><source media="(max-width:900px)" srcset="img/space-m.webp"><img src="img/space.webp" width="1920" height="896" alt="디오디 청담 시술 공간 복도" loading="lazy"></picture>
-      <figcaption><span><i>Fig.14</i> 시술 공간 복도</span><span>디오디피부과의원 청담</span></figcaption>
+      <picture><source media="(max-width:900px)" srcset="../_media/img/079.webp" width="1399" height="2880"><img src="img/space.webp" width="1920" height="896" alt="디오디 청담 공간" loading="lazy"></picture>
+      <figcaption><span><i>Fig.14</i> 청담 공간</span><span>디오디피부과의원 청담</span></figcaption>
     </figure>
     <div class="vs-g">
       <div class="map rv">
@@ -787,5 +787,6 @@ canvas{display:block}
   window.__plan3 = { scrollToP(p) { const y = st.start + (st.end - st.start) * p; lenis ? lenis.scrollTo(y, { immediate: true, force: true }) : scrollTo(0, y); ScrollTrigger.update(); }, get geo() { return geo; }, get s3() { return s3; }, get s1() { return s1; } };
 })();
 </script>
+<script src="../_lib/imgsizes.js"></script>
 </body>
 </html>
