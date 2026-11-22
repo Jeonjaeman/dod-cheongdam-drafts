@@ -838,7 +838,7 @@ if (!P.S) {
     disk.visible = s > .02; lens.visible = s > .02;
     // overlay: coordinate hairlines through the lens, leader line + zoom tag
     const on = s > .5 && p < .9;
-    V3.copy(lens.position).project(camera); const lx = (V3.x * .5 + .5) * vw, ly = (-V3.y * .5 + .5) * vh;
+    camera.updateMatrixWorld(); V3.copy(lens.position).project(camera); const okL = isFinite(V3.x) && isFinite(V3.y); const lx = okL ? (V3.x * .5 + .5) * vw : vw / 2, ly = okL ? (-V3.y * .5 + .5) * vh : vh / 2;
     const lr = (R * s * kL * 0) + (R * s) * (vh / (2 * 10 * Math.tan(camera.fov * Math.PI / 360))); // lens radius in px at z=0
     const lineA = on ? .3 : p < .19 ? .3 * retA : 0;
     const cx = on ? lx : ru * vw, cy = on ? ly : rv * vh;
