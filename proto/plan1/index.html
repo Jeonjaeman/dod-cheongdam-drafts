@@ -48,7 +48,7 @@ canvas{display:block}
 .nav a:hover{opacity:.6}
 .nav .cta{padding:0 18px;border:1px solid currentColor;border-radius:999px;min-height:44px}
 .site-header.light{color:var(--ivory)}
-.site-header,.gnb-panel{--gnb-bg:var(--ivory);--gnb-fg:var(--ink);--gnb-mute:var(--mute);--gnb-line:var(--rule);--gnb-accent:var(--gold);--gnb-pbg:var(--ivory);--gnb-pfg:var(--ink);--gnb-pmute:var(--mute);--gnb-pline:var(--rule);--gnb-g:var(--gutter);--gnb-bar:var(--bar-h)}
+.site-header,.gnb-panel{--gnb-bg:var(--ivory);--gnb-fg:var(--ink);--gnb-mute:rgba(30,26,23,.76);--gnb-line:var(--rule);--gnb-accent:var(--walnut);--gnb-pbg:var(--ivory);--gnb-pfg:var(--ink);--gnb-pmute:rgba(30,26,23,.76);--gnb-pline:var(--rule);--gnb-g:var(--gutter);--gnb-bar:var(--bar-h)}
 .site-header .nav{margin-left:auto}
 .site-header .gnb a::before{content:none}
 .site-header .cta{white-space:nowrap}
@@ -396,7 +396,7 @@ html:not(.motion) .hero-over{display:none}
     <a class="cta" href="#visit">진료 문의</a>
   </nav>
 </header>
-<script>window.GNB_MAP={'시설안내':'#why','의료진 및 연구진':'#staff1','오시는길':'#visit'};window.__gnbLenis=function(){return window.__plan1&&window.__plan1.lenis};</script>
+<script>window.GNB_MAP={'시설안내':'#why','의료진 및 연구진':'#staff1','오시는길':'#visit'};window.GNB_OFF=['#visit'];window.__gnbLenis=function(){return window.__plan1&&window.__plan1.lenis};</script>
 <script src="../_lib/gnb.js"></script>
 
 <main id="top">

@@ -47,7 +47,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
 .hd nav a{font-size:14px;letter-spacing:.02em;border-bottom:1px solid transparent;transition:border-color .2s}
 .hd nav a:hover{border-bottom-color:currentColor}
 .hd.light{color:var(--on-paper)}
-.hd,.gnb-panel{--gnb-bg:#F5F3EF;--gnb-fg:var(--on-paper);--gnb-mute:var(--on-paper-2);--gnb-line:var(--line-p);--gnb-accent:var(--teal);--gnb-pbg:var(--ink);--gnb-pfg:var(--on-ink);--gnb-pmute:var(--on-ink-2);--gnb-pline:var(--line-i);--gnb-g:var(--g);--gnb-bar:var(--bar)}
+.hd,.gnb-panel{--gnb-bg:#F5F3EF;--gnb-fg:var(--on-paper);--gnb-mute:var(--on-paper-2);--gnb-line:var(--line-p);--gnb-accent:var(--teal);--gnb-paccent:var(--cyan);--gnb-pbg:var(--ink);--gnb-pfg:var(--on-ink);--gnb-pmute:var(--on-ink-2);--gnb-pline:var(--line-i);--gnb-g:var(--g);--gnb-bar:var(--bar)}
 .hd .hd-q{margin-left:auto;white-space:nowrap}
 @media (min-width:1280px){.hd .mark small{display:none}}
 @media (max-width:767px){.hd nav a:not(.keep){display:none}.hd .mark small{display:none}}
@@ -329,7 +329,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
     <a href="#visit" data-to="#visit" class="keep">진료 문의</a>
   </nav>
 </header>
-<script>window.GNB_MAP={'시설안내':'#spaces','의료진 및 연구진':'#staff','오시는길':'#visit'};window.__gnbLenis=function(){return window.__P2&&window.__P2.lenis};</script>
+<script>window.GNB_MAP={'시설안내':'#spaces','의료진 및 연구진':'#staff','오시는길':'#visit'};window.GNB_OFF=['#staff','#visit'];window.__gnbLenis=function(){return window.__P2&&window.__P2.lenis};</script>
 <script src="../_lib/gnb.js"></script>
 <script>{const h=document.getElementById('hd');const f=()=>h.classList.toggle('sc',scrollY>40);addEventListener('scroll',f,{passive:true});f();}</script>
 

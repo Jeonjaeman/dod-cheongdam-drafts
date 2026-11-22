@@ -44,7 +44,7 @@ canvas{display:block}
 .hd-cta::before{inset:-14px -12px!important}
 .hd.ink{color:var(--ink);background:rgba(244,239,232,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--rule)}
 .hd.ink .hd-vol{opacity:.7}
-.hd,.gnb-panel{--gnb-bg:var(--paper);--gnb-fg:var(--ink);--gnb-mute:var(--mute);--gnb-line:var(--rule);--gnb-accent:var(--wine);--gnb-pbg:var(--paper);--gnb-pfg:var(--ink);--gnb-pmute:var(--mute);--gnb-pline:var(--rule);--gnb-g:var(--gutter);--gnb-bar:var(--bar-h)}
+.hd,.gnb-panel{--gnb-bg:var(--paper);--gnb-fg:var(--ink);--gnb-mute:rgba(34,27,25,.74);--gnb-line:var(--rule);--gnb-accent:var(--wine);--gnb-pbg:var(--paper);--gnb-pfg:var(--ink);--gnb-pmute:rgba(34,27,25,.74);--gnb-pline:var(--rule);--gnb-g:var(--gutter);--gnb-bar:var(--bar-h)}
 .hd .gnb a::before,.hd .gnb-burger::before{content:none}
 .hd .hd-cta{margin-left:auto;white-space:nowrap}
 @media (min-width:1280px){.hd .hd-vol{position:static;transform:none;margin-left:14px;font-size:13px;white-space:nowrap;opacity:.8}.hd .gnb{margin-left:clamp(20px,2vw,40px)}}
@@ -436,7 +436,7 @@ canvas{display:block}
   <span data-gnb-slot></span>
   <a class="hd-cta" href="#visit">진료 문의</a>
 </header>
-<script>window.GNB_MAP={'시설안내':'#opener','의료진 및 연구진':'#people','오시는길':'#visit'};window.__gnbLenis=function(){return window.__plan3&&window.__plan3.lenis};</script>
+<script>window.GNB_MAP={'시설안내':'#opener','의료진 및 연구진':'#people','오시는길':'#visit'};window.GNB_OFF=['#people','#visit'];window.__gnbLenis=function(){return window.__plan3&&window.__plan3.lenis};</script>
 <script src="../_lib/gnb.js"></script>
 <script>{const h=document.getElementById('hd');const f=()=>h.classList.toggle('sc',scrollY>40);addEventListener('scroll',f,{passive:true});f();}</script>
 

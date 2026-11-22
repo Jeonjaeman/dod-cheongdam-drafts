@@ -2,10 +2,9 @@
    --gnb-bg 펼침 바탕 · --gnb-fg 펼침 글자 · --gnb-mute 보조 글자 · --gnb-line 구분선 · --gnb-accent '메인에서 보기'
    --gnb-pbg/--gnb-pfg/--gnb-pmute/--gnb-pline 패널 · --gnb-font 1차 메뉴 서체 · --gnb-g 좌우 여백 · --gnb-bar 모바일 하단 바 높이 */
 .gnb,.gnb-burger,.gnb-band{pointer-events:auto}
-.gnb{position:relative;z-index:2;flex:1 1 auto;display:flex;min-width:0;margin:0 28px 0 clamp(28px,3vw,56px)}
+.gnb{position:relative;z-index:2;flex:1 1 auto;display:flex;min-width:0;margin:0 20px 0 clamp(20px,2.4vw,56px)}
 .gnb-top{list-style:none;display:flex;width:100%;gap:clamp(12px,1.3vw,24px);margin:0;padding:0}
-.gnb-g{position:relative;flex:1 1 auto;min-width:max-content}
-.gnb-g:first-child{flex-grow:1.6}
+.gnb-g{position:relative;flex:1 1 0;min-width:var(--gnb-colw,max-content)}
 .gnb button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
 .gnb-t{display:inline-flex;align-items:center;min-height:44px;font-family:var(--gnb-font,inherit)!important;font-size:14px!important;font-weight:500!important;letter-spacing:.01em;white-space:nowrap;transition:opacity .25s}
 .gnb-t:hover{opacity:.6}
@@ -67,7 +66,7 @@
 .gnb-asub[hidden]{display:none}
 .gnb-asub>li{display:flex;flex-wrap:wrap;align-items:center;column-gap:10px}
 .gnb-asub .gnb-x{display:flex;align-items:center;min-height:44px;font-size:15px!important;line-height:1.3}
-.gnb-asub .gnb-go{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--gnb-accent,currentColor);color:var(--gnb-accent,currentColor);font-size:12.5px;font-weight:600;text-decoration:none}
+.gnb-asub .gnb-go{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--gnb-paccent,var(--gnb-accent,currentColor));color:var(--gnb-paccent,var(--gnb-accent,currentColor));font-size:12.5px;font-weight:600;text-decoration:none}
 .gnb-asub .gnb-l3s{list-style:none;flex-basis:100%;margin:-4px 0 6px;padding:0 0 0 12px;border-left:1px solid var(--gnb-pline,rgba(0,0,0,.14));display:grid;grid-template-columns:1fr 1fr;column-gap:10px}
 .gnb-asub .gnb-l3s .gnb-x{font-size:14px!important;color:var(--gnb-pmute,inherit)}
 .gnb-pnote{margin:20px 0 0;font-size:12.5px;line-height:1.65;color:var(--gnb-pmute,inherit)}
