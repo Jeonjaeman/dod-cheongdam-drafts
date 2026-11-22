@@ -4,7 +4,7 @@
 .gnb,.gnb-burger,.gnb-band{pointer-events:auto}
 .gnb{position:relative;z-index:2;flex:1 1 auto;display:flex;min-width:0;margin:0 20px 0 clamp(20px,2.4vw,56px)}
 .gnb-top{list-style:none;display:flex;width:100%;gap:clamp(12px,1.3vw,24px);margin:0;padding:0}
-.gnb-g{position:relative;flex:1 1 0;min-width:var(--gnb-colw,max-content)}
+.gnb-g{position:relative;flex:1 1 auto;min-width:var(--gnb-colw,max-content)}
 .gnb button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
 .gnb-t{display:inline-flex;align-items:center;min-height:44px;font-family:var(--gnb-font,inherit)!important;font-size:14px!important;font-weight:500!important;letter-spacing:.01em;white-space:nowrap;transition:opacity .25s}
 .gnb-t:hover{opacity:.6}
