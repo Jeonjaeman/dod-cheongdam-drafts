@@ -105,7 +105,11 @@
       tops.forEach(function (t) { t.setAttribute('aria-expanded', 'true'); });
       if (from) lastTop = from;
     } else {
+      /* 닫힘은 즉시: 띠·하위 글자·헤더 글자색이 같은 프레임에 끝나도록 전환을 잠깐 끔 */
+      hd.classList.add('gnb-snap');
       isOpen = false; hd.classList.remove('gnb-open');
+      void hd.offsetWidth;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { hd.classList.remove('gnb-snap'); }); });
       tops.forEach(function (t) { t.setAttribute('aria-expanded', 'false'); });
     }
   }

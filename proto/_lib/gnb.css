@@ -27,6 +27,7 @@
 .gnb-band-note{margin:0;font-size:12px;letter-spacing:.01em;color:var(--gnb-mute,inherit)}
 .gnb-open .gnb-band{height:var(--gnb-band-h,320px);opacity:1;visibility:visible;transition:opacity .3s,visibility 0s}
 .gnb-open{color:var(--gnb-fg)!important}
+.gnb-snap,.gnb-snap *,.gnb-snap *::before,.gnb-snap *::after{transition:none!important}
 .gnb-open>*:not(.gnb-band){position:relative;z-index:2}
 /* 언어 */
 .gnb-langs,.gnb-plangs{display:flex;flex-wrap:wrap;gap:4px 6px}
