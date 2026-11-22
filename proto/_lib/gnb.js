@@ -75,6 +75,7 @@
   nav.appendChild(top);
   var band = el('div', 'gnb-band'); band.setAttribute('data-lenis-prevent', '');
   var bf = el('div', 'gnb-band-foot');
+  if (window.GNB_TAG) bf.appendChild(el('p', 'gnb-tag', window.GNB_TAG));
   bf.appendChild(el('p', 'gnb-band-note', '초안은 메인페이지만 제공합니다. 상세 메뉴는 구성 확인용이며, ‘메인에서 보기’만 이 페이지의 해당 내용으로 이동합니다.'));
   bf.appendChild(langs('gnb-langs'));
   band.appendChild(bf);
@@ -161,7 +162,8 @@
   panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-modal', 'true'); panel.setAttribute('aria-label', '전체 메뉴');
   panel.setAttribute('data-lenis-prevent', ''); panel.hidden = true;
   var ph = el('div', 'gnb-ph');
-  ph.appendChild(el('span', 'gnb-pmark', 'DOD'));
+  var pm = el('span', 'gnb-pmark', 'DOD'); if (window.GNB_TAG) pm.appendChild(el('small', 'gnb-tag', window.GNB_TAG));
+  ph.appendChild(pm);
   var close = el('button', 'gnb-close'); close.type = 'button'; close.setAttribute('aria-label', '전체 메뉴 닫기'); close.innerHTML = '<i></i><i></i>';
   ph.appendChild(close); panel.appendChild(ph);
   panel.appendChild(langs('gnb-plangs'));

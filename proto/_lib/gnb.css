@@ -24,6 +24,8 @@
 .gnb-band{position:absolute;left:0;right:0;top:0;z-index:1;height:0;background:var(--gnb-bg,#fff);box-shadow:0 18px 40px rgba(0,0,0,.08);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
 .gnb-band::after{content:"";position:absolute;left:var(--gnb-g,24px);right:var(--gnb-g,24px);top:var(--gnb-line-y,64px);border-top:1px solid var(--gnb-line,rgba(0,0,0,.12))}
 .gnb-band-foot{position:absolute;left:var(--gnb-g,24px);right:var(--gnb-g,24px);bottom:0;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:14px 0 16px;border-top:1px solid var(--gnb-line,rgba(0,0,0,.12));color:var(--gnb-fg,inherit)}
+.gnb-tag{margin:0;font-family:var(--gnb-tagfont,inherit);font-style:italic;font-size:13px;letter-spacing:.06em;opacity:.8;white-space:nowrap}
+.gnb-pmark .gnb-tag{margin-left:12px;font-size:12px;letter-spacing:.04em}
 .gnb-band-note{margin:0;font-size:12px;letter-spacing:.01em;color:var(--gnb-mute,inherit)}
 .gnb-open .gnb-band{height:var(--gnb-band-h,320px);opacity:1;visibility:visible;transition:opacity .3s,visibility 0s}
 .gnb-open{color:var(--gnb-fg)!important}
@@ -40,7 +42,7 @@
 /* 한 줄에 안 들어갈 때 자동 전환 */
 .gnb-fold .gnb{visibility:hidden;position:absolute;pointer-events:none}
 .gnb-fold .gnb-band{display:none}
-.gnb-fold .gnb-burger{position:relative;display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 11px;margin-right:-11px;margin-left:auto;background:none;border:0;color:inherit;cursor:pointer}
+.gnb-fold .gnb-burger{position:relative;display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 11px;margin-right:-11px;background:none;border:0;color:inherit;cursor:pointer}
 .gnb-fold .gnb-burger i{display:block;height:1.5px;background:currentColor}
 .gnb-fold .gnb-burger i:nth-child(2){width:70%;margin-left:auto}
 
@@ -80,6 +82,12 @@ html.gnb-lock,html.gnb-lock body{overflow:hidden}
 .gnb-note b{font-weight:700}
 .gnb-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
+@media (min-width:1280px) and (max-width:1439px){
+  .gnb{margin:0 16px 0 20px}
+  .gnb-top{gap:10px}
+}
+/* 접힘(fold) 상태: 진료 문의·햄버거를 오른쪽에 함께 정렬 */
+.gnb-fold .gnb-burger{margin-left:12px!important}
 @media (max-width:1279px){
   #hd .gnb,#hd .gnb-band{display:none}
   .gnb-burger{position:relative;display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 11px;margin-right:-11px;background:none;border:0;color:inherit;cursor:pointer}
