@@ -40,7 +40,7 @@ canvas{display:block}
 .hd a::before{content:"";position:absolute;inset:-8px -12px}
 .wm{font-family:var(--disp);font-weight:900;font-size:22px;letter-spacing:.06em}
 .hd-vol{font-family:var(--disp);font-style:italic;font-size:15px;letter-spacing:.08em;position:absolute;left:50%;transform:translateX(-50%);transition:opacity .3s}
-.hd-cta{font-size:13px;font-weight:600;letter-spacing:.08em;border-bottom:1px solid currentColor;padding-bottom:3px;min-height:auto!important}
+.hd-cta{font-size:13px;font-weight:600;letter-spacing:.08em;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;min-height:44px;min-width:44px;justify-content:center}
 .hd-cta::before{inset:-14px -12px!important}
 .hd.ink{color:var(--ink);background:rgba(244,239,232,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--rule)}
 .hd.ink .hd-vol{opacity:.7}
@@ -682,25 +682,30 @@ canvas{display:block}
   function buildToc() {
     if (ttl) { ttl.scrollTrigger && ttl.scrollTrigger.kill(); ttl.kill(); }
     const nums = $$('.cnum span'), cts = $$('#ctit .ct'), figs = $$('#cpic figure'), prog = $$('#tprog b');
+    const caps = figs.map(f => f.querySelector('figcaption'));
     gsap.set([nums, cts, figs, $$('#cpic .wipe'), $$('#cpic img')], { clearProps: 'all' });
     const n = cts.length, seg = 1 / n;
     const lines = cts.map(ct => { const s1 = split(ct.querySelector('h2')); const s2 = split(ct.querySelector('p')); return [...s1.lines, ...s2.lines]; });
     cts.forEach((ct, i) => { gsap.set(ct, { visibility: 'visible' }); gsap.set(lines[i], { yPercent: i ? 110 : 0 }); gsap.set([ct.querySelector('.eb'), ct.querySelector('a')], { opacity: i ? 0 : 1, y: i ? 14 : 0 }); });
     nums.forEach((el, i) => gsap.set(el, { opacity: i ? 0 : 1, yPercent: i ? 60 : 0 }));
+    caps.forEach((c, i) => c && gsap.set(c, { opacity: i ? 0 : 1 }));
     figs.forEach((f, i) => { gsap.set(f, { visibility: 'visible', zIndex: i }); gsap.set(f.querySelector('.wipe'), { clipPath: i ? 'inset(100% 0% 0% 0%)' : 'inset(0% 0% 0% 0%)' }); gsap.set(f.querySelector('img'), { scale: i ? 1.18 : 1 }); });
     ttl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: '#toc', start: 'top top', end: 'bottom bottom', scrub: true, pin: '#tstage', pinSpacing: false,
       onUpdate: self => { const p = self.progress * n; prog.forEach((b, i) => b.style.setProperty('--f', gsap.utils.clamp(0, 1, p - i))); } } });
     tst = ttl.scrollTrigger;
     for (let i = 1; i < n; i++) {
       const t = i * seg - seg * 0.28, d = seg * 0.3;
-      ttl.to(lines[i - 1], { yPercent: -110, duration: d * 0.8, stagger: 0.012, ease: 'power2.in' }, t)
+      // 바뀌는 순간 한쪽만 보이게: 앞 제목·캡션이 다 빠진 뒤(t+0.5d) 새 제목·캡션이 들어옴
+      ttl.to(lines[i - 1], { yPercent: -110, duration: d * 0.42, stagger: 0.006, ease: 'power2.in' }, t)
+         .to(caps[i - 1], { opacity: 0, duration: d * 0.3 }, t)
+         .fromTo(caps[i], { opacity: 0 }, { opacity: 1, duration: d * 0.4 }, t + d * 1.0)
          .to([cts[i - 1].querySelector('.eb'), cts[i - 1].querySelector('a')], { opacity: 0, y: -10, duration: d * 0.5 }, t)
-         .to(nums[i - 1], { opacity: 0, yPercent: -60, duration: d * 0.8, ease: 'power2.in' }, t)
+         .to(nums[i - 1], { opacity: 0, yPercent: -60, duration: d * 0.45, ease: 'power2.in' }, t)
          .to(figs[i].querySelector('.wipe'), { clipPath: 'inset(0% 0% 0% 0%)', duration: d * 1.3, ease: 'power2.inOut' }, t)
          .to(figs[i].querySelector('img'), { scale: 1, duration: d * 1.6, ease: 'power2.out' }, t)
          .to(figs[i - 1].querySelector('img'), { scale: 0.94, duration: d * 1.3, ease: 'power2.inOut' }, t)
-         .fromTo(lines[i], { yPercent: 110 }, { yPercent: 0, duration: d, stagger: 0.02, ease: 'power3.out' }, t + d * 0.55)
-         .fromTo(nums[i], { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, duration: d, ease: 'power3.out' }, t + d * 0.55)
+         .fromTo(lines[i], { yPercent: 110 }, { yPercent: 0, duration: d, stagger: 0.02, ease: 'power3.out' }, t + d * 0.6)
+         .fromTo(nums[i], { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, duration: d, ease: 'power3.out' }, t + d * 0.6)
          .fromTo([cts[i].querySelector('.eb'), cts[i].querySelector('a')], { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: d * 0.8 }, t + d * 0.9);
     }
     ttl.to({}, { duration: 0.0001 }, 0.9999);

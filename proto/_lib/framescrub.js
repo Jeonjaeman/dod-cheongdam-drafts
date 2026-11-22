@@ -1,7 +1,7 @@
 /* DOD 공통: 캔버스 프레임 스크럽
  * new FrameScrub(canvas, { base:'../_media/s1/pc/', count:96, ext:'webp', focusX:.5, focusY:.5 })
  *   .progress(p)  // 0..1, rAF당 1회 그림
- * - 첫 프레임 → 4장 간격 키프레임 → 나머지 순서로 로드(스크롤 초반부터 대충이라도 움직임)
+ * - 첫 프레임 + 8장 간격 키프레임만 먼저, 나머지(4·2·1 간격)는 페이지 load 뒤 또는 스크롤 시작 시 로드
  * - 아직 안 온 프레임은 가장 가까운 로드된 프레임으로 대체(빈 화면·깜빡임 없음)
  * - cover 맞춤, DPR 최대 2
  */
@@ -19,23 +19,32 @@
     }
     url(i) { return this.o.base + String(i + 1).padStart(this.o.pad, '0') + '.' + this.o.ext; }
     load() {
-      const order = [0]; const seen = new Set(order);
-      for (const step of [8, 4, 2, 1]) for (let i = 0; i < this.n; i += step) if (!seen.has(i)) { seen.add(i); order.push(i); }
-      let k = 0; const par = 6;
+      // 1단계: 첫 프레임 + 8장 간격 키프레임(첫 화면 로드를 막지 않을 만큼만)
+      // 2단계: 나머지는 페이지 load 이후, 또는 사용자가 스크롤을 시작하면 바로
+      const first = [0]; const seen = new Set(first);
+      for (let i = 0; i < this.n; i += 8) if (!seen.has(i)) { seen.add(i); first.push(i); }
+      const rest = [];
+      for (const step of [4, 2, 1]) for (let i = 0; i < this.n; i += step) if (!seen.has(i)) { seen.add(i); rest.push(i); }
+      const order = first.slice(); let k = 0, active = 0; const par = 6;
       const next = () => {
-        if (k >= order.length) return; const i = order[k++];
+        if (k >= order.length) return; const i = order[k++]; active++;
         const im = new Image(); im.decoding = 'async';
-        im.onload = () => { (im.decode ? im.decode() : Promise.resolve()).catch(() => {}).then(() => { this.img[i] = im; this.ok[i] = 1; this.dirty = true; if (i === 0 && this.o.onFirst) this.o.onFirst(); next(); }); };
-        im.onerror = next; im.src = this.url(i);
+        const done = () => { active--; next(); };
+        im.onload = () => { (im.decode ? im.decode() : Promise.resolve()).catch(() => {}).then(() => { this.img[i] = im; this.ok[i] = 1; this.dirty = true; if (i === 0 && this.o.onFirst) this.o.onFirst(); done(); }); };
+        im.onerror = done; im.src = this.url(i);
       };
-      for (let j = 0; j < par; j++) next();
+      const pump = () => { while (active < par && k < order.length) next(); };
+      this._more = () => { if (!rest.length) return; order.push(...rest.splice(0)); pump(); };
+      if (document.readyState === 'complete') setTimeout(this._more, 300);
+      else addEventListener('load', () => setTimeout(this._more, 300), { once: true });
+      pump();
     }
     resize() {
       const r = this.c.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
       this.c.width = Math.max(1, Math.round(r.width * d)); this.c.height = Math.max(1, Math.round(r.height * d));
       this.dirty = true; this.drawn = -1;
     }
-    progress(p) { this.p = Math.min(1, Math.max(0, p)); this.dirty = true; }
+    progress(p) { this.p = Math.min(1, Math.max(0, p)); this.dirty = true; if (this.p > 0 && this._more) this._more(); }
     nearest(t) { if (this.ok[t]) return t; for (let d = 1; d < this.n; d++) { if (t - d >= 0 && this.ok[t - d]) return t - d; if (t + d < this.n && this.ok[t + d]) return t + d; } return -1; }
     draw() {
       this.dirty = false;
