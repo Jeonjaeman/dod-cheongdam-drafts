@@ -128,9 +128,17 @@
     top.querySelectorAll('.gnb-g').forEach(function (li) {
       var t = li.querySelector('.gnb-t'), u = li.querySelector('.gnb-sub');
       li.style.removeProperty('--gnb-colw');
-      var tw = Math.ceil(t.scrollWidth), sw = 0;
-      u.querySelectorAll(':scope > li > .gnb-x').forEach(function (b) { var s = b.style.whiteSpace; b.style.whiteSpace = 'nowrap'; sw = Math.max(sw, b.scrollWidth); b.style.whiteSpace = s; });
-      li.style.setProperty('--gnb-colw', Math.max(tw, Math.min(Math.ceil(sw), COLW)) + 'px');
+      /* 한 줄 폭(최대 COLW까지 허용) · 쪼갤 수 없는 가장 긴 단어 폭 · '메인에서 보기' 버튼 폭 중 최대 */
+      var tw = Math.ceil(t.scrollWidth), sw = 0, mw = 0;
+      u.querySelectorAll(':scope > li > .gnb-x').forEach(function (b) {
+        var s = b.style.cssText;
+        b.style.whiteSpace = 'nowrap'; b.style.width = 'max-content'; sw = Math.max(sw, b.getBoundingClientRect().width);
+        b.style.whiteSpace = ''; b.style.width = 'min-content'; mw = Math.max(mw, b.getBoundingClientRect().width);
+        b.style.cssText = s;
+      });
+      u.querySelectorAll('.gnb-l3s .gnb-x').forEach(function (b) { var s = b.style.cssText; b.style.width = 'min-content'; mw = Math.max(mw, b.getBoundingClientRect().width + 11); b.style.cssText = s; });
+      u.querySelectorAll('.gnb-go').forEach(function (a) { mw = Math.max(mw, a.getBoundingClientRect().width); });
+      li.style.setProperty('--gnb-colw', Math.ceil(Math.max(tw, Math.min(sw, COLW), mw)) + 'px');
     });
   }
   /* 한 줄에 다 안 들어가면(글자 축소 없이) 전체 메뉴 버튼 방식으로 */
@@ -217,11 +225,18 @@
   var OFF = window.GNB_OFF || [];
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('.gnb-go'); if (!a) return;
-    var to = a.getAttribute('href'); if (OFF.indexOf(to) < 0) return;
+    var to = a.getAttribute('href'); if (typeof OFF === 'function' ? !OFF(to) : OFF.indexOf(to) < 0) return;
     var t = document.querySelector(to); if (!t) return;
     e.preventDefault(); e.stopPropagation();
     if (!panel.hidden) { lastFocus = null; panelOpen(false); }
     setOpen(false);
+    /* 가로 스크롤 상자 안의 목적지(안1 정적 rail 등)는 상자도 가로로 맞춤 */
+    for (var p = t.parentElement; p && p !== document.body; p = p.parentElement) {
+      if (p.scrollWidth > p.clientWidth + 1 && /(auto|scroll)/.test(getComputedStyle(p).overflowX)) {
+        p.scrollLeft += t.getBoundingClientRect().left - p.getBoundingClientRect().left - (parseFloat(getComputedStyle(p).paddingLeft) || 0);
+        break;
+      }
+    }
     var y = t.getBoundingClientRect().top + scrollY - (hd.getBoundingClientRect().bottom + 16);
     var L = window.__gnbLenis && window.__gnbLenis();
     if (L) L.scrollTo(Math.max(0, y), { duration: 1.4 }); else scrollTo({ top: Math.max(0, y), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });

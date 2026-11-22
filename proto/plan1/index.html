@@ -396,7 +396,7 @@ html:not(.motion) .hero-over{display:none}
     <a class="cta" href="#visit">진료 문의</a>
   </nav>
 </header>
-<script>window.GNB_MAP={'시설안내':'#why','의료진 및 연구진':'#staff1','오시는길':'#visit'};window.GNB_OFF=['#visit'];window.__gnbLenis=function(){return window.__plan1&&window.__plan1.lenis};</script>
+<script>window.GNB_MAP={'시설안내':'#why','의료진 및 연구진':'#staff1','오시는길':'#visit'};window.GNB_OFF=function(to){return to==='#visit'||(to==='#staff1'&&!document.documentElement.classList.contains('motion'))};window.__gnbLenis=function(){return window.__plan1&&window.__plan1.lenis};</script>
 <script src="../_lib/gnb.js"></script>
 
 <main id="top">

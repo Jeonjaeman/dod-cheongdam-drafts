@@ -8,9 +8,9 @@
 .gnb button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
 .gnb-t{display:inline-flex;align-items:center;min-height:44px;font-family:var(--gnb-font,inherit)!important;font-size:14px!important;font-weight:500!important;letter-spacing:.01em;white-space:nowrap;transition:opacity .25s}
 .gnb-t:hover{opacity:.6}
-.gnb-open .gnb-t{opacity:.55}
+.gnb-open .gnb-t{opacity:.78}
 .gnb-open .gnb-g:hover .gnb-t,.gnb-open .gnb-g:focus-within .gnb-t{opacity:1;text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:1px}
-.gnb-sub{list-style:none;position:absolute;left:0;right:0;top:calc(100% + 22px);margin:0;padding:0;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .25s,transform .3s,visibility 0s .3s}
+.gnb-sub{list-style:none;position:absolute;left:0;right:0;min-width:0;top:calc(100% + 22px);margin:0;padding:0;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .25s,transform .3s,visibility 0s .3s}
 .gnb-open .gnb-sub{opacity:1;visibility:visible;transform:none;transition:opacity .3s .05s,transform .35s .05s,visibility 0s}
 .gnb-sub li{margin:0}
 .gnb-sub .gnb-x{display:flex;align-items:center;min-height:40px;font-size:13.5px!important;line-height:1.35;color:var(--gnb-fg,inherit);word-break:keep-all;transition:opacity .2s}
