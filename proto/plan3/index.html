@@ -161,33 +161,77 @@ canvas{display:block}
 .tx .t{font-weight:500;font-size:clamp(20px,1.8vw,26px);letter-spacing:-.02em}
 .tx .s{font-size:12px;color:var(--mute);white-space:nowrap}
 .small{margin-top:14px;font-size:13px;color:var(--mute)}
+#spread3{background:var(--white)}
 
-/* ---------- people (interview on process & space, no faces) ---------- */
-.people{position:relative;z-index:2;background:var(--white);padding:clamp(96px,12vh,150px) var(--gutter) clamp(80px,10vh,120px)}
-.pp-h{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,4vw,80px);align-items:end}
-.pp-h .lab{display:block;color:var(--wine);margin-bottom:12px}
-.pp-h .big{display:block;font-family:var(--disp);font-weight:400;font-size:clamp(120px,15vw,220px);line-height:.85;letter-spacing:-.04em;color:var(--wine);margin-left:-.04em}
-.pp-h h2{font-weight:500;font-size:clamp(30px,3.4vw,52px);line-height:1.22;letter-spacing:-.025em}
-.pp-h p{margin-top:14px;font-size:16px;color:var(--mute);max-width:30em}
-.pp-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,80px);margin-top:clamp(40px,6vh,72px);align-items:start}
+/* ---------- display words (italic editorial words that cross photo edges) ---------- */
+.dw{font-family:var(--disp);font-style:italic;font-weight:400;line-height:.85;letter-spacing:-.01em;white-space:nowrap;pointer-events:none}
+.labn i{font-family:var(--disp);font-style:italic;font-weight:400;font-size:20px;letter-spacing:0;text-transform:none;margin-right:12px;vertical-align:-2px}
+
+/* ---------- spread 01: space (paper, one wide rectangle, 'Closer.' crossing the lower-left edge) ---------- */
+.sp1{position:relative;z-index:2;background:var(--paper);border-radius:var(--arch) var(--arch) 0 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto auto auto;column-gap:clamp(10px,1.2vw,18px);padding:clamp(84px,11vh,130px) var(--gutter) clamp(56px,8vh,96px)}
+.sp1-h{grid-column:1/7;grid-row:1;position:relative;z-index:2;padding-bottom:clamp(20px,3vh,36px)}
+.sp1-h .lab{display:block;color:var(--wine);margin-bottom:14px}
+.sp1-h h2{font-weight:500;font-size:clamp(30px,3.4vw,52px);line-height:1.22;letter-spacing:-.025em}
+.sp1-h p{margin-top:14px;font-size:16px;line-height:1.8;color:var(--mute);max-width:26em}
+.sp1-h .next,.sp2-txt .next{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-top:22px;font-size:14px;font-weight:600;border-bottom:1px solid currentColor}
+.sp1-h .next i{font-family:var(--disp);font-style:italic;color:var(--wine)}
+.sp1-vol{grid-column:10/13;grid-row:1;text-align:right;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.sp1-pic{grid-column:3/13;grid-row:2;align-self:start;position:relative;margin:0;display:flex;flex-direction:column}
+.sp1-pic .ph{overflow:hidden;aspect-ratio:16/9;max-height:min(60svh,640px);background:#d9d1c5;box-shadow:0 30px 60px rgba(42,31,24,.16)}
+.sp1-pic img{width:100%;height:100%;object-fit:cover}
+.sp1-pic figcaption{align-self:flex-end;margin-top:12px;font-size:12px;letter-spacing:.06em;color:var(--mute);white-space:nowrap}
+.sp1-pic figcaption i{font-family:var(--disp);margin-right:6px}
+.sp1-word{grid-column:1/9;grid-row:2/4;align-self:end;position:relative;z-index:3;font-size:clamp(90px,15vw,230px);color:var(--wine);mix-blend-mode:multiply;margin:0 0 -.06em -.03em}
+.sp1-ftr{grid-column:9/13;grid-row:3;text-align:right;padding-top:28px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+
+/* ---------- spread 02: detail (deep ink, 38/62, full-bleed microscope macro, 'Look closer.' bottom-left) ---------- */
+.sp2{position:relative;z-index:2;background:#1a1216;color:var(--cream);display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr)}
+.sp2-txt{position:relative;display:flex;flex-direction:column;min-height:100svh;padding:clamp(72px,10vh,120px) clamp(20px,3vw,48px) clamp(140px,24vh,240px) var(--gutter)}
+.sp2-txt .lab{display:block;color:var(--wine-l);margin-bottom:22px}
+.sp2-ch{display:flex;align-items:flex-end;gap:18px}
+.sp2-ch .num{font-family:var(--disp);font-weight:400;font-size:clamp(90px,9vw,140px);line-height:.85;letter-spacing:-.03em;margin-left:-.04em}
+.sp2-ch .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--wine-l),transparent);margin-bottom:20px}
+.sp2-txt h2{margin-top:26px;font-weight:500;font-size:clamp(26px,2.4vw,36px);line-height:1.25;letter-spacing:-.02em}
+.sp2-txt p{margin-top:14px;font-size:15px;line-height:1.8;color:rgba(247,241,234,.72);max-width:28em}
+.sp2-txt .next i{font-family:var(--disp);font-style:italic;color:var(--wine-l)}
+.sp2-txt .sp2-word{position:absolute;left:var(--gutter);bottom:clamp(40px,7vh,80px);z-index:3;margin:0;max-width:none;font-size:clamp(72px,9.4vw,150px);line-height:.85;color:var(--cream);text-shadow:0 2px 30px rgba(0,0,0,.4)}
+.sp2-pic{position:relative;min-height:100svh;overflow:hidden;background:#241a1e;margin:0}
+.sp2-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 50%;filter:contrast(1.05) saturate(.9)}
+.sp2-pic::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#1a1216 0%,rgba(26,18,22,.75) 14%,transparent 42%);pointer-events:none}
+.sp2-pic figcaption{position:absolute;right:var(--gutter);bottom:clamp(24px,5vh,48px);z-index:2;font-size:12px;letter-spacing:.1em;color:rgba(247,241,234,.8);text-align:right;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.sp2-pic figcaption i{font-family:var(--disp);margin-right:6px}
+
+/* ---------- people: Care / Research photo spread + roster, then 방문 전 안내 ---------- */
+.people{position:relative;z-index:2;background:var(--paper);padding:clamp(84px,11vh,130px) var(--gutter) clamp(80px,10vh,120px)}
+.pp-sp{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto auto auto;column-gap:clamp(10px,1.2vw,18px)}
+.pp-h{grid-column:1/8;grid-row:1;margin-bottom:clamp(20px,3vh,36px)}
+.pp-h .lab{display:block;color:var(--wine);margin-bottom:14px}
+.pp-h h2{font-weight:500;font-size:clamp(26px,2.6vw,38px);line-height:1.25;letter-spacing:-.02em}
+.pp-h p{margin-top:14px;font-size:15px;color:var(--mute);max-width:30em}
+.pp-care{grid-column:1/8;grid-row:2;align-self:start;position:relative;margin:0}
+.pp-care .ph{overflow:hidden;aspect-ratio:16/10;background:#d9d1c5;box-shadow:0 30px 60px rgba(42,31,24,.16)}
+.pp-care img,.pp-res img{width:100%;height:100%;object-fit:cover}
+.pp-care img{object-position:50% 38%}
+.pp-word.care{grid-column:1/8;grid-row:2;align-self:end;justify-self:start;position:relative;z-index:2;font-size:clamp(90px,10vw,170px);color:var(--wine);mix-blend-mode:multiply;margin:0 0 -.42em -.02em}
+.pp-res{grid-column:9/12;grid-row:2/4;align-self:start;position:relative;margin:clamp(80px,18vh,200px) 0 0}
+.pp-res .ph{overflow:hidden;aspect-ratio:3/4;background:#d9d1c5;box-shadow:0 30px 60px rgba(42,31,24,.16)}
+.pp-res img{object-position:66% 50%}
+.pp-word.res{position:absolute;right:-.04em;top:-.46em;z-index:3;text-align:right;font-size:clamp(56px,6vw,96px);color:var(--wine);mix-blend-mode:multiply}
+.pp-lbl{position:absolute;left:12px;top:12px;z-index:2;font-size:11px;line-height:1.5;letter-spacing:.06em;color:var(--ink);background:rgba(244,239,232,.95);padding:5px 9px;max-width:calc(100% - 24px)}
+.pp-res .pp-lbl{top:auto;bottom:12px}
+.pp-lbl i{font-family:var(--disp);margin-right:6px}
+.roster{grid-column:1/8;grid-row:3;margin-top:calc(.42 * clamp(90px,10vw,170px) + 40px);padding-top:22px;border-top:1px solid rgba(126,43,58,.35)}
+.roster div{display:grid;grid-template-columns:4.5em minmax(0,1fr);gap:8px 16px;padding:8px 0;font-size:15px}
+.roster dt{font-family:var(--disp);font-style:italic;color:var(--wine);letter-spacing:.04em}
+.roster dt::after{content:"|";margin-left:16px;color:var(--wine-l)}
+.roster dd{color:var(--ink)}
+.pp-b{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,4vw,80px);margin-top:clamp(56px,8vh,110px);align-items:start}
 .qa-lab{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--wine);margin-bottom:14px}
 .qa{list-style:none;border-top:2px solid var(--ink)}
 .qa li{display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:14px;padding:22px 0;border-bottom:1px solid var(--rule)}
 .qa li i{font-family:var(--disp);font-style:italic;font-size:18px;color:var(--wine)}
 .qa li b{display:block;font-weight:600;font-size:18px;letter-spacing:-.01em}
 .qa li p{margin-top:8px;font-size:15px;line-height:1.8;color:var(--mute)}
-.pp-pic{position:sticky;top:90px}
-.pp-pic .ph{overflow:hidden;border-radius:0 0 var(--arch) var(--arch);aspect-ratio:16/10;background:#d9d1c5}
-.pp-pic img{width:100%;height:100%;object-fit:cover}
-.pp-pic figcaption{display:flex;justify-content:space-between;margin-top:12px;font-size:13px;color:var(--mute)}
-.pp-pic figcaption i{font-family:var(--disp);margin-right:6px}
-.ppl{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--ink);margin-top:clamp(40px,6vh,72px)}
-.ppl li{padding:22px 18px 26px 0;border-right:1px solid var(--rule)}
-.ppl li + li{padding-left:18px}
-.ppl li:last-child{border-right:0}
-.ppl .n{font-family:var(--disp);font-style:italic;color:var(--wine);font-size:14px}
-.ppl .nm{display:block;margin-top:26px;font-weight:600;font-size:clamp(24px,2.2vw,32px);letter-spacing:-.02em}
-.ppl .rl{display:block;margin-top:6px;font-size:13px;color:var(--mute)}
 .lnk{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:24px;font-weight:600;font-size:14px;color:var(--wine);border-bottom:1px solid currentColor}
 
 /* ---------- closing page: visit ---------- */
@@ -251,7 +295,7 @@ canvas{display:block}
 .static .opener .stage{position:relative}
 .static .opener canvas{display:none}
 .static .rv{opacity:1;transform:none}
-.static .spread.first{border-radius:0}
+.static .spread.first,.static .sp1{border-radius:0}
 
 @media (max-width:900px){
   :root{--gutter:22px;--arch:44px}
@@ -293,12 +337,33 @@ canvas{display:block}
   .sp-pic .ph{aspect-ratio:4/5;max-height:none}
   .spread.flip .sp-pic .ph{border-radius:var(--arch) var(--arch) 0 0}
   .inset{left:auto;right:-6px;bottom:-24px;width:38%}
-  .pp-h,.pp-b{grid-template-columns:1fr}
-  .pp-pic{position:relative;top:auto;order:-1}
-  .ppl{grid-template-columns:1fr}
-  .ppl li,.ppl li + li{padding:16px 0;border-right:0;border-bottom:1px solid var(--rule);display:flex;align-items:baseline;gap:16px}
-  .ppl .nm{margin-top:0;font-size:22px}
-  .ppl .rl{margin-left:auto;margin-top:0}
+  /* spread 01 mobile: stacked, photo 4:3 indented, 'Closer.' pulled up over its lower-left */
+  .sp1{display:block;padding:64px var(--gutter) 48px}
+  .sp1-h{padding-bottom:14px}
+  .sp1-vol{display:block;text-align:left;margin-bottom:10px}
+  .sp1-pic{width:88%;margin-left:12%}
+  .sp1-pic .ph{aspect-ratio:4/3;max-height:none}
+  .sp1-pic figcaption{order:-1;margin:0 0 8px;font-size:11px}
+  .sp1-word{display:block;font-size:26vw;margin:-.3em 0 0 -2px;line-height:1}
+  .sp1-ftr{text-align:left;padding-top:10px}
+  /* spread 02 mobile: photo first (≤356px), then 'Look closer.' → 02 → Korean */
+  .sp2{grid-template-columns:1fr}
+  .sp2-pic{order:-1;min-height:0;height:min(58svh,356px)}
+  .sp2-pic::before{background:linear-gradient(0deg,#1a1216 0%,rgba(26,18,22,.6) 18%,transparent 45%)}
+  .sp2-pic figcaption{right:var(--gutter);bottom:14px;font-size:11px}
+  .sp2-txt{min-height:0;padding:0 var(--gutter) 48px}
+  .sp2-txt .sp2-word{position:static;order:-1;margin:22px 0 26px;font-size:clamp(48px,15vw,64px);white-space:normal}
+  .sp2-ch .num{font-size:clamp(72px,22vw,96px)}
+  /* people mobile: heading → care photo → Care → research photo (62%, Research on its top edge) → roster */
+  .pp-sp{display:flex;flex-direction:column}
+  .pp-h{margin-bottom:10px}
+  .pp-care .ph{aspect-ratio:4/3}
+  .pp-word.care{font-size:24vw;margin:-.3em 0 0}
+  .pp-res{width:62%;margin:calc(.5 * 16vw + 28px) 0 0 auto}
+  .pp-word.res{font-size:16vw}
+  .roster{margin-top:52px}
+  .roster div{grid-template-columns:1fr;gap:4px}
+  .pp-b{grid-template-columns:1fr;gap:12px}
   .vs-h{flex-direction:column;align-items:start}
   .vs-h .eb{text-align:left}
   .vs-wide{height:52svh}
@@ -317,6 +382,10 @@ canvas{display:block}
   .spread{padding:84px var(--gutter) 60px}
   .sp-txt .big{font-size:clamp(90px,10vw,130px)}
   .sp-pic .ph{max-height:calc(100svh - 150px)}
+  .sp1{padding-top:76px}
+  .sp1-pic .ph{max-height:min(54svh,520px)}
+  .sp2-txt{padding-top:72px;padding-bottom:150px}
+  .sp2-txt .sp2-word{font-size:clamp(64px,8vw,110px);bottom:40px}
   .qpage{padding-top:64px}
   .quote{font-size:clamp(26px,3vw,40px)}
 }
@@ -399,7 +468,7 @@ canvas{display:block}
           <figure><div class="wipe"><img src="../_media/img/072-1200.webp" srcset="../_media/img/072-1200.webp 1200w, ../_media/img/072.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="1165" alt="공식 홈페이지의 진단 장비 사진" loading="lazy"></div><figcaption><span><i>Fig.04</i> 진단 장비</span><span>Diagnosis</span></figcaption></figure>
           <figure><div class="wipe"><img src="../_media/img/096-1200.webp" srcset="../_media/img/096-1200.webp 1200w, ../_media/img/096.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="835" alt="디오디 청담 상담실" loading="lazy"></div><figcaption><span><i>Fig.05</i> 상담실</span><span>Consultation</span></figcaption></figure>
           <figure><div class="wipe"><img src="../_media/img/076-1200.webp" srcset="../_media/img/076-1200.webp 1200w, ../_media/img/076.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="750" alt="연구용 현미경" loading="lazy"></div><figcaption><span><i>Fig.06</i> 연구</span><span>People</span></figcaption></figure>
-          <figure><div class="wipe"><img src="../_media/img/070-1200.webp" srcset="../_media/img/070-1200.webp 1200w, ../_media/img/070.webp 2880w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="835" alt="공식 홈페이지의 제품 사진" loading="lazy"></div><figcaption><span><i>Fig.07</i> 진료 분야</span><span>Fields</span></figcaption></figure>
+          <figure><div class="wipe"><img src="../_media/img/070-l-1200.webp" srcset="../_media/img/070-l-1200.webp 1200w, ../_media/img/070-l.webp 1728w" sizes="(max-width:900px) 100vw, 58vw" width="1200" height="1392" alt="공식 홈페이지의 제품 사진" loading="lazy"></div><figcaption><span><i>Fig.07</i> 진료 분야</span><span>Fields</span></figcaption></figure>
           <figure><div class="wipe"><picture><source media="(max-width:900px)" srcset="../_media/img/079.webp" width="1399" height="2880"><img src="img/space.webp" width="1920" height="896" alt="디오디 청담 공간" loading="lazy"></picture></div><figcaption><span><i>Fig.08</i> 청담</span><span>Visit</span></figcaption></figure>
         </div>
       </div>
@@ -424,42 +493,61 @@ canvas{display:block}
     </div>
   </section>
 
-  <!-- Spread 01: text 1/3 · photo 2/3 -->
-  <section class="spread first" id="spread1" aria-labelledby="h-s1">
-    <div class="sp-txt">
-      <span class="lab">Chapter 01 — Space</span>
-      <span class="big rv">01</span>
+  <!-- Spread 01 (space, paper): one wide rectangle photo on cols 3–13, 'Closer.' crossing its lower-left edge -->
+  <section class="sp1" id="spread1" aria-labelledby="h-s1">
+    <div class="sp1-h">
+      <span class="lab labn"><i>01</i>Chapter 01 — Space</span>
       <h2 id="h-s1" class="mkl">공간을 읽다</h2>
       <p class="mkl">독립된 1인 시술실을 안내합니다. 침대와 조명, 수납까지 한 사람의 시술에 맞춰 둔 방입니다.</p>
       <a class="next rv" href="#spread2"><i>Next · 02</i> 진단과 상담</a>
     </div>
-    <figure class="sp-pic crop">
-      <div class="ph"><img src="../_media/img/083-1200.webp" srcset="../_media/img/083-1200.webp 1200w, ../_media/img/083.webp 2880w" sizes="(max-width:900px) 100vw, 64vw" width="1200" height="835" alt="디오디 청담 1인 시술실" loading="lazy"></div>
-      <figcaption><span><i>Fig.09</i> 1인 시술실</span><span>DOD Cheongdam · 공간</span></figcaption>
+    <p class="sp1-vol">Vol.01 / Cheongdam</p>
+    <figure class="sp1-pic crop2" data-from="inset(0% 0% 0% 14%)">
+      <div class="ph"><img src="../_media/img/083-1200.webp" srcset="../_media/img/083-1200.webp 1200w, ../_media/img/083.webp 2880w" sizes="(max-width:900px) 88vw, 84vw" width="1200" height="835" alt="디오디 청담 1인 시술실" loading="lazy"></div>
+      <figcaption><i>Fig.09</i> 1인 시술실 · 공식 홈페이지 사진</figcaption>
     </figure>
+    <p class="sp1-word dw" aria-hidden="true">Closer.</p>
+    <p class="sp1-ftr">DOD Cheongdam · Space</p>
   </section>
 
-  <!-- Spread 02·03: photo 2/3 · text 1/3, burgundy -->
-  <section class="spread flip dark" id="spread2" aria-labelledby="h-s2">
-    <div class="sp-txt">
+  <!-- Spread 02·03 (detail, deep ink): text column 38% · full-bleed microscope macro 62%, 'Look closer.' bottom-left -->
+  <section class="sp2" id="spread2" aria-labelledby="h-s2">
+    <div class="sp2-txt">
       <span class="lab">Chapter 02 · 03 — Diagnosis, Consultation</span>
-      <span class="big rv">02</span>
-      <h2 id="h-s2" class="mkl">살피고,<br>이야기하다</h2>
+      <div class="sp2-ch"><span class="num rv">02</span><span class="rule" aria-hidden="true"></span></div>
+      <h2 id="h-s2" class="mkl">자료를 살피는 시선</h2>
       <p class="mkl">피부 상태와 관심 부위를 의료진과 함께 살펴보는 것에서 진료가 시작됩니다. 이어지는 상담에서는 이전 시술 이력과 일정을 바탕으로 진료 방향을 정합니다.</p>
       <a class="next rv" href="#people"><i>Next · 04</i> 사람을 만나다</a>
+      <p class="sp2-word dw" aria-hidden="true">Look closer.</p>
     </div>
-    <figure class="sp-pic crop">
-      <div class="ph"><img src="../_media/img/096-1200.webp" srcset="../_media/img/096-1200.webp 1200w, ../_media/img/096.webp 2880w" sizes="(max-width:900px) 100vw, 64vw" width="1200" height="835" alt="디오디 청담 상담실" loading="lazy"></div>
-      <figcaption><span><i>Fig.10</i> 상담실</span><span>DOD Cheongdam · 상담</span></figcaption>
-      <figure class="inset rv"><div class="ph2"><img src="../_media/img/072-1200.webp" srcset="../_media/img/072-1200.webp 1200w, ../_media/img/072.webp 2880w" sizes="100vw" width="1200" height="1165" alt="공식 홈페이지의 진단 장비 사진" loading="lazy"></div><figcaption><i>Fig.11</i> 진단 장비</figcaption></figure>
+    <figure class="sp2-pic crop2">
+      <img src="../_media/img/076-1200.webp" srcset="../_media/img/076-1200.webp 1200w, ../_media/img/076.webp 2880w" sizes="(max-width:900px) 100vw, 62vw" width="1200" height="750" alt="연구용 현미경 접사, 공식 홈페이지 연구 이미지" loading="lazy">
+      <figcaption><i>Fig.10</i> 현미경 접사 · 공식 홈페이지 연구 이미지</figcaption>
     </figure>
   </section>
 
-  <!-- Chapter 04: people — interview on process and space (no faces) -->
+  <!-- Chapter 04: people — Care / Research photo spread (photos are not mapped to names), roster, then 방문 전 안내 -->
   <section class="people" id="people" aria-labelledby="h-ppl">
-    <div class="pp-h">
-      <div><span class="lab">Chapter 04 — People</span><span class="big rv">04</span></div>
-      <div><h2 id="h-ppl" class="mkl">사람을 만나다</h2><p class="mkl">얼굴보다 과정으로 소개합니다. 진료와 연구의 역할을 안내합니다.</p></div>
+    <div class="pp-sp">
+      <div class="pp-h">
+        <span class="lab labn"><i>04</i>Chapter 04 — People</span>
+        <h2 id="h-ppl" class="mkl">진료와 연구의 역할을 안내합니다.</h2>
+        <p class="mkl">얼굴보다 과정으로 소개합니다. 사진 속 인물과 아래 명단은 대응하지 않습니다.</p>
+      </div>
+      <figure class="pp-care crop2" data-from="inset(0% 12% 0% 0%)">
+        <div class="ph"><img src="../_media/img/087-1200.webp" srcset="../_media/img/087-1200.webp 1200w, ../_media/img/087.webp 2880w" sizes="(max-width:900px) 100vw, 56vw" width="1200" height="900" alt="공식 홈페이지 진료 장면" loading="lazy"></div>
+        <figcaption class="pp-lbl"><i>Fig.11</i> 공식 홈페이지 진료 장면</figcaption>
+      </figure>
+      <p class="pp-word care dw" aria-hidden="true">Care</p>
+      <figure class="pp-res crop2" data-from="inset(0% 0% 16% 0%)">
+        <p class="pp-word res dw" aria-hidden="true">Research</p>
+        <div class="ph"><img src="../_media/img/080-1200.webp" srcset="../_media/img/080-1200.webp 1200w, ../_media/img/080.webp 2880w" sizes="(max-width:900px) 62vw, 24vw" width="1200" height="750" alt="공식 홈페이지 연구 장면" loading="lazy"></div>
+        <figcaption class="pp-lbl"><i>Fig.12</i> 공식 홈페이지 연구 장면</figcaption>
+      </figure>
+      <dl class="roster rv">
+        <div><dt>진료</dt><dd>이준 대표원장 · 안정식 원장 · 황승경 원장 · 이준원 원장</dd></div>
+        <div><dt>연구</dt><dd>김진아 박사 · 연구진</dd></div>
+      </dl>
     </div>
     <div class="pp-b">
       <p class="qa-lab">방문 전 안내</p>
@@ -469,19 +557,7 @@ canvas{display:block}
         <li><i>Q3</i><div><b>시술은 어떤 공간에서 진행되나요?</b><p>독립된 1인 시술실에서 진행합니다. 공식 사진으로 복도와 시술실을 소개합니다.</p></div></li>
         <li><i>Q4</i><div><b>진료와 연구는 어떻게 이어지나요?</b><p>진료는 의료진이, 연구는 연구진이 맡습니다. 자세한 소개는 공식 홈페이지의 의료진 안내에서 확인하실 수 있습니다.</p></div></li>
       </ol>
-      <figure class="pp-pic crop">
-        <div class="ph"><img src="../_media/img/076-1200.webp" srcset="../_media/img/076-1200.webp 1200w, ../_media/img/076.webp 2880w" sizes="(max-width:900px) 100vw, 56vw" width="1200" height="750" alt="연구용 현미경" loading="lazy"></div>
-        <figcaption><span><i>Fig.12</i> 연구</span><span>DOD · 연구진</span></figcaption>
-      </figure>
     </div>
-    <ol class="ppl rv">
-      <li><span class="n">i.</span><span class="nm">이준</span><span class="rl">대표원장</span></li>
-      <li><span class="n">ii.</span><span class="nm">안정식</span><span class="rl">원장</span></li>
-      <li><span class="n">iii.</span><span class="nm">황승경</span><span class="rl">원장</span></li>
-      <li><span class="n">iv.</span><span class="nm">이준원</span><span class="rl">원장</span></li>
-      <li><span class="n">v.</span><span class="nm">김진아</span><span class="rl">박사 · 연구진</span></li>
-    </ol>
-    
   </section>
 
   <!-- Spread 05: text 1/3 · photo 2/3 -->
@@ -499,7 +575,7 @@ canvas{display:block}
       <p class="small rv">시술 선택과 적용 여부는 의료진 상담이 필요합니다.</p>
     </div>
     <figure class="sp-pic crop">
-      <div class="ph"><img src="../_media/img/070-1200.webp" srcset="../_media/img/070-1200.webp 1200w, ../_media/img/070.webp 2880w" sizes="(max-width:900px) 100vw, 64vw" width="1200" height="835" alt="공식 홈페이지의 제품 사진" loading="lazy"></div>
+      <div class="ph"><img src="../_media/img/070-l-1200.webp" srcset="../_media/img/070-l-1200.webp 1200w, ../_media/img/070-l.webp 1728w" sizes="(max-width:900px) 100vw, 64vw" width="1200" height="1392" alt="공식 홈페이지의 제품 사진" loading="lazy"></div>
       <figcaption><span><i>Fig.13</i> 공식 홈페이지 사진</span><span>DOD · 진료 분야</span></figcaption>
     </figure>
   </section>
@@ -729,7 +805,7 @@ canvas{display:block}
   let secTriggers = [];
   function buildSections() {
     secTriggers.forEach(t => t.kill()); secTriggers = [];
-    $$('.spread .mkl, .people .mkl, .visit .mkl').forEach(el => {
+    $$('.spread .mkl, .sp1 .mkl, .sp2 .mkl, .people .mkl, .visit .mkl').forEach(el => {
       const s = split(el);
       secTriggers.push(gsap.fromTo(s.lines, { yPercent: 110 }, { yPercent: 0, duration: 1, stagger: 0.08, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' } }).scrollTrigger);
     });
@@ -739,7 +815,13 @@ canvas{display:block}
       secTriggers.push(gsap.fromTo(ph, { clipPath: from }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: f, start: 'top 92%', end: 'top 30%', scrub: true } }).scrollTrigger);
       secTriggers.push(gsap.fromTo(ph.querySelector('img'), { scale: 1.22 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: f, start: 'top 92%', end: 'top 30%', scrub: true } }).scrollTrigger);
     });
-    secTriggers.push(gsap.fromTo('.pp-pic .ph', { clipPath: 'inset(0% 0% 24% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: '.pp-pic', start: 'top 90%', end: 'top 40%', scrub: true } }).scrollTrigger);
+    // v2 spreads: edge-crop reveal (data-from) + settle-scale on the photo, display words rise once
+    $$('.crop2').forEach(f => {
+      const ph = f.querySelector('.ph') || f, img = f.querySelector('img'), from = f.dataset.from;
+      if (from) secTriggers.push(gsap.fromTo(ph, { clipPath: from }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: f, start: 'top 92%', end: 'top 35%', scrub: true } }).scrollTrigger);
+      secTriggers.push(gsap.fromTo(img, { scale: 1.16 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: f, start: 'top 92%', end: 'top 25%', scrub: true } }).scrollTrigger);
+    });
+    $$('.dw').forEach(el => secTriggers.push(gsap.fromTo(el, { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none reverse' } }).scrollTrigger));
     secTriggers.push(gsap.fromTo('.vs-wide img', { scale: 1.18, yPercent: -4 }, { scale: 1, yPercent: 4, ease: 'none', scrollTrigger: { trigger: '.vs-wide', start: 'top bottom', end: 'bottom top', scrub: true } }).scrollTrigger);
   }
 
@@ -770,10 +852,10 @@ canvas{display:block}
     const p = window.__p || 0, r = cover.getBoundingClientRect();
     let ink;
     if (r.bottom > innerHeight + 10) ink = p > 0.58;
-    else { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && !el.closest('.qpage') && el.closest('.opener, .spread.dark, .ft, .cover'); ink = !dark; }
+    else { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && !el.closest('.qpage') && el.closest('.opener, .spread.dark, .sp2, .ft, .cover'); ink = !dark; }
     hd.classList.toggle('ink', ink);
   }
-  function headerStatic() { addEventListener('scroll', () => { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && !el.closest('.qpage') && el.closest('.cover, .opener, .spread.dark, .ft'); hd.classList.toggle('ink', !dark); }, { passive: true }); }
+  function headerStatic() { addEventListener('scroll', () => { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && !el.closest('.qpage') && el.closest('.cover, .opener, .spread.dark, .sp2, .ft'); hd.classList.toggle('ink', !dark); }, { passive: true }); }
   addEventListener('scroll', headerTone, { passive: true });
 
   // ---- anchors ----
