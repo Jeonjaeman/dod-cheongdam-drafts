@@ -318,6 +318,7 @@ canvas{display:block}
   .qpage{padding-top:64px}
   .quote{font-size:clamp(26px,3vw,40px)}
 }
+@media (max-width:767px){.hd.sc:not(.ink){background:rgba(24,14,14,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}}
 </style>
 <style id="nolink">a.plain{pointer-events:none;cursor:text;text-decoration:none;border-bottom:0!important;background-image:none!important}a.plain::before,a.plain::after{content:none!important}</style>
 </head>
@@ -327,6 +328,7 @@ canvas{display:block}
   <span class="hd-vol" aria-hidden="true">Vol.01 / Cheongdam</span>
   <a class="hd-cta" href="#visit">진료 문의</a>
 </header>
+<script>{const h=document.getElementById('hd');const f=()=>h.classList.toggle('sc',scrollY>40);addEventListener('scroll',f,{passive:true});f();}</script>
 
 <main id="top">
   <!-- Scene A: cover → letter mask (live frames) → full-bleed dolly → pull quote -->
@@ -654,16 +656,16 @@ canvas{display:block}
     tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: cover, start: 'top top', end: 'bottom bottom', scrub: true, pin: stage, pinSpacing: false,
       onUpdate: self => { window.__p = self.progress; s3.progress(gsap.utils.clamp(0, 1, (self.progress - 0.05) / 0.48)); headerTone(); } } });
     st = tl.scrollTrigger;
-    tl.to(cv, { opacity: 0, y: -40, duration: 0.03, ease: 'power2.in' }, 0.04)
+    tl.to(cv, { opacity: 0, y: -40, duration: 0.05, ease: 'power2.in' }, 0.17)
       .to(edit, { opacity: 0, x: 30, duration: 0.04 }, 0.06)
       // the white letters become a window: masked film fades in exactly where the masthead sits
       .fromTo(film, { opacity: 0 }, { opacity: 1, duration: 0.04 }, 0.07)
       .to(mast, { opacity: 0, duration: 0.03 }, 0.09)
       // zoom through the D stem until the live dolly fills the screen
-      .to(P, { s: geo.sMax, duration: 0.2, ease: 'power3.in', onUpdate: applyMask }, 0.12)
-      .set(film, { webkitMaskImage: 'none', maskImage: 'none' }, 0.321)
-      .fromTo(cgrad, { opacity: 0 }, { opacity: 1, duration: 0.04 }, 0.32)
-      .fromTo(chap, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.04 }, 0.33)
+      .to(P, { s: geo.sMax, duration: 0.14, ease: 'power2.in', onUpdate: applyMask }, 0.10)
+      .set(film, { webkitMaskImage: 'none', maskImage: 'none' }, 0.241)
+      .fromTo(cgrad, { opacity: 0 }, { opacity: 1, duration: 0.04 }, 0.25)
+      .fromTo(chap, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.04 }, 0.27)
       .to(chap, { opacity: 0, y: -16, duration: 0.03 }, 0.47)
       .to(cgrad, { opacity: 0, duration: 0.03 }, 0.47)
       // paper curtain with depth: film recedes and dims as the quote page covers it

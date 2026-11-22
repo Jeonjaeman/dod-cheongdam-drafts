@@ -310,6 +310,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
   .ev-h{font-size:clamp(30px,3.2vw,44px)}
 }
 @media (prefers-reduced-motion:reduce){.cta,.fx a,.more{transition:none}}
+@media (max-width:767px){.hd{transition:color .5s,background .35s}.hd.sc{background:rgba(11,22,32,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}.hd.sc.light{background:rgba(245,243,239,.92)}}
 </style>
 <style id="nolink">a.plain{pointer-events:none;cursor:text;text-decoration:none;border-bottom:0!important;background-image:none!important}a.plain::before,a.plain::after{content:none!important}</style>
 </head>
@@ -322,6 +323,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
     <a href="#visit" data-to="#visit" class="keep">진료 문의</a>
   </nav>
 </header>
+<script>{const h=document.getElementById('hd');const f=()=>h.classList.toggle('sc',scrollY>40);addEventListener('scroll',f,{passive:true});f();}</script>
 
 <main id="top">
   <!-- Scene A -->
@@ -619,7 +621,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
     if (mobile()) { gsap.set(['#evh', '#evsub', rows, figs], { autoAlpha: 1, y: 0 }); gsap.set(slotTxt, { opacity: 1 }); gsap.set(big, { display: 'none' }); return; }
     gsap.set(big, { display: 'flex' }); gsap.set(slotTxt, { opacity: 0 });
     const tl = gsap.timeline({ scrollTrigger: { trigger: '.evid-pin', start: 'top top', end: 'bottom bottom', scrub: .4 } });
-    tl.fromTo(big, { autoAlpha: 0, scale: 1.12 }, { autoAlpha: 1, scale: 1, duration: .8, ease: 'power2.out' }, 0)
+    tl.fromTo(big, { autoAlpha: 1, scale: 1.12 }, { autoAlpha: 1, scale: 1, duration: .8, ease: 'power2.out' }, 0)
       .to(big.querySelector('span'), { clipPath: 'inset(0 0 0% 0)', duration: 1.2, ease: 'none' }, .3)
       .to('#evh', { autoAlpha: 1, duration: .6 }, 1.4)
       .add(Flip.fit(big, slot, { scale: true, duration: 1.4, ease: 'power3.inOut' }), 1.5)
