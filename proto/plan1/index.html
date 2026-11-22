@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../_lib/lenis.css">
+<link rel="stylesheet" href="../_lib/gnb.css">
 <link rel="preload" as="image" href="../_media/s1/pc/001.webp" media="(min-width: 769px)" fetchpriority="high">
 <link rel="preload" as="image" href="../_media/s1/m/001.webp" media="(max-width: 768px)" fetchpriority="high">
 <style>
@@ -47,6 +48,12 @@ canvas{display:block}
 .nav a:hover{opacity:.6}
 .nav .cta{padding:0 18px;border:1px solid currentColor;border-radius:999px;min-height:44px}
 .site-header.light{color:var(--ivory)}
+.site-header,.gnb-panel{--gnb-bg:var(--ivory);--gnb-fg:var(--ink);--gnb-mute:var(--mute);--gnb-line:var(--rule);--gnb-accent:var(--gold);--gnb-pbg:var(--ivory);--gnb-pfg:var(--ink);--gnb-pmute:var(--mute);--gnb-pline:var(--rule);--gnb-g:var(--gutter);--gnb-bar:var(--bar-h)}
+.site-header .nav{margin-left:auto}
+.site-header .gnb a::before{content:none}
+.site-header .cta{white-space:nowrap}
+@media (min-width:1280px){.site-header .wordmark small{display:none}.site-header .nav{margin-left:0}}
+.site-header.gnb-open{padding-bottom:0}
 /* reduced-motion/정적 모드: 헤더 테마 갱신이 없으므로 불투명 아이보리 바탕 + 잉크 글자로 고정 */
 html:not(.motion) .site-header,html:not(.motion) .site-header.light{background:rgba(244,240,232,.96);color:var(--ink);padding-bottom:10px;box-shadow:0 1px 0 rgba(30,26,23,.08)}
 
@@ -384,12 +391,13 @@ html:not(.motion) .hero-over{display:none}
 
 <header class="site-header" id="hd">
   <a class="wordmark" href="#top" aria-label="DOD 디오디피부과 청담">DOD<small>Cheongdam Dermatology</small></a>
-  <nav class="nav" aria-label="주요 메뉴">
-    <a href="#why">공간</a>
-    <a href="#visit">방문 안내</a>
+  <span data-gnb-slot></span>
+  <nav class="nav" aria-label="진료 문의">
     <a class="cta" href="#visit">진료 문의</a>
   </nav>
 </header>
+<script>window.GNB_MAP={'시설안내':'#why','의료진 및 연구진':'#rail','오시는길':'#visit'};window.__gnbLenis=function(){return window.__plan1&&window.__plan1.lenis};</script>
+<script src="../_lib/gnb.js"></script>
 
 <main id="top">
 
