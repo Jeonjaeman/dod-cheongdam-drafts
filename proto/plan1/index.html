@@ -47,6 +47,8 @@ canvas{display:block}
 .nav a:hover{opacity:.6}
 .nav .cta{padding:0 18px;border:1px solid currentColor;border-radius:999px;min-height:44px}
 .site-header.light{color:var(--ivory)}
+/* reduced-motion/정적 모드: 헤더 테마 갱신이 없으므로 불투명 아이보리 바탕 + 잉크 글자로 고정 */
+html:not(.motion) .site-header,html:not(.motion) .site-header.light{background:rgba(244,240,232,.96);color:var(--ink);padding-bottom:10px;box-shadow:0 1px 0 rgba(30,26,23,.08)}
 
 /* ---------- common type ---------- */
 .eyebrow{font-family:var(--sans);font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--gold)}
