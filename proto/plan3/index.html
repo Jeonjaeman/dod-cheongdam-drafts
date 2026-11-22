@@ -169,6 +169,7 @@ canvas{display:block}
 .pp-h h2{font-weight:500;font-size:clamp(30px,3.4vw,52px);line-height:1.22;letter-spacing:-.025em}
 .pp-h p{margin-top:14px;font-size:16px;color:var(--mute);max-width:30em}
 .pp-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,80px);margin-top:clamp(40px,6vh,72px);align-items:start}
+.qa-lab{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--wine);margin-bottom:14px}
 .qa{list-style:none;border-top:2px solid var(--ink)}
 .qa li{display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:14px;padding:22px 0;border-bottom:1px solid var(--rule)}
 .qa li i{font-family:var(--disp);font-style:italic;font-size:18px;color:var(--wine)}
@@ -364,7 +365,7 @@ canvas{display:block}
           <p class="by" id="qby">— DOD Edit, Vol.01 Cheongdam</p>
         </div>
         <div class="qr" id="qr">
-          <p>이 호는 디오디 청담을 공간, 진단, 상담, 사람, 진료 분야, 방문이라는 여섯 면으로 읽습니다. 사진은 모두 청담 공간에서 촬영한 실제 장면입니다.</p>
+          <p>이 호는 디오디 청담을 공간, 진단, 상담, 사람, 진료 분야, 방문이라는 여섯 면으로 읽습니다. 공식 홈페이지 사진과 이를 바탕으로 제작한 AI 연출을 사용했습니다. AI 연출은 해당 장면에 표시합니다.</p>
           <p>진료 과정과 상담 운영에 대한 안내는 공식 홈페이지 자료를 기준으로 합니다.</p>
           <a class="nxt" href="#toc"><i>Contents</i> 여섯 가지 이야기 ↓</a>
         </div>
@@ -413,7 +414,7 @@ canvas{display:block}
         <span class="lab">Chapter 01 — Space</span>
         <div class="big">공간</div>
         <h2 class="mkl">복도 끝, dod 로고가 보이는 문 앞에서</h2>
-        <p class="mkl">청담 공간은 긴 복도를 따라 독립된 방으로 이어집니다. 한 사람에게 집중하기 위해 동선을 나눴습니다.</p>
+        <p class="mkl">공식 사진으로 복도와 독립된 1인 시술실을 소개합니다.</p>
       </div>
       <span class="ai">실제 공간 사진 기반 AI 연출</span>
     </div>
@@ -454,13 +455,14 @@ canvas{display:block}
   <section class="people" id="people" aria-labelledby="h-ppl">
     <div class="pp-h">
       <div><span class="lab">Chapter 04 — People</span><span class="big rv">04</span></div>
-      <div><h2 id="h-ppl" class="mkl">사람을 만나다</h2><p class="mkl">얼굴보다 과정으로 소개합니다. 진료를 맡는 의료진과 연구를 맡는 연구진의 역할을 나누어 묻고 답했습니다.</p></div>
+      <div><h2 id="h-ppl" class="mkl">사람을 만나다</h2><p class="mkl">얼굴보다 과정으로 소개합니다. 진료와 연구의 역할을 안내합니다.</p></div>
     </div>
     <div class="pp-b">
+      <p class="qa-lab">방문 전 안내</p>
       <ol class="qa rv">
         <li><i>Q1</i><div><b>진료는 어디에서 시작되나요?</b><p>피부 상태와 관심 부위를 의료진과 함께 살펴보는 것에서 시작합니다. 진단 안내 후 상담으로 이어집니다.</p></div></li>
         <li><i>Q2</i><div><b>상담에서는 무엇을 이야기하나요?</b><p>관심 부위와 이전 시술 이력, 회복과 일정에서 고려할 점을 바탕으로 진료 방향을 함께 정합니다. 복용 중인 약과 알레르기는 의료진에게 직접 알려 주세요.</p></div></li>
-        <li><i>Q3</i><div><b>시술은 어떤 공간에서 진행되나요?</b><p>독립된 1인 시술실에서 진행합니다. 긴 복도를 따라 방을 나눈 것은 한 사람에게 집중하기 위해서입니다.</p></div></li>
+        <li><i>Q3</i><div><b>시술은 어떤 공간에서 진행되나요?</b><p>독립된 1인 시술실에서 진행합니다. 공식 사진으로 복도와 시술실을 소개합니다.</p></div></li>
         <li><i>Q4</i><div><b>진료와 연구는 어떻게 이어지나요?</b><p>진료는 의료진이, 연구는 연구진이 맡습니다. 자세한 소개는 공식 홈페이지의 의료진 안내에서 확인하실 수 있습니다.</p></div></li>
       </ol>
       <figure class="pp-pic crop">
@@ -759,10 +761,10 @@ canvas{display:block}
     const p = window.__p || 0, r = cover.getBoundingClientRect();
     let ink;
     if (r.bottom > innerHeight + 10) ink = p > 0.58;
-    else { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && el.closest('.opener, .spread.dark, .ft, .cover'); ink = !dark; }
+    else { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && !el.closest('.qpage') && el.closest('.opener, .spread.dark, .ft, .cover'); ink = !dark; }
     hd.classList.toggle('ink', ink);
   }
-  function headerStatic() { addEventListener('scroll', () => { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && el.closest('.cover, .opener, .spread.dark, .ft'); hd.classList.toggle('ink', !dark); }, { passive: true }); }
+  function headerStatic() { addEventListener('scroll', () => { const el = document.elementFromPoint(innerWidth / 2, 30); const dark = el && !el.closest('.qpage') && el.closest('.cover, .opener, .spread.dark, .ft'); hd.classList.toggle('ink', !dark); }, { passive: true }); }
   addEventListener('scroll', headerTone, { passive: true });
 
   // ---- anchors ----
