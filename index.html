@@ -24,6 +24,15 @@ h1{margin:0;font-size:clamp(30px,4.2vw,56px);line-height:1.2;letter-spacing:-.02
 .notice p{margin:.5rem 0 0;color:#dcd6cc;font-size:15.5px}
 .notice strong{color:#fff}
 .notice .sub{color:#a9a399;font-size:14px}
+.key{margin:0 0 48px;padding:28px 32px;border:1px solid #3b4a63;background:#141a24;max-width:62em}
+.key .k2{display:inline-block;margin:0 0 10px;padding:3px 10px;background:#c8a46a;color:#111;font-size:12.5px;font-weight:700;letter-spacing:.04em}
+.key h2{margin:0;font-size:22px;line-height:1.4}
+.key .l{margin:.4rem 0 0;color:#dcd6cc;font-size:15.5px}
+.key ol{margin:1rem 0 0;padding:0 0 0 1.3em;color:#dcd6cc;font-size:15px}
+.key ol li{margin:.35rem 0}
+.key ol b{color:#fff}
+.key .sub{margin:.9rem 0 0;color:#a9a399;font-size:13.5px}
+@media (max-width:900px){.key{padding:22px 20px;margin-bottom:36px}}
 .cards{list-style:none;margin:0;padding:0 0 96px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .card{display:flex;flex-direction:column;border:1px solid #2e2e2e;height:100%}
 .thumb{aspect-ratio:4/5;overflow:hidden;display:block}
@@ -59,6 +68,17 @@ footer{padding:0 0 48px;font-size:13px;color:#8c877f}
   <p>이 페이지의 세 가지 안은 <strong>리뉴얼의 개선 방향과 각 안의 강점을 중심으로 표현한 메인페이지 초안</strong>입니다. 최종 디자인이나 전체 기능이 확정된 완성본은 아닙니다.</p>
   <p>실제 제작을 진행할 때에는 선택한 방향을 바탕으로 충분한 협의와 조사를 거쳐, 페이지 구성·콘텐츠·카피·이미지 및 영상·모션·모바일 경험·SEO·운영 범위를 담은 <strong>구체적인 기획안을 마련한 뒤 제작</strong>합니다.</p>
   <p class="sub">현재 초안은 메인페이지 중심으로 구성되어 있으며, 상세페이지 이동이나 실제 상담 접수 등 일부 기능은 구현하지 않았습니다. 사진 기반 AI 연출은 실제 촬영 영상과 구분해 안내합니다.</p>
+</section>
+<section class="key" aria-labelledby="kh">
+  <span class="k2">실제 제작 시 핵심 개선</span>
+  <h2 id="kh">기존 홈페이지와 가장 크게 달라지는 점</h2>
+  <p class="l">이벤트를 ‘보여 주는 이미지’에서 ‘검색과 상담으로 이어지는 콘텐츠’로 바꿉니다.</p>
+  <ol>
+    <li><b>전용 관리자에서 이벤트 등록</b> — 등록·수정, 게시 기간, 진행·종료 상태를 자체 제작 관리자페이지에서 관리합니다.</li>
+    <li><b>이벤트별 상세페이지 발행</b> — 이벤트마다 고유 주소의 상세페이지에 대상·기간·시술 구성·가격 및 조건·주의사항을 검색엔진이 읽을 수 있는 글로 정리합니다.</li>
+    <li><b>검색 유입 · 상담 연결</b> — 각 상세페이지에서 해당 이벤트 상담으로 바로 이어지도록 설계합니다.</li>
+  </ol>
+  <p class="sub">지금의 이벤트 페이지는 내용이 주로 이미지로 되어 있어 검색엔진과 AI가 기간·대상·조건을 글자로 읽기 어렵습니다. 검색 노출이나 순위를 보장하는 것은 아니며, 실제 제작 시 색인·수집 가능 여부까지 점검합니다. 아래 메인페이지 초안 3종에는 이벤트 상세·관리자 화면이 포함되어 있지 않으며, 실제 제작 시 기획안에 구체적으로 담습니다.</p>
 </section>
 <main>
 <ul class="cards">
