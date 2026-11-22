@@ -296,8 +296,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
   .mbar{position:fixed;inset:auto 0 0 0;z-index:70;display:flex;gap:10px;height:calc(var(--bar) + var(--sa));padding:8px var(--g) calc(8px + var(--sa));background:var(--ink);border-top:1px solid var(--line-i)}
   .mbar a{flex:1;display:flex;align-items:center;justify-content:center;border-radius:999px;font-weight:600;font-size:14px;min-height:48px;border:1px solid rgba(243,245,246,.4)}
   .mbar a:first-child{background:var(--cyan);color:var(--ink);border-color:var(--cyan)}
-  .static .view{margin:12px var(--g) 0;height:52vw}
-  .static .txt{padding-top:12px}
+  /* 정적 모바일: 사진 → 글 순서, 헤더 높이만큼 위 여백, 좌우 gutter */
+  .static .stage-in{display:flex;flex-direction:column}
+  .static .view{order:-1;margin:calc(var(--hdr) + 8px) var(--g) 0;height:min(60vw,356px)}
+  .static .figcap{order:0;left:auto;right:auto;top:auto}
+  .static .txt{padding:12px var(--g) 0}
 }
 @media (max-width:900px) and (max-height:700px){
   .view{height:40svh}.txt{top:calc(var(--hdr) + 40svh)}.figcap{top:calc(var(--hdr) + 40svh)}
