@@ -225,6 +225,7 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
   .text-link,.fields a,.header-cta{transition:none}
 }
 </style>
+<style id="nolink">a.nolink{cursor:default}</style>
 </head>
 <body>
 
@@ -284,9 +285,9 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
               <p>독립된 1인 시술실을 안내합니다.</p>
             </div>
             <ul class="fields rv" aria-label="진료 분야">
-              <li><a href="https://www.dodskin.com/lifting" target="_blank" rel="noopener">리프팅 <span class="arr">→</span></a></li>
-              <li><a href="https://www.dodskin.com/booster" target="_blank" rel="noopener">콜라겐·스킨부스터 <span class="arr">→</span></a></li>
-              <li><a href="https://www.dodskin.com/stemcell" target="_blank" rel="noopener">재생 프로그램 <small>의료진 상담이 필요합니다.</small><span class="arr">→</span></a></li>
+              <li><a class="nolink" aria-disabled="true">리프팅 <span class="arr">→</span></a></li>
+              <li><a class="nolink" aria-disabled="true">콜라겐·스킨부스터 <span class="arr">→</span></a></li>
+              <li><a class="nolink" aria-disabled="true">재생 프로그램 <small>의료진 상담이 필요합니다.</small><span class="arr">→</span></a></li>
             </ul>
           </div>
         </div>
@@ -308,7 +309,7 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
               <li class="rv"><span><span class="num">04</span><span class="nm">이준원</span></span><span class="rl">원장</span></li>
               <li class="rv"><span><span class="num">05</span><span class="nm">김진아</span></span><span class="rl">박사 · 연구</span></li>
             </ol>
-            <a class="text-link rv" href="https://www.dodskin.com/staff" target="_blank" rel="noopener">의료진 소개 보기</a>
+            <a class="text-link rv nolink" aria-disabled="true">의료진 소개 보기</a>
             <div class="contact rv">
               <div>
                 <p class="lab">Call</p>
@@ -316,7 +317,7 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
               </div>
               <div>
                 <p class="lab">Kakao</p>
-                <a class="kakao" href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener">카카오톡으로 진료 문의</a>
+                <a class="kakao nolink" aria-disabled="true">카카오톡으로 진료 문의</a>
               </div>
               <div>
                 <p class="lab">Hours</p>
@@ -344,7 +345,7 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--accent);outline-off
 
 <nav class="mobile-bar" aria-label="진료 문의">
   <a href="tel:02-6203-6263"><small>Call</small>전화 문의</a>
-  <a href="https://pf.kakao.com/_cBamG" target="_blank" rel="noopener"><small>Kakao</small>카카오 문의</a>
+  <a class="nolink" aria-disabled="true"><small>Kakao</small>카카오 문의</a>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
